@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record id="warehouse_requisition_summary_line_ept_form_view" model="ir.ui.view">
+            <field name="name">warehouse.requisition.summary.line.ept.view.form</field>
+            <field name="model">warehouse.requisition.summary.line.ept</field>
+          	<field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="customer">
+                	<sheet>
+                		<group>
+                			<group>
+                				<field name="product_id" required='True'/>
+                				<field  name="is_sufficient_stock"/>
+                			</group>
+                			<group>
+                				<field  name="available_qty"/>
+			                	<field  name="requisition_qty"/>
+			                	<field name="deliver_qty"/>                	
+                			</group>
+                		</group>
+                		<group string='Process Lines'>	
+                			<field name="warehouse_requisition_process_line_ids" nolabel='1'>
+	                			<tree create="false" editable="top">
+	              					<field name="product_id" readonly="1"/>
+	              					<field name="warehouse_id"  readonly="1"/>
+	              					<field name="qty_available_for_sale" readonly="1"/>
+	              					<field name="expected_sale" readonly="1"/>
+	              					<field name="forecasted_stock" readonly="1"/>
+	              					<field name="requisition_qty" readonly="1"/>
+	              				</tree>
+              				</field>	
+	            		</group>
+                 	</sheet>
+                 </form>
+            </field>
+        </record>
+
+     <record id="action_warehouse_requisition_summary_line" model="ir.actions.act_window">
+     	<field name="name">Warehouse Requisition Summary</field>
+     	<field name="res_model">warehouse.requisition.summary.line.ept</field>
+     	<field name="view_type">form</field>
+     	<field name="view_id" ref="warehouse_requisition_summary_line_ept_form_view"/>
+    </record>
+</odoo>

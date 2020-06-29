@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_move_picking_tree_amazon_edi_section" model="ir.ui.view">
+            <field name="name">view.move.picking.tree.amazon.edi.section</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <button type="object" icon="fa-times-circle text-danger" name="btn_action_cancel" attrs="{'invisible':[('state','!=','confirmed')]}" string="Cancel Stock Move Record"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

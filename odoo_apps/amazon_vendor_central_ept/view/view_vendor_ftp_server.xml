@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_tree_vendor_ftp_server" model="ir.ui.view">
+			<field name="name">Vendor FTP Server</field>
+			<field name="model">vendor.ftp.server</field>
+			<field name="arch" type="xml">
+				<tree string="Vendor FTP Server" class="oe_form_configuration">
+					<field name="name" />
+					<field name="connection_type" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_form_vendor_ftp_server" model="ir.ui.view">
+			<field name="name">Vendor FTP Server</field>
+			<field name="model">vendor.ftp.server</field>
+			<field name="arch" type="xml">
+				<form string="Vendor FTP Server" class="oe_form_configuration">
+					<header>
+						<button name="do_test_connection" class="oe_highlight"
+							string="Test Connection" type="object" />
+					</header>
+					<sheet>
+						<group string="Vendor FTP Server">
+							<group>
+								<field name="name" required="1" />
+							</group>
+							<group>
+								<field name="connection_type" required="1" />
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="ftp_host" required="1"/>
+								<field name="ftp_port" required="1"/>
+								<field name="ftp_key_location" required="1"/>
+							</group>
+						</group>
+						<group>
+							<group string="Sending">
+								<field name="sending_ftp_user" required="1" />
+								<field name="sending_ftp_password" password="1" invisible="1"/>
+							</group>
+							<group string="Receive">
+								<field name="receive_ftp_user" required="1" />
+								<field name="receive_ftp_password" password="1" invisible="1"/>
+							</group>
+						</group>
+						<notebook>
+							<page string="Directory List">
+								<field name="directory_ids">
+									<tree editable="top">
+										<field name="name" required="1" />
+										<field name="path" required="1" />
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_vendor_server" model="ir.actions.act_window">
+            <field name="name">Vendor FTP Server</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">vendor.ftp.server</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'form_view_ref':'amazon_vendor_central_ept.view_form_vendor_ftp_server','default_use_default_to': True}</field>
+        </record>
+        <menuitem id="menu_vendor_ftp_server" name="Vendor FTP Server"
+                  sequence="3" parent="menu_amazon_vendor_central_configuration"
+                  action="action_vendor_server"/>
+		
+	</data>
+</odoo>

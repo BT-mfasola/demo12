@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<menuitem id="menu_advance_purchase_requisition_ept" name="Reorder Process"
+		parent='inventory_coverage_report_ept.advance_reordering_main_menu'
+		action='requisition_process_ept_action' groups='advance_purchase_ordering_ept.adv_purchase_user_ept'
+		sequence="3" />
+
+	<menuitem id="menu_warehouse_requisition_ept" name="Procurement Process"
+		parent='inventory_coverage_report_ept.advance_reordering_main_menu'
+		action='warehouse_requisition_process_ept_action' sequence="20"
+		groups='advance_purchase_ordering_ept.adv_purchase_user_ept' />
+
+	<record id="inventory_coverage_report_ept.menu_inventory_coverage_report_root" model="ir.ui.menu">
+		<field name="groups_id" eval="[(4, ref('advance_purchase_ordering_ept.adv_purchase_manager_ept'))]" />
+	</record>
+
+	<record id="inventory_coverage_report_ept.requisition_log_menu" model="ir.ui.menu">
+		<field name="groups_id" eval="[(4, ref('advance_purchase_ordering_ept.adv_purchase_manager_ept'))]" />
+	</record>
+</odoo>

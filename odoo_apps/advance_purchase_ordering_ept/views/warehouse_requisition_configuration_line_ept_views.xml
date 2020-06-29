@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="warehouse_requisition_configuration_line_ept_form_view" model="ir.ui.view">
+		<field name="name">warehouse.requisition.configuration.line.ept.view.form</field>
+		<field name="model">warehouse.requisition.configuration.line.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Warehouse Requisition Configuration">
+				<sheet>
+					<group>
+						<group>
+							<field name="warehouse_id" required="True" />
+							<field name="warehouse_requisition_process_id" required="True"
+								copy='False' />
+							<field name="requisition_backup_stock_days" />
+						</group>
+						<group>
+							<field name="requisition_estimated_delivery_time" />
+							<field name="destination_warehouse_id" required="True" />
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_warehouse_requisition_configuration_line" model="ir.actions.act_window">
+		<field name="name">Warehouse Requisition Configuration</field>
+		<field name="res_model">warehouse.requisition.configuration.line.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_id" ref="warehouse_requisition_configuration_line_ept_form_view" />
+	</record>
+</odoo>

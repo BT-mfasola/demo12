@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+	<record id="project_native_report_form" model="ir.ui.view">
+		<field name="name">project.native.report.form</field>
+		<field name="model">project.native.report</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Export xml">
+
+				<sheet>
+					<group>
+						<group>
+							<field name="screen" invisible="1"/>
+
+							<field name="project_id" attrs="{'invisible': [('screen', '=', True)]}"/>
+
+							<field name="name"/>
+							<field name="file_save" filename="name"/>
+							<field name="report_scale"/>
+
+						</group>
+					</group>
+				</sheet>
+
+				<footer>
+					<button string="Generate report file" type="object" name="action_report" class="oe_highlight"/>
+
+				</footer>
+
+			</form>
+		</field>
+	</record>
+
+</data>
+</openerp>

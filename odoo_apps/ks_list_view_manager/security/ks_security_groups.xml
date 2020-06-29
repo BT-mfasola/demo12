@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+<!--Access Rights-->
+    <record id="ks_list_view_manger_category" model="ir.module.category">
+        <field name="name">List View Manager Rights</field>
+        <field name="description">User Access Level</field>
+        <field name="sequence">12</field>
+    </record>
+
+    <record id="ks_list_view_manager_edit_and_read" model="res.groups">
+        <field name="name">Read/Edit Mode</field>
+        <field name="category_id" ref="ks_list_view_manager.ks_list_view_manger_category"/>
+    </record>
+
+    <record id="ks_list_view_manager_dynamic_list" model="res.groups">
+        <field name="name">Dynamic List</field>
+        <field name="category_id" ref="ks_list_view_manager.ks_list_view_manger_category"/>
+    </record>
+
+    <record id="ks_list_view_manager_advance_Search" model="res.groups">
+        <field name="name">Advance Search</field>
+        <field name="category_id" ref="ks_list_view_manager.ks_list_view_manger_category"/>
+    </record>
+
+    <record id="base.default_user" model="res.users">
+        <field name="groups_id" eval="[(4,ref('ks_list_view_manager_edit_and_read')),(4,ref('ks_list_view_manager_dynamic_list')),(4,ref('ks_list_view_manager_advance_Search'))]"/>
+    </record>
+
+    </data>
+</odoo>

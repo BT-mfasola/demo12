@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+		<!-- Wizard View -->
+		<record id="wizardview_shipment_ept" model="ir.ui.view">
+			<field name="name">Shipment Report</field>
+			<field name="model">shipment.report.ept</field>
+			<field name="arch" type="xml">
+				<form string="Shipment Report">
+					 <group col="4">
+                        <field name="from_date" />
+                        <field name="to_date" />
+                    </group>
+					<footer>
+						<button string="Print" type="object"
+							name="shipping_instance_report_ept" class="oe_highlight" />
+						<button string="_Cancel" class="btn-default" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<!--Wiazard Action 
+		<record id="wizardaction_shipment_report_ept" model="ir.actions.act_window">
+			<field name="name">Shipment Report</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">shipment.report.ept</field>
+			<field name="view_mode">tree,form,kanban</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="wizardview_shipment_ept" />
+			<field name="target">new</field>
+		</record>-->
+	
+	<record id="wizardaction_shipment_report_ept" model="ir.actions.act_window">
+            <field name="name">Shipment Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipment.report.ept</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.property" id="wizardaction_shipment_ept">
+            <field name="name">Shipment Report</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('wizardaction_shipment_report_ept'))" />
+            <field name="key">action</field>
+            <field name="fields_id" search="[('model','=','shipping.instance.ept')]"/>
+        </record>
+
+</data>
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_picking_to_batch_form_ept" model="ir.ui.view">
+        <field name="name">stock.picking.to.batch.form</field>
+        <field name="model">stock.picking.to.batch.ept</field>
+        <field name="arch" type="xml">
+            <form string="Add pickings to batch">
+                <group>
+                    <group>
+                        <field name="delivery_type_ept" widget="radio"/>
+                        <field name="carrier_id" domain="[('delivery_type','=',delivery_type_ept)]"
+                                   options='{"no_create": 1, "no_create_edit": 1}' required="1"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="batch_id" domain="[('carrier_id', '=', carrier_id), ('state', '=', 'draft'),('carrier_id','!=',False)]" options='{"no_create": 1, "no_create_edit": 1}'/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="create_batch_manually" type="object" string="Create Batch" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="stock_picking_to_batch_action_ept" model="ir.actions.act_window">
+        <field name="name">Create Batch Picking</field>
+        <field name="res_model">stock.picking.to.batch.ept</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="stock_picking_to_batch_form_ept"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem name="Auto Create Batch" id="inventory_menu_create_batch"
+              parent="stock.menu_stock_warehouse_mgmt" sequence="3" action="stock_picking_to_batch_action_ept"/>
+</odoo>

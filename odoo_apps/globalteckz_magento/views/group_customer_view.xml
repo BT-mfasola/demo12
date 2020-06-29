@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+            <record model="ir.ui.view" id="view_group_customer_form">
+            <field name="name">view.group.customer.form</field>
+            <field name="model">customer.group</field>
+            <field name="arch" type="xml">
+               <form> <field name="name" />
+                <field name="customer_group_code"/></form>
+           </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_group_customer_tree">
+            <field name="name">view.group.customer.tree</field>
+            <field name="model">customer.group</field>
+            <field name="arch" type="xml">
+                <tree string="Customer Group">
+                    <field name="name"/>
+                    <field name="customer_group_code"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="act_group_customer" model="ir.actions.act_window">
+            <field name="name">Customer Group</field>
+            <field name="res_model">customer.group</field>
+            <field name="src_model">magento.instance</field>
+        </record>
+        <!--<menuitem id="menu_customer_group" name="Customer Group" parent="menu_magento_main" action="act_group_customer"/>-->
+        
+     </data>
+</openerp>

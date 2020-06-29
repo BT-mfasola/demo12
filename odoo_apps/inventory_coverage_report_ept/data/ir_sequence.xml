@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+		<!-- Sequences for requisition.log.ept -->
+		<record id="forecast_sale_rule_ept_sequence" model="ir.sequence">
+			<field name="name">Sequence of Forecast Sale rule</field>
+			<field name="code">forecast.sale.rule.ept</field>
+			<field name="prefix">FSR</field>
+			<field name="padding">3</field>
+			<field eval="1" name="number_next" />
+			<field eval="1" name="number_increment" />
+			<field eval="False" name="company_id" />
+		</record>
+
+		<record id="seq_requisition_log" model="ir.sequence">
+			<field name="name">Requisition Log</field>
+			<field name="code">requisition.log.ept</field>
+			<field name="prefix">RL</field>
+			<field name="padding">3</field>
+			<field name="company_id" eval="False" />
+		</record>
+	</data>
+</odoo>

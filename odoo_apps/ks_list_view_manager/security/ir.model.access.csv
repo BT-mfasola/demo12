@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_specific,user.specific,model_user_specific,,1,1,1,1
+access_user_fields,user.fields,model_user_fields,,1,1,1,1
+access_user_mode,user.mode,model_user_mode,,1,1,1,1
+access_ks_user_standard_specific,ks.user.standard.specific,model_ks_user_standard_specific,,1,1,1,1
+access_ks_user_standard_fields,ks.user.standard.fields,model_ks_user_standard_fields,,1,1,1,1
+

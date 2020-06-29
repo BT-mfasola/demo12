@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>	
+<odoo>   		
+	<!-- Shipping instance report -->
+    <report id="shipping_instance_report_ept"
+            model="shipping.instance.ept"
+            string="Shipment Report"
+            name="shipping_integration_ept.report_shipping_instance_ept"
+            file="shipping_integration_ept.report_shipping_instance_ept"
+            report_type="qweb-pdf"/> 
+</odoo>

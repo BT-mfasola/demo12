@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_estimated_arrival_date_configure" model="ir.ui.view">
+            <field name="name">Sales Order Estimated Arrival Date</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="carrier_id" position="after">
+                    <field name="estimated_arrival_date_ept" readonly="1"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>			

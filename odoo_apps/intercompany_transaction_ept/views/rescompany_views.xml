@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="inter_company_transfer_ept_rescompany_form_view" model="ir.ui.view" >
+            <field name="name">inter.company.transfer.ept.rescompany.view.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[1]" position="after">
+					<page string="ICT Configuration">
+						<group>
+                			<field name="intercompany_user_id"></field>
+                			<field name="sale_journal" domain="[('type','=','sale')]"/>
+                			<field name="purchase_journal" domain="[('type','=','purchase')]"/>
+                		</group>
+                	</page>
+                </xpath>
+            </field>
+        </record>
+        </data>
+</odoo>

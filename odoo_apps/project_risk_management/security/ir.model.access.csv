@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_risk_type_managment,access.risk.type.managment,model_project_risk_type,base.group_user,1,0,0,0
+access_risk_type_project,access.risk.type.project,model_project_risk_type,project_risk_management.group_risk_manager,1,1,1,1
+access_risk_category_managment,access.risk.category.managment,model_project_risk_category,base.group_user,1,0,0,0
+access_risk_category_project,access.risk.category.project,model_project_risk_category,project_risk_management.group_risk_manager,1,1,1,1
+access_risk_managment_view,access.risk.managment.view,model_project_risk,base.group_user,1,0,0,0
+access_risk_managment_project,access.risk.managment.project,model_project_risk,project_risk_management.group_risk_manager,1,1,1,1
+access_project_risk_line,access.project.risk.line,model_project_risk_line,base.group_user,1,0,0,0
+access_project_risk_line_view,access.project.risk.line.view,model_project_risk_line,project_risk_management.group_risk_manager,1,1,1,1
+access_project_task_risk_line,access.project.task.risk.line,model_project_task_risk_line,base.group_user,1,0,0,0
+access_project_task_risk_line_view,access.project.task.risk.line.view,model_project_task_risk_line,project_risk_management.group_risk_manager,1,1,1,1
+access_project_task_risk_response,access.project.task.risk.response,model_project_risk_response,base.group_user,1,0,0,0
+access_project_task_risk_response_add,access.project.task.risk.response.add.view,model_project_risk_response,project_risk_management.group_risk_manager,1,1,1,1

@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+
+	<record id="project_native_exchange_form" model="ir.ui.view">
+		<field name="name">project.native.exchange.form</field>
+		<field name="model">project.native.exchange</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Export xml">
+
+				<sheet>
+					<group>
+						<group>
+							<field name="project_id"/>
+							<field name="name"/>
+						</group>
+					</group>
+					<group>
+						<field name="errors"/>
+						<field name="file_save" filename="name"/>
+					</group>
+				</sheet>
+
+				<footer>
+					<button string="Generate export file" type="object" name="action_export" class="oe_highlight"/> or
+					<button string="Close" special="cancel"/>
+				</footer>
+
+			</form>
+		</field>
+	</record>
+
+	<record id="project_native_exchange_wizard_action" model="ir.actions.act_window">
+		<field name="name">Save xml</field>
+		<field name="res_model">project.native.exchange</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="project_native_exchange_form"/>
+		<field name="target">new</field>
+	</record>
+
+
+	<menuitem id="project_exchange_menu"
+		parent="project.menu_main_pm"
+		name="Exchange" sequence="90"
+			  groups="project_native_exchange.group_pne_project_save,project_native_exchange.group_pne_project_load"
+		/>
+
+	<menuitem id="project_exchange_export_menu"
+		parent="project_exchange_menu"
+		action="project_native_exchange_wizard_action"
+			   groups="project_native_exchange.group_pne_project_save"
+		/>
+
+	<record id="project_native_exchange_import_form" model="ir.ui.view">
+		<field name="name">project.native.exchange.import.form</field>
+		<field name="model">project.native.exchange.import</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Import xml">
+
+				<sheet>
+
+					<group>
+						<group>
+							<field name="file_load" filename="name"/>
+							<field name="name"/>
+
+						</group>
+					</group>
+					<group>
+						<field name="errors"/>
+						<field name="project_id"/>
+					</group>
+
+					<notebook>
+                        <page string="Project">
+
+							<field name="import_project_line_ids" nolabel="1">
+                                 <tree create="false">
+                                     <field name="name"/>
+									 <field name="imp_value"/>
+									 <field name="xml_field"/>
+									 <field name="xml_value"/>
+									 <field name="imp_type"/>
+                                 </tree>
+                                <form>
+									<group>
+										 <field name="name"/>
+										 <field name="imp_value"/>
+										 <field name="xml_field"/>
+										 <field name="xml_value"/>
+										 <field name="imp_type"/>
+									</group>
+                                </form>
+                            </field>
+						</page>
+						<page string="Task">
+
+							<group>
+								<field name="seq_xml_task"/>
+							</group>
+
+							<field name="import_task_line_ids" nolabel="1">
+                                 <tree create="false">
+									 <field name="seq_line"/>
+									 <field name="name"/>
+									 <field name="imp_value"/>
+									 <field name="xml_field"/>
+									 <field name="xml_value"/>
+									 <field name="imp_type"/>
+                                 </tree>
+                                <form>
+									<group>
+										 <field name="seq_line"/>
+										 <field name="name"/>
+										 <field name="imp_value"/>
+										 <field name="xml_field"/>
+										 <field name="xml_value"/>
+										 <field name="imp_type"/>
+									</group>
+                                </form>
+                            </field>
+
+						</page>
+
+
+					</notebook>
+
+				</sheet>
+
+				<footer>
+					<button string="Parse File" type="object" name="action_parse" class="oe_highlight"/>
+					<button string="Import" type="object" name="action_import" class="oe_highlight"/>
+					<button string="Close" special="cancel"/>
+				</footer>
+
+			</form>
+		</field>
+	</record>
+
+	<record id="project_native_exchange_import_wizard_action" model="ir.actions.act_window">
+		<field name="name">Load xml</field>
+		<field name="res_model">project.native.exchange.import</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="project_native_exchange_import_form"/>
+		<field name="target">new</field>
+	</record>
+
+
+
+		<menuitem id="project_exchange_import_menu"
+		parent="project_exchange_menu"
+		action="project_native_exchange_import_wizard_action"
+				  groups="project_native_exchange.group_pne_project_load"
+		/>
+
+
+
+</data>
+</openerp>

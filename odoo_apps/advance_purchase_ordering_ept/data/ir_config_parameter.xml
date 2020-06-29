@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    	<record id="advance_purchase_config_requisition_send_email" model="ir.config_parameter">
+            <field name="key">advance_purchase_ordering_ept.requisition_send_email</field>
+            <field name="value">False</field>
+        </record>
+        <record id="advance_purchase_config_approval_by_authorised" model="ir.config_parameter">
+            <field name="key">advance_purchase_ordering_ept.approval_by_authorised</field>
+            <field name="value">False</field>
+        </record>
+    </data>
+</odoo>

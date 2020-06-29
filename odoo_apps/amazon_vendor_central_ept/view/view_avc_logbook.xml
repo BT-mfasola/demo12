@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_tree_avc_file_process_job" model="ir.ui.view">
+			<field name="name">AVC File Process Job</field>
+			<field name="model">avc.file.transaction.log</field>
+			<field name="arch" type="xml">
+				<tree string="AVC File Process Job" class="oe_form_configuration" create="false">
+					<field name="name" />
+					<field name="create_date" />
+					<field name="operation_type" />
+					<field name="application" />
+					<field name="sale_order_id" />
+					<field name="vendor_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_form_avc_file_process_job" model="ir.ui.view">
+			<field name="name">AVC File Process Job</field>
+			<field name="model">avc.file.transaction.log</field>
+			<field name="arch" type="xml">
+				<form string="AVC File Process Job" class="oe_form_configuration" create="false" edit="false">
+					<sheet>
+						<group>
+							<group>
+								<h1>
+									<field name="name" readonly="1" />
+								</h1>
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="vendor_id" readonly="1" />
+								<field name="company_id" readonly="1" />
+								<field name="create_date" readonly="1" />
+								<field name="message" readonly="1" />
+							</group>
+							<group>
+								<field name="filename" readonly="1" />
+								<field name="application" readonly="1" />
+								<field name="operation_type" readonly="1" />
+								<field name="sale_order_id" readonly="1" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Transactions" readonly="1">
+								<field name="transaction_log_ids" readonly="1">
+									<tree string="AVC Transaction Log" decoration-danger="skip_line==True" >
+										<field name="skip_line" readonly="1" />
+										<field name="is_mismatch_detail" readonly="1" />
+										<field name="sale_order_line_id" readonly="1" string="Sale Order Line" />
+										<field name="product_id" readonly="1" />
+										<field name="processed_qty" readonly="1" />
+										<field name="export_qty" readonly="1" />
+										<field name="difference_qty" readonly="1" />
+										<field name="price" readonly="1" />
+										<field name="remark" readonly="1" />
+										<field name="message" readonly="1" />
+										<field name="filename" readonly="1"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+							<field name="message_follower_ids" widget="mail_followers"
+								groups="base.group_user" />
+							<field name="message_ids" widget="mail_thread" />
+						</div>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_tree_avc_transaction_log" model="ir.ui.view">
+			<field name="name">AVC Transaction Log</field>
+			<field name="model">avc.transaction.log.line</field>
+			<field name="arch" type="xml">
+				<tree string="AVC Transaction Log" decoration-danger="'is_mismatch_detail' != False or 'skip_line' != False" decoration-info="'skip_line' != True">
+					<field name="skip_line" readonly="1" />
+					<field name="is_mismatch_detail" readonly="1" />
+					<field name="sale_order_line_id" readonly="1" string="Sale Order Line" />
+					<field name="product_id" readonly="1" />
+					<field name="processed_qty" readonly="1" />
+					<field name="export_qty" readonly="1" />
+					<field name="difference_qty" readonly="1" />
+					<field name="price" readonly="1" />
+					<field name="remark" readonly="1" />
+					<field name="message" readonly="1" />
+					<field name="filename" readonly="1"/>
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_form_avc_transaction_log" model="ir.ui.view">
+			<field name="name">AVC Transaction Log</field>
+			<field name="model">avc.transaction.log.line</field>
+			<field name="arch" type="xml">
+				<form string="AVC File Process Job" class="oe_form_configuration">
+					<sheet>
+						<group>
+							<group>
+								<h1>
+									<field name="filename" readonly="1" />
+								</h1>
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="job_id" readonly="1" />
+								<field name="picking_id" readonly="1" />
+								<field name="back_order_id" readonly="1" />
+								<field name="product_id" readonly="1" />
+								<field name="package_id" readonly="1" />
+								<field name="stock_inventory_id" readonly="1" />
+								<field name="company_id" readonly="1" />
+								<field name="manually_processed" readonly="1" />
+								<field name="is_mismatch_detail" readonly="1" />
+								<field name="skip_line" readonly="1" />
+								<field name="skip_order" readonly="1" />
+								<field name="create_date" readonly="1" />
+							</group>
+							<group>
+								<field name="sale_order_line_id" readonly="1" />
+								<field name="sale_order_id" readonly="1" />
+								<field name="operation_type" readonly="1" />
+								<field name="picking_state" readonly="1" />
+								<field name="product_default_code" readonly="1" />
+								<field name="application" readonly="1" />
+								<field name="user_id" readonly="1" />
+								<field name="processed_qty" readonly="1" />
+								<field name="export_qty" readonly="1" />
+								<field name="price" readonly="1" />
+								<field name="difference_qty" readonly="1" />
+								<field name="export_time_picking_state" readonly="1" />
+								<field name="export_time_move_state" readonly="1" />
+							</group>
+						</group>
+						<group>
+							<group>
+								<field name="message" readonly="1" />
+							</group>
+							<group>
+								<field name="remark" readonly="1" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+	</data>
+</odoo>
+

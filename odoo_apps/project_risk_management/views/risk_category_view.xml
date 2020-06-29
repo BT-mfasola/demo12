@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_risk_category_form">
+            <field name="name">risk.category.from.view</field>
+            <field name="model">project.risk.category</field>
+            <field name="arch" type="xml">
+                <form string="Risk Category">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
+                        </group>
+                    <notebook>
+                        <page name="description_page" string="Internal Notes">
+                            <field name="notes"/>
+                            <div class="oe_clear"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_risk_category_tree">
+            <field name="name">risk.category.tree.view</field>
+            <field name="model">project.risk.category</field>
+            <field name="arch" type="xml">
+                 <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                 </tree>
+            </field>
+        </record>
+         <record id="action_risk_category_form" model="ir.actions.act_window">
+            <field name="name">Risk Category</field>
+            <field name="res_model">project.risk.category</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+         <menuitem id="menu_risk_category_submenu" name="Risk Category" parent="project_risk_management.menu_risk_configration" action="action_risk_category_form"/>
+    </data>
+</odoo>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<record id="requisition_period_ept_tree_view" model="ir.ui.view">
+		<field name="name">requisition.period.ept.view.tree</field>
+		<field name="model">requisition.period.ept</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Period">
+				<field name="name" />
+				<field name="code" />
+				<field name="date_start" />
+				<field name="date_stop" />
+				<field name="fiscalyear_id" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="requisition_period_ept_form_view" model="ir.ui.view">
+		<field name="name">requisition.period.ept.view.form</field>
+		<field name="model">requisition.period.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Reorder Periods">
+				<sheet>
+					<div class="oe_title">
+						<h1>
+							<field name="name" />
+						</h1>
+					</div>
+					<group colspan="2" col="4">
+						<field name="code" />
+						<field name="fiscalyear_id" required="True"
+							attrs="{'readonly': [('state', 'in', 'done')]}" />
+					</group>
+					<div>
+						<label for="date_start" string="Duration" />
+						<field name="date_start" nolabel="1" />
+						-
+						<field name="date_stop" nolabel="1" />
+					</div>
+					<field name="state" invisible="1" />
+					<field name="special" invisible="1" />
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="requisition_period_ept_search_view" model="ir.ui.view">
+		<field name="name">requisition.period.eptview.search</field>
+		<field name="model">requisition.period.ept</field>
+		<field name="arch" type="xml">
+			<search string=" Period">
+				<field name="name" string="Name" filter_domain="[('name','ilike',self)]" />
+				<field name="code" string="Code" filter_domain="[('code','ilike',self)]" />
+				<field name="fiscalyear_id" string="Year"
+					filter_domain="[('fiscalyear_id','ilike',self)]" />
+				<filter string="This Year" name="fiscalyear_id"
+					domain="[('date_stop','&lt;=', time.strftime('%%Y-12-31')),('date_start','&gt;=',time.strftime('%%Y-01-01'))]" />
+				<separator />
+				<group expand="0" name="group_by" string="Group By">
+					<filter name="fiscalyear_id" string="Year"
+						icon="terp-accessories-archiver" domain="[]"
+						context="{'group_by':'fiscalyear_id'}" />
+				</group>
+			</search>
+		</field>
+	</record>
+
+
+	<record id="requisition_period_ept_action" model="ir.actions.act_window">
+		<field name="name">Periods</field>
+		<field name="res_model">requisition.period.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem id="requisition_fiscal_period_ept_menu" name="Periods"
+		parent="inventory_coverage_report_ept.forecast_sale_main_menu" action="requisition_period_ept_action"
+		sequence="70" />
+
+
+</odoo>

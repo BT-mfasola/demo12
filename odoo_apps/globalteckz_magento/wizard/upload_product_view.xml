@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_export_active_products" model="ir.ui.view">
+            <field name="name">Uplod Active Product And Image on Magento </field>
+            <field name="model">export.active.products</field>
+            <field name="arch" type="xml">
+                <form string="Export Product On Magento" version="7.0">
+                    <footer>
+                        <button name="export_active_product" string="Export Products" type="object" class="oe_highlight"/>
+                        <button name="export_active_prod_images" string="Export Products Images" type="object" class="oe_highlight"/>
+                        <button name="export_active_link_product" string="Export Products Link" type="object" class="oe_highlight"/>
+                        <button name="export_multiple_products" string="Export Multiple Product" type="object" class="oe_highlight"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Export Product And Images On Magento"
+            res_model="export.active.products"
+            src_model="product.product"
+            key2="client_action_multi"
+            multi="True"
+            view_mode="form"
+            view_type="form"
+            target="new"
+            id="action_export_active_products"/>
+
+    </data>
+</openerp>

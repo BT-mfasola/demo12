@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template xml:spacer="preserve">
+    <t t-extend="ListView.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="after" class="ks-button-group">
+            <div id="ks_dropdown" class="dropdown">
+
+                <button type="button" class="btn btn-primary toggle_button dropdown-toggle ml-1"
+                        data-toggle="dropdown" title="Dynamic List Settings"
+                        aria-expanded="false">
+                    <span class="fa fa-lg fa fa-cog"/>
+
+                    <span class="caret"/>
+                </button>
+                <div class="ks_lvm_dd">
+                    <ul class="dropdown-menu ks_columns ks_list_view_dropdown_container">
+                        <div class="d-flex mb-2">
+                            <input type="text" id="myInput" placeholder="Search for Columns.."
+                                   title="Search For Columns"
+                                   autocomplete="off"/>
+
+                            <button type="button" class="btn btn-primary restore_button"
+                                    title="Restore to Default View">
+                                <span class="fa fa-lg fa fa-undo"/>
+                            </button>
+                        </div>
+                        <t t-if="widget.check">
+                            <t t-call="ks_list_view_fields_selection_list"/>
+                        </t>
+                    </ul>
+                </div>
+              </div>
+            <button type="button" class="btn btn-primary refresh_button mx-1" title="Refresh Data">
+                <span class="fa fa-lg fa fa-refresh"/>
+            </button>
+            <button type="button" class="btn btn-primary copy_button mr-1" style="display : none;"
+                    title="Duplicate Records">
+                <span class="fa fa-copy"/>
+            </button>
+            <label class="switch mr-1 mode_button" data-toggle="tooltip" title="Read/Edit Mode">
+                <input type="checkbox" id="mode"/>
+                <span class="slider round"/>
+            </label>
+        </t>
+    </t>
+    <t t-extend="BillsListView.buttons">
+        <t t-jquery="button.o_button_upload_bill" t-operation="before" class="ks-button-group">
+            <div id="ks_dropdown" class="dropdown">
+
+                <button type="button" class="btn btn-primary toggle_button dropdown-toggle ml-1"
+                        data-toggle="dropdown" title="Dynamic List Settings"
+                        aria-expanded="false">
+                    <span class="fa fa-lg fa fa-cog"/>
+
+                    <span class="caret"/>
+                </button>
+
+                <ul class="dropdown-menu ks_columns ks_list_view_dropdown_container">
+                    <div class="d-flex mb-2">
+                        <input type="text" id="myInput" placeholder="Search for Columns.." title="Search For Columns"
+                               autocomplete="off"/>
+
+                        <button type="button" class="btn btn-primary restore_button" title="Restore to Default View">
+                            <span class="fa fa-lg fa fa-undo"/>
+                        </button>
+
+                    </div>
+                </ul>
+            </div>
+
+            <button type="button" class="btn btn-primary refresh_button mx-1" title="Refresh Data">
+                <span class="fa fa-lg fa fa-refresh"/>
+            </button>
+            <button type="button" class="btn btn-primary copy_button mr-1" style="display : none;"
+                    title="Duplicate Records">
+                <span class="fa fa-copy"/>
+            </button>
+            <button type="button" class="btn btn-primary ks_export_button mx-1" title="Export Data">
+                <span class="fa fa-lg  fa-cloud-download"/>
+            </button>
+            <label class="switch mr-1 mode_button" data-toggle="tooltip" title="Read/Edit Mode">
+                <input type="checkbox" id="mode"/>
+                <span class="slider round"></span>
+            </label>
+        </t>
+    </t>
+</template>

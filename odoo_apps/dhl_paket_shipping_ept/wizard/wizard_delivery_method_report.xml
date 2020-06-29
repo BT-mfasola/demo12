@@ -1,0 +1,32 @@
+<odoo>
+	<data>
+		<!--Delivery Report Wizard View -->
+		<record id="wizardview_wizard_delivery_method_report_ept"
+			model="ir.ui.view">
+			<field name="name">DHL Shipping Instance</field>
+			<field name="model">wizard.delivery.report.ept</field>
+			<field name="arch" type="xml">
+				<form string="Report">
+					<group>
+						<field name="date" />
+						</group>
+						<footer>
+							<button string="Generate Report" type="object" name="generate_delivery_method_report"
+								class="oe_highlight" />
+							<button string="_Cancel" class="btn-default" special="cancel" />
+						</footer>
+				</form>
+			</field>
+		</record>
+		<!--Send To Ship Wiazard Action -->
+		<record id="wizardaction_wizard_delivery_method_report_ept" model="ir.actions.act_window">
+			<field name="name">Shipment Report</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wizard.delivery.report.ept</field>
+			<field name="view_mode">tree,form,kanban</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="wizardview_wizard_delivery_method_report_ept" />
+			<field name="target">new</field>
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+		<record id="module_intercompany_transaction_ept" model="ir.module.category">
+			<field name="name">Inter Company Transfer</field>
+			<field name="description">Inter Company Transfer User Access Rights</field>
+			<field name="sequence">100</field>
+		</record>
+
+		<record id="intercompany_transfer_user_group" model="res.groups">
+			<field name="name">Inter Company Transfer User</field>
+			<field name="category_id" ref="module_intercompany_transaction_ept" />
+			 <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+			<field name="implied_ids" eval="[(4,ref('sales_team.group_sale_salesman_all_leads')),(4, ref('purchase.group_purchase_user')),(4, ref('stock.group_stock_user'))]"/>
+			<field name="menu_access" eval="[(4, ref('inter_company_transfer_ept_main_menu')),(4, ref('inter_company_transfer_ept_child_menu'))]" />
+				
+		</record>
+		
+		<record id="intercompany_transfer_manager_group" model="res.groups">
+			<field name="name">Inter Company Transfer Manager</field>
+			<field name="category_id" ref="module_intercompany_transaction_ept" />
+			 <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+			<field name="implied_ids" eval="[(4, ref('sales_team.group_sale_manager')),(4, ref('purchase.group_purchase_user')),(4, ref('stock.group_stock_manager')),(4,ref('intercompany_transaction_ept.intercompany_transfer_user_group'))]"/>
+			<field name="menu_access" 	eval="[(4, ref('inter_company_transfer_ept_main_menu')),(4, ref('inter_company_transfer_ept_child_menu')),(4, ref('internal_inter_company_transfer_config_ept_menu'))]" />
+			
+		</record>
+	</data>
+	<data noupdate="1">
+		<record id="inter_company_transfer_ept_multi_company_record_rule" model="ir.rule">
+			<field name="name">Inter Company Transfer Multi Company</field>
+			<field name="model_id" ref="intercompany_transaction_ept.model_inter_company_transfer_ept" />
+			<field name="domain_force">['|', ('source_warehouse_id', '=', False),'|',('destination_warehouse_id','=',False), '|',('source_warehouse_id.company_id','=',False),'|',('source_warehouse_id.company_id','child_of',[user.company_id.id]),'|',('destination_warehouse_id.company_id','=',False),('destination_warehouse_id.company_id','child_of',[user.company_id.id])]</field>
+			<field name="perm_read" eval="True" />
+			<field name="perm_write" eval="True" />
+			<field name="perm_create" eval="True" />
+			<field name="perm_unlink" eval="True" />
+		</record>
+		
+		<record id="inter_company_transfer_ept_log_record_rule" model="ir.rule">
+			<field name="name">Inter Company Transfer Log</field>
+			<field name="model_id" ref="intercompany_transaction_ept.model_inter_company_transfer_log_ept" />
+			<field name="domain_force">['|', ('intercompany_transfer_id', '=',False),'|',('intercompany_transfer_id.source_warehouse_id', '=',False),'|',('intercompany_transfer_id.destination_warehouse_id','=',False), '|',('intercompany_transfer_id.source_warehouse_id.company_id','=',False),'|',('intercompany_transfer_id.source_warehouse_id.company_id','child_of',[user.company_id.id]),'|',('intercompany_transfer_id.destination_warehouse_id.company_id','=',False),('intercompany_transfer_id.destination_warehouse_id.company_id','child_of',[user.company_id.id])]</field>
+			<field name="perm_read" eval="True" />
+			<field name="perm_write" eval="True" />
+			<field name="perm_create" eval="True" />
+			<field name="perm_unlink" eval="True" />
+		</record>
+		
+		 <record id="inter_company_transfer_ept_warehouse_multi_company_record_rule" model="ir.rule">
+	    	<field name="name">Inter Company Transfer Warehouse Multi Company All Allow Company</field>
+	    	<field name="model_id" ref="stock.model_stock_warehouse"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('intercompany_transaction_ept.intercompany_transfer_user_group'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    
+	    <record id="inter_company_transfer_ept_location_multi_company_record_rule" model="ir.rule">
+	    	<field name="name">Inter Company Transfer Location Multi Company All Allow Company</field>
+	    	<field name="model_id" ref="stock.model_stock_location"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('intercompany_transaction_ept.intercompany_transfer_user_group'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    
+	    <record id="inter_company_transfer_ept_stock_picking_type_multi_company_record_rule" model="ir.rule">
+	    	<field name="name">Inter Company Transfer Stock Operation Type multi-company all</field>
+	    	<field name="model_id" ref="stock.model_stock_picking_type"/>
+	    	<field name="domain_force">['|', ('warehouse_id', '=', False), '|',('warehouse_id.company_id','=',False),('warehouse_id.company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('intercompany_transaction_ept.intercompany_transfer_user_group'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="True"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	</data>
+</odoo>

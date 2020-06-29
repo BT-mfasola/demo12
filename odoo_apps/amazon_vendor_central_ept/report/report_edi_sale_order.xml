@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_tmpl_edi_sale_order_label">
+            <div>
+                <table style="border-spacing:0;margin-bottom:0;height:100%;width=100%;border: 2px solid black;"
+                       class="table">
+                    <tbody>
+                        <tr style="height: 200px;">
+                            <td style="border: 1px solid black;width: 40%;" colspan="2">
+                                <strong>SHIP FROM:</strong>
+                                <br/>
+                                <span t-field="order.company_id.name"/>
+                                <br/>
+                                <span t-field="order.company_id.street"/>
+                                <br/>
+                                <t t-if="order.company_id.street2">
+                                    <span t-field="order.company_id.street2"/>
+                                    <br/>
+                                </t>
+                                <span t-field="order.company_id.city"/>
+                                <br/>
+                                <span t-field="order.company_id.state_id.name"/>
+                                <span t-field="order.company_id.zip"/>
+                                <br/>
+                                <span t-field="order.company_id.country_id.name"/>
+                                <br/>
+                            </td>
+                            <td style="border: 2px solid black;width: 60%;" colspan="3">
+                                <strong>SHIP TO:</strong>
+                                <br/>
+                                <span t-field="order.partner_id.name"/>
+                                <br/>
+                                <span t-field="order.partner_id.street"/>
+                                <br/>
+                                <t t-if="order.partner_id.street2">
+                                    <span t-field="order.partner_id.street2"/>
+                                    <br/>
+                                </t>
+                                <span t-field="order.partner_id.city"/>
+                                <br/>
+                                <span t-field="order.partner_id.state_id.name"/>
+                                <span t-field="order.partner_id.zip"/>
+                                <br/>
+                                <span t-field="order.partner_id.country_id.name"/>
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr style="height: 90px;">
+                            <td style="border: 2px solid black;width: 60%;align='center';" colspan="3">
+                                <span/>
+                                <br/>
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', 'order.picking_ids[0].booking_ref_number', 600, 150)"
+                                     style="width:100%;height:20%;align='center';"/>
+                            </td>
+                            <td style="border: 2px solid black;width: 40%;" colspan="2">
+                                <strong><span t-esc="order.picking_ids[0].carrier_name"/></strong>
+                                <br/>
+                                <span>PRO#: <span t-esc="order.picking_ids[0].booking_ref_number"/></span>
+                                <br/>
+                                <span>BOL#: <span t-esc="order.picking_ids[0].bol_number"/></span>
+                                <br/>
+                            </td>
+                        </tr>
+                        <tr style="height: 200px;">
+                            <td style="width: 100%;" colspan="2">
+                                <strong>PURCHASE ORDER(S):
+                                    <span t-field="order.amazon_edi_order_id"/>
+                                </strong>
+                                <br/>
+                                <strong>UPC: Mixed SKUs</strong>
+                                <br/>
+                                <strong>QTY:
+                                    <span t-esc="order.get_total_qty()"/>
+                                </strong>
+                                <br/>
+                                <strong>CARTON#: <span t-esc="index"/> of <span t-esc="total_packages"/></strong>
+                                <br/>
+                            </td>
+                            <td style="width: 100%;border-right: 2px solid black;" colspan="3">
+                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', order.amazon_edi_order_id, 600, 150)"
+                                     style="width:100%;height:40%; padding-top: 10px;"/>
+                            </td>
+                        </tr>
+                        <tr style="height: 185px;">
+                            <td style="border: 2px solid black;width: 100%;" colspan="5">
+                                <img style="width:400px;height:150px;align='center'"
+                                     t-attf-src="data:image/png;base64, #{order.to_pdf417(order.id,package_value)}"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+        <!--Generate barcode label of sale order.-->
+        <template id="report_edi_barcode">
+            <t t-call="report.html_container">
+                <div class="page">
+                    <t t-foreach="docs" t-as="order">
+                        <t t-set="index" t-value="1" />
+                        <t t-foreach="packages" t-as="package">
+                            <t t-call="amazon_vendor_central_ept.report_tmpl_edi_sale_order_label">
+                                <t t-set="order" t-value="order"/>
+                                <t t-set="package" t-value="package" />
+                                <t t-set="total_packages" t-value="total_packages" />
+                            </t>
+                            <t t-set="index" t-value="index+1"/>
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

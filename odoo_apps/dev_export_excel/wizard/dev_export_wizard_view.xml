@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_dev_export_wizard_form" model="ir.ui.view">
+            <field name="name">dev.export.wizard.wizard.form</field>
+            <field name="model">dev.export.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Export Excel Report" version="7.0">
+                <h3> Are you sure want to export in excel ? </h3>
+                <footer>
+		    	<button string="Export Excel" name="export_excel" type="object" class="oe_highlight"/>
+		    	   or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+            </field>
+        </record>
+		
+        <record id="view_dev_export_file_excel" model="ir.ui.view">
+            <field name="name">Export Excel</field>
+            <field name="model">dev.export.file.excel</field>
+            <field name="arch" type="xml">
+                <form string="Excel file">
+                    <group>
+                        <field name="excel_file" readonly="1" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_dev_export_file_excel" model="ir.actions.act_window">
+            <field name="name">Export Excel </field>
+            <field name="view_id" ref="view_dev_export_file_excel"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="res_model">dev.export.file.excel</field>
+            <field name="target">new</field>
+        </record>
+
+			
+   </data>
+</openerp>

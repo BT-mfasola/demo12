@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_tree_amazon_edi_message_info" model="ir.ui.view">
+			<field name="name">view.tree.amazon.edi.message.info</field>
+			<field name="model">amazon.edi.message.info</field>
+			<field name="arch" type="xml">
+				<tree string="Amazon EDI Message Info" class="oe_form_configuration">
+					<field name="sender_id" />
+					<field name="recipient_id" />
+					<field name="message_type" />
+					<field name="msg_version" />
+					<field name="buyer_id" />
+					<field name="supplier_id" />
+					<field name="buyer_address" invisible="1" />
+					<field name="delivery_party_id" />
+					<field name="country_code" />
+					<field name="invoice_id" />
+					<field name="currancy_code" />
+					<field name="order_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_form_amazon_edi_message_info" model="ir.ui.view">
+			<field name="name">view.form.amazon.edi.message.info</field>
+			<field name="model">amazon.edi.message.info</field>
+			<field name="arch" type="xml">
+
+				<form string="Amazon EDI Message Info" class="oe_form_configuration">
+					<sheet>
+						<group>
+							<group>
+								<field name="sender_id" />
+								<field name="recipient_id" />
+								<field name="message_type" />
+								<field name="msg_version" />
+								<field name="buyer_id" />
+								<field name="supplier_id" />
+								<field name="latest_date" />
+							</group>
+							<group>
+								<field name="buyer_address" invisible="1" />
+								<field name="delivery_party_id" />
+								<field name="country_code" />
+								<field name="invoice_id" />
+								<field name="currancy_code" />
+								<field name="order_id" />
+								<field name="vat_number" />
+								<field name="earliest_date" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+
+			</field>
+		</record>
+
+	</data>
+</odoo>

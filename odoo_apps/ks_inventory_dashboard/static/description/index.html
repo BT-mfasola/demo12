@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Odoo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+<!-- odoo description page css -->
+<style>
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        line-height: 1.1;
+        color: #21272b;
+    }
+
+    ul {
+        color: #222020;
+    }
+
+    * {
+        font-family: "Montserrat", sans-serif;
+    }
+</style>
+
+<body>
+    <!-- Use Odd and even section for repeating sections (on line no. 224 and 275) 
+        and ask sukhjinder singh to fix down arrow image on last section
+    -->
+    <div class="p-md-5" style="padding: 20px">
+        <div class="container">
+            <div class="for_open" data-toggle="collapse" href="#floating_div_red" role="button" aria-expanded="true"
+            aria-controls="floating_div_red" style="width: 50px;
+            height: 50px;
+            background: #e32235;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 100;
+            font-size: 20px;
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            z-index: 1000;
+            box-shadow: 1px 2px 11px rgba(0, 0, 0, 0.3), -5px 7px 12px rgba(0, 0, 0, 0.22);
+            cursor: pointer;background-image: radial-gradient( circle farthest-corner at 10% 20%, rgb(235, 36, 39) 0%, rgb(200, 33, 40) 100.4% );">
+            <i class="fa fa-bars" ></i>
+        </div>
+        <div class="collapse show" id="floating_div_red" style="position: fixed;
+        bottom: 40px;
+        left: 40px;
+        z-index: 1001;">
+            <div class="for_close" data-toggle="collapse" href="#floating_div_red" role="button" aria-expanded="true"
+                aria-controls="floating_div_red" style="width: 25px;
+                height: 25px;
+                background: #e32235;
+                color: white;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 100;
+                margin-left: auto;
+                font-size: 12px;
+                margin-bottom: -24px;position: relative;
+                z-index: 1000;
+                cursor: pointer;background-image: radial-gradient( circle farthest-corner at 10% 20%, rgb(235, 36, 39) 0%, rgb(200, 33, 40) 100.4% );">
+                <i class="fa fa-times" ></i>
+            </div>
+            <div class="ks_box_outer" >
+                <div class="ks_logo">
+                    <img src="images/floating-menu/1st.png" style="width: 100%;" alt="">
+                </div>
+                <div class="ks_box_items" style="    margin-top: -32px;
+                background: #eb2427;
+                border-radius: 0 0 10px 10px;
+                padding-bottom: 10px;
+                ">
+                    <div class="ks_box_items_inner d-flex justify-content-center" style="padding: 10px;">
+
+                        <a href="https://dashboardninja12.kappso.com/web/demo_login" target="_blank" style="text-decoration: none;font-size: 14px;margin-right: 15px;" class="d-flex flex-column align-items-center text-white font-weight-light">
+                            <img src="images/floating-menu/Film.gif" style="width: 40px;" alt="">
+                            <span class="pt-2 font-weight-bold">Demo</span>
+                        </a>
+                        <a href="https://apps.odoo.com/apps/modules/browse?search=ksolves" target="_blank" style="text-decoration: none;font-size: 14px;margin-right: 18px;" class="d-flex flex-column align-items-center text-white font-weight-light">
+                            <img src="images/floating-menu/Files.gif" style="height: 60px;margin-top: -20px;" alt="">
+                            <span class="pt-2 font-weight-bold">All Apps</span>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=UxTB6LEO6Fk" style="text-decoration: none;font-size: 14px;" class="d-flex flex-column align-items-center text-white font-weight-light">
+                            <img src="images/floating-menu/Youtube.gif" style="width: 34px;margin-top: 7px;" alt="">
+                            <span class="pt-2 font-weight-bold">Youtube</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- Header -->
+             <div class="row mb-sm-4 mb-3 pb-3 justify-content-md-between justify-content-center border-bottom">
+                <div class="text-center mr-5">
+                    <a href="http://ksolves.com/">
+                        <img src="images/ksolves-logo.png" alt="ksolves-logo">
+                    </a>
+                    <div class="mt-3" style="font-size: 10px;">
+                        <a href="https://www.facebook.com/Ksolves.India" class="text-dark ml-3"> <i
+                                class="fa fa-facebook fa-2x"></i> </a>
+                        <a href="https://www.linkedin.com/company/ksolves" class="text-dark ml-3"> <i
+                                class="fa fa-linkedin fa-2x"></i> </a>
+                        <a href="https://www.youtube.com/channel/UCplv9V47g9VidekGN6Wp1ew" class="text-dark ml-3"> <i
+                                class="fa fa-youtube-play fa-2x"></i> </a>
+                        <a href="https://twitter.com/ksolves_india" class="text-dark ml-3"> <i
+                                class="fa fa-twitter fa-2x"></i> </a>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-primary" style="width: auto;font-weight: bold;font-size: 21px;background: linear-gradient(to right, #F27E00, #F29500);box-shadow: 0px 0px 6px 3px #d7e5f1;padding-top: 12px;padding-bottom: 12px;padding-left: 60px;padding-right: 60px;border-radius: 28px; color: white; border: none;" href="https://dashboardninja12.kappso.com/web/demo_login" target="_blank">Free Demo
+                    </a>
+                    <div class="mt-1 mb-4"> <span style="color: #616161;font-size: 12px;"> Username : demo | Password : demo</span></div>   
+                </div>
+                <div class="mt-md-0 mt-3">
+                    <div class="d-flex align-items-center ">
+                        <h6 class="mb-0 mt-2" style="font-size: 14px;min-width:90px">Community: </h6>
+                        <div class="row mx-0">
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 12.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 11.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                       </div>
+                    </div>
+                    <div class="d-flex align-items-center  mt-1">
+                        <h6 class="mb-0 mt-2" style="font-size: 14px;min-width:90px">Enterprise:</h6>
+                        <div class="row mx-0">
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 12.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                            <span class="text-white ml-2 mt-2" style="padding: .3em .8em;
+                                            background-color: #875A7B !important;
+                                            font-size: 10px;
+                                            border-radius: 2px;">
+                                <b> v 11.0 <i class="fa fa-check ml-1 "></i></b>
+                            </span>
+                        </div>
+                    </div>
+                </div>              
+            </div>
+            <!-- Hero Description  -->
+            <div class="text-center py-4">
+                <!-- <div class="border mx-5 col-7 mx-auto"></div> -->
+                <p style="font-size: 18px;border-width: 3px;border-style: solid;border-image: linear-gradient( to bottom, red, rgba(0, 0, 0, 0) ) 1 100%;" class="px-sm-4 p-2 pt-4">
+                    <strong>START BUILDING YOUR OWN INVENTORY DASHBOARDS WITH A FEW CLICK</strong>
+                </p>
+            </div>
+            <div class="text-center">               
+                <div class="mt-1 mb-4">
+                    <img src="images/inventory.png" alt="Preview" style="width:70%;margin-right:2px">
+                </div>   
+            </div>   
+            <div class="row py-4 px-3">
+                <div  class="w-100" style="padding-top:30px;padding-bottom:45px;background: #f3f0f0;border-radius: 10px;">
+                    <ul role="tablist" class="nav nav-pills justify-content-center" data-tabs="tabs" id="pills-tab"  role="tablist" style="border: none;background: unset;">
+                         <li class="nav-item mr-1 mb-3" style="border: 1px solid #a1c4fd;border-radius: 7px;border-bottom: 3px solid #a1c4fd;background: linear-gradient(to top, #a1c4fd, #c2e9fb)">
+                            <a id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" class="nav-link active" style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;font-weight: 600;font-size: 15px;letter-spacing: 1px;padding: 10px 20px;border-top-left-radius: 5px;border-top-right-radius: 5px;color: #2b2b2b;">Features
+                            </a>
+                         </li>
+<!--                        <li class="nav-item mr-1 mb-3"-->
+<!--                            style="border: 1px solid #a1c4fd;border-radius: 7px;border-bottom: 3px solid #a1c4fd;background: linear-gradient(to top, #a1c4fd, #c2e9fb)">-->
+<!--                            <a id="pills-releases-tab" data-toggle="pill" href="#pills-releases" role="tab"-->
+<!--                           aria-controls="pills-releases" aria-selected="true" class="nav-link"-->
+<!--                           style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;font-weight: 600;font-size: 15px;letter-spacing: 1px;padding: 10px 20px;border-top-left-radius: 5px;border-top-right-radius: 5px;color: #2b2b2b;">Releases-->
+<!--                            </a>-->
+<!--                         </li>-->
+                         <li class="nav-item mr-1 mb-3" style="border: 1px solid #a1c4fd;border-radius: 7px;border-bottom: 3px solid #a1c4fd;background: linear-gradient(to top, #a1c4fd, #c2e9fb)">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;font-weight: 600;font-size: 15px;letter-spacing: 1px;padding: 10px 20px;border-top-left-radius: 5px;border-top-right-radius: 5px;color: #2b2b2b;">Setup
+                            </a>
+                         </li>
+                         <li class="nav-item mb-3" style="border: 1px solid #a1c4fd;border-radius: 7px;border-bottom: 3px solid #a1c4fd;background: linear-gradient(to top, #a1c4fd, #c2e9fb)">
+                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" style="font-family: 'Montserrat', sans-serif;text-transform: uppercase;font-weight: 600;font-size: 15px;letter-spacing: 1px;padding: 10px 20px;border-top-left-radius: 5px;border-top-right-radius: 5px;color: #2b2b2b;">FAQs
+                            </a>
+                         </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="px-3 pt-1 tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="
+                            pills-home-tab">
+                            <!-- feature tab-->
+                            <div class="p-5 bg-white" style="border-radius: 10px;margin-top:30px">
+                                <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;">Key Features</h5>
+                                <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Internal Transfer (Tile): Display Count Internal Transfer</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Delivery Orders (Tile): Display Count Delivery Orders</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Inventory Receipts (Tile): Display Count of Inventory Receipts</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Alert Expiry (Tile): Display Count of Alert Expiry</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Inventory Reports (Bar Chart): Display Inventory Reports</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Inventory Ageing Reports (Line Chart): Display Inventory Ageing Reports</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Open Outward (Pie Chart): Display Open Outward</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Open Inwards (Doughnut Chart): Display Open Inwards</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Product Moves (Area Chart): DisplayProduct Moves</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Stock Moves (Horizontal Bar Chart): Display Stock Moves</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Inventory Valuation (Bar Chart): Display Inventory Valuation</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Total Inventory Quantities (Line Chart): Display Total Inventory Quantities</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Stock per Location (Area Chart): Display Stock per Location</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Total Reserved Stock (Bar Chart): Display Total Reserved Stock</span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2">
+                                        <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                        <span>Top 10 selling items (List View): Display Top selling items</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+<!--                        <div class="px-3 pt-1 tab-pane fade" id="pills-releases" role="tabpanel"-->
+<!--                             aria-labelledby="pills-releases-tab">-->
+
+<!--                            <div class="p-3 pl-5 bg-white" style="border-radius: 10px;margin-bottom: 20px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">-->
+<!--                                <h5 class="mb-4 mt-3" style="margin: 0; font-weight: bold;"><img src="images/release.svg"-->
+<!--                                                                                                 alt="arrow"-->
+<!--                                                                                                 style="width:35px;margin-right:2px">-->
+<!--                                    Release  1.0.1-->
+<!--                                </h5>-->
+<!--                                <ul class="list-unstyled" style="font-size:15px;border-radius: 10px;">-->
+<!--                                    <li class="d-flex align-items-baseline mb-2">-->
+<!--                                        <img src="images/forward-arrow.svg" alt="arrow"-->
+<!--                                             style="width:15px;margin-right:10px">-->
+<!--                                        <span>Fix - Tiles containing no data.</span>-->
+<!--                                    </li>-->
+<!--                                    <li class="d-flex align-items-baseline mb-2">-->
+<!--                                        <img src="images/forward-arrow.svg" alt="arrow"-->
+<!--                                             style="width:15px;margin-right:10px">-->
+<!--                                        <span>Remove Tile - Sales Tax due to data error.</span>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+                        <!-- setup tab-->
+                        <div class="px-3 pt-3 tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            <div class="tab-pane">
+                                <div>
+                                    <ul class="list-unstyled pl-0" style="font-size:15px;">
+                                        <li class="d-flex align-items-baseline mb-2 p-3 bg-white" style="border-radius: 10px;">
+                                            <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                            <span>This app is an extension of Dashboard Ninja, so before installing this app make sure you have installed Dashboard Ninja. After successfull installation of Dashboard Ninja, install this app and go to menu "Inventory" > Inventory Dashboard.
+                                        </span>
+                                        </li>
+                                    </ul>                                    
+                                </div>
+                            </div>
+                        </div>  
+                        <!-- faq tab-->
+                        <div class="px-2 px-lg-4 pt-3 tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                            <ul class="list-unstyled">
+                                <li class="mb-3 d-flex align-items-baseline bg-white" style="border-radius: 10px; padding: 15px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                                    <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                    <div class="">
+                                        <h6 style="font-weight: bold;">Is this app compatible with Odoo Enterprise?</h6>
+                                        <span style="font-size:13px;">Yes, our app works with Odoo Enterprise as well as Community.</span>
+                                    </div>    
+                                </li>
+                                <li class="my-3 d-flex align-items-baseline bg-white" style="border-radius: 10px; padding: 15px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                                    <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                    <div class="">
+                                        <h6 style="font-weight: bold;">Need some customization in this app, whom to contact?</h6>
+                                        <span style="font-size:13px;">Please drop email at sales@ksolves.com or raise a ticket through Odoo store itself.</span>
+                                    </div>    
+                                </li>
+                                <li class="my-3 d-flex align-items-baseline bg-white" style="border-radius: 10px; padding: 15px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                                    <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                    <div class="">
+                                        <h6 style="font-weight: bold;">Do you provide any free support?</h6>
+                                        <span style="font-size:13px;">Yes, we do provide free support for 90 days for any queries or any bug/issue fixing.</span>
+                                    </div>    
+                                </li>
+                                <li class="my-3 d-flex align-items-baseline bg-white" style="border-radius: 10px; padding: 15px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                                    <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                    <div class="">
+                                        <h6 style="font-weight: bold;">Is there an option to change the Dashboard menu name?</h6>
+                                        <span style="font-size:13px;">Yes, you can easily change the name of your Dashboard menus. All you need to do is go to Menu →  My Dashboard →  Dashboard Manger →  Click on your dashboard menu name Column →  Change it →  Click Save </br>
+                                        Note: In order to view the changes, please refresh the page once. </span>
+                                    </div>   
+                                </li>
+                                <li class="my-3 d-flex align-items-baseline bg-white" style="border-radius: 10px; padding: 15px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                                    <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                    <div class="">
+                                        <h6 style="font-weight: bold;">Can we add a new dashboard item of any kind i.e. Tile, Bar graph, Line Chart etc.?</h6>
+                                        <span style="font-size:13px;"> Yes, you can add as many dashboard items of as many kinds in your Inventory Dashboard using 'Add' option in header of Dashboard.</span>
+                                    </div>    
+                                </li>
+                                <li class="my-3 d-flex align-items-baseline bg-white" style="border-radius: 10px; padding: 15px;border-left: 11px solid #c7c5c5;border-right: 11px solid #c7c5c5;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                                    <img src="images/forward-arrow.svg" alt="arrow" style="width:15px;margin-right:10px">
+                                    <div class="">
+                                        <h6 style="font-weight: bold;">Can we edit the layout of this Inventory dashboard?</h6>
+                                        <span style="font-size:13px;">Yes, it is all in your hands. Customise the layout of your dashboard easily by clicking the Edit Layout option in the top right corner of your Inventory Dashboard. Once done with the changes, save the same, and voila, you have edited the layout of your Inventory dashboard as per your need.</span>
+                                    </div>    
+                                </li>
+                            </ul>    
+                        </div>
+                    </div>         
+                </div>
+            </div>           
+            <!-- Popular Apps -->
+            <div class="row  py-sm-5 px-1">
+                <h2 class="w-100 text-center mb-3">Ksolves Suggested Apps</h2>
+                <div class="text-center w-100 mb-1">
+                    <img src="images/line.png" alt="ksolves">
+                </div>
+                <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/12.0/ks_list_view_manager/" class="d-block" target="_blank" style="text-decoration: none;">
+                        <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/list_view_manager.gif" alt="Dashboard Ninja" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">List View Manager</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/11.0/ks_oneclick_sale_purchase/" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/one_click_sale_purchase.png" alt="One Click Sale Purchase" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                            <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">One Click Sale/Purchase</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/12.0/ks_instant_shop_filter/" class="d-block" target="_blank" style="text-decoration: none;">
+                        <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/instant_shop_filter.gif" alt="Ajax Shop Filter" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                            <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">Ajax Shop Filter</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/12.0/ks_dashboard_ninja" class="d-block" target="_blank" style="text-decoration: none;">
+                        <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/dashboard_ninja.gif" alt="Dashboard Ninja" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                            <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">Dashboard Ninja</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/themes/12.0/ks_theme_atractivo/" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/theme_attractivo.png" alt="Theme Atractivo" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">Theme Atractivo</h5>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <div class="col-md-4 mt-4">
+                <a href="https://apps.odoo.com/apps/modules/12.0/ks_sticky_pivot_view" class="d-block" target="_blank" style="text-decoration: none;">
+                <div class="card" style="box-shadow: 0px 2px 9px 4px #d0cecb; border-radius: 10px;border: none;">
+                    <img class="card-img-top" src="suggested_app_images/sticky_pivot_view.jpg" alt="Sticky Pivot View" style="border-top-left-radius: 10px;    border-top-right-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-text m-0 p-o" style="color: #424040;">Sticky Pivot View</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Ksolves Odoo Services -->
+            <div class="row py-sm-5 px-1 py-4">
+                <h2 class="w-100 text-center my-3">Ksolves Odoo Services</h2>
+                <div class="text-center w-100 mb-4">
+                    <img src="images/line.png" alt="ksolves">
+                </div>
+                <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                    <div class="card" style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                        <div class="d-lg-flex">
+                            <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                                <img src="images/support.png" alt="support">
+                            </div>
+                            <div class="card-body text-lg-left text-center">
+                              <h5 class="card-title" style="font-size: 19px;">Odoo Implementation</h5>
+                              <p class="card-text" style="font-size: 14px;">Have some implementation in mind,we have got you covered.</p>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                    <div class="card" style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                        <div class="d-lg-flex">
+                            <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                                <img  src="images/apps.png" alt="apps">
+                            </div>
+                            <div class="card-body text-lg-left text-center">
+                              <h5 class="card-title" style="font-size: 19px;">Odoo Community Apps</h5>
+                              <p class="card-text" style="font-size: 14px;">We have a diverse range of Odoo Apps to make your Odoo experience better than ever.</p>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                    <div class="card" style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                        <div class="d-lg-flex">
+                            <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                                <img src="images/support2.png" alt="support2">
+                            </div>
+                            <div class="card-body text-lg-left text-center">
+                              <h5 class="card-title" style="font-size: 19px;"> Odoo Support & Maintenance</h5>
+                              <p class="card-text" style="font-size: 14px;">We provide exceptional support and maintenance services for Odoo services.</p>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                    <div class="card" style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                        <div class="d-lg-flex">
+                            <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                                <img src="images/custom.png" alt="custom">
+                            </div>
+                            <div class="card-body text-lg-left text-center">
+                              <h5 class="card-title" style="font-size: 19px;"> Odoo Customization</h5>
+                              <p class="card-text" style="font-size: 14px;">Your requirements, our customized implementation. Have something unique in mind, get in touch with us.</p>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                    <div class="card" style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                        <div class="d-lg-flex">
+                            <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                                <img src="images/integrated.png" alt="integrated">
+                            </div>
+                            <div class="card-body text-lg-left text-center">
+                              <h5 class="card-title" style="font-size: 19px;"> Odoo Integration Services</h5>
+                              <p class="card-text" style="font-size: 14px;"> With our world-class web and API services in Odoo, our integration services are one of the best in the market.</p>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6" style="margin-bottom: 20px;">
+                    <div class="card" style="box-shadow: -1px 1px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07); border-radius: 10px; border: none; min-height: 145px;">
+                        <div class="d-lg-flex">
+                            <div style="padding: 1.25rem;" class="text-lg-left text-center">
+                                <img src="images/develop.png" alt="develop">
+                            </div>
+                            <div class="card-body text-lg-left text-center">
+                              <h5 class="card-title " style="font-size: 19px;"> Odoo Developer Outsourcing</h5>
+                              <p class="card-text" style="font-size: 14px;">Need an experienced, talented Odoo developer? Our developers are the best when it comes to technical knowledge and communication skills.</p>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <!-- Ksolves Footer -->
+            <div style="width: 100%">
+                <div class="row mx-0 justify-content-sm-between justify-content-center"
+                    style="border-top: 1px solid black;">
+                    <div class="mb-sm-0 mb-3">
+                        <i class="fa fa-envelope fa-2x" style="
+                                                            margin-right: 10px;
+                                                            color: #333;
+                                                            transform: translateY(3px);"></i>
+                        <span style="font-size: 18px;">sales@ksolves.com</span>
+                    </div>
+                    <div class="d-none d-sm-block">
+                        <div class="bg-white" style="width: 50px;height: 1px;margin-top: -1px"></div>
+                        <div style="border-right: 1px solid black;height: 50px;transform: translateX(-50%);">
+                        </div>
+                    </div>
+                    <div>
+                        <i class="fa fa-mobile fa-2x"
+                            style="margin-right: 10px;color: #333;transform: translateY(4px) scale(1.2);"></i>
+                        <span style="font-size: 18px;">+91 120-4299799‬</span>
+                    </div>
+                </div>
+                <div class="m-auto" style="max-width: 600px;">
+
+                    <p style="line-height: 30px;text-align: center;margin-top: 20px;">
+                        Incepted in 2012, Ksolves has made its presence felt across various verticals, including Odoo
+                        implementation, cloud-based technologies like AWS and Salesforce cloud, Serverless application
+                        development, Hybrid and native mobile applications and Application architecture consulting etc.
+                    </p>
+
+                </div>
+            </div>
+
+            <!-- container End -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+from . import sale_order_barcode_render_html

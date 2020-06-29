@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="res_config_settings_view_advance_purchase_ept"	model="ir.ui.view">
+		<field name="name">res.config.settings.view.form.inherit.purchase</field>
+		<field name="model">res.config.settings</field>
+		<field name="priority" eval="40" />
+		<field name="inherit_id" ref="inventory_coverage_report_ept.res_config_settings_view_inventory_report_ept" />
+		<field name="arch" type="xml">
+			<xpath expr="//h2[contains(text(),'Inventory Coverage Report')]" position="replace">
+  				<h2>Inventory Coverage Report &amp; Advance Reordering Configuration</h2>
+			</xpath>
+			<xpath expr="//field[@name='use_out_stock_percent']/ancestor::*[hasclass('o_setting_box')]" position="after">
+  				<div class="col-xs-12 col-md-6 o_setting_box">
+						<div class="o_setting_left_pane">
+							<field name="approval_by_authorised"/>
+						</div>
+						<div class="o_setting_right_pane">
+							<label for="approval_by_authorised"/>
+							<div class="text-muted">
+								Allow only athorised user to Approve or Reject reordering &amp; procurement process.
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-12 col-md-6 o_setting_box"
+						attrs="{'invisible':[('approval_by_authorised','=',False)]}">
+						<div class="o_setting_left_pane">
+							<field name="requisition_send_email" />
+						</div>
+						<div class="o_setting_right_pane">
+							<label for="requisition_send_email" />
+							<div class="text-muted">
+								Allow to send email for Request for Approval and Rejection.
+							</div>
+						</div>
+					</div>
+			</xpath>
+		</field>
+	</record>
+</odoo>

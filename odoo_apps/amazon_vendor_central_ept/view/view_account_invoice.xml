@@ -1,0 +1,26 @@
+<odoo>
+	<data>
+		<record id="view_invoice_amazon_edi_section" model="ir.ui.view">
+			<field name="name">account.invoice.form.view.with_amazon_edi_detail
+			</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//form/header" position="inside">
+						<button name="prepare_and_send_edi_order_invoice_message" string="Export EDI Invoice"
+							type="object" class="btn-primary"
+							attrs="{'invisible': ['|',('is_amazon_edi_invoice','!=',True),('exported_to_edi','=',True)]}"
+							groups="amazon_vendor_central_ept.group_amazon_vendor_central_manager" />
+					</xpath>
+					<xpath expr="//field[@name='team_id']" position="after">
+						<field name="is_amazon_edi_invoice" readonly="1"
+							attrs="{'invisible': [('is_amazon_edi_invoice','!=',True)]}" />
+						<field name="exported_to_edi" readonly="1"
+							attrs="{'invisible': [('is_amazon_edi_invoice','!=',True)]}" />
+					</xpath>
+				</data>
+			</field>
+		</record>
+	</data>
+</odoo>

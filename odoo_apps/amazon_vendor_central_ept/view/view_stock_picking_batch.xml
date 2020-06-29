@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_form_stock_picking_batch" model="ir.ui.view">
+            <field name="name">Stock Batch Picking</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+            <field name="arch" type="xml">
+                <data>
+                
+                <xpath expr="//field[@name='user_id']" position="after">
+                <field name="vendor_id"/>
+                <field name="scheduled_date"></field>
+                </xpath>
+                
+                <xpath expr="//form/header" position="inside">
+                     
+                        <button name="send_routing_request" class="oe_highlight"
+                                string="Send Route Request"
+                                attrs="{'invisible': ['|','|',('is_amazon_edi_batch_picking','!=',True),('carrier_type','=','we_not_pay'),('route_request_send','=',True)]}"
+                                type="object"/>
+                                
+                        <button name="receive_routing_request" class="oe_highlight"
+                                string="Receive Route Information"
+                                attrs="{'invisible': ['|','|','|',('is_amazon_edi_batch_picking','!=',True),('carrier_type','!=','wepay'),('route_request_send','=',False),('routing_instruction_received','=',True)]}"
+                                type="object"/>
+                                
+                        <button name="send_advance_shipment_notice" class="oe_highlight"
+                                string="Send Advance shipment notice"
+                                attrs="{'invisible': ['|','|','|',('is_amazon_edi_batch_picking','!=',True),('carrier_type','!=','wepay'),('shipment_notice_send','=',True),('routing_instruction_received','=',False)]}"
+                                type="object"/>
+                        <button name="send_advance_shipment_notice" class="oe_highlight"
+                                string="Send Advance shipment notice"
+                                attrs="{'invisible': ['|','|','|',('is_amazon_edi_batch_picking','!=',True),('po_ack_uploaded','=',False),('carrier_type','!=','we_not_pay'),('shipment_notice_send','=',True)]}"
+                                type="object"/>
+                        
+                        <!--           
+                        <button name="send_advance_shipment_notice" class="oe_highlight"
+                                string="Send Advance shipment notice we not pay"
+                                attrs="{'invisible': ['|','|',('is_amazon_edi_batch_picking','!=',True),('carrier_type','!=','we_not_pay'),('shipment_notice_send','=',True)]}"
+                                type="object"/>-->
+                        
+                        <button name="send_invoice_to_vendor_central" class="oe_highlight"
+                                string="Send Invoice To Vendor Central"   
+                                attrs="{'invisible': ['|',('is_amazon_edi_batch_picking','!=',True),('shipment_notice_send','=',False)]}"
+                                type="object"/>
+                                                              
+                </xpath>
+               
+                <xpath expr="//div[1]" position="before">
+                 
+                <div class="oe_button_box" name="button_box">
+                 <button type="object"
+		                        name="action_see_packages_list"
+		                        class="oe_stat_button" icon="fa-cubes"
+		                        string="Packages">   
+		                      <!-- <field name="package_ids" String="Packages"></field>-->
+		          </button> 
+		         </div>
+		        </xpath>
+		       
+                             
+                <xpath expr="//sheet" position="inside">    
+                    <sheet>      
+                        <notebook position="inside">                                                          
+                            <page string="Stock Picking Batch" attrs="{'invisible': [('vendor_id','=',False)]}">
+                            <group>
+                            <group invisible="1">
+                                <field name="is_amazon_edi_batch_picking" invisible="1"/>
+                                <field name="is_package_info_imported" invisible="1"/>
+                                <field name="route_request_send" invisible="1"/>
+                                <field name="routing_instruction_received" invisible="1"></field>
+                                <field name="shipment_notice_send" invisible="1"/>
+                                <field name="po_ack_uploaded" invisible="1"/>
+                            </group>
+                        </group>
+                         <group string="General Information">
+                            <group>
+                                <field name="carrier_type"/>
+                                <field name="delivery_date"/>
+                                <field name="dispatch_date"/>
+                                <field name="gross_weight" placeholder="In KG"/>
+                                <field name="gross_volume" placeholder="in Cubic Meter"/>
+                                <field name="mode_of_transport"/>
+                            </group>
+                            <group>
+                                <field name="carrier_id"/>
+                                <field name="bol_number" placeholder="Bill of Lading Number"/>
+                                <field name="sscc_code"/>
+                                <field name="goods_description"/>
+                                <field name="booking_ref_number" placeholder="Booking Reference Number"/>
+                            </group>
+                        </group>
+                        <group string="Routing Instruction">
+                            <group>
+                                <field name="additional_ref_number"/>
+                                <field name="pickup_date"/>
+                                <field name="carrier_scac_id"/>
+                            </group>
+                            <group>
+                                <field name="loading_type"/>
+                                <field name="loading_value"/>
+                                <field name="carrier_name"/>
+                            </group>
+                        </group>
+                       </page>
+                        </notebook>
+                    </sheet>
+                </xpath>
+                </data>
+            </field>
+        </record>
+        <!-- action for vendor instance kanban view -->
+        <!--  
+     <record id="action_amazon_edi_confirm_po_kanban" model="ir.actions.act_window">
+            <field name="name">Confirm Purchase Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="context">{}</field>
+            <field name="domain">[('state', 'not in', ('draft', 'sent',
+                'cancel')),('is_amazon_edi_order','=',True),('vendor_id','=',active_id)]
+            </field>
+        </record> 
+        <record id="action_amazon_edi_pending_po_kanban" model="ir.actions.act_window">
+            <field name="name">Pending Purchase Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sale.view_quotation_tree"/>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+            <field name="context">{'hide_sale': True}</field>
+            <field name="domain">[('state', 'in', ('draft', 'sent',
+                'cancel')),('is_amazon_edi_order','=',True),('vendor_id','=',active_id)]
+            </field>
+        </record>-->
+     </data>
+</odoo>

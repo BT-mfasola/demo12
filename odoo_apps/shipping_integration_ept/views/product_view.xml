@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_product_template_field_ept" model="ir.ui.view">
+            <field name="name">Add field in Product Template</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='group_lots_and_weight']" position="replace">
+                    <group string="Logistics" name="group_lots_and_weight"
+                           attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}">
+                        <label for="weight"/>
+                        <div class="o_row" name="weight">
+                            <field name="weight"/>
+                            <field name="weight_unit_measurement_id"/>
+                        </div>
+                        <label for="volume"/>
+                        <div class="o_row" name="volume">
+                            <field name="volume" string="Volume"/>
+                            <span>m³</span>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_product_product_field_ept" model="ir.ui.view">
+            <field name="name">Add field in Product</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='weight']" position="replace">
+                    <group name="weight" string="Weights"
+                           attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}">
+                        <label for="volume"/>
+                        <div class="o_row">
+                            <field name="volume"/>
+                            <span>m³</span>
+                        </div>
+                        <label for="weight"/>
+                        <div class="o_row">
+                            <field name="weight"/>
+                            <field name="weight_unit_measurement_id"/>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

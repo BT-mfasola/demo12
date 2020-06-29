@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+    <data>
+
+        <record id="project_task_detail_plan_search_view_form" model="ir.ui.view">
+            <field name="name">project.task.detail.plan.search.form</field>
+            <field name="model">project.task.detail.plan</field>
+            <field name="arch" type="xml">
+               <search string="Level">
+                    <field name="task_id" />
+                </search>
+            </field>
+        </record>
+
+
+
+        <record id="act_project_task_detail_plan" model="ir.actions.act_window">
+            <field name="name">Detail Plan for Task</field>
+            <field name="res_model">project.task.detail.plan</field>
+            <field name="view_mode">tree,ganttaps</field>
+            <field name="context">{
+                "search_default_task_id": [active_id],
+                "default_task_id": active_id}
+            </field>
+            <field name="domain">[('task_id', '=', active_id)]</field>
+            <field name="search_view_id" ref="project_task_detail_plan_search_view_form"/>
+
+        </record>
+
+
+        <record id="view_task_form2_inherit_task_detail_plan" model="ir.ui.view">
+            <field name="name">view.task.form2.inherit.task.detail.plan</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project_native.ganttaps_view_task_form2"/>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+
+                <button name="toggle_active" position="after">
+                    <button name="%(project_native.act_project_task_detail_plan)d" type="action"
+                            class="oe_stat_button"
+                            icon="fa-tasks"
+                            attrs="{'invisible': [('detail_plan_count', '=', 0)]}">
+                        <field string="Detail-Plan" name="detail_plan_count" widget="statinfo"/>
+                    </button>
+                </button>
+
+
+            </field>
+		</record>
+
+ 		<!-- tree -->
+		<record id="project_task_detail_plan_tree_view" model="ir.ui.view">
+            <field name="name">project.task.detail.plan.tree</field>
+			<field name="model">project.task.detail.plan</field>
+	        <field name="arch" type="xml">
+	            <tree  create="false" edit="false">
+                    <field name="name"/>
+                    <field name="resource_id"/>
+                     <field name="task_id"/>
+                     <field name="type_level"/>
+                     <field name="data_from"/>
+                     <field name="data_to"/>
+                     <field name="duration" widget="time_delta" options="{'mask_humanize_string': 'h,m'}" />
+                    <field name="iteration"/>
+
+	            </tree>
+	        </field>
+		</record>
+
+
+        <record id="project_task_detail_plan_view_ganttaps" model="ir.ui.view">
+            <field name="name">project.task.detail.plan.ganttaps</field>
+            <field name="model">project.task.detail.plan</field>
+            <field name="type">ganttaps</field>
+            <field eval="2" name="priority"/>
+
+            <field name="arch" type="xml">
+                <ganttaps
+
+
+                        default_group_by = "task_id"
+                        main_group_id_name = "task_id"
+
+                        name = "name"
+                        date_start="data_from"
+                        date_stop="data_to"
+
+                        duration="duration"
+
+                        project_id="task_id"
+
+
+                        no_group_sort_mode=""
+                        schedule_mode="schedule_mode"
+
+                        color_gantt_set = "color_gantt_set"
+                        color_gantt = "color_gantt"
+
+                        default_order="data_from asc"
+
+                >
+
+                </ganttaps>
+
+            </field>
+
+        </record>
+
+
+
+
+    </data>
+</odoo>

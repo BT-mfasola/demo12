@@ -1,0 +1,330 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<openerp>
+    <data>
+
+
+        <record id="ganttaps_view_task_form2" model="ir.ui.view">
+            <field name="name">project.task.ganttaps.form</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+
+
+
+
+                <button name="action_open_parent_task" position="attributes">
+                        <attribute name="attrs">{'invisible': 1}</attribute>
+                </button>
+
+
+                <button name="action_subtask" position="attributes">
+                        <attribute name="attrs">{'invisible': 0}</attribute>
+                </button>
+
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                     <field name="date_finished"/>
+                </xpath>
+
+                <xpath expr="//notebook/page[2]" position="after">
+
+                    <page name="gantt_view" string="Gantt View">
+                            <group>
+                                <group>
+
+                                    <field name="fixed_calc_type"/>
+
+                                    <label for="plan_duration" attrs="{'invisible':['|',('schedule_mode', '=' ,'manual'), ('child_ids','!=', [])]}" string="Plan Duration"/>
+                                    <div attrs="{'invisible':['|',('schedule_mode', '=' ,'manual'), ('child_ids','!=', [])]}" >
+                                        <field name="plan_duration" widget="time_delta" options="{'mask_humanize_field': 'duration_scale', 'mask_picker_field' : 'duration_picker'}"  class="oe_inline"/>
+                                    </div>
+
+
+                                    <field name="date_start" attrs="{'readonly': [('schedule_mode', '=', 'auto')]}" />
+                                    <field name="date_end" attrs="{'readonly': [('schedule_mode', '=', 'auto')]}"/>
+
+                                    <label for="duration"/>
+                                    <div>
+                                        <field name="duration" widget="time_delta" options="{'mask_humanize_field': 'duration_scale', 'mask_picker_field' : 'duration_picker'}" class="oe_inline"/>
+                                    </div>
+
+                                    <label for="detail_plan_work"/>
+                                    <div>
+                                        <field name="detail_plan_work" widget="time_delta" options="{'mask_humanize_field': 'duration_work_scale', 'mask_picker_field' : 'duration_picker'}" class="oe_inline"/>
+                                    </div>
+
+
+                                    <field name="duration_scale" invisible="1"/>
+                                    <field name="duration_work_scale" invisible="1"/>
+                                    <field name="duration_picker" invisible="1"/>
+
+
+
+
+                                </group>
+                                <group>
+
+                                    <field name="on_gantt"/>
+                                    <field name="is_milestone"/>
+                                    <field name="schedule_mode" widget='radio'/>
+                                    <field name="constrain_type"/>
+                                    <field name="constrain_date"/>
+
+                                    <field name="color_gantt_set"/>
+                                    <field name="color_gantt" widget="colorpicker" attrs="{'invisible': [('color_gantt_set', '=', False)]}"/>
+
+                                    <!--<field name="fold_self"/>-->
+                                    <!--<field name="fold_group"/>-->
+                                    <!--<field name="fold_child"/>-->
+
+                                    <field name="summary_date_start" invisible="1"/>
+                                    <field name="summary_date_end" invisible="1"/>
+                                    <field name="detail_plan"/>
+<!--                                    <field name="p_loop"/>-->
+
+
+
+                                </group>
+
+                            </group>
+                    </page>
+
+                    <page name="gantt_predecessor" string="Predecessor">
+
+                        <field name="predecessor_ids" nolabel="1" widget="one2many_list">
+                            <tree string="Predecessor" editable="bottom" >
+                                <field name="parent_task_id"/>
+                                <field name="type"/>
+                                <field name="lag_qty"/>
+                                <field name="lag_type"/>
+                            </tree>
+                        </field>
+                    </page>
+
+                    <page name="resources" string="Resources">
+                            <field name="task_resource_ids" nolabel="1" widget="one2many_list">
+                                <tree string="Resources Link" editable="bottom" >
+                                    <field name="resource_id" />
+                                    <field name="load_factor" />
+                                    <field name="resource_type" />
+                                    <field name="load_control" />
+
+                                </tree>
+                            </field>
+
+                    </page>
+
+                    <page name="info_task" string="Info">
+
+                        <field name="info_ids" nolabel="1" widget="one2many_list">
+                            <tree string="Info" editable="bottom" >
+                                <field name="name"/>
+                                 <field name="start"/>
+                                <field name="end"/>
+                                <field name="left_up"/>
+                                <field name="left_down"/>
+                                <field name="right_up"/>
+                                <field name="right_down"/>
+                                <field name="show"/>
+                            </tree>
+                        </field>
+                    </page>
+
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="view_task_tree2_gantt" model="ir.ui.view">
+            <field name="name">project.task.tree.gantt</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_tree2" />
+            <field eval="2" name="priority"/>
+            <field name="arch" type="xml">
+                <field name="stage_id" position="after">
+                    <field name="duration" widget="time_delta_list"/>
+                </field>
+            </field>
+        </record>
+
+
+
+        <record id="view_task_ganttaps" model="ir.ui.view">
+            <field name="name">project.task.ganttaps</field>
+            <field name="model">project.task</field>
+            <field name="type">ganttaps</field>
+            <field eval="2" name="priority"/>
+
+            <field name="arch" type="xml">
+                <ganttaps
+                        default_group_by = "project_id"
+
+                        action_menu = "project_id"
+                        main_group_id_name = "project_id"
+                        main_group_model = "project.project"
+
+                        name = "name"
+                        date_start="date_start"
+                        date_stop="date_end"
+
+                        user_id = "user_id"
+
+
+                        project_id="project_id"
+                        date_deadline="date_deadline"
+                        progress="progress"
+
+                        on_gantt="on_gantt"
+                        date_done="date_finished"
+
+                        predecessor_model="project.task.predecessor"
+                        predecessor_task_id="task_id"
+                        predecessor_parent_task_id="parent_task_id"
+                        predecessor_type="type"
+
+                        subtask_project_id = "project_id"
+                        parent_id = "parent_id"
+                        subtask_count = "subtask_count"
+
+                        ghost_id="task_id"
+                        ghost_model="account.analytic.line"
+                        ghost_name="name"
+                        ghost_date_start="date"
+                        ghost_durations="unit_amount"
+
+                        is_milestone="is_milestone"
+                        schedule_mode="schedule_mode"
+                        constrain_type="constrain_type"
+                        constrain_date="constrain_date"
+                        duration="duration"
+                        plan_duration="plan_duration"
+
+                        summary_date_start = "summary_date_start"
+                        summary_date_end   = "summary_date_end"
+
+                        plan_action = "plan_action"
+
+                        color_gantt_set = "color_gantt_set"
+                        color_gantt = "color_gantt"
+
+
+                        duration_scale = "duration_scale"
+
+                        export_wizard="project.native.report"
+
+                        sorting_seq="sorting_seq"
+                        sorting_level="sorting_level"
+
+                        default_seq="sequence"
+                        second_seq_link_field="stage_id"
+                        second_seq_model="project.task.type"
+                        second_seq_field="sequence"
+
+                        fold="fold"
+
+                        limit_view="250"
+
+                        info_model="project.task.info"
+                        info_ids="info_ids"
+
+                        critical_path="critical_path"
+                        cp_shows="cp_shows"
+                        cp_detail="cp_detail"
+
+                        p_loop="p_loop"
+
+                        load_group_id_name = ""
+                        load_bar_model = "project.task.detail.plan"
+                        load_id = "task_id"
+                        load_id_from = "task_id"
+                        load_ids_from = "id"
+                        load_data_id = "id"
+
+                        default_order="date_start asc"
+
+                        doc_count = "attachment_ids"
+
+                >
+
+                </ganttaps>
+
+            </field>
+
+        </record>
+
+
+        <record id="project.action_view_task" model="ir.actions.act_window">
+            <field name="view_mode">kanban,tree,form,calendar,pivot,graph,ganttaps</field>
+        </record>
+
+        <record id="project.dblc_proj" model="ir.actions.act_window">
+            <field name="view_mode">tree,form,calendar,graph,kanban,ganttaps</field>
+        </record>
+
+        <record id="project.act_project_project_2_project_task_all" model="ir.actions.act_window">
+            <field name="view_mode">kanban,tree,form,calendar,pivot,graph,ganttaps</field>
+        </record>
+
+        <act_window context="{'search_default_user_id': [active_id], 'default_user_id': active_id}"
+                    id="act_res_users_2_project_task_opened" name="Assigned Tasks"
+                    res_model="project.task"
+                    src_model="res.users"
+                    view_mode="tree,form,calendar,graph,ganttaps"
+                    view_type="form"/>
+
+
+        <record id="edit_project_ganttaps_inherited" model="ir.ui.view">
+            <field name="name">project.project.ganttaps.edit.inherited</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="priority">24</field>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook/page[1]" position="after">
+
+                    <page string="Gantt View">
+                        <group>
+                            <group string="Tasks in Auto Mode" >
+                                 <field name="scheduling_type" />
+                                 <field name="date_start" attrs="{'invisible':[('scheduling_type','=', 'backward')]}"/>
+                                 <field name="date_end"  attrs="{'invisible':[('scheduling_type','=', 'forward')]}"/>
+                                 <field name="use_calendar" />
+                                 <field name="tz" widget="timezone_mismatch" options="{'tz_offset_field': 'tz_offset'}" readonly="0"/>
+                                 <field name="tz_offset" invisible="1"/>
+                            </group>
+
+                            <group string="Default for Task" >
+                                <field name="task_default_duration" widget="time_delta" />
+                                <field name="task_default_start" widget="time_delta" />
+                                <field name="detail_plan"/>
+
+                            </group>
+
+                            <field name="task_default_start_end"/>
+
+                            <!--<group>-->
+                                <!--<field name="fold_group"/>-->
+                            <!--</group>-->
+                             <!--<group name="Duration Scale" string="Duration Scale" colspan="2">-->
+
+                            <group name="duration_scale" string="Duration Scale">
+                                <field name="duration_scale"/>
+                                <field name="duration_picker"/>
+                            </group>
+
+                            <group name="critical_path" string="Critical Path">
+                                <field name="cp_shows"/>
+                                <field name="cp_detail"/>
+
+                            </group>
+
+                        </group>
+                    </page>
+
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

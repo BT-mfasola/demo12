@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.ui.view" id="view_form_product_template_inventory_coverage_report">
+		<field name="name">Add Warehouse in product template form view</field>
+		<field name="model">product.template</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="product.product_template_form_view" />
+		<field name="priority" eval="50" />
+		<field name="arch" type="xml">
+			<field name="list_price" position="before">
+				<field name="warehouse_ids" widget="many2many_tags"/>
+			</field>
+			<xpath expr="//div[@name='options']" position="inside">
+				<div>
+	                <field name="can_be_used_for_coverage_report_ept"/>
+	                <label for="can_be_used_for_coverage_report_ept"/>
+                </div>
+			</xpath>
+		</field>
+	</record>
+</odoo>

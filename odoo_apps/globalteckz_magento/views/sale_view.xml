@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_shop_form_magento_inherit1">
+            <field name="name">sale.shop.magento</field>
+            <field name="model">magento.shop</field>
+            <field name="arch" type="xml">
+            <form string="Magento Shop">
+                <sheet>
+                    <group attrs="{'invisible':[('magento_shop','=',False)]}">
+                        <field name="name" string="Store / Warehouse Name"/>
+                    </group>
+                    <group attrs="{'invisible':[('magento_shop','=',False)]}">
+                        <group>
+                            <field name="magento_instance_id"/>
+                            <field name="magento_code"/>
+                            <field name="workflow_id"/>                     
+                        </group>
+                        <group>
+                            <field name="store_id"/>
+                            <field name="prefix"/>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                    <field name="magento_shop" invisible="1"/>
+                    <notebook colspan="4">
+                       <page string='Manage Orders' attrs="{'invisible':[('magento_shop','=',False)]}">
+                           <group col="10">
+                               <button name="import_orders" string="Import Order" type="object" help="Import Order"  class="oe_inline oe_highlight" colspan="2"/>
+                               <field name="last_mag_update_order_date" nolabel="1" colspan="2" help="Last Order Update Time"/>
+                               <button name="import_shipment" string="Import Shipment" type="object" help="Import Shipment"  class="oe_inline oe_highlight" colspan="2"/>
+                               <button name="import_invoice" string="Import Invoice" type="object" help="Import Invoice"  class="oe_inline oe_highlight" colspan="2"/>
+                               <button name="export_order_status" string="Update Order Status" type="object" help="Update Order Status"  class="oe_inline oe_highlight" colspan="2"/>
+                               <field name='start_date' nolabel="1" colspan="2" help="Start Update Status Date"/>
+                           </group>
+                       </page>
+                       <page string='Export data to Magento' attrs="{'invisible':[('magento_shop','=',False)]}">
+                           <group col="10">
+                               <button name="export_products" string="Export Products" type="object" help="Export Products"  class="oe_inline oe_highlight" colspan="5"/>
+                               <button name="export_images" string="Export Images" type="object" help="Export Images" class="oe_inline oe_highlight" colspan="5"/>
+                           </group>
+                           <group col="10">
+                               <button name="export_new_products" string="Export New Products" type="object" help="Export New Products" class="oe_inline oe_highlight" colspan="2"/>
+                               <button name="export_link_products" string="Export Products Link" type="object" help="Export Products Link" class="oe_inline oe_highlight" colspan="2" style="color:red;"/>
+                           </group>
+                       </page>
+                   </notebook>
+                </sheet>
+                </form>             
+            </field>   
+        </record>
+
+        <record model="ir.ui.view" id="view_order_inherit_magento_form">
+            <field name="name">sale.view.order.inherit.magento.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//header/button" position="inside">
+                    <button name="single_export_shipment" string="Export Shipment" type="object" attrs="{'invisible':[('shipped','=',True)]}" class="btn-primary"/>
+                    <button name="single_export_invoice" string="Export Invoice" type="object" attrs="{'invisible':[('invoiced','=',True)]}" class="btn-primary"/>
+                </xpath>
+                <xpath expr="//field[@name='client_order_ref']" position="after">
+                    <field name="payment_method"/>
+                </xpath>
+		<xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="store_id"/>
+                    <field name="invoiced" invisible="1"/> 
+                    <field name="shipped" invisible="1"/> 
+                </xpath>
+                <xpath expr="//field[@name='warehouse_id']" position="after">
+                    <field name="mage_order_id"/>
+                    <field name="magento_order_id" invisible="1"/>
+                    <field name="magento_status"/>
+                    <field name="magento_order" invisible="1"/>
+                </xpath>
+           </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_order_inherit_magento_tree">
+            <field name="name">sale.view.order.inherit.magento.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='state']" position="after">
+                        <field name="payment_method"/>
+                        <!-- <field name="carrier_id"/> -->
+                    </xpath>
+              </data>
+           </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_quotation_order_inherit_magento_tree">
+            <field name="name">sale.view.quotation.order.inherit.magento.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='state']" position="after">
+                        <field name="payment_method"/>
+                        <!-- <field name="carrier_id"/> -->
+                    </xpath>
+              </data>
+           </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_shop_tree_magento_inheritss">
+            <field name="name">magento.shop.tree</field>
+            <field name="model">magento.shop</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree  string="Magento Shop">
+                    <field name="name"/>
+                    <field name="magento_instance_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="act_magentoerp_shop_form" model="ir.actions.act_window">
+            <field name="name">Magento Shops</field>
+            <field name="res_model">magento.shop</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="globalteckz_magento.view_shop_tree_magento_inheritss"/>
+            <field name="domain">[('magento_shop', '=', True)]</field>
+        </record>
+        
+       <!-- Payment Method View--> 
+       <record model="ir.ui.view" id="form_view_Payment_Method">
+            <field name="name">form.view.Payment.Method</field>
+            <field name="model">payment.method.magento</field>
+            <field name="arch" type="xml">
+                <form string="Payment Method">
+                    <field name="name" colspan="4"/>
+                    <field name = "code" colspan="4"/>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="tree_view_Payment_Method">
+            <field name="name">tree.view.Payment.Method</field>
+            <field name="model">payment.method.magento</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Method">
+                    <field name="name"/>
+                    <field name = "code"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="search_view_Payment_Method">
+            <field name="name">search.view.Payment.Method</field>
+            <field name="model">payment.method.magento</field>
+            <field name="arch" type="xml">
+                <search string="Payment Method">
+                    <field name="name"/>
+                    <field name = "code"/>
+
+                </search>
+            </field>
+        </record>
+        
+        <record id="act_payment_method" model="ir.actions.act_window">
+            <field name="name">Payment Method</field>
+            <field name="res_model">payment.method.magento</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</openerp>

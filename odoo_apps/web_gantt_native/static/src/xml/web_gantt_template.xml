@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+
+    <div t-name="GanttAPS.Pager">
+        <span class="o_pager_counter">
+            <span class="o_pager_limit"></span>
+            <span class="gantt_pager_info">
+                -  ( <span class="o_pager_size"></span> )
+            </span>
+
+        </span>
+    </div>
+
+
+    <div class="item-actions" t-name="GanttList.action">
+	</div>
+
+    <div class="item-infos" t-name="GanttList.info">
+	</div>
+<!--    <t t-name="GanttList.info">-->
+<!--	</t>-->
+
+
+	<div class="gantt-item-tree" t-name="GanttList.item.ztree">
+		<ul id="treeGantt" class="ztree"></ul>
+	</div>
+
+
+    <t t-name="GanttList.options">
+        <div class="gantt-list-options"></div>
+    </t>
+
+
+    <t t-name="GanttTimeLine.docs">
+        <div class="task-gantt-timeline-docs"></div>
+    </t>
+
+
+    <t t-name="GanttTimeLine.first">
+        <div class="task-gantt-timeline-first"></div>
+    </t>
+
+
+    <t t-name="GanttTimeLine.summary">
+        <div class="task-gantt-timeline-summary"></div>
+    </t>
+
+
+    <t t-name="GanttTimeLine.ghost">
+        <div class="task-gantt-timeline-ghost"></div>
+    </t>
+
+
+    <t t-name="GanttTimeLine.info">
+        <div class="task-gantt-timeline-info"></div>
+    </t>
+
+    <t t-name="GanttTimeLine.arrow">
+        <div class="task-gantt-timeline-arrow"></div>
+    </t>
+
+
+    <t t-name="GanttTimeLine.data">
+        <div class="task-gantt-timeline-row"></div>
+    </t>
+
+
+    <t t-name="GanttTimeLine.reslevel">
+        <div class="task-gantt-timeline-load"></div>
+    </t>
+
+    <t t-name="GanttTimeLine.resbar">
+        <div class="task-gantt-timeline-load-bar"></div>
+    </t>
+
+
+    <t t-name="GanttList.item">
+        <div class="task-gantt-item"></div>
+    </t>
+
+    <t t-name="GanttList.sorting.item">
+        <div class="task-gantt-sorting-item"></div>
+    </t>
+
+
+    <t t-name="GanttTimeLine.head">
+        <div class="task-gantt-timeline-head">
+            <!--<div class="task-gantt-scale-primary"/>-->
+            <div class="task-gantt-scale-secondary"/>
+        </div>
+        <div class="task-gantt-timeline-data"></div>
+        <!--<div class="task-gantt-current-day"></div>-->
+        <div class="task-gantt-pointer"></div>
+    </t>
+
+
+    <t t-name="TimelineGantt.scroll">
+        <div class="timeline-gantt-scroll-scale"></div>
+    </t>
+
+
+    <t t-name="TimelineGantt.header">
+
+        <div class="timeline-gantt-scroll"></div>
+
+        <div class="timeline-gantt-header">
+            <div class="timeline-gantt-items">
+                <div class="timeline-gantt-options"></div>
+                <div class="timeline-gantt-gutter"></div>
+            </div>
+
+            <div class="timeline-gantt-head">
+                <div class="timeline-gantt-scale-primary"/>
+                <div class="timeline-gantt-scale-secondary"/>
+            </div>
+        </div>
+    </t>
+
+
+    <t t-name="APSGanttView.buttons">
+        <div class="btn-group btn-group-sm">
+            <button  type="button" class="task-gantt-today btn btn-primary btn-sm">
+                Today
+            </button>
+        </div>
+
+        <div class="btn-group btn-group-sm">
+            <button type="button" class="task-gantt-zoom task-gantt-zoom-1h btn btn-default">1H</button>
+            <button type="button" class="task-gantt-zoom task-gantt-zoom-2h btn btn-default">2H</button>
+            <button type="button" class="task-gantt-zoom task-gantt-zoom-4h btn btn-default">4H</button>
+            <button type="button" class="task-gantt-zoom task-gantt-zoom-8h btn btn-default">8H</button>
+            <button type="button" class="task-gantt-zoom task-gantt-zoom-days btn btn-default ">Days</button>
+            <button type="button" class="task-gantt-zoom task-gantt-zoom-month btn btn-default ">Month</button>
+            <button type="button" class="task-gantt-zoom task-gantt-zoom-weeks btn btn-default ">Weeks</button>
+            <button type="button" class="task-gantt-zoom task-gantt-zoom-quarter btn btn-default ">Quarter</button>
+        </div>
+    </t>
+
+
+    <t t-name="GanttContainerView">
+        <div class="gantt-view" t-att-data-id="widget.id">
+        </div>
+    </t>
+
+
+    <t t-name="GanttContainerView.main">
+
+        <div class="gantt-container">
+
+            <div class="timeline-gantt"></div>
+
+            <div class="task-gantt">
+                <div class="task-gantt-list" t-att-style="'width:'+gutterOffset+'px;'">
+                    <div class="task-gantt-action"></div>
+                    <div class="task-gantt-items"></div>
+                    <div class="task-gantt-info"></div>
+                    <div class="task-gantt-gutter"></div>
+                </div>
+
+                <div class="task-gantt-timeline">
+                    <div class="task-gantt-timeline-inner"></div>
+                    <div class="task-gantt-line-hints"></div>
+                    <div class="task-gantt-line-tips"></div>
+                </div>
+
+            </div>
+        </div>
+    </t>
+
+
+    <t t-name="GanttToolTip">
+        <div class="task-gantt-line-tip-bar"></div>
+    </t>
+
+
+    <t t-name="GanttToolHint">
+        <div class="task-gantt-line-hint-move"></div>
+    </t>
+
+
+<!--    <t t-name="gant.datepicker">-->
+<!--        <t t-set="placeholder" t-value="widget.getParent().node and widget.getParent().node.attrs.placeholder"/>-->
+<!--        <t t-set="datepickerID" t-value="_.uniqueId('datepicker')"/>-->
+<!--        <div class="o_datepicker" aria-atomic="true" t-att-id="datepickerID" data-target-input="nearest">-->
+<!--            <input type="text"-->
+<!--                class="o_datepicker_input o_input datetimepicker-input"-->
+<!--                t-att-name="widget.name"-->
+<!--                t-att-placeholder="placeholder"-->
+<!--                t-attf-data-target="##{datepickerID}"/>-->
+<!--            <span class="o_datepicker_button"/>-->
+<!--        </div>-->
+<!--    </t>-->
+
+
+</templates>

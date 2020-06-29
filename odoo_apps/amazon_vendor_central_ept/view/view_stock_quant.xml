@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+        <record id="view_quant_package_form_save_with_amazon_edi_section" model="ir.ui.view">
+            <field name="name">view.quant.package.form.save.with_amazon_edi_detail
+            </field>
+            <field name="model">stock.quant.package</field>
+            <field name="inherit_id" ref="delivery.view_quant_package_weight_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//group" position="inside">
+                        <field name="handling_instructions" />
+                    </xpath>
+                </data>
+            </field>
+        </record>
+        <record id="view_quant_package_form_with_amazon_edi_section" model="ir.ui.view">
+            <field name="name">view.quant.package.form.with_amazon_edi_detail</field>
+            <field name="model">stock.quant.package</field>
+            <field name="inherit_id" ref="stock.view_quant_package_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='location_id']" position="after">
+                        <field name="handling_instructions" />
+                        <field name="amazon_carrier_code"/>
+                        <field name="amazon_package_weight"/>
+                        <field name="package_type" required="1"/>
+                        <field name="current_source_location_id_ept"/>
+                        <field name="current_destination_location_id_ept"/>
+                        <field name="current_picking_id_ept"  invisible="1"/>
+                        <field name="is_processed_ept"/>          
+                    </xpath>
+                    
+                 <!--     <xpath expr="//field[@name='quant_ids']" position="attributes">
+                     	<attribute name="attrs">{'invisible': [('current_picking_id_ept', '=', True)]}</attribute>
+                     </xpath> -->
+                    <xpath expr="//field[@name='quant_ids']" position="inside">
+                    <notebook position="inside">
+                      <page string="Current Move Lines">
+                       <field name="current_picking_move_line_ids_ept" readonly="1" attrs="{'invisible': [('current_picking_id_ept', '=', False)]}">
+                         <tree>
+                            <field name="product_id"/>
+                            <field name="lot_id" groups="stock.group_production_lot"/>
+                            <field name="qty_done" string="Quantity"/>
+                            <field name="product_uom_id"/>
+                        </tree>
+                       </field>
+                      </page>
+                      <!-- <page string ="Move Lines">
+                      <field name="move_line_ids_ept"/>
+                      </page> -->
+                    </notebook>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>

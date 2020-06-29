@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <record id="view_stock_picking_batch_button" model="ir.ui.view">
+            <field name="name">Stock Picking Batch</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[last()]" position="after">
+                    <field name="ready_for_download" invisible="1"/>
+                    <button name="send_to_shipper_ept" string="Send To Shipper" type="object" class="oe_highlight"
+                            attrs="{'invisible':['|',('state','not in','done'),('delivery_type_ept','in',['fixed','base_on_rule'])]}"/>
+                    <button name="download_labels" string="Download Labels" type="object" class="oe_highlight"
+                            attrs="{'invisible':['|',('state','not in',['send_to_shipper','done']),('ready_for_download','=',False)]}"/>
+                    <button name="download_invoices" string="Download Invoices" type="object" class="oe_highlight"/>
+                </xpath>
+                <field name="user_id" position="after">
+                    <field name="delivery_type_ept" widget="radio"></field>
+                    <field name="carrier_id"  domain="[('delivery_type','=',delivery_type_ept)]"
+                                   options='{"no_create": 1, "no_create_edit": 1}'></field>
+                    <field name="batch_processed_using_cron" attrs="{'invisible':[('batch_processed_using_cron','=',False)],'readonly':[('batch_processed_using_cron','!=',False)]}"/>
+                </field>
+                <field name="picking_ids" position="attributes">
+                    <attribute name="domain">[('carrier_id.delivery_type', '=', delivery_type_ept),('state', 'not in', ('done', 'cancel')),('carrier_id', '=', carrier_id)]</attribute>
+                </field>
+                <xpath expr="//sheet/field/tree/field[@name='state']" position="after">
+                    <field name="carrier_tracking_ref"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

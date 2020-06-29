@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_magento_log_form" model="ir.ui.view">
+            <field name="name">amazon.log</field>
+            <field name="model">magento.log</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Magento Log">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                            </group>
+                            <group>
+                                <field name="create_date" />
+                                <field name="description"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Magento Log Line">
+                                <field name="magento_log_details_id" nolabel="1" >
+                                    <tree editable="bottom" string="Magneot Log Line">
+                                        <field name="name"/>
+                                        <field name="description"/>
+                                        <field name="create_date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        
+        <record id="view_magento_log_tree" model="ir.ui.view">
+            <field name="name">magento.log</field>
+            <field name="model">magento.log</field>
+            <field name="arch" type="xml">
+                <tree string="Magento">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_magento_log_filter" model="ir.ui.view">
+            <field name="name">magento.logselect</field>
+            <field name="model">magento.log</field>
+            <field name="arch" type="xml">
+                <search string="Search Magento log">
+                    <field name="name" />
+                    <field name="description" />
+                    <separator />
+                    <filter string="Log Description" name="name" />
+                    <filter string="Model" name="res_model_id" />
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_magento_log_view">
+            <field name="name">Magento Log</field>
+            <field name="res_model">magento.log</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" eval="view_magento_log_tree" />
+        </record>
+
+    </data>
+</odoo>
+	

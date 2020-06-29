@@ -1,0 +1,512 @@
+
+table.o_list_table tbody tr:hover{
+    background-color: #BCD9F4;
+}
+
+table.o_list_table tbody tr.ks_highlight_row{
+    background-color: #38393a !important;
+    color:#ffffff !important;
+}
+
+#myInput {
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+    height: 30px;
+}
+
+.ks_columns_list.ui-sortable {
+  margin-top: 10px;
+  margin-bottom: 3px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.ui-sortable-handle{
+    display: flex;
+    position: relative;
+    cursor: move;
+    margin-bottom: 5px;
+}
+
+.ks_list_field_header .ks_list_field_info .ks_hide_show_checkbox {
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+    width: 30px;
+    cursor: pointer;
+}
+
+.switch-label {
+  display: block;
+  position: relative;
+  width: 38px;
+  height: 24px;
+  text-indent: -150%;
+  clip: rect(0 0 0 0);
+  color: transparent;
+  order: -1;
+}
+.switch-label:before,
+.switch-label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  cursor: pointer;
+}
+.switch-label:before {
+  width: 30px;
+  height: 16px;
+  background-color: #dedede;
+  border-radius: 9999em;
+  transition: background-color 0.25s ease;
+}
+.switch-label:after {
+  top: 1px;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.45);
+  transition: left 0.25s ease;
+}
+
+.ks_list_field_info input:checked + .switch-label {
+  /* Switch Rail */
+  /* Switch Knob */
+}
+.ks_list_field_info input:checked + .switch-label:before {
+  background-color: $primary;
+}
+.ks_list_field_info input:checked + .switch-label:after {
+  left: 15px;
+}
+
+.ks_lvm_o_content > .o_list_view tbody tr:focus-within {
+    background: transparent;
+}
+
+.apply_button {
+    width: 120px;
+    font-weight: bold;
+}
+
+.mode_button,
+.refresh_button,
+.toggle_button,
+.copy_button
+.ks_export_button {
+    width: 60px;
+}
+.ks_search {
+    display: flex;
+    border: 1px solid #bfbcbc;
+    background: #fff;
+    margin: 2px 5px;
+    border-radius: 2px;
+    height: 27px;
+    width: 95%;
+    margin: 0;
+}
+.ks_fix_width {
+    width: 100%;
+    min-width: unset !important;
+    max-width: unset !important;
+}
+.ks_date_main {
+    float: left;
+    width: 48%;
+}
+.ks_date_inner {
+    width: 51%;
+    float: left;
+    display: block;
+    padding: 0;
+    padding: 0 !important;
+}
+.ks_inner_search {
+    display: flex;
+    align-items: center;
+    margin: 3px;
+    background: #eeeeee;
+    padding: 1px 3px;
+    border: 1px solid #8c8c8c;
+}
+.ks_advance_chip {
+    margin-right: 8px;
+    font-weight: 600;
+}
+.ks_advance_chip_ellipsis {
+    max-width: 100px;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: 8px;
+    font-weight: 600;
+}
+.custom-control-searchbar-advance,
+.custom-control-searchbar-change {
+    border:none;
+}
+// .ks_advance_search_row {
+//     min-width: 212px;
+//     padding-left: 0 !important;
+//     padding-right: 0 !important;
+//     vertical-align: top !important;
+// }
+.ks_order {
+    width: 14px;
+    height: 14px;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.ks_advance_search_row .custom-control-searchbar-advance,
+.ks_advance_search_row .custom-control-searchbar-change{
+    padding: 0 10px;
+}
+
+.ks_advance_search_row .custom-control-searchbar-change{
+    > .o_input {
+        border: 0;
+        padding-top: 5px;
+    }
+}
+
+.table thead th th {
+    border: none;
+}
+
+.ks_lvm_o_content .tableFloatingHeaderOriginal tr:first-child,
+.ks_lvm_o_content .tableFloatingHeader tr:first-child{
+    color: white;
+    height: 10px;
+}
+
+.tableFloatingHeaderOriginal tr:first-child .custom-control-label:before {
+    outline: 1px solid #ffffff;
+}
+
+.ks_columns  {
+    padding: 10px;
+    box-shadow: 0 6px 12px -4px rgba(0, 0, 0, 0.5);
+    top: 28px !important;
+    transform: unset !important;
+    width: 269px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  margin-bottom: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 5px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: $primary;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px $primary;
+}
+
+input:checked + .slider:before {
+  transform: translateX(21px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.o_list_buttons {
+    display: flex;
+    align-items: center;
+}
+
+.ks_show {
+    display: block !important;
+}
+
+.ks_editable {
+    max-width: 160px;
+    border: 1px solid #c9c9c9;
+    padding: 0 6px;
+    border-radius: 2px;
+}
+
+.ks_lvm_o_content{
+    z-index: 100;
+}
+.ui-corner-all {
+    z-index: 1000 !important;
+}
+
+.modal-backdrop {
+    z-index: 99;
+}
+
+.modal.o_onboarding_modal.o_technical_modal.show,
+ .modal.o_technical_modal.show {
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+.custom-control.custom-checkbox .custom-control-input:not(:checked):not(:indeterminate) ~ .custom-control-label:before {
+    background: #fff;
+    outline: 1px solid #4c4c4c;
+}
+
+.ks_lvm_o_content > div > .table-responsive > .o_list_view thead tr:nth-child(1) th {
+//     position: inherit !important;
+    background-color: $primary !important;
+}
+
+.mk_apps_sidebar_panel {
+    z-index: 10;
+}
+
+.ks_lvm_o_main_content {
+    z-index: 1;
+}
+
+.modal-backdrop {
+    z-index: 0;
+}
+
+.app-sidebar-panel {
+    z-index: 10;
+}
+
+.modal-dialog .ks_search,
+.modal-dialog .ks_advance_search_row,
+.modal-dialog .hide-on-modal{
+    display: none;
+}
+
+.o_field_one2many .ks_search,
+.o_field_one2many .ks_advance_search_row,
+.o_field_one2many .hide-on-modal{
+    display: none;
+}
+
+.o_cp_switch_buttons {
+    flex-wrap: wrap;
+}
+
+.ks_lvm_o_content > .o_list_view .o_external_button {
+    display: none !important;
+}
+
+@media (max-width: 768px){
+    html .o_web_client .ks_lvm_o_content {
+        overflow: auto;
+        height: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+.ks_date_chip_ellipsis {
+    max-width: 50px;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-right: 8px;
+    font-weight: 600;
+}
+
+.ks_switch {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.ks_slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.ks_slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 1px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .ks_slider {
+  background-color: $primary;
+}
+
+input:focus + .ks_slider {
+  box-shadow: 0 0 1px $primary;
+}
+
+input:checked + .ks_slider:before {
+  -webkit-transform: translateX(12px);
+  -ms-transform: translateX(12px);
+  transform: translateX(12px);
+}
+
+/* Rounded sliders */
+.ks_slider.ks_round {
+  border-radius: 34px;
+}
+
+.ks_slider.ks_round:before {
+  border-radius: 50%;
+}
+
+.ui-autocomplete {
+    max-height: 50vh;
+    overflow: scroll;
+}
+.o_group_header {
+    background-image: linear-gradient(to bottom, #fcfcfc, #dedede);
+    height: 30px;
+}
+
+.ks_lvm_o_content > .o_list_view thead > tr > th {
+    border-left: 1px solid #fff !important;
+    border-right: 1px solid #fff !important;
+}
+
+.ks_lvm_o_content > .o_list_view thead {
+    border-collapse: collapse !important;
+}
+
+.note-toolbar {
+    display:flex;
+    flex-wrap:wrap;
+}
+.ks_inner_search > span {
+    max-width: 17px;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: 600;
+}
+
+/* TODO : WHy do this */
+/* .ks_word_break{
+    word-break: break-all !important;
+    white-space: normal !important;
+} */
+
+.ks_lvm_o_content > .o_list_view .o_list_table .o_list_record_selector {
+    width: 40px !important;
+    padding-left: 16px;
+}
+
+.ks_lvm_o_content th.ks_wrap {
+    padding: 8px 4px !important;
+    border-right: solid !important;
+    border-width: 0.1px !important;
+    border-color: white !important;
+    border-left: none;
+}
+.ks_lvm_o_content .hide-on-modal > th{
+    padding: 3px 4px !important;
+}
+
+.ks_search .o_input {
+    border: none !important;
+}
+.o_menu_apps .dropdown-menu.show {
+    z-index:1000;
+}
+
+.ks_search .ks_btn_middle_child {
+    padding-top: 2px !important;
+}
+
+// .o_list_view .o_list_table {
+//     table-layout: fixed;
+// }
+
+.o_form_view .o_notebook .tab-content > .tab-pane {
+    overflow: auto;
+}
+
+table.ks_resize tbody {
+    opacity: 0.4;
+}
+
+
+@-moz-document url-prefix() {
+  .ks_lvm_o_content > .o_list_view thead > tr > th {
+    border-left: 1px solid #fff !important;
+    border-right: 1px solid #fff !important;
+    box-shadow: -1px 0px 0 #fff;
+ }
+}
+
+
+/* Hiding buttons on edit mode */
+
+.o_list_buttons.o-editing #ks_dropdown,
+.o_list_buttons.o-editing .refresh_button,
+.o_list_buttons.o-editing .mode_button {
+    display: none !important;
+}

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_stock_picking_avc_carrier_info" model="ir.ui.view">
+            <field name="name">AVC Carrier Info</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//form/header" position="inside">
+                        <button name="export_po_ack" string="Export PO Acknowledgement"
+                                type="object" class="btn-primary"
+                                attrs="{'invisible': ['|',('is_amazon_edi_picking','!=',True),('po_ack_uploaded','=',True)]}"
+                                groups="amazon_vendor_central_ept.group_amazon_vendor_central_user"/>
+                       <!--  <button name="resend_po_ack" string="Resend PO Acknowledgement"
+                                type="object" class="btn-primary"
+                                attrs="{'invisible': ['|',('is_amazon_edi_picking','!=',True),('po_ack_uploaded','=',False)]}"
+                                groups="amazon_vendor_central_ept.group_amazon_vendor_central_user"/> -->
+                        <button name="%(action_import_product_package_info_ept)d" string="Import Product Package Info"
+                                type="action" class="btn-primary"
+                                attrs="{'invisible': ['|','|',('is_amazon_edi_picking','!=',True),('is_package_info_imported','=',True),('po_ack_uploaded','=',False)]}"
+                                groups="amazon_vendor_central_ept.group_amazon_vendor_central_user"/>
+                        <button name="send_routing_request" string="Send Routing Request"
+                                type="object" class="btn-primary"
+                                attrs="{'invisible': ['|','|','|',('is_amazon_edi_picking','!=',True),('po_ack_uploaded','=',False),('carrier_type','!=','wepay'),('route_request_send','=',True)]}"
+                                groups="amazon_vendor_central_ept.group_amazon_vendor_central_user"/>
+                        <button name="receive_routing_request" string="Receive Routing Information"
+                                type="object" class="btn-primary"
+                                attrs="{'invisible': ['|','|','|',('is_amazon_edi_picking','!=',True),('carrier_type','!=','wepay'),('route_request_send','=',False),('routing_instruction_received','=',True)]}"
+                                groups="amazon_vendor_central_ept.group_amazon_vendor_central_user"/>
+                         
+                        <button name="send_advance_shipment_notice" string="Send Advance Shipment Notice"
+                              type="object" class="btn-primary"
+                              attrs="{'invisible': ['|','|','|',('is_amazon_edi_picking','!=',True),('carrier_type','!=','wepay'),('routing_instruction_received','=',False),('shipment_notice_send','=',True)]}"
+                              groups="amazon_vendor_central_ept.group_amazon_vendor_central_user"/> 
+                         
+                        <button name="send_advance_shipment_notice" string="Send Advance Shipment Notice"
+                              type="object" class="btn-primary"
+                              attrs="{'invisible': ['|','|','|',('is_amazon_edi_picking','!=',True),('po_ack_uploaded','=',False),('carrier_type','!=','we_not_pay'),('shipment_notice_send','=',True)]}"
+                              groups="amazon_vendor_central_ept.group_amazon_vendor_central_user"/> 
+                              
+                         <button name="send_invoice_to_vendor_central" class="btn-primary"
+                                string="Send Invoice To Vendor Central"
+                                attrs="{'invisible': ['|',('is_amazon_edi_picking','!=',True),('shipment_notice_send','=',False)]}"
+                                type="object"/>  
+                    </xpath>
+                </data>
+                <notebook position="inside">
+                    <page string="Amazon Vendor Central" attrs="{'invisible':[('is_amazon_edi_picking','!=',True)]}">
+                        <group invisible="1">
+                            <group>
+                                <field name="is_amazon_edi_picking" invisible="1"/>
+                                <field name="is_package_info_imported" invisible="1"/>
+                                <field name="route_request_send" invisible="1"/>
+                                <field name="routing_instruction_received" invisible="1"></field>
+                                <field name="shipment_notice_send" invisible="1"/>
+                                <field name="po_ack_uploaded" invisible="1"/>
+                            </group>
+                        </group>
+                        <group string="General Information">
+                            <group>
+                            	<field name="vendor_id"/>
+                                <field name="carrier_type"/>
+                                <field name="delivery_date" attrs="{'invisible':[('carrier_type','!=','we_not_pay')]}"/>
+                                <field name="dispatch_date" attrs="{'invisible':[('carrier_type','!=','wepay')]}"/>
+                                <field name="gross_weight" placeholder="In KG"/>
+                                <field name="gross_volume" placeholder="in Cubic Meter"/>
+                                <field name="mode_of_transport"/>
+                            </group>
+                            <group>
+                                <field name="carrier_id"/>
+                                <field name="bol_number" placeholder="Bill of Lading Number"/>
+                                <field name="sscc_code"/>
+                                <field name="goods_description"/>
+                                <field name="booking_ref_number" placeholder="Booking Reference Number"/>
+                            </group>
+                        </group>
+                        <group string="Routing Instruction"
+                               attrs="{'invisible':['|',('routing_instruction_received','!=',True),('carrier_type','!=','wepay')]}">
+                            <group>
+                                <field name="additional_ref_number"/>
+                                <field name="pickup_date"/>
+                                <field name="carrier_scac_id"/>
+                            </group>
+                            <group>
+                                <field name="loading_type"/>
+                                <field name="loading_value"/>
+                                <field name="carrier_name"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <!-- Custome tree view of stock.picking for display
+            pending delivery orders(display only that order
+            which received IFTMBC. -->
+        <record id="view_tree_stock_picking_pending_delivery" model="ir.ui.view">
+            <field name="name">view.tree.stock.picking.pending.delivery</field>
+            <field name="model">stock.picking</field>
+            <field name="arch" type="xml">
+                <tree string="Pending Delivery Orders" create="false">
+                    <field name="name"/>
+                    <field name="state" invisible="1"/>
+                    <field name="sale_id"/>
+                    <field name="pickup_date"/>
+                    <field name="carrier_name"/>
+                    <field name="carrier_scac_id"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Action for custome tree view of stock.picking for display pending deliverys -->
+        <record id="action_tree_stock_picking_pending_delivery" model="ir.actions.act_window">
+            <field name="name">Pending Delivery Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="amazon_vendor_central_ept.view_tree_stock_picking_pending_delivery"/>
+            <field name="context">{}</field>
+            <field name="domain">[('routing_instruction_received','=',True),('state','not in',['draft','cancel','done'])]
+            </field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no data for Pending Delivery.
+                </p>
+            </field>
+        </record>
+        <menuitem action="action_tree_stock_picking_pending_delivery" id="menu_avc_stock_picking_pending_delivery"
+                  name="Pending Delivery Order" parent="menu_avc_package_label" sequence="4"/>
+
+    </data>
+</odoo>
+

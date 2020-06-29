@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="assets_backend" name="web_widget_time_delta assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/web_widget_time_delta/static/src/css/widget.css"/>
+            <link rel="stylesheet" href="/web_widget_time_delta/static/src/lib/duration-picker/jquery-duration-picker.css"/>
+
+
+            <script type="text/javascript" src="/web_widget_time_delta/static/src/js/widget.js"></script>
+
+            <script type="text/javascript" src="/web_widget_time_delta/static/src/lib/duration-humanize/humanize-duration.js"></script>
+            <script type="text/javascript" src="/web_widget_time_delta/static/src/lib/duration-picker/jquery-duration-picker.js"></script>
+
+        </xpath>
+    </template>
+</odoo>

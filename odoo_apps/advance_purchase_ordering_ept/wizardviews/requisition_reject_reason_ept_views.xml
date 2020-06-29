@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="requisition_reject_reason_ept_form_view" model="ir.ui.view">
+		       <field name="name">requisition.reject.reason.ept.view.form</field>
+		       <field name="model">requisition.reject.reason.ept</field>
+		       <field name="arch" type="xml">
+		           <form string="Reason to Reject Requisition">
+		               <group>
+		               	<field name="requisition_process_id" invisible="1"/>
+		               	<field name="warehouse_requisition_process_id" invisible="1"/>
+		               	<field name="reason"/>
+		               </group>
+		               <footer>
+		                   <button string='Reject' name="reject_requisition" type="object" class="oe_highlight" attrs="{'invisible':[('requisition_process_id','=',False)]}"/>
+		                   <button string='Reject' name="warehouse_requisition" type="object" class="oe_highlight" attrs="{'invisible':[('warehouse_requisition_process_id','=',False)]}"/>
+		                   <button string="Cancel" class="oe_link" special="cancel"/>
+		               </footer>
+		          </form>
+		       </field>
+		   </record>
+    </data>
+</odoo>
+

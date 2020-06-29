@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record model="ir.ui.view" id="view_tree_product_product_advance_purchase_add_item_ept">
+			<field name="name">Tree view of Product for Advance Purchase Ordering </field>
+			<field name="model">product.product</field>
+			<field name="priority" eval="150" />
+			<field name="arch" type="xml">
+				<tree>
+					<field name="default_code"/>
+					<field name="name"/>
+					<field name="attribute_value_ids" widget="many2many_tags" groups="product.group_product_variant"/>
+				</tree>
+			</field>
+		</record>
+</odoo>

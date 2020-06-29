@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Import PO  -->
+		<record forcecreate="True" id="ir_cron_avc_edi_auto_import_po" model="ir.cron">
+            <field name="name">Amazon EDI Import Purchase Orders(Do Not Delete)</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="model_id" ref="amazon_vendor_central_ept.model_amazon_vendor_instance" />
+            <field name="code">model.sync_amazon_po_from_cron()</field>
+            <field name="state">code</field>
+        </record>
+        <!-- Export PO ACK -->
+        <record forcecreate="True" id="ir_cron_avc_edi_auto_export_po_ack" model="ir.cron">
+            <field name="name">Amazon EDI Export Purchase Order Acknowledgement(Do Not Delete)</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="model_id" ref="amazon_vendor_central_ept.model_amazon_vendor_instance" />
+            <field name="code">model.export_po_ack_from_cron()</field>
+            <field name="state">code</field>
+        </record>
+        <!-- Export Route request -->
+        <record forcecreate="True" id="ir_cron_avc_edi_import_route_request" model="ir.cron">
+            <field name="name">Amazon EDI Auto export Route request (Do Not Delete)</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="model_id" ref="amazon_vendor_central_ept.model_amazon_vendor_instance" />
+            <field name="code">model.export_route_request_from_cron()</field>
+            <field name="state">code</field>
+            
+        </record>
+        <!-- Import Routing Instruction -->
+        <record forcecreate="True" id="ir_cron_avc_edi_auto_process_routing_instruction" model="ir.cron">
+            <field name="name">Amazon EDI Import Routing Instruction(Do Not Delete)</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="model_id" ref="amazon_vendor_central_ept.model_amazon_vendor_instance" />
+            <field name="code">model.import_route_info_form_cron()</field>
+            <field name="state">code</field>
+        </record>
+        
+        <!-- Export Advance shipment notice -->
+        <record forcecreate="True" id="ir_cron_avc_edi_auto_process_dispatch_advice" model="ir.cron">
+            <field name="name">Amazon EDI Export Purchase Orders Dispatch Advice(Do Not Delete)</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="model_id" ref="amazon_vendor_central_ept.model_amazon_vendor_instance" />
+            <field name="code">model.export_advance_shipment_notice_from_cron()</field>
+            <field name="state">code</field>
+        </record>
+        
+        
+        <record forcecreate="True" id="ir_cron_inventory_and_cost_export" model="ir.cron">
+            <field name="name">Amazon EDI Inventory(Do Not Delete)</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">7</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="model_id" ref="amazon_vendor_central_ept.model_amazon_vendor_instance" />
+            <field name="code">model.export_inventory_and_cost_from_cron()</field>
+            <field name="state">code</field>
+        </record>
+       
+        <!-- 
+        <record forcecreate="True" id="ir_cron_avc_edi_auto_export_invoice" model="ir.cron">
+            <field name="name">Amazon EDI Export Invoice(Do Not Delete)</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="model" eval="'account.invoice'" />
+            <field name="function" eval="'prepare_and_send_edi_order_invoice_message'" />
+            <field name="args" eval="'()'" />
+        </record>
+        
+        <record forcecreate="True" id="ir_cron_avc_edi_auto_export_inventory" model="ir.cron">
+            <field name="name">Amazon EDI Export Inventory(Do Not Delete)</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="model" eval="'amazon.vendor.instance'" />
+            <field name="function" eval="'prepare_and_send_edi_inventory_message'" />
+            <field name="args" eval="'()'" />
+        </record>
+
+        <record forcecreate="True" id="ir_cron_avc_edi_auto_import_sales_report" model="ir.cron">
+            <field name="name">Amazon EDI Import Sales Report(Do Not Delete)</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">2</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="model" eval="'amazon.vendor.instance'" />
+            <field name="function" eval="'sync_import_sales_report'" />
+            <field name="args" eval="'()'" />
+        </record>
+         -->
+		<!-- 
+		<record forcecreate="True" id="amazon_update_orders_cron" model="ir.cron">
+            <field name="name">Amazon Update Orders</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="model" eval="'sale.shop'" />
+            <field name="function" eval="'run_update_amazon_orders_scheduler'" />
+            <field name="args" eval="'()'" />
+        </record>
+		
+		<record forcecreate="True" id="amazon_export_stock_levels_cron" model="ir.cron">
+            <field name="name">Amazon Export Stock Levels</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+            <field name="model" eval="'sale.shop'" />
+            <field name="function" eval="'run_export_stock_levels_amazon_scheduler'" />
+            <field name="args" eval="'()'" />
+        </record>
+		 -->
+	</data>
+</openerp>

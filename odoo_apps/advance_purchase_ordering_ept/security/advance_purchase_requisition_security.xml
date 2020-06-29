@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="0">
+	
+		<record id="module_advance_purchase_ordering_ept" model="ir.module.category" >
+            <field name="name">Advance Purchase Ordering</field>
+            <field name="description">Advance Purchase Ordering User Access Rights</field>
+            <field name="sequence">100</field>
+        </record>
+	
+	    <record id="adv_purchase_user_ept" model="res.groups">
+	        <field name="name">Reorder User</field>
+	         <field name="category_id" ref="module_advance_purchase_ordering_ept"/>
+	        <field name="implied_ids" eval="[(4,ref('intercompany_transaction_ept.intercompany_transfer_user_group')),(4,ref('stock.group_stock_user')),(4,ref('purchase.group_purchase_user')),(4,ref('sales_team.group_sale_salesman'))]"/>
+	        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+	  	</record>
+	
+	    <record id="adv_purchase_manager_ept" model="res.groups">
+	        <field name="name">Reorder Manager</field>
+	        <field name="category_id" ref="module_advance_purchase_ordering_ept"/>
+	        <field name="implied_ids" eval="[(4,ref('advance_purchase_ordering_ept.adv_purchase_user_ept')),(4,ref('intercompany_transaction_ept.intercompany_transfer_manager_group'))]"/>
+	        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+	    </record>
+	    
+	    <record id="group_approve_purchase_requisition_ept" model="res.groups">
+	    	<field name="name">Authorized user to approve/reject Reorder &amp; Procurement process </field>
+	    	<field name="implied_ids" eval="[(4,ref('advance_purchase_ordering_ept.adv_purchase_user_ept'))]"/>
+	    	<field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+	    </record>
+	    
+	    <record id="group_requisition_multi_company" model="res.groups">
+	    	<field name="name">Reorder in Multi Companies</field>
+	    	<field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+	    </record>
+	</data>
+	<data noupdate="1">
+	    <record id="rule_warehouse_requisition_multi_company" model="ir.rule">
+	    	<field name="name">Warehouse Multi Company All Allow Company</field>
+	    	<field name="model_id" ref="stock.model_stock_warehouse"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    
+	    <record id="rule_location_requisition_multi_company" model="ir.rule">
+	    	<field name="name">Location multi-company all</field>
+	    	<field name="model_id" ref="stock.model_stock_location"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    <record id="rule_supplierinfo_requisition_multi_company" model="ir.rule">
+	    	<field name="name">product supplierinfo company rule All</field>
+	    	<field name="model_id" ref="product.model_product_supplierinfo"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    <record id="rule_res_company_requisition_multi_company" model="ir.rule">
+	    	<field name="name">Company Rule Requisition All</field>
+	    	<field name="model_id" ref="base.model_res_company"/>
+	    	<field name="domain_force">[('id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    <record id="rule_stock_picking_requisition_multi_company" model="ir.rule">
+	    	<field name="name">stock_picking multi-company All</field>
+	    	<field name="model_id" ref="stock.model_stock_picking"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    <record id="rule_stock_move_requisition_multi_company" model="ir.rule">
+	    	<field name="name">stock_move multi-company all</field>
+	    	<field name="model_id" ref="stock.model_stock_move"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    <record id="rule_stock_quant_requisition_multi_company" model="ir.rule">
+	    	<field name="name">stock_quant multi-company all</field>
+	    	<field name="model_id" ref="stock.model_stock_quant"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    <record id="rule_stock_picking_type_requisition_multi_company" model="ir.rule">
+	    	<field name="name">Stock Operation Type multi-company all</field>
+	    	<field name="model_id" ref="stock.model_stock_picking_type"/>
+	    	<field name="domain_force">['|', ('warehouse_id', '=', False), '|',('warehouse_id.company_id','=',False),('warehouse_id.company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="True"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    <record id="rule_purchase_order_requisition_multi_company" model="ir.rule">
+	    	<field name="name">Purchase Order multi-company All</field>
+	    	<field name="model_id" ref="purchase.model_purchase_order"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="True"/>
+	        <field name="perm_create" eval="True"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    <record id="rule_purchase_order_line_requisition_multi_company" model="ir.rule">
+	    	<field name="name">Purchase Order Line multi-company all</field>
+	    	<field name="model_id" ref="purchase.model_purchase_order_line"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="True"/>
+	        <field name="perm_create" eval="True"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    <record id="rule_fiscal_position_requisition_multi_company" model="ir.rule">
+	    	<field name="name">Account fiscal Mapping company rule all</field>
+	    	<field name="model_id" ref="account.model_account_fiscal_position"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    <record id="rule_account_tax_requisition_multi_company" model="ir.rule">
+	    	<field name="name">Tax multi-company all</field>
+	    	<field name="model_id" ref="account.model_account_tax"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+	    
+   	    <record id="rule_forecast_sale_ept_report_multi_company_all" model="ir.rule">
+	    	<field name="name">Forecast Sale ept Report multi-company all</field>
+	    	<field name="model_id" ref="inventory_coverage_report_ept.model_forecast_sale_ept_report"/>
+	    	<field name="domain_force">['|', ('warehouse_id', '=', False), '|',('warehouse_id.company_id','=',False),('warehouse_id.company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+   	    <record id="rule_forecast_and_actual_sale_report_multi_company_all" model="ir.rule">
+	    	<field name="name">Forecast Sale and Actual Sale Report multi-company all </field>
+	    	<field name="model_id" ref="inventory_coverage_report_ept.model_forecasted_and_actual_sales_report_ept"/>
+	    	<field name="domain_force">['|', ('warehouse_id', '=', False), '|',('warehouse_id.company_id','=',False),('warehouse_id.company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="True"/>
+	        <field name="perm_create" eval="True"/>
+	        <field name="perm_unlink" eval="True"/>
+	    </record>
+	    
+   	    <record id="rule_forecast_sale_ept_multi_company_all" model="ir.rule">
+	    	<field name="name">Forecast Sale ept multi-company all</field>
+	    	<field name="model_id" ref="inventory_coverage_report_ept.model_forecast_sale_ept"/>
+	    	<field name="domain_force">['|',('company_id','=',False),('company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="False"/>
+	        <field name="perm_create" eval="False"/>
+	        <field name="perm_unlink" eval="False"/>
+	    </record>
+   	    <record id="rule_forecast_rule_ept_multi_company_all" model="ir.rule">
+	    	<field name="name">Forecast Rule ept multi-company all </field>
+	    	<field name="model_id" ref="inventory_coverage_report_ept.model_forecast_sale_rule_ept"/>
+	    	<field name="domain_force">['|', ('warehouse_id', '=', False), '|',('warehouse_id.company_id','=',False),('warehouse_id.company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="True"/>
+	        <field name="perm_create" eval="True"/>
+	        <field name="perm_unlink" eval="True"/>
+	    </record>
+	    
+	    <record id="rule_inter_company_transfer_ept_requisition_multi_company" model="ir.rule">
+	    	<field name="name">Inter Company Transfer : multi-company all</field>
+	    	<field name="model_id" ref="intercompany_transaction_ept.model_inter_company_transfer_ept"/>
+	    	<field name="domain_force">['|', ('source_warehouse_id', '=', False),'|',('destination_warehouse_id','=',False), '|',('source_warehouse_id.company_id','=',False),'|',('source_warehouse_id.company_id','child_of',[user.company_id.id]),'|',('destination_warehouse_id.company_id','=',False),('destination_warehouse_id.company_id','child_of',user.company_ids and user.company_ids.ids or [user.company_id.id])]</field>
+	    	<field name="groups" eval="[(4, ref('advance_purchase_ordering_ept.group_requisition_multi_company'))]"/>
+	    	<field name="perm_read" eval="True"/>
+	        <field name="perm_write" eval="True"/>
+	        <field name="perm_create" eval="True"/>
+	        <field name="perm_unlink" eval="True"/>
+	    </record>
+	 </data>
+ </odoo>
+ 

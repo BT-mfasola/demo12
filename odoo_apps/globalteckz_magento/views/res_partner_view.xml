@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_base_view_partner_form">
+            <field name="name">base.view.partner.form.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="email" position="after">
+                     <field name="customer_grp"/>
+                     <field name="instance_id"/>
+                     <field name="contact_name"/>
+                </field>
+                <field name="website" position="after">
+                     <field name="dob"/>
+                      <field name="tax_vat"/>
+                </field>
+                <xpath expr="//page[@name='sales_purchases']" position="inside">
+                    <page name="magento" string="Magento" >
+                        <group>
+                            <field name="is_a_magento_customer"/>
+                            <field name="mage_cust_id" />
+                            <field name="mage_adds_id" />
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
+
+                

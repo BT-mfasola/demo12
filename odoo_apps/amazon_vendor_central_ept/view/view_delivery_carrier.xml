@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record id="view_delivery_carrier_amazon_edi_section" model="ir.ui.view">
+            <field name="name">delivery.carrier.form.view.with_amazon_edi_detail
+            </field>
+            <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+            <field name="model">delivery.carrier</field>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='install_more_provider']" position="before" >
+
+                    <label for="carrier_reference_number"/>
+                    <div>
+                        <field name="carrier_reference_number" style="width: 150px;"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

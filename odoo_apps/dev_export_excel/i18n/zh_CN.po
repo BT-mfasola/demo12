@@ -1,0 +1,552 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dev_export_excel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-01 05:38+0000\n"
+"PO-Revision-Date: 2017-06-01 05:38+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_name
+msgid "Action Name"
+msgstr "动作名称"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_active
+msgid "Active"
+msgstr "有效"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Add Action in Model"
+msgstr "在模型中添加动作"
+
+#. module: dev_export_excel
+#: model:res.groups,comment:dev_export_excel.allow_dynamic_export_excel_group
+#: model:res.groups,name:dev_export_excel.allow_dynamic_export_excel_group
+msgid "Allow Dynamic Export Excel"
+msgstr "允许动态导出 高强"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_model_id
+msgid "Applies to"
+msgstr "应用于"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_wizard_form
+msgid "Are you sure want to export in excel ?"
+msgstr "你确定要在Excel中导出吗？"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_lable_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_lable_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_bg_color
+msgid "Background Color"
+msgstr "背景颜色"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_bold
+msgid "Bold"
+msgstr "胆大"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_border
+msgid "Border"
+msgstr "边境"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_border_color
+msgid "Border Color"
+msgstr "边框颜色"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_wizard_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: dev_export_excel
+#: selection:dev.export,company_align:0
+#: selection:dev.export,group_align:0
+#: selection:dev.export,header_align:0
+#: selection:dev.export,label_align:0
+#: selection:dev.export,line_label_align:0
+#: selection:dev.export,line_val_align:0
+#: selection:dev.export,val_align:0
+msgid "Center"
+msgstr "中央"
+
+#. module: dev_export_excel
+#: selection:dev.export,company_align:0
+#: selection:dev.export,group_align:0
+#: selection:dev.export,header_align:0
+#: selection:dev.export,label_align:0
+#: selection:dev.export,line_label_align:0
+#: selection:dev.export,line_val_align:0
+#: selection:dev.export,val_align:0
+msgid "Center Across"
+msgstr "跨越中心"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Company Style"
+msgstr "公司风格"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_create_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_create_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_create_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_create_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_create_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_create_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_create_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_create_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_display_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_display_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_display_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_display_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: dev_export_excel
+#: model:ir.ui.menu,name:dev_export_excel.menu_dynamic_export_excel
+msgid "Dynamic Export Excel"
+msgstr "动态出口高强"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_name
+msgid "Excel Sheet Name"
+msgstr "高强工作表名称"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Excel Style"
+msgstr "高强样式"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Excel Style Title"
+msgstr "高强风格标题"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_file_excel
+msgid "Excel file"
+msgstr "高强文件"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_export_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_export_id
+msgid "Export"
+msgstr "出口"
+
+#. module: dev_export_excel
+#: code:addons/dev_export_excel/models/dev_export.py:244
+#, python-format
+msgid "Export %s"
+msgstr "出口 %s"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_excel_file
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_file_name
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_wizard_form
+msgid "Export Excel"
+msgstr "出口高强"
+
+#. module: dev_export_excel
+#: model:ir.actions.act_window,name:dev_export_excel.action_dev_export_file_excel
+msgid "Export Excel "
+msgstr "出口高强"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_wizard_form
+msgid "Export Excel Report"
+msgstr "出口高强报表"
+
+#. module: dev_export_excel
+#: model:ir.actions.act_window,name:dev_export_excel.action_dev_export
+#: model:ir.ui.menu,name:dev_export_excel.menu_dev_export
+msgid "Export Model"
+msgstr "出口模式"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_export_fields_ids
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Fields"
+msgstr "字段"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_is_group_by
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_filter
+msgid "Group By"
+msgstr "分组"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_by_field_id
+msgid "Group By Field"
+msgstr "按领域"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Group Style"
+msgstr "团体风格"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Header Style"
+msgstr "标题样式"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Header Table Value Style"
+msgstr "标题表值样式"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Header Table label Style"
+msgstr "标题表标签样式"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_text
+msgid "Header Text"
+msgstr "标题文字"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_id
+msgid "ID"
+msgstr "ID"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_italic
+msgid "Italic"
+msgstr "斜体"
+
+#. module: dev_export_excel
+#: selection:dev.export,company_align:0
+#: selection:dev.export,group_align:0
+#: selection:dev.export,header_align:0
+#: selection:dev.export,label_align:0
+#: selection:dev.export,line_label_align:0
+#: selection:dev.export,line_val_align:0
+#: selection:dev.export,val_align:0
+msgid "Justify"
+msgstr "辩解"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_label
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_label
+msgid "Label"
+msgstr "标签"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export___last_update
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields___last_update
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel___last_update
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard___last_update
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field___last_update
+msgid "Last Modified on"
+msgstr "最后修改时间"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_write_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_write_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_write_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_write_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_write_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_write_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_write_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_write_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: dev_export_excel
+#: selection:dev.export,company_align:0
+#: selection:dev.export,group_align:0
+#: selection:dev.export,header_align:0
+#: selection:dev.export,label_align:0
+#: selection:dev.export,line_label_align:0
+#: selection:dev.export,line_val_align:0
+#: selection:dev.export,val_align:0
+msgid "Left"
+msgstr "剩下"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Line Table Value  Style"
+msgstr "行表格风格"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Line Table label Style"
+msgstr "线表标签样式"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_filter
+msgid "Model"
+msgstr "模型"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_name
+msgid "Name"
+msgstr "名称"
+
+#. module: dev_export_excel
+#: code:addons/dev_export_excel/models/dev_export.py:182
+#: code:addons/dev_export_excel/models/dev_export.py:195
+#: code:addons/dev_export_excel/models/dev_export.py:211
+#, python-format
+msgid "Please Add %s field in fields Line !!!"
+msgstr "请在字段中添加％s字段行！"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_print_company_detail
+msgid "Print Company Detail"
+msgstr "打印公司详细信息"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_is_sum
+msgid "Print Sum"
+msgstr "打印总和"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_split_sheet
+msgid "Record per sheet"
+msgstr "每张记录"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_ref_field
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_ref_field
+msgid "Relation Field"
+msgstr "关系字段"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Relational Field"
+msgstr "关系领域"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_relational_model_id
+msgid "Relational Field Model"
+msgstr "关系领域模型"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_relational_fields_ids
+msgid "Relational Fields"
+msgstr "关系领域"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Remove Action from Model"
+msgstr "从模型中删除操作"
+
+#. module: dev_export_excel
+#: selection:dev.export,company_align:0
+#: selection:dev.export,group_align:0
+#: selection:dev.export,header_align:0
+#: selection:dev.export,label_align:0
+#: selection:dev.export,line_label_align:0
+#: selection:dev.export,line_val_align:0
+#: selection:dev.export,val_align:0
+msgid "Right"
+msgstr "对"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_filter
+msgid "Search Export Excel"
+msgstr "搜索导出高强"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_sequence
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_sequence
+msgid "Sequence"
+msgstr "序号"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_ref_ir_value
+msgid "Sidebar Button"
+msgstr "边栏按钮"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_ref_ir_act_window
+msgid "Sidebar action"
+msgstr "边栏动作"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,help:dev_export_excel.field_dev_export_ref_ir_act_window
+msgid "Sidebar action to make this template available on records of the related document model"
+msgstr "用于在相关单据上调用此模版的边栏按钮"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,help:dev_export_excel.field_dev_export_ref_ir_value
+msgid "Sidebar button to open the sidebar action"
+msgstr "用于打开边栏动作的边栏按钮"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_relational_field
+msgid "Sub Model"
+msgstr "子模型"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_template
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Template"
+msgstr "模板"
+
+#. module: dev_export_excel
+#: selection:dev.export,template:0
+msgid "Template-1"
+msgstr "模板1"
+
+#. module: dev_export_excel
+#: selection:dev.export,template:0
+msgid "Template-2"
+msgstr "模板2"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_align
+msgid "Text Align"
+msgstr "文本对齐"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_font_color
+msgid "Text Color"
+msgstr "文字颜色"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_font_size
+msgid "Text Size"
+msgstr "字体大小"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_font_name
+msgid "Text Style"
+msgstr "文字风格"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_underline
+msgid "Underline"
+msgstr "强调"
+
+#. module: dev_export_excel
+#: model:ir.model,name:dev_export_excel.model_dev_export
+msgid "dev.export"
+msgstr "dev.export"
+
+#. module: dev_export_excel
+#: model:ir.model,name:dev_export_excel.model_dev_export_fields
+msgid "dev.export.fields"
+msgstr "dev.export.fields"
+
+#. module: dev_export_excel
+#: model:ir.model,name:dev_export_excel.model_dev_export_file_excel
+msgid "dev.export.file.excel"
+msgstr "dev.export.file.excel"
+
+#. module: dev_export_excel
+#: model:ir.model,name:dev_export_excel.model_dev_export_wizard
+msgid "dev.export.wizard"
+msgstr "dev.export.wizard"
+
+#. module: dev_export_excel
+#: model:ir.model,name:dev_export_excel.model_dev_relational_field
+msgid "dev.relational.field"
+msgstr "dev.relational.field"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_model_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_model_id
+msgid "model"
+msgstr "模型"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_wizard_form
+msgid "or"
+msgstr "或"
+

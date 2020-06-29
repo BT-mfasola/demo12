@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- Import Forecasted Sales Wizard -->
+		<record id="import_forecasted_sale_rule_ept_wizard_form_view"
+			model="ir.ui.view">
+			<field name="name">import.export.forecast.sale.rule.form</field>
+			<field name="model">import.export.forecast.sale.rule.ept</field>
+			<field name="arch" type="xml">
+				<form>
+					<group colspan="4" attrs="{'invisible':[('type','=','export')]}">
+						<html>
+							<p class="oe_account_font_help"
+								style="color: red;border-top: 2px solid;border-bottom: 2px solid;"
+								align="center">Please provide only '.xls' formatted file, If any issue
+								regards import then check log at "Inventory > Advance
+								Purchase >
+								Logs"
+							</p>
+						</html>
+					</group>
+					<group>
+						<field name="type" widget="radio" />
+					</group>
+					<group attrs="{'invisible':[('type','=','export')]}">
+						<group col="4">
+							<field name="choose_file" filename="file_name" />
+							<button name="download_forcasted_sales_rule_template"
+								attrs="{'invisible':[('type','=','export')]}" string="Download Template"
+								type="object" class="oe_link" />
+						</group>
+					</group>
+					<group col="4" attrs="{'invisible':[('type','=','import')]}">
+						<field name="start_period_id" attrs="{'required':[('type','=','export')]}" />
+						<field name="end_period_id" attrs="{'required':[('type','=','export')]}" />
+					</group>
+					<group>
+						<field name="warehouse_ids" string="Warehouses" widget="many2many_tags"
+							attrs="{'invisible':[('type','=','import')],'required':[('type','=','export')]}" />
+					</group>
+					<footer>
+						<button name="export_forecast_sales_rule" string="Export"
+							type="object" class="oe_highlight" attrs="{'invisible':[('type','=','import')]}" />
+						<button name="do_import" string="Import" type="object"
+							class="oe_highlight" attrs="{'invisible':[('type','=','export')]}" />
+						or
+						<button string="_Close" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<record id="import_forecast_sales_rule_ept_action" model="ir.actions.act_window">
+			<field name="name">Import / Export Forecast Sales Rule</field>
+			<field name="res_model">import.export.forecast.sale.rule.ept</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+
+		<menuitem id="import_forecast_sales_rule_menu_items" name="Import / Export"
+			action="import_forecast_sales_rule_ept_action" parent="inventory_coverage_report_ept.forecast_sale_rule_main_menu"
+			sequence="70" />
+
+	</data>
+	<data noupdate="1">
+		<record id="ir_attachment_import_forcasted_sales_rule_template_ept"
+			model="ir.attachment">
+			<field name="name">import_forcasted_sales_rule_template.xls</field>
+			<field name="datas_fname">import_forcasted_sales_rule_template.xls</field>
+			<field name="datas" type="base64"
+				file="inventory_coverage_report_ept/static/demo_data/import_forcasted_sales_rule_template.xls"></field>
+			<field name="res_model">import.export.forecast.sale.rule.ept</field>
+			<field name="public">True</field>
+		</record>
+	</data>
+</odoo>

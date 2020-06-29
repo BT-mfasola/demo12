@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="FieldTimeDelta">
+        <span t-att-class="'oe_form_field '+widget.widget_class" t-att-style="widget.attrs.style">
+            <t t-if="widget.mode !== 'readonly'">
+                <input type="text"
+                       t-att-id="widget.id_for_label"
+                       t-att-tabindex="widget.attrs.tabindex"
+                       t-att-autofocus="widget.attrs.autofocus"
+                       t-att-placeholder="widget.attrs.placeholder"
+                       t-att-maxlength="widget.field.size"
+                       class="timedelta"
+                        />
+            </t>
+            <t t-if="widget.mode === 'readonly'">
+                <div/>
+                <span class="oe_form_char_content"></span>
+            </t>
+        </span>
+    </t>
+
+</templates>
+

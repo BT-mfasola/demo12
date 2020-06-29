@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Odoo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+</head>
+<!-- odoo description page css -->
+<style>
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        font-weight: 400;
+        line-height: 1.1;
+        color: #21272b;
+    }
+    
+    ul {
+        color: #222020;
+    }
+
+    .oe_styling_v8 a.btn {
+        color: white;
+    }
+
+    :root {
+       --primary: #00A09D;
+    }
+
+</style>
+
+<body>
+<div class="container">
+    <div class="for_open" data-toggle="collapse" href="#floating_div_red" role="button" aria-expanded="true"
+         aria-controls="floating_div_red"
+         style="width: 50px; height: 50px; background: #e32235; color: white; border-radius: 50%; 			display: flex; align-items: center; justify-content: center; font-weight: 100; font-size: 20px; position: fixed; bottom: 20px; 			left: 30px; z-index: 1000; box-shadow: 1px 2px 11px rgba(0, 0, 0, 0.3), -5px 7px 12px rgba(0, 0, 0, 0.22); cursor: 			pointer;background-image: radial-gradient( circle farthest-corner at 10% 20%, rgb(235, 36, 39) 0%, rgb(200, 33, 40) 100.4% );">
+        <i class="fa fa-bars"></i>
+    </div>
+    <div class="collapse show" id="floating_div_red" style="position: fixed; bottom: 20px; left: 20px; z-index: 1001;">
+        <div class="for_close" data-toggle="collapse" href="#floating_div_red" role="button" aria-expanded="true"
+             aria-controls="floating_div_red"
+             style="width: 25px; height: 25px; background: #e32235; color: white; border-radius: 50%; 			display: flex; align-items: center; justify-content: center; font-weight: 100; margin-left: auto; font-size: 12px;	 			margin-	bottom: -24px;position: relative; z-index: 1000; cursor: pointer;background-image: radial-gradient( circle 			farthest-corner at 10% 20%, rgb(235, 	36, 39) 0%, rgb(200, 33, 40) 100.4% );">
+            <i class="fa fa-times"></i>
+        </div>
+        <div class="ks_box_outer">
+            <div class="ks_logo">
+                <img src="images/floating-menu/1st.svg" style="width: 100%;" alt="">
+            </div>
+            <div class="ks_box_items"
+                 style=" margin-top: -32px; background: #eb2427; border-radius: 0 0 10px 10px; padding-bottom: 10px; ">
+                <div class="ks_box_items_inner d-flex justify-content-center" style="padding: 10px;">
+                    <a href="https://listview12.kappso.com/web/demo_login" target="_blank" style="text-decoration: none;font-size: 14px;margin-right:
+			15px;" class="d-flex flex-column align-items-center text-white font-weight-light">
+                        <img src="images/floating-menu/Film.gif" style="width: 40px;" alt="">
+                        <span class="pt-2 font-weight-bold">Demo Server</span> </a>
+                    <a href="https://apps.odoo.com/apps/modules/browse?search=ksolves" target="_blank" style="text-decoration: none;
+			font-size: 14px;margin-right: 18px;"
+                       class="d-flex flex-column align-items-center text-white font-weight-light">
+                        <img src="images/floating-menu/Files.gif" style="height: 60px;margin-top: -20px;" alt="">
+                        <span class="pt-2 font-weight-bold">All Apps</span> </a>
+                    <!-- <a href="" style="text-decoration: none;font-size: 14px;" class="d-flex flex-column align-items-center text-white font-weight-light">-->
+                    <!-- <img src="images/floating-menu/Youtube.gif" style="width: 34px;margin-top: 7px;" alt="">-->
+                    <!-- <span class="pt-2 font-weight-bold">Youtube</span>--> <!-- </a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="row justify-content-md-between justify-content-center border-bottom align-items-center py-2 mx-0">
+        <div class="text-center mr-lg-5 mb-3 mb-lg-0">
+            <a class="btn p-0" href="https://ksolves.com/">
+                <img src="https://apps.odoo.com/apps/modules/12.0/ks_dashboard_ninja/images/ksolves-logo.png"
+                     alt="ksolves-logo">
+            </a>
+        </div>
+        <div class="text-center">
+            <a class="btn btn-info mr-1 mb-2 mb-lg-0" style="box-shadow: rgba(0, 0, 0, 0.18) -1px 2px 3px;"
+               href="https://listview12.kappso.com/web/demo_login" target="_blank"><i class="fa fa-desktop mr-1"></i> Demo (User-demo|
+                Pass-demo)
+            </a>
+            <a class="btn btn-info mr-1 mb-2 mb-lg-0"
+               style="box-shadow: rgba(0, 0, 0, 0.18) -1px 2px 3px;border-radius: 0;border: 1px solid var(--primary);transition: 0.2s ease-in-out;"
+               href="https://apps.odoo.com/apps/modules/browse?search=ksolves" target="_blank"><i
+                    class="fa fa-list-alt mr-1"></i> <span class="d-none d-sm-inline">Ksolves</span> All Apps
+            </a>
+        </div>
+        <div class="mt-md-0 mt-4 mb-3 mb-lg-0">
+            <a href="#" class="btn-outline-primary btn-sm mb-2 mb-lg-0"
+               style="font-size: 13px;position: relative;overflow: hidden;padding: 10px 4px;line-height: 0px;border-radius: 0;border: 1px solid var(--primary);transition: 0.2s ease-in-out;"><i
+                    class="fa fa-check"></i> Community</a>
+            <a href="#" class="btn-outline-primary btn-sm mb-2 mb-lg-0"
+               style="font-size: 13px;position: relative;overflow: hidden;padding: 10px 4px;line-height: 0px;border-radius: 0;border: 1px solid var(--primary);transition: 0.2s ease-in-out;"><i
+                    class="fa fa-check"></i> Enterprise</a>
+            <a href="#" class="btn-outline-primary btn-sm mb-2 mb-lg-0"
+               style="font-size: 13px;position: relative;overflow: hidden;padding: 10px 4px;line-height: 0px;border-radius: 0;border: 1px solid var(--primary);transition: 0.2s ease-in-out;"><i
+                    class="fa fa-check"></i> Odoo.sh</a>
+        </div>
+    </div>
+    <!-- Hero Description  -->
+    <div class="row align-items-center justify-content-center py-3 mx-0">
+        <div class="col-12 col-sm mb-2 mb-lg-0 text-center text-sm-left">
+            <a href="https://www.facebook.com/Ksolves.India" class="btn btn-sm px-0"
+               style="border: none; font-size: 10px; width: 30px;color: #3b5999;"> <i class="fa fa-facebook fa-2x"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/ksolves" class="btn btn-sm px-0"
+               style="font-size: 10px;border: none; width: 30px;color:#0077B5;"> <i class="fa fa-linkedin fa-2x"></i>
+            </a>
+            <a href="https://www.youtube.com/channel/UCplv9V47g9VidekGN6Wp1ew" class="btn btn-sm px-0"
+               style="font-size: 10px;border: none; width: 30px;color: #c4302b;"> <i
+                    class="fa fa-youtube-play fa-2x"></i> </a>
+            <a href="https://twitter.com/ksolves_india" class="btn btn-sm px-0"
+               style="font-size: 10px;border: none; width: 30px;color: #00acee;"> <i class="fa fa-twitter fa-2x"></i>
+            </a>
+        </div>
+        <!--        <div class="ml-sm-auto">-->
+        <!--            <a href="https://www.youtube.com/watch?v=vWjKCwlyMdE&ab_channel=KsolvesSupport" target="_blank" class="btn btn-primary mx-2 pr-sm-4 mb-2 mb-lg-0" style="text-transform: uppercase; font-size: 14px;"><i class="fa fa-play-circle mr-sm-2" style="font-size: 20px;vertical-align: middle;"></i> <span class="d-none d-sm-inline">Video Tutorial</span></a>-->
+        <!--            <a href="https://userguide.ksolves.com/dashboardninja/12/index.html" target="_blank" class="btn btn-success mx-2 pr-sm-4 mb-2 mb-lg-0" style="text-transform: uppercase; font-size: 14px;"><i class="fa fa-user mr-sm-2" style="font-size: 20px;vertical-align: middle;"></i> <span class="d-none d-sm-inline">User Guide</span></a>-->
+        <!--            <a href="#" target="_blank" class="btn btn-danger mx-2 pr-sm-4 mb-2 mb-lg-0" style="text-transform: uppercase; font-size: 14px;"><i class="fa fa-youtube-play  mr-sm-2" style="font-size: 20px;vertical-align: middle;"></i> <span class="d-none d-sm-inline">UI Video</span></a>-->
+        <!--        </div>-->
+        <div class="my-4">
+            <h1 class="text-center" style="padding: 0 20px 5px;
+                       font-family: Montserrat;">
+                List View Manager
+            </h1>
+            <p style="text-align:center;border-width: 3px;border-style: solid;border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 1 100%;font-size:18px;"
+               class="  px-sm-4 p-2 pt-4">
+                Ksolves is here to serve you with the most advanced “List View Manager” app which manages the List Views
+                on the fly and endeavor a quick and effortless way to view/manage the desired data, where you’ve
+                multifarious options to slice and dice your List View easily on a click. </p>
+
+            <div style="font-size: 16px; font-family: Montserrat;line-height: 20px;">
+                <div class="row no-gutters mb-4">
+                    <div class="col-sm-6 pr-sec p-3 bg-white border border-right-0">
+                        <i class="fa fa-circle" style="position: absolute; color: #e32235; top:-8px; left: -5px;"></i>
+                        <p class="text-uppercase mt-0">PROBLEM:</p>
+                        <div> In the default Odoo List View, it was a pain to create a duplicate record as the user had
+                            to open it and then duplicate involving multiple clicks and selections. Also, only one
+                            record could be duplicated at a time.
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-3 border border-left-0" style="background: #f1f0f0;">
+                        <i class="fa fa-circle text-success" style="position: absolute; top:-8px; left:-5px;"></i>
+                        <p class="text-uppercase mt-0">SOLUTION:</p>
+                        <p>LVM enhances the feature by giving the leverage to <b>Duplicate multiple records</b> at a
+                            time with a single click from the tree/list view without the need to open the record. </p>
+                    </div>
+                </div>
+                <div class="row no-gutters mb-4">
+                    <div class="col-sm-6 pr-sec p-3 bg-white border border-right-0">
+                        <i class="fa fa-circle" style="position: absolute; color: #e32235; top:-8px; left: -5px;"></i>
+                        <p class="text-uppercase mt-0">PROBLEM:</p>
+                        <div> User had no option to create a view which caters to his personalized data needs.</div>
+                    </div>
+                    <div class="col-sm-6 p-3 border border-left-0" style="background: #f1f0f0;">
+                        <i class="fa fa-circle text-success" style="position: absolute; top:-8px; left:-5px;"></i>
+                        <p class="text-uppercase mt-0">SOLUTION:</p>
+                        <p>LVM offers <b>Personalized view</b> for different users. </p>
+                    </div>
+                </div>
+                <div class="row no-gutters mb-4">
+                    <div class="col-sm-6 pr-sec p-3 bg-white border border-right-0">
+                        <i class="fa fa-circle" style="position: absolute; color: #e32235; top:-8px; left: -5px;"></i>
+                        <p class="text-uppercase mt-0">PROBLEM:</p>
+                        <div> In the default List View, there was no option to highlight a record if the user had to
+                            concentrate on a particular one.
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-3 border border-left-0" style="background: #f1f0f0;">
+                        <i class="fa fa-circle text-success" style="position: absolute; top:-8px; left:-5px;"></i>
+                        <p class="text-uppercase mt-0">SOLUTION:</p>
+                        <p>LVM provides the feature of <b>Highlighting records</b> on <b>hovering</b>. </p>
+                    </div>
+                </div>
+                <div class="row no-gutters mb-4">
+                    <div class="col-sm-6 pr-sec p-3 bg-white border border-right-0">
+                        <i class="fa fa-circle" style="position: absolute; color: #e32235; top:-8px; left: -5px;"></i>
+                        <p class="text-uppercase mt-0">PROBLEM:</p>
+                        <div class="text-secondary"> In default List View, there were inadequate search options to
+                            filter out data of interest.
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-3 border border-left-0" style="background: #f1f0f0;">
+                        <i class="fa fa-circle text-success" style="position: absolute; top:-8px; left:-5px;"></i>
+                        <p class="text-uppercase mt-0">SOLUTION:</p>
+                        <p>LVM has a very robust feature of <b>Advanced Search</b> which eases Individual Search option
+                            for all columns with multiple values support along with the grouping ability of the search
+                            results. </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="my-4">
+                <div class="text-center p-2 d-flex justify-content-center align-items-center col-lg-9" style="background-color: #FF9A8B;
+                        background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
+                        box-shadow: 1px 2px 11px rgba(0, 0, 0, 0), 1px 11px 12px rgba(0, 0, 0, 0.22);margin: auto;">
+                    <h3 class="font-weight-bold mb-0 mr-3 text-light">Note: </h3>
+                    <h5 class="mb-0 text-light" style="margin-top: 2px;">
+                        Extensively Tested on Odoo Vanilla with Ubuntu OS
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="suggested-app">
+        <div class="row pt-4 px-3">
+            <div class="w-100">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs mb-4 justify-content-center bg-transparent">
+                    <li class="nav-item ml-4"
+                        style="border-radius:0;margin: 0 10px 10px 10px;background-color: #FBAB7E;background-image: linear-gradient(62deg, #fbd69d 0%, #f9c36f 100%);">
+                        <a class="nav-link active"
+                           style="border-radius: 0;transition: 0.3s ease-in-out;border-color:#fdc6a3;color: #000;font-family: Roboto;font-weight: 500;"
+                           data-toggle="tab" href="#pills-home">FEATURES</a>
+                    </li>
+                    <li class="nav-item"
+                        style="border-radius:0;margin: 0 10px 10px 10px;background-color: #FBAB7E;background-image: linear-gradient(62deg, #fbd69d 0%, #f9c36f 100%);">
+                        <a class="nav-link "
+                           style="border-radius: 0;transition: 0.3s ease-in-out;border-color:#fdc6a3;color: #000;font-family: Roboto;font-weight: 500;"
+                           data-toggle="tab" href="#pills-choose">WHY TO CHOOSE US</a>
+                    </li>
+                    <li class="nav-item"
+                        style="border-radius:0;margin: 0 10px 10px 10px;background-color: #FBAB7E;background-image: linear-gradient(62deg, #fbd69d 0%, #f9c36f 100%);">
+                        <a class="nav-link "
+                           style="border-radius: 0;transition: 0.3s ease-in-out;border-color:#fdc6a3;color: #000;font-family: Roboto;font-weight: 500;"
+                           data-toggle="tab" href="#pills-set_up">SETUP</a>
+                    </li>
+                    <li class="nav-item"
+                        style="border-radius:0;margin: 0 10px 10px 10px;background-color: #FBAB7E;background-image: linear-gradient(62deg, #fbd69d 0%, #f9c36f 100%);">
+                        <a class="nav-link "
+                           style="border-radius: 0;transition: 0.3s ease-in-out;border-color:#fdc6a3;color: #000;font-family: Roboto;font-weight: 500;"
+                           data-toggle="tab" href="#pills-releases">RELEASES</a>
+                    </li>
+
+                    <li class="nav-item"
+                        style="border-radius:0;margin: 0 10px 10px 10px;background-color: #FBAB7E;background-image: linear-gradient(62deg, #fbd69d 0%, #f9c36f 100%);">
+                        <a class="nav-link"
+                           style="border-radius: 0;transition: 0.3s ease-in-out;border-color:#fdc6a3;color: #000;font-family: Roboto;font-weight: 500;"
+                           data-toggle="tab" href="#pills-support">SUPPORT</a>
+                    </li>
+                    <li class="nav-item"
+                        style="border-radius:0;margin: 0 10px 10px 10px;background-color: #FBAB7E;background-image: linear-gradient(62deg, #fbd69d 0%, #f9c36f 100%);">
+                        <a class="nav-link"
+                           style="border-radius: 0;transition: 0.3s ease-in-out;border-color:#fdc6a3;color: #000;font-family: Roboto;font-weight: 500;"
+                           data-toggle="tab" href="#pills-faqs">FAQs</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home">
+                        <div class="text-left py-4">
+                            <h2 class="mb-4 display-4" style="font-size: 2.5rem; ">
+                                <span style="color: #e32235;">Hot</span> Features</h2>
+                        </div>
+                        <div class="mb-4">
+                            <div class="row" style="font-size: 15px; color: #002966;">
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3 position-relative">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100">
+                                        <img src="images/assign.png" alt="Multi Company Support"
+                                             style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-4">Sr. No in every list view</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100"><img
+                                            src="images/assign.png" alt="Multi Company Support"
+                                            style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-4">Auto saves list view per user</div>
+                                    </div>
+                                </div><!-- col list/ end -->
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100"><img
+                                            src="images/assign.png" alt="Multi Company Support"
+                                            style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-4">Ability to Resize Columns</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100"><img
+                                            src="images/assign.png" alt="Multi Company Support"
+                                            style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-4">Highlight record on hovering</div>
+                                    </div>
+                                </div><!-- col list/ end -->
+
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100"><img
+                                            src="images/assign.png" alt="Multi Company Support"
+                                            style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-3">Read/Edit mode - Easily enable/disable inline editing</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100"><img
+                                            src="images/assign.png" alt="Multi Company Support"
+                                            style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-3">Dynamic List - Hide/Show, Reorder, Rename, Restore columns
+                                            user wise in any list view
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100"><img
+                                            src="images/assign.png" alt="Multi Company Support"
+                                            style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-3">Advance Search - added search input box above every field for
+                                            advance and quick search
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100"><img
+                                            src="images/assign.png" alt="Multi Company Support"
+                                            style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-3">Copy directly the field value from the list view without
+                                            opening the record
+                                        </div>
+                                    </div>
+                                </div> <!-- col list end-->
+
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100"><img
+                                            src="images/assign.png" alt="Multi Company Support"
+                                            style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-3">Export Current View of List.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100"><img
+                                            src="images/assign.png" alt="Multi Company Support"
+                                            style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-3">Settings to Enable Color, Serial Number.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100"><img
+                                            src="images/assign.png" alt="Multi Company Support"
+                                            style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-3">Ability to duplicate a record from the tree/list view</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 col-lg-3 mb-3">
+                                    <div style="border-color: #007bff;" class="card text-center p-2 h-100"><img
+                                            src="images/assign.png" alt="Multi Company Support"
+                                            style="max-width: 36px; margin: 0 auto;">
+                                        <div class="pt-3">Search support on Many2one and Many2many fields</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Features with images-->
+                        <div>
+                            <ul class="list-unstyled pl-0  bg-white" style="font-size:15px;">
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold"
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        padding: 0 20px 5px;
+                                        font-size: 2.0rem;
+                                        font-family: Montserrat;margin: auto;">
+                                        Dynamic List
+                                    </h1>
+                                </li>
+                                <li>1. Hide/Show columns on any listview</li>
+                                <li>2. Reorder columns order using Drag and Drop</li>
+                                <li>3. Rename columns</li>
+                                <li>4. Search columns easily</li>
+                                <li>5. Restore to default list view</li>
+                                <li>6. Settings will be auto saved per user</li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/dynamic_list_setting12.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold"
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        padding: 0 20px 5px;
+                                        font-size: 2.0rem;
+                                        font-family: Montserrat;margin:auto">
+                                        Sr. No in every list view
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/serial.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold"
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        padding: 0 20px 5px;
+                                        font-size: 2.0rem;
+                                        font-family: Montserrat;margin:auto">
+                                        Copy directly the field value
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/copy12.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold"
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        padding: 0 20px 5px;
+                                        font-size: 2.0rem;
+                                        font-family: Montserrat;margin: auto;">
+                                        Highlight record on hovering
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/selected-records12.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold"
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        padding: 0 20px 5px;
+                                        font-size: 2.0rem;
+                                        font-family: Montserrat;margin: auto;">
+                                        Ability to duplicate a record from the tree/list view
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/duplicate12.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold "
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        padding: 0 20px 5px;
+                                        font-size: 2.0rem;
+                                        font-family: Montserrat;margin: auto">
+                                        Sticky Header
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/stick.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold "
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        font-size: 2.0rem;
+                                        padding: 0 20px 5px;
+                                        font-family: Montserrat;margin: auto">
+                                        Read/Edit mode - Easily enable/disable inline editing
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/innline-editing12.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold "
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        font-size: 2.0rem;
+                                        padding: 0 20px 5px;
+                                        font-family: Montserrat;margin: auto">
+                                        Search support on Many2one and Many2many fields
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/advane-search12.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold "
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        font-size: 2.0rem;
+                                        padding: 0 20px 5px;
+                                        font-family: Montserrat;margin: auto">
+                                        Advance Search
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/search-box-advance12.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold "
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        font-size: 2.0rem;
+                                        padding: 0 20px 5px;
+                                        font-family: Montserrat;margin: auto">
+                                        Advance Search with Group By
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/group-by12.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold "
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        font-size: 2.0rem;
+                                        padding: 0 20px 5px;
+                                        font-family: Montserrat;margin: auto">
+                                        Reload data without page refresh
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/refresh-data12.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold "
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        font-size: 2.0rem;
+                                        padding: 0 20px 5px;
+                                        font-family: Montserrat;margin: auto">
+                                        Auto saves list view per user
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/admin12.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/marc12.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold "
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        font-size: 2.0rem;
+                                        padding: 0 20px 5px;
+                                        font-family: Montserrat;margin: auto">
+                                        Ability to Resize Columns
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/resize-columns.png"
+                                         style="max-width:100%;">
+                                </li>
+                                <li class="d-flex align-items-baseline p-3 font-weight-bold "
+                                    style="border-radius: 10px;font-size: 16px;">
+                                    <h1 style="border-width: 3px;
+                                        border-style: solid;
+                                        border-image: linear-gradient( to bottom, #fa6100, rgba(0, 0, 0, 0) ) 0 0 100%;
+                                        display: inline-block;
+                                        padding: 0 20px 5px;
+                                        font-size: 2.0rem;
+                                        font-family: Montserrat;margin: auto">
+                                        Enable Color, Serial Number.
+                                    </h1>
+                                </li>
+                                <li>
+                                    <img alt="arrow" class="my-4" src="preview_images/img/lvm-settings.png"
+                                         style="max-width:100%;">
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Why to choose us tab -->
+                    <div class="tab-pane fade" id="pills-choose">
+                        <div class="tab-pane">
+                            <div>
+                                <ul class="list-unstyled px-lg-5 px-2">
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Hide/Show column on any listview as per user.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Reorder columns in any list view using Drag and Drop.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Manual refresh button to Reload listview data without page refresh.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Auto saves list view per user.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Option to restore to default list view.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Copy directly the field value from the list view without opening the record.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Highlight record on hovering.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Highlight selected records.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Sr. No in every list view.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Ability to duplicate a record from the tree/list view.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Read/Edit mode - Easily enable/disable inline editing.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Search support on Many2one and Many2many fields.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Add search input box above every field for advance and quick search.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Ability to Rename Column Name.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Advance Search with Group By.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        AutoSuggestion For Field.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Sticky Header.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Ability to Resize Columns.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Ability to Change Header and Toggle Color.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Export Current View of List.
+                                    </li>
+                                    <li class="d-flex align-items-center flex-wrap py-3">
+                                        <img src="images/star.svg" style="width:20px;height:20px;margin-right: 10px;"/>
+                                        Ability to Enable/Disable Serial Number.
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Releases tab -->
+                    <div class="tab-pane fade  show " id="pills-releases">
+                        <div class="row mt-5">
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0"> Latest Release 5.1.1-</h5>
+                                            <small class="text-secondary"> 28th April 2020 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li class="mb-2">Fix - System Parameters get removed after uninstalling the addon</b></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0"> Release 5.1.0-</h5>
+                                            <small class="text-secondary"> 27th February 2020 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li class="mb-2">Fix - Related to custom field.</b></li>
+                                        <li class="mb-2">Fix - Related to field reordering.</b></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">Release 5.0.0-</h5>
+                                            <small class="text-secondary"> 24th January 2020 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li class="mb-2">Enhancement - Code Refactoring and Optimization.</b></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">4.3.3 -</h5>
+                                            <small class="text-secondary"> 11th December 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li>Fix - Menu bar in mobile view.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">4.3.2 -</h5>
+                                            <small class="text-secondary"> 10th December 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li>Fix- Css in files.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">4.3.1 -</h5>
+                                            <small class="text-secondary"> 6th December 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li>Fix- Group By .</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0"> 4.2.3 -</h5>
+                                            <small class="text-secondary"> 5th December 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li> Now Resizing is compatiable with odoo default view.</li>
+                                        <li>Fix- Column Rename compatibility with multiple browser.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">4.2.2 -</h5>
+                                            <small class="text-secondary"> 21th November 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li> Enhancement in one2many and many2many tree views.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">4.2.1 -</h5>
+                                            <small class="text-secondary"> 11th November 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li> Enhancement in resizing.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0"> 4.2.0 -</h5>
+                                            <small class="text-secondary"> 5th November 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li>Fix - Inline editing with html field.</li>
+                                        <li>Fix - DateTime search with multilingual support.</li>
+                                        <li>Fix - App icon in theme.</li>
+                                        <li>Fix - Access error while changing password.</li>
+                                        <li>Fix - Fixed resize header after adding/removing column.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">4.1.2 -</h5>
+                                            <small class="text-secondary">24th October 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li>Fix - Ability to store width of table according to user-fields mode.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">4.1.1 -</h5>
+                                            <small class="text-secondary">23rd October 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li>Fix - After resizing the column width, header will be aligned with list
+                                            columns.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">4.1.0 -</h5>
+                                            <small class="text-secondary"> 15th October 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li>Ability to Enable/Disable Serial number.</li>
+                                        <li>AutoSuggestion For Fields.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0"> 4.0.2 -</h5>
+                                            <small class="text-secondary">12th October 2019</small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li>Ability to perform search on DateTime field and Date field.</li>
+                                        <li>Ability to Resize Columns.</li>
+                                        <li>Export Current View of List.</li>
+                                        <li>Ability to Change Header and Toggle Color.</li>
+                                        <li>Fix - Create and Edit on Inline Editing.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">3.0.1 -</h5>
+                                            <small class="text-secondary"> 24th September 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li>Fix - Scroll issue in mobile for Enterprise.</li>
+                                        <li>Fix - Validation on required fields.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-6  mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">3.0.0 -</h5>
+                                            <small class="text-secondary">12th September 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li>Fix - Performance Enhancement.</li>
+                                        <li>Fix - Security Issues.</li>
+                                        <li>Fix - Enhancement in Inline Editing.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0"> 2.0.3 - </h5>
+                                            <small class="text-secondary"> 4th September 2019</small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li>Fix - Load Data only of visible fields</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0"> 2.0.2 -</h5>
+                                            <small class="text-secondary"> 2nd September 2019</small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li class="mb-2">Fix - Inline editing for newly added field.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0">2.0.1 - </h5>
+                                            <small class="text-secondary"> 30th August 2019</small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li class="mb-2">Fix - List View Manager configurations are now visible with
+                                            Upload button in List View Header.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0"> 2.0.0 -</h5>
+                                            <small class="text-secondary"> 28th August 2019</small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li class="mb-2">Now, you can use List View Manager with every field of your
+                                            module. No restrictions on fields basis anymore.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0"> 1.1.1 -</h5>
+                                            <small class="text-secondary"> 26th August 2019</small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li class="mb-2">Fix - Considers parent filter while hide/show columns</b></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6 mb-4">
+                                <div class="card p-4 h-100">
+                                    <div class="row">
+                                        <img src="images/release.svg" alt="arrow" style="width:35px;max-height:35px;"
+                                             class="ml-2">
+                                        <div class="col">
+                                            <h5 class="mb-0"> 1.1.0 -</h5>
+                                            <small class="text-secondary"> 23rd August 2019 </small>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <ul class="p-0 ml-4 mb-0" style="font-size: 14px; color: #002966;">
+                                        <li class="mb-2">Multilingual support available now!</b></li>
+                                        <li class="mb-2">Fix - List View Manager compatibility issue with Backend
+                                            Theme.</b></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Setup tab -->
+                    <div class="px-3 pt-3 tab-pane fade" id="pills-set_up" role="tabpanel"
+                         aria-labelledby="pills-profile-tab">
+                        <div class="tab-pane">
+                            <div>
+                                <ul class="list-unstyled pl-0  bg-white" style="font-size:15px;">
+                                    <li class="d-flex align-items-baseline mb-2 p-3 font-weight-bold"
+                                        style="border-radius: 10px;font-size: 16px;">
+                                        <img src="images/forward-arrow.svg" alt="arrow"
+                                             style="width:15px;margin-right:10px">
+                                        <span>Go to the Settings menu in your Odoo web dashboard.
+                                            <img src="images/app_screens/settings.png" alt="arrow"
+                                                 style="max-width:100%;" class="my-4">
+                                        </span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2 p-3 font-weight-bold"
+                                        style="border-radius: 10px;font-size: 16px;">
+                                        <img src="images/forward-arrow.svg" alt="arrow"
+                                             style="width:15px;margin-right:10px">
+                                        <span>Now, click the Manage Access rights.
+                                            <img src="images/app_screens/setting_access.png" alt="arrow"
+                                                 style="max-width:100%;" class="my-4">
+                                        </span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2 p-3 font-weight-bold"
+                                        style="border-radius: 10px;font-size: 16px;">
+                                        <img src="images/forward-arrow.svg" alt="arrow"
+                                             style="width:15px;margin-right:10px">
+                                        <span>Now, click on Specific User.
+                                            <img src="images/app_screens/manage-access-rights.png" alt="arrow"
+                                                 style="max-width:100%;" class="my-4">
+                                        </span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2 p-3 font-weight-bold"
+                                        style="border-radius: 10px;font-size: 16px;">
+                                        <img src="images/forward-arrow.svg" alt="arrow"
+                                             style="width:15px;margin-right:10px">
+                                        <span>Under the Settings menu, there’s a subsection for List View Manager for permissions of Advance Search, Dynamic List, Read/Edit Mode.
+                                            <img src="images/app_screens/permissions.png" alt="arrow"
+                                                 style="max-width:100%;" class="my-4">
+                                        </span>
+                                    </li>
+                                    <li class="d-flex align-items-baseline mb-2 p-3 font-weight-bold"
+                                        style="border-radius: 10px;font-size: 16px;">
+                                        <img src="images/forward-arrow.svg" alt="arrow"
+                                             style="width:15px;margin-right:10px">
+                                        <span>Under List view Settings tab,there’s a subsection to Enable Color, Serial Number.
+                                            <img src="images/app_screens/lvm-settings.png" alt="arrow"
+                                                 style="max-width:100%;" class="my-4">
+                                        </span>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled pl-0  bg-white mt-4" style="font-size:18px;">
+                                    <li class="d-flex align-items-baseline mb-2 p-3 font-weight-bold"
+                                        style="border-radius: 10px;font-size: 18px;">
+                                        <img src="images/forward-arrow.svg" alt="arrow"
+                                             style="width:15px;margin-right:10px">
+                                        <span><b>Note:</b> On a fresh installation, app functionalities will be Enabled by default.
+
+                                            </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Support tab -->
+                    <div class="tab-pane fade" id="pills-support">
+                    </div>
+                    <div class="tab-pane fade" id="pills-faqs">
+                        <ul class="list-unstyled mt-5 px-5">
+                            <li class="mb-3 d-flex align-items-baseline bg-white"
+                                style="border-radius: 10px; padding: 15px;border-left: 11px solid #ff6f88;border-right: 11px solid #ff6f88;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                                <img src="images/forward-arrow.svg" alt="arrow"
+                                     style="width:15px;margin-right:10px">
+                                <div class="">
+                                    <h6 class="font-weight-bold">Is this app compatible with Odoo Enterprise?</h6>
+                                    <span style="font-size:13px;">Yes, our app works with Odoo Enterprise as well as Community.</span>
+                                </div>
+                            </li>
+
+                            <li class="mb-3 d-flex align-items-baseline bg-white"
+                                style="border-radius: 10px; padding: 15px;border-left: 11px solid #ff6f88;border-right: 11px solid #ff6f88;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                                <img src="images/forward-arrow.svg" alt="arrow"
+                                     style="width:15px;margin-right:10px">
+                                <div class="">
+                                    <h6 class="font-weight-bold">Need some customization in this app, whom to
+                                        contact?</h6>
+                                    <span style="font-size:13px;">Please drop email at sales@ksolves.com or raise a
+                                            ticket through Odoo store itself.</span>
+                                </div>
+                            </li>
+
+                            <li class="mb-3 d-flex align-items-baseline bg-white"
+                                style="border-radius: 10px; padding: 15px;border-left: 11px solid #ff6f88;border-right: 11px solid #ff6f88;box-shadow: 0px 0px 7px 1px #c7c5c5;">
+                                <img src="images/forward-arrow.svg" alt="arrow"
+                                     style="width:15px;margin-right:10px">
+                                <div class="">
+                                    <h6 class="font-weight-bold">Do you provide any free support?</h6>
+                                    <span style="font-size:13px;">Yes, we do provide free support for 90 days for
+                                            any queries or any bug/issue fixing.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center p-3 mt-4 mb-5"
+             style="background-color: #8BC6EC;background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);box-shadow: 1px 2px 11px rgba(0, 0, 0, 0), 1px 11px 12px rgba(0, 0, 0, 0.22);">
+            <marquee behavior="alternate" class="w-50">
+                <h3 class="font-weight-bold text-light" style="font-family: 'roboto','sans-serif';">FREE 90 DAYS
+                    SUPPORT</h3>
+            </marquee>
+            <h5 class="m-auto w-75 text-light"
+                style="line-height: 1.5;font-weight: 400;font-family: 'roboto','sans-serif';">Ksolves will provide FREE
+                90
+                days support for any doubt, queries, and bug fixing
+                (excluding data recovery) or any type of issues related to this module. This is
+                applicable from the date of purchase.
+            </h5>
+        </div>
+
+        <!-- Popular Apps -->
+        <div class="row pb-sm-5">
+            <h2 class="w-100 text-center mb-3" style="font-weight: 400;">Ksolves Suggested Apps</h2>
+            <div class="text-center w-100 mb-1">
+                <img src="images/line.png" alt="ksolves">
+            </div>
+            <div id="demo" class="carousel slide pb-5 col-12 col-lg-8 mx-auto" data-ride="carousel">
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" style="background-color: #9d7092;" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" style="background-color: #9d7092;" data-slide-to="1"></li>
+                </ul>
+                <!-- The slideshow -->
+                <div class="carousel-inner pt-4 pt-lg-5 ">
+                    <div class="carousel-item px-4 active">
+                        <div class="row pb-sm-4 no-lg-gutters">
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_dashboard_ninja/" class="d-block"
+                                   target="_blank" style="text-decoration: none;">
+                                    <img src="images/app-logo/dashboard-ninja.png" alt="dashboard-ninja">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Dashboard
+                                            <br> Ninja</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_list_view_manager/" target="_blank"
+                                   style="text-decoration: none;">
+                                    <img src="images/app-logo/list-view-manager.png" alt="list-view-manager">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">List View
+                                            <br> Manager</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_sticky_pivot_view/" class="d-block"
+                                   target="_blank" style="text-decoration: none;">
+                                    <img src="images/app-logo/sticky-pivot-view.png" alt="sticky-pivot-view">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Sticky <br>Pivot
+                                            View</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/11.0/ks_oneclick_sale_purchase/"
+                                   target="_blank" style="text-decoration: none;">
+                                    <img src="images/app-logo/one-click-sale.png" alt="list-view-manager">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">One Click
+                                            <br>Sale/Purchase</h5>
+                                    </div>
+                                </a>
+                        </div>
+                        </div>
+                        <div class="row pt-3 pb-4 no-gutters">
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_theme_base/" target="_blank"
+                                   style="text-decoration: none;">
+                                    <img src="images/app-logo/ksolves-theme-base.png" alt="ksolves-theme-base">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Ksolves <br>Theme
+                                            Base</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_pos_order_notes/" class="d-block"
+                                   target="_blank" style="text-decoration: none;">
+                                    <img src="images/app-logo/pos-per-item.png" alt="pos-per-item">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">POS Per Item
+                                            <br>& Order Note</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_pos_dashboard_ninja/"
+                                   target="_blank" style="text-decoration: none;">
+                                    <img src="images/app-logo/pos_dashboard_ninja.png" alt="pos_dashboard_ninja">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">POS <br>Dashboard
+                                            Ninja</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_woocommerce/" class="d-block"
+                                   target="_blank" style="text-decoration: none;">
+                                    <img src="images/app-logo/woocommerce_icon.png" alt="odoo_woocommerce_connector">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Odoo
+                                            Woocommerce <br>Connector</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item px-4">
+                        <div class="row pb-sm-4 no-gutters">
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_office365_calendar/" target="_blank"
+                                   style="text-decoration: none;">
+                                    <img src="images/app-logo/iconcalendar.png" alt="Office365 Calendar">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Office365
+                                            Calendar</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_office365_contacts/" class="d-block"
+                                   target="_blank" style="text-decoration: none;">
+                                    <img src="images/app-logo/office365contact.png" alt="Office365 Contacts">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Office365
+                                            Contacts</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_chat_edit_and_delete/"
+                                   target="_blank" style="text-decoration: none;">
+                                    <img src="images/app-logo/chat_edit_and_delete.png" alt="chat_edit_and_delete">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Odoo Chat
+                                            <br>Edit/Delete</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/percent_field/" class="d-block"
+                                   target="_blank" style="text-decoration: none;">
+                                    <img src="images/app-logo/percent_field.png" alt="percent_field">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Percent<br>Field
+                                        </h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row pt-3 pb-4 no-gutters">
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/universal_tax/" target="_blank"
+                                   style="text-decoration: none;">
+                                    <img src="images/app-logo/universal_tax.png" alt="universal_tax">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Universal
+                                            <br>Tax</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_toggle_switch/" class="d-block"
+                                   target="_blank" style="text-decoration: none;">
+                                    <img src="images/app-logo/toggle_switch.png" alt="toggle_switch">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+     <<<<<<< 12.0_stage                                       <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Toggle <br>Switch
+                                        </h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/odoo_paytm_gateway/" target="_blank"
+                                   style="text-decoration: none;">
+                                    <img src="images/app-logo/odoo_paytm_gateway.png" alt="odoo_paytm_gateway">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Odoo Paytm
+                                            <br>Gateway</h5>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="https://apps.odoo.com/apps/modules/12.0/ks_low_stock_alert/" class="d-block"
+                                   target="_blank" style="text-decoration: none;">
+                                    <img src="images/app-logo/low_stock_alert.png" alt="low_stock_alert">
+                                    <div class="card-body text-center p-0 mt-3 mb-3 mb-lg-0">
+                                        <h5 class="card-text m-0" style="font-size: 16px; font-weight: 600">Low
+                                            Stock<br>Alert</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev" style="left: -5%; width: 60px;">
+                    <i class="fa fa-angle-left" style="font-size: 5vw;color: #333;"></i>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next" style="right: -5%; width: 60px;">
+                    <i class="fa fa-angle-right" style="font-size: 5vw;color: #333;"></i>
+                </a>
+            </div>
+        </div>
+        <!-- Ksolves Odoo Services -->
+        <div class="row pb-sm-5 px-1 pb-4">
+            <h2 class="w-100 text-center my-3" style="font-weight: 400;">Ksolves Odoo Services</h2>
+            <div class="text-center w-100 mb-4">
+                <img src="images/line.png" alt="ksolves">
+            </div>
+            <div class="col-12 col-sm-6 col-md-4" style="margin-bottom: 20px;">
+                <div class="card text-center"
+                     style="min-height: 90px;background-color: #8BC6EC;background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);">
+                    <div class="pt-4">
+                        <img src="images/support.png" alt="support">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-white" style="font-size: 19px; font-weight: 400;">Odoo
+                            Implementation</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4" style="margin-bottom: 20px;">
+                <div class="card text-center"
+                     style="min-height: 90px;background-color: #8BC6EC;background-image: linear-gradient(135deg, #949fe4 0%, #8cc3ec 100%);">
+                    <div class="pt-4">
+                        <img src="images/apps.png" style="min-height: 64px;" alt="apps">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-white" style="font-size: 19px; font-weight: 400;">Odoo Community
+                            Apps</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4" style="margin-bottom: 20px;">
+                <div class="card text-center"
+                     style="min-height: 90pxbackground-color: #8BC6EC;background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);">
+                    <div class="pt-4">
+                        <img src="images/support2.png" alt="support2">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-white" style="font-size: 19px; font-weight: 400;">Odoo Support &amp;
+                            Maintenance</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4" style="margin-bottom: 20px;">
+                <div class="card text-center"
+                     style="min-height: 90px;background-color: #8BC6EC;background-image: linear-gradient(135deg, #949fe4 0%, #8cc3ec 100%);">
+                    <div class="pt-4">
+                        <img src="images/custom.png" alt="custom">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-white" style="font-size: 19px; font-weight: 400;">Odoo
+                            Customization</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4" style="margin-bottom: 20px;">
+                <div class="card text-center"
+                     style="min-height: 90px;background-color: #8BC6EC;background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);">
+                    <div class="pt-4">
+                        <img src="images/integrated.png" alt="integrated">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-white" style="font-size: 19px; font-weight: 400;">Odoo Integration
+                            Services</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4" style="margin-bottom: 20px;">
+                <div class="card text-center"
+                     style="min-height: 90px;background-color: #8BC6EC;background-image: linear-gradient(135deg, #949fe4 0%, #8cc3ec 100%);">
+                    <div class="pt-4">
+                        <img src="images/develop.png" alt="develop">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title text-white" style="font-size: 19px; font-weight: 400;">Odoo Developer
+                            Outsourcing</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Ksolves Footer -->
+        <div>
+            <div class="row mx-0 justify-content-sm-between justify-content-center"
+                 style="border-top: 1px solid black;">
+                <div class="mb-sm-0 mb-3 d-flex align-items-center">
+                    <img src="images/letter.svg" style="width: 35px;height: 35px;margin-right: 20px"/>
+                    <span style="font-size: 18px;">sales@ksolves.com</span>
+                </di<<<<<<< 12.0_stagev>
+                <div class="d-none d-sm-block">
+                    <div class="bg-white" style="width: 50px;height: 1px;margin-top: -1px"></div>
+                    <div style="border-right: 1px solid black;height: 50px;transform: translateX(-50%);"></div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span style="font-size: 18px;">+91 120-4299799‬</span>
+                    <img src="images/smartphone.svg" style="width: 35px;height: 35px;margin-left: 20px;"/>
+                </div>
+     <<<<<<< 12.0_stage           </div>
+        </div>
+        <!-- container End -->
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

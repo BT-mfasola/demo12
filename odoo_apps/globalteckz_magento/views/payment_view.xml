@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="payment_groups_form">
+            <field name="name">payment.method.form</field>
+            <field name="model">payment.method</field>
+            <field name="arch" type="xml">
+                <form string="Payment Method Form">
+                    <group col="2" colspan="2">
+                        <field name="name" />
+                        <field name="val_order" />
+                        <field name="pay_invoice" />
+                        <field name="order_policy" />
+                    </group>
+                </form>
+            </field>
+	</record>
+        
+        <record model="ir.ui.view" id="payment_groups_tree">
+            <field name="name">payment.method.tree</field>
+            <field name="model">payment.method</field>
+            <field name="arch" type="xml">
+               <tree string="Payment Method">
+                   <field name="name" />
+                    <field name="val_order" />
+                    <field name="pay_invoice" />
+                    <field name="order_policy" />
+               </tree>
+             </field>
+        </record>
+
+        <record id="act_payment_method_form_test" model="ir.actions.act_window">
+            <field name="name">Payment Method</field>
+            <field name="res_model">payment.method</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        
+        
+       </data>
+ </openerp>

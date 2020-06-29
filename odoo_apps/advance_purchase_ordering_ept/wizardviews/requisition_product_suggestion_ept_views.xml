@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	   <record id="action_server_create_requisition_process_ept" model="ir.actions.server">
+		     <field name="name">Create Reorder Process</field>
+		     <field name="type">ir.actions.server</field>
+		     <field name="model_id" ref='inventory_coverage_report_ept.model_requisition_product_suggestion_line_ept'/>
+		     <field name="binding_model_id" ref="inventory_coverage_report_ept.model_requisition_product_suggestion_line_ept" />
+		     <field name="state">code</field>
+		     <field name="code">
+		     	if records: 
+		     		action = records.mapped('product_suggestion_id').create_requisition_process(suggestion_lines=records)
+		     </field>
+	   </record>
+	   
+	   <record id="action_server_create_procurement_process_ept" model="ir.actions.server">
+		     <field name="name">Create Procurement Process</field>
+		     <field name="type">ir.actions.server</field>
+		     <field name="model_id" ref='inventory_coverage_report_ept.model_requisition_product_suggestion_line_ept'/>
+		     <field name="binding_model_id" ref="inventory_coverage_report_ept.model_requisition_product_suggestion_line_ept" />
+		     <field name="state">code</field>
+		     <field name="code">
+		     	if records: 
+		     		action = records.mapped('product_suggestion_id').create_procurement_process(suggestion_lines=records)
+		     </field>
+	   </record>
+	   
+	   <record model="ir.ui.view" id="view_tree_product_suggestion_line_ept_inherited">
+			<field name="name">Tree view of Product suggestion line for Advance Purchase Ordering </field>
+			<field name="model">requisition.product.suggestion.line.ept</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="inventory_coverage_report_ept.view_tree_product_suggestion_line_ept" />
+			<field name="arch" type="xml">
+				<field name="supplier_id" position="after">
+					<field name="procurement_source_warehouse_id"/>
+				</field>
+			</field>
+		</record>
+	</data>
+</odoo>

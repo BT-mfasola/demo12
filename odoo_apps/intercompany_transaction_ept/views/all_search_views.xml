@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<record id="inter_company_transfer_ept_sale_search_view" model="ir.ui.view">
+		<field name="name">inter.company.transfer.ept.sale.view.search</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_sales_order_filter" />
+		<field name="arch" type="xml">
+			<xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+				<separator />
+				<field name="intercompany_transfer_id" />
+				<filter string="ICT Sales" name='intercompany_transfer_id'
+					domain="[('intercompany_transfer_id','!=', False)]" />
+			</xpath>
+		</field>
+	</record>
+	
+	<record id="inter_company_transfer_ept_purchase_search_view" model="ir.ui.view">
+        <field name="name">inter.company.transfer.ept.purchase.view.search</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+            <xpath expr="//filter[@name='not_invoiced']" position="before">
+            	<field name ="intercompany_transfer_id" />
+                <filter string="ICT Purchase" name='intercompany_transfer_id' domain="[('intercompany_transfer_id','!=', False)]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+    
+    
+    <record id="inter_company_transfer_ept_invoice_search_view" model="ir.ui.view">
+        <field name="name">inter.company.transfer.ept.invoice.view.search</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+            <xpath expr="//filter[@name='activities_upcoming_all']" position="after">
+            	<separator/>
+            	<field name ="intercompany_transfer_id" />
+                <filter string="ICT Invoices"  name="intercompany_transfer_id" domain="[('intercompany_transfer_id','!=', False)]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+    
+    
+    <record id="inter_company_transfer_ept_search_view" model="ir.ui.view" >
+		<field name="name">Inter Company Transfer Search View</field>
+		<field name="model">inter.company.transfer.ept</field>
+		<field name="type">search</field>
+		<field name="arch" type="xml">
+			<search string="Inter Company Transfer">
+                <field name="name" string="Name" filter_domain="[('name','ilike',self)]"/>
+                <field name="source_warehouse_id"/>
+                <field name="source_company_id"/>
+                <field name="destination_warehouse_id"/>
+                <field name="destination_company_id"/>
+				<group expand="0" string="Group By">
+	                <filter string="Source Warehouse" domain="[]" name="source_warehouse_id" context="{'group_by':'source_warehouse_id'}"/>
+	            	<filter string="To Warehouse" domain="[]" name="destination_warehouse_id" context="{'group_by':'destination_warehouse_id'}"/>
+	            	<filter string="State" domain="[]" name="state" context="{'group_by':'state'}"/>
+	            </group>
+			</search>
+		</field>
+	</record>
+	
+	
+	<record id="inter_company_transfer_log_ept_search_view" model="ir.ui.view" >
+		<field name="name">Inter Company Transfer Log Search View</field>
+		<field name="model">inter.company.transfer.log.ept</field>
+		<field name="type">search</field>
+		<field name="arch" type="xml">
+			<search string="Inter Company Transfer LOG">
+                <field name="name" string="Name" filter_domain="[('name','ilike',self)]"/>
+                <field name="ict_log_date"/>
+             	<field name="ict_process"/>
+             	<field name="ict_operation"></field>
+				<group expand="0" string="Group By">
+	                <filter string="Process" domain="[]" name="ict_process" context="{'group_by':'ict_process'}"/>
+	            	<filter string="Operation" domain="[]" name="ict_operation" context="{'group_by':'ict_operation'}"/>
+	            </group>
+			</search>
+		</field>
+	</record>
+	
+    
+    
+   	<record id="inter_company_transfer_ept_picking_search_view" model="ir.ui.view">
+        <field name="name">inter.company.transfer.ept.purchase.view.search</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+            <field name="arch" type="xml">
+            <xpath expr="//filter[@name='activities_overdue']" position="before">
+            	<field name ="intercompany_transfer_id" />
+                <filter string="ICT Pickings" name="intercompany_transfer_id" domain="[('intercompany_transfer_id','!=', False)]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+	
+	<record id="inter_company_transfer_ept_sale_order_search_view" model="ir.ui.view">
+        <field name="name">inter.company.transfer.ept.sale.order.view.search</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@expand='0']" position="inside">
+                <filter name="intercompany_transfer_id" string="ICT Sales" domain="[('intercompany_transfer_id','!=', False)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inter_company_transfer_ept_sale_order_pivot_search_view" model="ir.ui.view">
+      <field name="name">inter.company.transfer.ept.sale.order.pivot.view.search</field>
+      <field name="model">sale.report</field>
+      <field name="inherit_id" ref="sale.view_order_product_pivot"/>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='team_id']" position="after">
+              <field name="intercompany_transfer_id" type="row"/>
+          </xpath>
+      </field>
+ </record>
+    
+	
+	
+</odoo>

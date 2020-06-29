@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data >
+    
+        <record id="dev_export_account_invoice" model="dev.export">
+            <field name="name">Account Invoice</field>
+            <field name="model_id" ref="sale_stock.model_account_invoice"/> 	
+            <field name="relational_field" ref="account.field_account_invoice_invoice_line_ids"/>
+            <field name="relational_model_id" ref="sale_stock.model_account_invoice_line"/>
+            <field name="file_name">Account Invoice</field>
+            <field name="header_text">Account Invoice</field>
+            <field name="template">template1</field>
+        </record>
+        
+        <record id="dev_export_account_invoice_number" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_number" />
+            <field name="label">Name</field>
+        </record>
+        <record id="dev_export_account_invoice_partner_id" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_partner_id" />
+            <field name="model_id" ref ="purchase.model_res_partner" />
+            <field name="ref_field" ref ="base.field_res_partner_name"/>
+            <field name="label">Customer</field>
+        </record>
+        <record id="dev_export_account_invoice_payment_term_id" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_payment_term_id" />
+            <field name="model_id" ref ="account.model_account_payment_term" />
+            <field name="ref_field" ref="account.field_account_payment_term_name"/>
+            <field name="label">Payment Term</field>
+        </record>
+        <record id="dev_export_account_invoice_date_invoice" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_date_invoice" />
+            <field name="label">Invoice Date</field>
+            
+        </record>
+        
+        <record id="dev_export_account_invoice_user_id" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_user_id" />
+            <field name="model_id" ref ="sales_team.model_res_users" />
+            <field name="ref_field" ref ="base.field_res_users_name"/>
+            <field name="label">Responsible</field>
+        </record>
+        
+        <record id="dev_export_account_invoice_amount_total" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_amount_total" />
+            <field name="label">Total</field>
+        </record>
+        
+        <record id="dev_export_account_invoice_state" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_state" />
+            <field name="label">Status</field>
+        </record>
+        
+        
+        <!-- LINE DATA -->
+        
+        <!-- PRODUCT LINE -->
+        <record id="dev_export_account_invoice_line_product_id" model="dev.relational.field">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_line_product_id" />
+            <field name="model_id" ref ="sale_stock.model_product_product" />
+            <field name="ref_field" ref ="product.field_product_product_name"/>
+            <field name="label">Name</field>
+        </record>
+        
+        <!-- DESC LINE -->
+        <record id="dev_export_account_invoice_line_name" model="dev.relational.field">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_line_name" />
+            <field name="label">Desc</field>
+        </record>
+        
+        <!-- QTY LINE -->
+        <record id="dev_export_account_invoice_line_quantity" model="dev.relational.field">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_line_quantity" />
+            <field name="label">Quantity</field>
+        </record>
+        
+        <!-- UOM LINE -->
+        <record id="dev_export_account_invoice_line_uom" model="dev.relational.field">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_line_uom_id" />
+            <field name="model_id" ref ="product.model_product_uom" />
+            <field name="ref_field" ref ="product.field_product_uom_name"/>
+            <field name="label">UOM</field>
+        </record>
+        <!-- Unit Price LINE -->
+        <record id="dev_export_account_invoice_line_unit_price" model="dev.relational.field">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_line_price_unit" />
+            <field name="label">Unit Price</field>
+        </record>
+        
+        <!-- Total LINE -->
+        <record id="dev_export_account_invoice_line_total" model="dev.relational.field">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice"/>
+            <field name="name" ref ="account.field_account_invoice_line_price_subtotal" />
+            <field name="label">Total</field>
+        </record>
+        
+        
+        
+        <!-- Sale Order List -->
+        
+        <record id="dev_export_account_invoice_1" model="dev.export">
+            <field name="name">Account Invoice List</field>
+            <field name="model_id" ref="account.model_account_invoice"/> 	
+            <field name="file_name">Account Invoice List</field>
+            <field name="header_text">Account Invoice List </field>
+            <field name="template">template1</field>
+            <field name="is_sum">Ture</field>
+        </record>
+        
+        <record id="dev_export_account_invoice_number_1" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice_1"/>
+            <field name="name" ref ="account.field_account_invoice_number" />
+            <field name="label">Name</field>
+        </record>
+        <record id="dev_export_account_invoice_partner_id_1" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice_1"/>
+            <field name="name" ref ="account.field_account_invoice_partner_id" />
+            <field name="model_id" ref ="purchase.model_res_partner" />
+            <field name="ref_field" ref ="base.field_res_partner_name"/>
+            <field name="label">Customer</field>
+        </record>
+        <record id="dev_export_account_invoice_payment_term_id_1" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice_1"/>
+            <field name="name" ref ="account.field_account_invoice_payment_term_id" />
+            <field name="model_id" ref ="account.model_account_payment_term" />
+            <field name="ref_field" ref="account.field_account_payment_term_name"/>
+            <field name="label">Payment Term</field>
+        </record>
+        <record id="dev_export_account_invoice_date_invoice_1" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice_1"/>
+            <field name="name" ref ="account.field_account_invoice_date_invoice" />
+            <field name="label">Invoice Date</field>
+            
+        </record>
+        
+        <record id="dev_export_account_invoice_user_id_1" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice_1"/>
+            <field name="name" ref ="account.field_account_invoice_user_id" />
+            <field name="model_id" ref ="sales_team.model_res_users" />
+            <field name="ref_field" ref ="base.field_res_users_name"/>
+            <field name="label">Responsible</field>
+        </record>
+        
+        <record id="dev_export_account_invoice_amount_total_1" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice_1"/>
+            <field name="name" ref ="account.field_account_invoice_amount_total" />
+            <field name="label">Total</field>
+        </record>
+        
+        <record id="dev_export_account_invoice_state_1" model="dev.export.fields">
+            <field name="export_id" ref="dev_export_excel.dev_export_account_invoice_1"/>
+            <field name="name" ref ="account.field_account_invoice_state" />
+            <field name="label">Status</field>
+        </record>
+        
+        
+    </data>
+</openerp> 	
+
+

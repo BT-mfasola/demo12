@@ -1,0 +1,399 @@
+<odoo>
+            <record id="magento_instance_form_view" model="ir.ui.view">
+                <field name="name">Magento Instance</field>
+                <field name="model">magento.instance</field>
+                <field name="arch" type="xml">
+                    <form string="Magento Instance" version="7.0">
+                        <header>
+                            <button name="test_connection" type="object" string="Test Connection" icon="gtk-network"/>
+                            <button name="create_stores" string="Create Stores" type="object"/>
+<!--                             <button name="get_carrier" string="Get Carrier" type="object"/>
+ -->                            <field name="state" widget="statusbar" statusbar_visible="test,failed,success" invisible="True"/>
+                        </header>
+                        <sheet>
+                            <field name="color" invisible="True"/>
+                            <group >
+                                <group attrs="{'invisible': [('color','=',False)]}">
+                                    <p align="center" style="color: Green; font-size:150%;">
+                                        <field name="test_success" nolabel="1"/>
+                                    </p>
+                                </group>
+                                 <group attrs="{'invisible': [('color','=',True)]}">
+                                    <p align="center" style="color: red;  font-size:150%;">
+                                        <field name="test_fail" nolabel="1"/>
+                                    </p>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="name" />
+                                <field name="location" placeholder="http://www.magento.com"/>
+                            </group>
+                            <group >
+                                <group>
+                                    <field name="apiusername" placeholder="Web Service username"/>
+                                </group>
+                                <group>
+                                    <field name="apipassoword" password="True"/>
+                                </group>
+                            </group>
+                            <!-- <notebook>
+                            	<page string="Default values">
+                                	<group>
+                                    	<group>
+                                        	<field name="default_lang_id"/>
+                                    	</group>
+                                    	<group/>
+	                                    <group>
+	                                        <field name="magento_default_pro_cat"/>
+	                                    </group>
+                                    	<group/>
+	                                    <group>
+	                                        <field name="product_uom"/>
+	                                    </group>
+                                	</group>
+                            	</page>
+                            </notebook> -->
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+
+
+            <record id="magento_instance_inherit" model="ir.ui.view">
+                <field name="name">Magento Instance1</field>
+                <field name="model">magento.instance</field>
+                <field name="arch" type="xml">
+                    <form string="Initial Sync" version="7.0">
+                        <sheet>
+                            <field name="color" invisible="True"/>
+                            <group>
+                                <group attrs="{'invisible': [('color','=',False)]}">
+                                    <p align="center" style="color: Green; font-size:150%;">
+                                        <field name="test_success" nolabel="1"/>
+                                    </p>
+                                </group>
+                                <group attrs="{'invisible': [('color','=',True)]}">
+                                    <p align="center" style="color: red; font-size:150%;">
+                                        <field name="test_fail" nolabel="1"/>
+                                    </p>
+                                </group>
+                            </group>
+                            <group col="10" attrs="{'invisible': [('color','=',False)]}">
+                                <button name="import_att_set" string="1.Import Attributes Set" type="object" class="oe_highlight" 
+                                    help="Synchronize Attribute Set from Magento to Odoo" colspan="2"/>
+                                <label for="id" class="o_form_label" string="Synchronize Attribute Set from Magento to Odoo" style="padding-right:300px" colspan="8"/>
+                            </group>
+                            <group col="10" attrs="{'invisible': [('color','=',False)]}">
+                                <button name="import_cat" string="2.Import Categories" type="object" class="oe_highlight" 
+                                help="Synchronize Categories from Magento to Odoo" colspan="2"/>
+                                <label for="id" class="o_form_label" string="Synchronize Categories from Magento to Odoo" style="padding-right:310px" colspan="8"/>    
+                            </group>
+                            <group col="10" attrs="{'invisible': [('color','=',False)]}">
+                                <button name="import_att_list" string="3.Import Product Attributes"  type="object" class="oe_highlight" 
+                                help="Synchronize Product Attributes from Magento to Odoo" colspan="2"/>
+                                <label for="id" class="o_form_label" string="Synchronize Product Attributes from Magento to Odoo" style="padding-right:265px" colspan="8"/>    
+                            </group>
+                            <group col="10" attrs="{'invisible': [('color','=',False)]}">
+                                <button name="import_products" string="4.Import Product"  type="object" class="oe_highlight" 
+                                        help="Synchronize Product from Magento to Odoo" colspan="2"/>
+                                <label for="id" class="o_form_label" string="Synchronize Product from Magento to Odoo" style="padding-right:330px" colspan="8"/>
+                            </group>
+                            <group col="10" attrs="{'invisible': [('color','=',False)]}">
+                                <button name="import_image" string="5.Import Images" type="object" class="oe_highlight" 
+                                    help="Synchronize Images from Magento to Odoo" colspan="2"/>
+                                <label for="id" class="o_form_label" string="Synchronize Images from Magento to Odoo" style="padding-right:335px" colspan="8"/>    
+                            </group>
+                            <notebook>
+                                <page string="Manage Inventory">
+                                    <group>
+                                        <group>
+                                            <field name="inventory_location_id" attrs="{'invisible': [('color','=',False)]}" widget="many2many_tags"/>
+                                        </group>
+                                    </group>
+                                    <group col="10" attrs="{'invisible': [('color','=',False)]}">
+                                        <button name="import_stock" string="Import Stock" type="object" help="Import Stock"  class="oe_inline oe_highlight" colspan="2"/>
+                                        <field name='order_place' nolabel="1" colspan="2" help="Date of Import Stock" class="oe_inline"/>
+                                        <button name="export_stock" string="Export Stock" type="object" help="Export Stock"  class="oe_inline oe_highlight" colspan="2"/>
+                                        <field name='export_stock_date' nolabel="1" colspan="2" help="Date of Export Stock" class="oe_inline"/>
+                                    </group>
+                                </page>
+                                <page string='Manage Customers'>
+                                    <group col="10" attrs="{'invisible': [('color','=',False)]}">     
+                                       <button name="import_customer_group" string="Import Customer Group" type="object" help="Import Customer Group"  class="oe_highlight" colspan="2"/>
+                                       <field name="last_update_cust_grp" nolabel="1" colspan="2" help="Date of Last Update Customer Group"/>
+                                       <button name="import_customer" string="Import Customer" type="object" help="Import Customer"  class="oe_highlight" colspan="2"/>
+                                       <field name="last_update_cust" nolabel="1" colspan="2" help="Date of Last Update Customer"/>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </sheet>  
+                    </form>
+                </field>
+            </record>
+
+            <record model="ir.ui.view" id="magento_instance_form_tree">
+            	<field name="name">magento.instance.tree</field>
+    	        <field name="model">magento.instance</field>
+    	        <field name="arch" type="xml">
+                    <tree string="Magento Instance">
+                        <field name="name"/>
+                        <field name="location"/>
+                    </tree>
+                </field>
+            </record>
+
+            <record model="ir.actions.act_window" id="action_magento_instance111">
+                <field name="name">Magento Instances</field>
+                <field name="res_model">magento.instance</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="magento_instance_form_tree"/>
+                <field name="context">{'default_check_instance':1,'search_default_check_instance':1}</field>
+            </record>
+
+            <record model="ir.actions.act_window" id="action_initial_sync">
+                <field name="name">Initial Synchronization</field>
+                <field name="res_model">magento.instance</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="view_id" ref="magento_instance_form_tree"/>
+                <field name="context">{'default_check_button':1,'search_default_check_button':1}</field>
+            </record>
+
+
+           Magento product_attributes Tree/Form view  
+		<record model="ir.ui.view" id="magerp_product_attributes_form">
+                    <field name="name">magerp.product_attributes.form</field>
+                    <field name="model">magerp.product_attributes</field>
+                    <field name="arch" type="xml">
+                        <form string="Magento Product Attributes">
+                            <group col="4" colspan="4">
+                                <field name="attribute_code" />
+                                <field name="frontend_input" select="2" />
+                                <field name="frontend_class" />
+                                <field name="backend_model" />
+                                <field name="backend_type" select="2" />
+                                <field name="frontend_label"/>
+
+                                <field name="is_visible_in_advanced_search" select="2" />
+                                <field name="is_global" />
+                                <field name="is_filterable" />
+                                <field name="is_comparable" />
+                                <field name="is_visible" />
+                                <field name="is_searchable" />
+                                <field name="is_user_defined" />
+                                <field name="is_configurable" />
+
+                                <field name="is_visible_on_front" />
+                                <field name="is_used_for_price_rules" />
+                                <field name="is_unique" />
+                                <field name="is_required" />
+                                <field name="position" />
+
+                                <field name="group" />
+                                <field name="apply_to" select="2" />
+                                <field name="default_value" />
+                                <field name="note"/>
+                                <field name="entity_type_id" />
+                                <field name="options" readonly="1" />
+                                <field name="field_name" />
+                                <field name="based_on" />
+                            </group>
+                        </form>
+                    </field>
+		</record>
+		<record model="ir.ui.view" id="magerp_product_attributes_tree">
+                    <field name="name">magerp.product_attributes.tree</field>
+                    <field name="model">magerp.product_attributes</field>
+                    <field name="arch" type="xml">
+                        <tree string="Magento Product Attributes">
+                            <field name="attribute_code" select="1" />
+                            <field name="frontend_label" select="1"/>
+                            <field name="is_visible" select="1"/>
+                            <field name="is_required" select="1"/>
+                            <field name="is_searchable" select="1" />
+                            <field name="is_comparable" select="1" />
+                            <field name="entity_type_id" select="1" />
+                            <field name="group" select="1" />
+                        </tree>
+                    </field>
+		</record>
+		<record id="act_magerp_product_attributes" model="ir.actions.act_window">
+			<field name="name">Magento Product Attributes</field>
+			<field name="res_model">magerp.product_attributes</field>
+			<field name="src_model">magerp.product_attributes</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="magerp_product_attributes_tree" />
+		</record>
+
+
+<!--                 Magento attribute_option Search/Tree/Form view   -->
+
+        <!-- <record id="magerp_product_attribute_options_search" model="ir.ui.view">
+            <field name="name">magerp.product_attribute_options.search</field>
+            <field name="model">magerp.product_attribute_options</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Product Attribute Options">
+                    <field name="referential_id"/>
+                    <field name="attribute_id"/>
+                    <field name="label"/>
+                    <field name="value"/>
+                    <group expand="0" string="Group By..." groups="base.group_extended">
+                        <filter string="Magento instance" icon="terp-personal" domain="[]" context="{'group_by':'referential_id'}"/>
+                        <filter string="Attribute" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'attribute_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record> -->
+        
+
+        <record model="ir.ui.view" id="magerp_product_attribute_options_form">
+            <field name="name">magerp.product_attribute_options.form</field>
+            <field name="model">magerp.product_attribute_options</field>
+            <field name="arch" type="xml">
+                <form string="Magento Product Attribute Options">
+                    <group col="4" colspan="4">
+                        <field name="attribute_id"/>
+                        <field name="attribute_name" invisible="True" />
+                        <field name="label" />
+                        <field name="value" />
+                        <field name="referential_id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="magerp_product_attribute_options_tree">
+            <field name="name">magerp.product_attribute_options.tree</field>
+            <field name="model">magerp.product_attribute_options</field>
+            <field name="arch" type="xml">
+                <tree string="Magento Product Attribute Options">
+                      <field name="attribute_id"/>
+                      <field name="attribute_name" invisible="True" />
+                      <field name="label" />
+                      <field name="value" />
+                      <field name="ipcast"/>
+                      <field name="referential_id"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id="act_magerp_product_attribute_options_form" model="ir.actions.act_window">
+            <field name="name">Magento Product Attribute Options</field>
+            <field name="res_model">magerp.product_attribute_options</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="magerp_product_attribute_options_tree" />
+            <!-- <field name="search_view_id" ref="magerp_product_attribute_options_search"/> -->
+        </record>
+
+       <record id="act_magerp_product_attribute_set" model="ir.actions.act_window">
+            <field name="name">Magento Product Attribute Sets</field>
+            <field name="res_model">magerp.product.attribute.set</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="magerp_product_attribute_set_form">
+            <field name="name">magerp.product_attribute_set</field>
+            <field name="model">magerp.product.attribute.set</field>
+            <field name="arch" type="xml">
+                <form string="Magento Product Attribute Options">
+                    <group col="4" colspan="4">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="shop_id"/>
+                    </group>
+                        <notebook>
+                            <page string="Attributes" >
+                                 <field name="attribute_line_id" nolabel="1">
+                                    <tree string="Attribute">
+                                        <field name="attribute_id_data"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="magerp_product_attribute_set_tree">
+            <field name="name">magerp.product_attribute_set.tree</field>
+            <field name="model">magerp.product.attribute.set</field>
+            <field name="arch" type="xml">
+                <tree string="Magento Product Attribute Options">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="attribute_line_id" />
+                    <field name="shop_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="act_magerp_product_attribute_set" model="ir.actions.act_window">
+            <field name="name">Magento Product Attribute Sets</field>
+            <field name="res_model">magerp.product.attribute.set</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="magerp_product_attribute_set_tree"/>
+        </record>
+
+
+        <record id="action_orders_magento" model="ir.actions.act_window">
+            <field name="name">Sales Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+<!--            <field name="search_view_id" ref="sale.view_sales_order_filter"/>-->
+            <field name="view_id" ref="sale.view_order_tree" />
+<!--            <field name="domain">[]</field>-->
+            
+<!--            <field name="domain">[]</field>-->
+
+        </record>
+
+
+        <record id="action_orders_magento_completed" model="ir.actions.act_window">
+            <field name="name">Sales Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+<!--            <field name="search_view_id" ref="sale.view_sales_order_filter"/>-->
+            <field name="view_id" ref="sale.view_order_tree" />
+<!--            <field name="domain">[('state','=','done')]</field>
+            <field name="context">{
+                    'search_default_my_sale_orders_filter': 1
+                }
+            </field>
+            <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'))]</field>-->
+
+        </record>
+
+        <record id="action_orders_magento_pending" model="ir.actions.act_window">
+            <field name="name">Sales Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+<!--            <field name="search_view_id" ref="sale.view_sales_order_filter"/>-->
+            <field name="view_id" ref="sale.view_order_tree" />
+<!--            <field name="domain">[('state','!=','done')]</field>
+            <field name="context">{
+                    'search_default_my_sale_orders_filter': 1
+                }
+            </field>
+            <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel'))]</field>-->
+
+        </record>
+
+        
+</odoo>
+
+

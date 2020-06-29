@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="ks_list_view_advance_search">
+        <t t-if="ks_type == 'date' || ks_type == 'datetime'">
+            <div class="ks_search" >
+                <div  type="text" class="custom-control-searchbar-change" t-att-data-field-type="ks_type" t-att-data-field-identity="ks_field_identifier"
+                       t-att-id ="ks_id" t-att-data-ks-field="ks_description" placeholder="Search..." autocomplete="off"/>
+            </div>
+        </t>
+        <t t-elif="ks_type == 'selection'">
+            <div class="ks_search" >
+                <select class="custom-control-searchbar-change" t-att-data-field-type="ks_type" t-att-id ="ks_id" t-att-data-ks-field="ks_description">
+                    <option></option>
+                    <t t-foreach="ks_selection" t-as="selection">
+                        <option><t t-esc="selection[1]"/></option>
+                    </t>
+                </select>
+
+            </div>
+        </t>
+        <t t-else="">
+            <div class="ks_search" >
+                <input  type="text" class="custom-control-searchbar-advance" t-att-data-field-type="ks_type" t-att-data-field-identity="ks_field_identifier"
+                        t-att-id ="ks_id" t-att-data-ks-field="ks_description" placeholder="Search..." autocomplete="off"/>
+            </div>
+        </t>
+    </t>
+</templates>
+

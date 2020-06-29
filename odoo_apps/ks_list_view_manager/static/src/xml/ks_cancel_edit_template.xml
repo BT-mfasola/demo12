@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="ks_list_view_fields_selection_list_edit">
+        <div class="ks_columns_list ">
+            <t t-foreach="ks_field_list.arch.children" t-as="ks_field">
+                <t t-if="ks_field.tag === 'field'">
+                    <div class="ks_list_field_header">
+                        <div class="ks_list_field_container w-100">
+                            <span class="ks_list_field_info d-flex">
+                                <t t-if="!ks_field.attrs.modifiers.ksShowField">
+                                    <label class="ks_switch" t-att-for="'inputid'+ks_field_index"
+                                           t-att-id="'labelid'+ks_field_index">
+                                        <input type="checkbox" class="ks_hide_show_checkbox" checked="true"
+                                               t-att-id="'inputid'+ks_field_index" title="Hide/Show Columns">
+                                        </input>
+                                        <span class="ks_slider ks_round"/>
+                                    </label>
+                                    <span class="ks_editable" t-att-data-field-id="ks_field_index" type="text"
+                                          contenteditable="true">
+                                        <t t-if="ks_field.attrs.widget">
+                                            <t t-if="ks_field_list.state.fieldsInfo.list[ks_field.attrs.name].Widget.prototype.description">
+                                                <t t-esc="ks_field_list.state.fieldsInfo.list[ks_field.attrs.name].Widget.prototype.description"/>
+                                            </t>
+                                            <t t-else="">
+                                                <t t-esc="ks_field.attrs.string || ks_field_list.state.fields[ks_field.attrs.name].string"/>
+                                            </t>
+
+                                        </t>
+                                        <t t-else="">
+                                            <t t-esc="ks_field.attrs.string || ks_field_list.state.fields[ks_field.attrs.name].string "/>
+                                        </t>
+                                    </span>
+                                    <input class="ks_editable d-none" t-att-data-field-id="ks_field_index" type="text"/>
+
+                                    <img class="ks_order" src="/ks_list_view_manager/static/src/img/move-arrows.svg"
+                                         title="Reorder Columns"/>
+                                </t>
+                                <t t-else="">
+                                    <label class="ks_switch" t-att-for="'inputid'+ks_field_index"
+                                           t-att-id="'labelid'+ks_field_index">
+                                        <input type="checkbox" t-att-id="'inputid'+ks_field_index"
+                                               class="ks_hide_show_checkbox" title="Hide/Show Columns">
+                                        </input>
+                                        <span class="ks_slider ks_round"/>
+                                    </label>
+                                    <span class="ks_editable" t-att-data-field-id="ks_field_index" type="text"
+                                          contenteditable="true">
+                                        <t t-if="ks_field.attrs.widget">
+                                            <t t-if="ks_field_list.state.fieldsInfo.list[ks_field.attrs.name].Widget.prototype.description">
+                                                <t t-esc="ks_field_list.state.fieldsInfo.list[ks_field.attrs.name].Widget.prototype.description"/>
+                                            </t>
+                                            <t t-else="">
+                                                <t t-esc="ks_field.attrs.string || ks_field_list.state.fields[ks_field.attrs.name].string"/>
+                                            </t>
+
+                                        </t>
+                                        <t t-else="">
+                                            <t t-esc="ks_field.attrs.string || ks_field_list.state.fields[ks_field.attrs.name].string "/>
+                                        </t>
+                                    </span>
+                                    <input class="ks_editable d-none" t-att-data-field-id="ks_field_index" type="text"/>
+                                    <img class="ks_order" src="/ks_list_view_manager/static/src/img/move-arrows.svg"
+                                         title="Reorder Columns"/>
+                                </t>
+                            </span>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </div>
+    </t>
+</templates>

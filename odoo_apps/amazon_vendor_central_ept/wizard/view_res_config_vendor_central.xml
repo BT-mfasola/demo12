@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_form_res_config_avc" model="ir.ui.view">
+            <field name="name">Configure FTP Server</field>
+            <field name="model">res.config.avc</field>
+            <field name="arch" type="xml">
+                <form string="Configure Server" class="oe_form_configuration">
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="ftp_server_id" required="1"/>
+                            <field name="vendor_qualifier" required="1"/>
+                            
+                        </group>
+                        <group>
+                            <field name='country_id' required="1"/>
+                            <field name="amazon_qualifier" required="1"/>
+                            <field name="is_production_environment"/>
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button string="Create" type="object" name="test_amazon_connection"
+                                class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+		
+
+        <record id="res_config_action_amazon_vendor_central" model="ir.actions.act_window">
+            <field name="name">Amazon Vendor</field>
+            <field name="res_model">res.config.avc</field>
+            <field name="view_mode">form</field>
+            <field name="view_type">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_form_res_config_avc"/>
+        </record>
+		
+
+
+        <record id="view_avc_config_settings" model="ir.ui.view">
+            <field name="name">Amazon Vendor Central Settings</field>
+            <field name="model">avc.res.config.settings</field>
+            <!-- <field name="inherit_id" ref="base.res_config_settings_view_form" /> -->
+            <field name="arch" type="xml">
+            <form>
+            	<header>
+					<button string="Apply" type="object" name="execute" class="oe_highlight" />
+					or
+					<button string="Cancel" type="object" name="cancel" class="oe_link" />
+				</header>
+			 	<h1>Vendor Central Configuration</h1>
+			 		<group>
+         				<label for="vendor_id" string="Select Vendor"/>
+	                   	<div>
+	                   		<div>
+	                    		<field name="vendor_id" style="width:100%" class="oe_inline" options="{'no_create_edit': True}" attrs="{'required':[('vendor_id','!=',False)]}"  widget="selection"/>
+	                    		<button name="%(res_config_action_amazon_vendor_central)d" icon="fa-arrow-right" type="action" 
+                                       string="Create More Instance" class="oe_link"/>
+	                    	</div>
+	                   	</div>
+            		</group>
+                    <div attrs="{'invisible' : [('vendor_id','=',False)]}">
+                    	<separator string="General Configuration"/>
+		                <group>
+		                	<label for="id" string="Options" />
+		                	<div>
+		                		<div>
+		                			<label for="company_id"></label>
+									<field name="company_id" class="oe_inline" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+								</div>
+								<div>
+									<label for="country_id"/>
+	                				<field name="country_id"  class="oe_inline" options="{'no_create_edit': True, 'no_open': True}" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+	                			</div>
+	                			<div>
+									<label for="vendor_qualifier"/>
+	                				<field name="vendor_qualifier"  class="oe_inline" options="{'no_create_edit': True, 'no_open': True}" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+	                			</div>
+	                			<div>
+									<label for="amazon_qualifier"/>
+	                				<field name="amazon_qualifier"  class="oe_inline" options="{'no_create_edit': True, 'no_open': True}" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+	                			</div>
+	                			
+	                			<div>
+	                				<label for="pricelist_id"/>
+	                				<field name="pricelist_id"  class="oe_inline" options="{'no_create_edit': True}" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+	                        	</div>
+	                        	<div>
+	                        		<label for="file_format_for_export"/>
+	                        		<field name="file_format_for_export"  class="oe_inline"/>
+	                        	</div>
+	                        	<div>
+	                        		<label for="vendor_code"/>
+	                        		<field name="vendor_code"  class="oe_inline"/>
+	                        	</div>
+								<div>
+									<label for="supplier_id"/>
+									<field name="supplier_id"  class="oe_inline" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+	                         	</div>
+	                         	<div>
+									<label for="so_customer_id"/>
+									<field name="so_customer_id"  class="oe_inline" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+	                         	</div>
+	                         	<div>
+	                         		<label for="delivery_type"/>
+	                         		<field name="delivery_type"  class="oe_inline" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+	                        	</div>
+	                        	<div attrs="{'invisible' : [('delivery_type','!=','wepay')]}">
+	                        		<label for="order_dispatch_lead_time"/>
+	                        		<field name="order_dispatch_lead_time"  class="oe_inline" />
+	                        	</div>
+	                        	<div attrs="{'invisible' : [('delivery_type','!=','we_not_pay')]}">
+	                        		<label for="amazon_edi_carrier_method"/>
+	                        		<field name="amazon_edi_carrier_method"  class="oe_inline"/>
+	                        	</div>
+                        	</div>		                 
+                        </group>
+                        <!--  
+                        <group>
+                        <label for="id" string="Batch Pickings" />
+                             <div>
+                         		<div>
+		                			<label for="module_stock_picking_batch"></label>
+									<field name="module_stock_picking_batch" class="oe_inline"/>
+								</div>
+								<div>
+                                    <div class="text-muted">
+                                        Process picking in batch per worker
+                                    </div>
+                                </div>
+							</div>
+                        </group>
+                        
+                        <group>
+                        <label for="id" string="Product Expiry" />
+                             <div>
+                         		<div>
+		                			<label for="module_product_expiry"></label>
+									<field name="module_product_expiry" class="oe_inline"/>
+								</div>
+								<div>
+                                    <div class="text-muted">
+                                        Per Product Expiry Date
+                                    </div>
+                                </div>
+							</div>
+                        </group>-->
+		                
+		                
+		                <separator string="Purchase Order Import Configuration"/>
+		                <group>
+		                <label for="id" string="Options"></label>
+			                <div>
+			                	<div>
+			                		<label for="po_file_import_prefix"/>
+			                 		<field name="po_file_import_prefix" class="oe_inline" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+				                </div>
+				                <div>
+				                	<label for="warehouse_id"/>
+				                 	<field name="warehouse_id" class="oe_inline" options="{'no_open': True}"  attrs="{'required' : [('vendor_id','!=',False)]}"/>
+				                </div>
+				                <div invisible="1">
+				                	<label for="fiscal_position_id"/>
+				                   	<field name="fiscal_position_id" class="oe_inline"/>
+			                   	</div>
+			                   	<div>
+			                   		<label for="team_id"/>		
+			                   		<field name="team_id" class="oe_inline" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+			                   	</div>
+			                </div>
+		                </group>
+			            <separator string="Purchase Order Ack Configuration"/>
+		                <group>
+		                <label for="id" string="Options"/>
+			                <div>
+			                	<div>
+			                		<label for="po_ack_file_export_prefix"/>
+			                  		<field name="po_ack_file_export_prefix" class="oe_inline"/>
+			                  	</div>
+			                  	<div>
+			                  		<label for="picking_policy"/>	
+	                   				<field name="picking_policy" class="oe_inline" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+	                   			</div>
+	                   			<div invisible="1">	
+	                   				<label for="picking_policy_based_on"/>
+	                   				<field name="picking_policy_based_on" class="oe_inline" />
+	                   			</div>
+	                   			<div>
+			                   		<label for="mismatch_product"/>
+			                   		<field name="mismatch_product" class="oe_inline"/>
+			                   	</div>
+	                   			<div>	
+	                   				<field name="auto_confirm_sale_order" class="oe_inline"/>
+	                   				<label for="auto_confirm_sale_order"/>
+	                  			</div>
+	                  			<div attrs="{'invisible' : [('auto_confirm_sale_order','=',False)]}">	
+	                  				<field name="auto_generate_po_ack"  class="oe_inline"/>
+	                  				<label for="auto_generate_po_ack"/>
+	                  			</div>
+	            			</div>      					
+			            </group>   
+			            <separator string="Routing Information" attrs="{'invisible' : [('delivery_type','!=','wepay')]}"/>			
+		                <group attrs="{'invisible' : [('delivery_type','!=','wepay')]}">
+		                <label for="id" string="Options"/>
+			                <div>
+			                	<div>
+			                		<label for="route_request_file_export_prefix"/>
+			                		<field name="route_request_file_export_prefix" class="oe_inline"  attrs="{'required' : [('vendor_id','!=',False),('delivery_type','=','wepay')]}"/>
+			                	</div>
+			                	<div>
+			                		<label for="route_info_file_import_prefix"/>
+			                		<field name="route_info_file_import_prefix" class="oe_inline"  attrs="{'required' : [('vendor_id','!=',False),('delivery_type','=','wepay')]}"/>
+			                	</div>
+							</div>	
+		                </group>
+		             
+		             <separator string="Invoice Configuration"/>				
+		               <group>
+		                <label for="id" string="Options"/>
+		                <div>
+		                	<div>
+		                		<label for="invoice_file_export_prefix"/>
+		                		<field name="invoice_file_export_prefix" class="oe_inline" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+		                	</div>
+		                <!-- 	<div>
+		                		<label for="invoice_policy"/>
+		                		<field name="invoice_policy" class="oe_inline" />
+		                	</div>
+		                	<div>
+		                		<label for="journal_id"/>
+		                		<field name="journal_id" class="oe_inline" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+		                	</div> -->
+		                </div>
+		                </group> 
+		                <separator string="Advance Shipment Notice Configuration"/>		
+		                <group>
+		                	<label for="id" string="Options"/>
+		                	<div>
+		                		<label for="asn_file_export_prefix"/>
+		                    	<field name="asn_file_export_prefix" class="oe_inline" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+		                    </div>
+		                </group>
+		                
+		                 <separator string="Inventory &amp; Cost Configuration"/>		
+		                <group>
+		                <label for="id" string="Options"/>
+		                	<div>
+		                		<div>
+		                			<label for="inventory_file_export_prefix"/>
+		                			<field name="inventory_file_export_prefix" class="oe_inline" attrs="{'required' : [('vendor_id','!=',False),]}"/>
+		                		</div>
+		                		<div>
+		                			<label for="amazon_gln_number"/>
+		                			<field name="amazon_gln_number" class="oe_inline" />
+		                		</div>
+		                		<div>
+		                			<label for="product_stock_field_id"/>
+		                			<field name="product_stock_field_id" class="oe_inline" options="{'no_create_edit': True, 'no_open': True}" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+		                		</div>
+		                		<div>
+		                			<label for="production_feed_key"/>
+		                			<field name="production_feed_key" class="oe_inline"/>
+		                		</div>
+		                		<div>
+		                			<label for="amazon_unb_id"/>
+		                			<field name="amazon_unb_id" class="oe_inline"/>
+		                		</div>
+		                
+		                		<!--  
+		                		<div>
+		                			<field name="include_forecast_incoming" class="oe_inline"/>
+		                			<label for="include_forecast_incoming"/>
+		                		</div>
+		                		-->
+		                		<!--  
+		                		<div>
+		                			<field name="is_allow_stock_export_from_multi_warehouse" class="oe_inline"/>
+		                			<label for="is_allow_stock_export_from_multi_warehouse"/>
+		                		</div>
+		                		-->
+		                		<div>
+		                			<label for="warehouse_ids"/>
+		                			<field name="warehouse_ids" widget="many2many_tags" class="oe_inline" />
+		                		</div>
+		               		</div>   		
+		               </group>	
+		         
+		              <!--   <separator string="Sales report Configuration"></separator>
+		                <group>
+		                	<label for="id" string="Options"/>
+		                	<div>
+		                		<label for="sales_report_file_export_prefix"/>
+		                    	<field name="sales_report_file_export_prefix" class="oe_inline" attrs="{'required' : [('vendor_id','!=',False)]}"/>
+		                    </div>
+		                </group>-->
+		         		</div> 
+		         		 <!-- Cron Configuration -->
+		                
+		                <separator string="Cron Configuration" attrs="{'invisible' : [('vendor_id','=',False)]}"/>
+		                <div attrs="{'invisible' : [('vendor_id','=',False)]}">
+		                	<!-- PO import cron -->
+		                	<group>
+							<label for="auto_import_purchase_order"/>
+							<div>
+								<div>
+									<field name="auto_import_purchase_order"/>
+									<label for="id" string="  "/>
+									<field name="auto_po_import_next_execution" attrs="{'invisible':[('auto_import_purchase_order','=',False)],'required':[('auto_import_purchase_order','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_po_import_interval_number"  attrs="{'invisible':[('auto_import_purchase_order','=',False)],'required':[('auto_import_purchase_order','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_po_import_interval_type"  attrs="{'invisible':[('auto_import_purchase_order','=',False)],'required':[('auto_import_purchase_order','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_po_import_user_id" attrs="{'invisible':[('auto_import_purchase_order','=',False)],'required':[('auto_import_purchase_order','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+								</div>
+							</div>
+							</group>
+							<!-- PO ACK upload cron -->
+							<group>
+							<label for="auto_process_po_ack"/>
+							<div>
+								<div>
+									<field name="auto_process_po_ack"/>
+									<label for="id" string="  "/>
+									<field name="auto_po_process_next_execution" attrs="{'invisible':[('auto_process_po_ack','=',False)],'required':[('auto_process_po_ack','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_po_process_interval_number"  attrs="{'invisible':[('auto_process_po_ack','=',False)],'required':[('auto_process_po_ack','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_po_process_interval_type"  attrs="{'invisible':[('auto_process_po_ack','=',False)],'required':[('auto_process_po_ack','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_po_process_user_id" attrs="{'invisible':[('auto_process_po_ack','=',False)],'required':[('auto_process_po_ack','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+								</div>
+							</div>
+							</group>
+							<!-- Inventory cron -->
+							<group>
+							<label for="auto_process_inventory"/>
+							<div>
+								<div>
+									<field name="auto_process_inventory"/>
+									<label for="id" string="  "/>
+									<field name="auto_process_inventory_next_execution" attrs="{'invisible':[('auto_process_inventory','=',False)],'required':[('auto_process_inventory','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_inventory_interval_number"  attrs="{'invisible':[('auto_process_inventory','=',False)],'required':[('auto_process_inventory','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_inventory_interval_type"  attrs="{'invisible':[('auto_process_inventory','=',False)],'required':[('auto_process_inventory','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_inventory_user_id" attrs="{'invisible':[('auto_process_inventory','=',False)],'required':[('auto_process_inventory','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+								</div>
+							</div>
+							</group>
+							<!-- Route Request cron -->
+							<group>
+							<label for="auto_process_routing_request"/>
+							<div>
+								<div>
+									<field name="auto_process_routing_request"/>
+									<label for="id" string="  "/>
+									<field name="auto_process_routing_request_next_execution" attrs="{'invisible':[('auto_process_routing_request','=',False)],'required':[('auto_process_routing_request','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_routing_request_interval_number"  attrs="{'invisible':[('auto_process_routing_request','=',False)],'required':[('auto_process_routing_request','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_routing_request_interval_type"  attrs="{'invisible':[('auto_process_routing_request','=',False)],'required':[('auto_process_routing_request','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_routing_request_user_id" attrs="{'invisible':[('auto_process_routing_request','=',False)],'required':[('auto_process_routing_request','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+								</div>
+							</div>
+							</group>
+							<!-- Route Info cron -->
+							<group>
+							<label for="auto_process_routing_instruction"/>
+							<div>
+								<div>
+									<field name="auto_process_routing_instruction"/>
+									<label for="id" string="  "/>
+									<field name="auto_process_routing_instruction_next_execution" attrs="{'invisible':[('auto_process_routing_instruction','=',False)],'required':[('auto_process_routing_instruction','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_routing_instruction_interval_number"  attrs="{'invisible':[('auto_process_routing_instruction','=',False)],'required':[('auto_process_routing_instruction','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_routing_instruction_interval_type"  attrs="{'invisible':[('auto_process_routing_instruction','=',False)],'required':[('auto_process_routing_instruction','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_routing_instruction_user_id" attrs="{'invisible':[('auto_process_routing_instruction','=',False)],'required':[('auto_process_routing_instruction','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+								</div>
+							</div>
+							</group>
+							<!-- Advance Shipment cron -->
+							<group>
+							<label for="auto_process_dispatch_advice"/>
+							<div>
+								<div>
+									<field name="auto_process_dispatch_advice"/>
+									<label for="id" string="  "/>
+									<field name="auto_process_dispatch_advice_next_execution" attrs="{'invisible':[('auto_process_dispatch_advice','=',False)],'required':[('auto_process_dispatch_advice','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_dispatch_advice_interval_number"  attrs="{'invisible':[('auto_process_dispatch_advice','=',False)],'required':[('auto_process_dispatch_advice','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_dispatch_advice_interval_type"  attrs="{'invisible':[('auto_process_dispatch_advice','=',False)],'required':[('auto_process_dispatch_advice','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+									<field name="auto_process_dispatch_advice_user_id" attrs="{'invisible':[('auto_process_dispatch_advice','=',False)],'required':[('auto_process_dispatch_advice','=',True),('vendor_id','!=',False)]}" class="oe_inline"/>
+								</div>
+							</div>
+							</group>
+		                </div>
+		           </form>
+            </field>
+        </record>
+        
+        <record id="amazon_vendor_central_res_config_settings_action" model="ir.actions.act_window">
+			<field name="name">Settings</field>
+			<field name="res_model">avc.res.config.settings</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_avc_config_settings"/>
+			<field name="target">inline</field>
+			<!-- <field name="context">{'module' : 'amazon_vendor_central_ept'}</field>  -->
+		</record>
+		
+		   <menuitem id="menu_configuration_setting" name="Setting"
+                  parent="menu_amazon_vendor_central_configuration" sequence="1"
+                  groups="amazon_vendor_central_ept.group_amazon_vendor_central_user"
+                  action="amazon_vendor_central_res_config_settings_action"/>
+        
+    </data>
+</odoo>
+                                    

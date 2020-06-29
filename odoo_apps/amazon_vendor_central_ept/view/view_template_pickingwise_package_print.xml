@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="report_pickingwise_package_document_ept">
+			<t t-call="web.basic_layout">
+				<div class="page">
+					<t t-call="amazon_vendor_central_ept.report_vendor_document_epts">
+					</t>
+				</div>
+			</t>
+		</template>
+
+		<template id="report_vendor_document_epts">
+			<style>
+				table{
+				border-collapse: collapse;
+
+				}
+				th, td {
+
+				border: 2px solid
+				black;
+				}
+			</style>
+			<t t-set="carton" t-value="1" />
+			<t t-foreach="docs" t-as="doc">
+				<t t-foreach="doc.package_ids" t-as="total_packages">
+					<div class="header"></div>
+
+
+
+					<div class="page"
+						style="border:5px solid #000;page-break-after:always;width:80%;margin-left:80px">
+
+
+						<div
+							style="height:150px;width:50%;border:1px solid black;float:left;">
+							<strong>SHIP FROM:</strong>
+							<br />
+							<span t-field="doc[0].company_id.partner_id.street"></span>
+
+						</div>
+
+						<div
+							style="height:150px;width:50%;border:1px solid black;margin-left:50%">
+							<strong>SHIP TO :</strong>
+							<br />
+							<span t-field="doc.batch_id.user_id.contact_address"></span>
+						</div>
+
+						<div
+							style="height:150px;width:40%;border:1px solid black;background-color:white;float:left;vertical-align: middle;">
+
+							<h5 style="text-align:center"><strong>Barcode of Bol Number :</strong></h5>
+							<br />
+							<span style="vertical-align: middle;">
+								<img class="barcode" t-if="doc.bol_number"
+									style="width:70%;margin:0;align:center;"
+									t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1'%('Code128', doc.bol_number, 300, 40)" />
+							</span>
+
+
+						</div>
+
+						<div
+							style="height:150px;width:70%;border:1px solid black;margin-left:30%">
+							<strong>Carrier Name :</strong>
+							<span t-field="doc.carrier_name"></span>
+
+							<br />
+							<br />
+							<strong>Bol :</strong>
+							<span t-field="doc.bol_number"></span>
+							<br />
+							<br />
+							<strong>ASN :</strong>
+							<span t-field="doc.booking_ref_number"></span>
+						</div>
+
+						<div
+							style="height:170px;width:50%;border:1px solid black;float:left;">
+
+							<strong>Purchase Order No:</strong>
+							<span t-field="doc.sale_id.amazon_edi_order_id" />
+							<br />
+							<br />
+							<strong>Sku/GLN :</strong>
+							<span t-field="doc.vendor_id.amazon_gln_number" />
+							<br />
+							<br />
+							<strong>Qty :</strong>
+							<span t-esc="sum(total_packages.mapped('quant_ids.quantity'))" />
+							<br />
+							<br />
+
+
+							<t t-if="total_packages.package_type == 'carton'">
+								<strong>Carton :</strong>
+								<strong>
+									<span t-esc="carton" />
+								</strong>
+								of
+								<strong>
+									<span t-esc="len(docs.mapped('package_ids'))" />
+								</strong>
+							</t>
+							<t t-else="">
+								<strong>Pallet :</strong>
+								<strong>
+									<span t-esc="carton" />
+								</strong>
+								of
+								<strong>
+									<span t-esc="len(docs.mapped('package_ids'))" />
+								</strong>
+							</t>
+
+
+							<br />
+						</div>
+
+						<div
+							style="height:170px;width:50%;border:1px solid black;margin-left:50%;vertical-align: middle;">
+							<br />
+							<span>
+								<h5 style="text-align:center;"><strong>Barcode Of Order :</strong></h5>
+							</span>
+
+							<div style="text-align:center;vertical-align: middle;">
+								<img class="barcode" t-if="doc.sscc_code" style="width:70%;height:20px;"
+									t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1'%('Code128', doc.sscc_code, 300, 40)" />
+
+
+							</div>
+						</div>
+
+						<div
+							style="height:130px;width:100%;border:1px solid black;text-align:center;vertical-align: middle;">
+							<br />
+							<strong>Barcode Of sscc : </strong>
+							<div style="text-align:center;vertical-align: middle;">
+								<img class="barcode" t-if="doc.sscc_code" style="width:70%"
+									t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1'%('Code128', doc.sscc_code, 300, 40)" />
+							</div>
+						</div>
+						
+					</div>
+					<t t-set="carton" t-value="carton+1" />
+				</t>
+			</t>
+		</template>
+		<report id="report_package_labels" model="stock.picking"
+			string="Picking Label Report" report_type="qweb-pdf"
+			name="amazon_vendor_central_ept.report_pickingwise_package_document_ept"
+			file="amazon_vendor_central_ept.report_pickingwise_package_document_ept" />
+		<record id="report_package_labels" model="ir.actions.report">
+			<field name="name">Package Label Report</field>
+			<field name="paperformat_id"
+				ref="amazon_vendor_central_ept.paperformat_package_labels" />
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Import Order Workflow Form View -->
+        <record id="import_order_workflow_form_view" model="ir.ui.view">
+            <field name="name">import.order.workflow.form.view</field>
+            <field name="model">import.order.workflow</field>
+            <field name="arch" type="xml">
+                <form string="Import Order Workflow">
+                    <sheet>
+                        <div class="oe_title">
+                            <label class="oe_edit_only" for="name" string="Name" />
+                            <h1>
+                                <field name="name" placeholder="Workflow Name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group name="shiporder" string="Shipment &amp; Order">
+                                <field name="picking_policy" />
+                                <field name="validate_order" />
+                                <field name="reserve_qty"/>
+                                <field name="complete_shipment"/>
+                                <field name="ship_expo_magen"/>
+                                <field name="ship_product"/>
+                                <field name="discount_product"/>
+                                 <field name="import_complete_order"/>
+                                <!-- <field name="partner_id"/> -->
+                            </group>
+                            <group name="invoice" string="Invoice">
+                                <field name="invoice_policy" />
+                                <field name="create_invoice" />
+                                <field name="validate_invoice" />
+                                <field name="register_payment" />
+                                <!-- <field name="sale_journal" option="{'no_create': True, 'no_edit': True, 'no_open': True}" /> -->
+                                <field name="invoice_expo_magen"/>
+                                
+                            </group>
+                            <group name="accounts" string="Accounts">
+                                <field name="sale_journal" />
+                                <field name="pricelist_id" />
+                            </group><group name="inventory" string="Inventory">
+                                <field name="warehouse_id" />
+                                <field name="company_id" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Import Order Workflow tree View -->
+        <record model="ir.ui.view" id="import_order_workflow_tree_view">
+            <field name="name">import.order.workflow.tree.view</field>
+            <field name="model">import.order.workflow</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Import Order Workflow">
+                        <field name="name" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Import Order Action -->
+        <record model="ir.actions.act_window" id="action_import_order_workflow">
+            <field name="name">Order Workflow</field>
+            <field name="res_model">import.order.workflow</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+    </data>
+</odoo>

@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="stock_picking_batch_view" model="ir.ui.view">
+            <field name="name">Stock Picking Batch</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="inherit_id" ref="stock_picking_batch.stock_picking_batch_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='carrier_id']" position="after">
+                	<field name="dhl_recipient_add_method" attrs="{'invisible':[('delivery_type_ept','!=','dhl_de_ept')]}"> </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

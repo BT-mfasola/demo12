@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <report
+            id="action_report_inventory_coverage_report_ept"
+            string="Inventory Coverage Report"
+            model="requisition.product.suggestion.ept"
+            report_type="qweb-pdf"
+            file="inventory_coverage_report_ept.inventorycoverage_doc"
+            name="inventory_coverage_report_ept.inventorycoverage_doc"
+        	print_report_name="'Inventory Coverage Report  - %s' % (time.strftime('%Y-%m-%d %H:%M:%S'))"
+        	paperformat = "inventory_coverage_report_ept.paperformat_inventory_coverage_ept"
+        />
+</odoo>

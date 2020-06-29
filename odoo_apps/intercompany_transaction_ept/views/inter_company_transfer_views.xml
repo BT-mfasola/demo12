@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="inter_company_transfer_ept_tree_view" model="ir.ui.view">
+			<field name="name">inter.company.transfer.ept.view.tree</field>
+			<field name="model">inter.company.transfer.ept</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Inter Company transfer">
+					<field name="name" />
+					<field name="source_warehouse_id" />
+					<field name="destination_warehouse_id" />
+					<field name="create_date" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+		
+
+		<record id="inter_company_transfer_ept_form_view" model="ir.ui.view">
+			<field name="name">inter.company.transfer.ept.view.form</field>
+			<field name="model">inter.company.transfer.ept</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Inter Company transfer">
+						<header>
+							<button string="Process" type="object" name="action_process"
+								class="oe_highlight"
+								attrs="{'invisible':['|',('state','!=','draft'),('type','=','ict_reverse')]}" />
+							<button string="Process" type="object" name="action_reverse_process"
+								class="oe_highlight"
+								attrs="{'invisible':['|',('state','!=','draft'),('type','!=','ict_reverse')]}" />
+							<button string="Reverse" type="object" name="action_create_reverse_process"
+								class="oe_highlight"
+								attrs="{'invisible':['|',('state','!=','processed'),('type','=','ict_reverse')]}" />
+							<button string="Cancel" type="object" name="action_cancel"
+								attrs="{'invisible':[('state','in',['cancel'])]}" />
+							<button string="Reset to Draft" type="object" name="reset_to_draft"
+								class="oe_highlight" attrs="{'invisible':[('state','not in',['cancel'])]}" />
+							<button name="import_export_product_list_view" string="Import/Export Product List" type="object" class="oe_highlight" attrs="{'invisible':['|',('type','=','ict_reverse'),('state','in',['cancel','processed'])]}" />
+							<field name="state" widget="statusbar" />
+						</header>
+						<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button type="object" name="view_sale_order" string="Sale Orders"
+								attrs="{'invisible':['|',('state', '!=', 'processed'),('saleorder_ids','=',[])]}"
+								class="oe_stat_button" icon="fa-chain">
+								<field name="saleorder_ids" invisible="1" />
+							</button>
+							<field name="log_ids" invisible="1"/>
+		                    <button type="object"
+		                        name="action_view_log"
+		                        class="oe_stat_button"
+		                        icon="fa-pencil-square-o"
+		                        attrs="{'invisible': [('log_count', '=', 0)]}" groups="base.group_user">
+		                        <field name="log_count" widget="statinfo" string="LOG"/>
+		                    </button>
+							
+
+
+							<button type="object" name="view_reverse_ict"
+								attrs="{'invisible':[('reverse_intercompanytransfer_ids', '=',[])]}"
+								class="oe_stat_button" icon="fa-chain" string="Reverce ICT">
+								<field name="reverse_intercompanytransfer_ids" string="Reverse ICT"
+									invisible="1" />
+							</button>
+
+							<button type="object" name="view_purchase_order" string="Purchase Orders"
+								attrs="{'invisible':['|',('state', '!=', 'processed'),('purchaseorder_ids','=',[])]}"
+								class="oe_stat_button" icon="fa-chain">
+								<field name="purchaseorder_ids" string="Purchase Order"
+									invisible="1" />
+							</button>
+
+							<button type="object" name="view_pickings" string="Pickings"
+								attrs="{'invisible':['|',('state', '!=', 'processed'),'&amp;',('saleorder_ids','!=',[]),('purchaseorder_ids','!=',[])]}"
+								class="oe_stat_button" icon="fa-chain">
+								<field name="picking_ids" string="Pickings" invisible="1" />
+							</button>
+
+							<button type="object" name="view_invoice" string="Customer Invoice"
+								attrs="{'invisible':['|',('type', '!=','ict_reverse'),('invoice_ids','=',[])]}"
+								class="oe_stat_button" icon="fa-chain">
+								<field name="invoice_ids" invisible="1" />
+							</button>
+							<button type="object" name="view_vendor_bill" string="Vendor Bills"
+								attrs="{'invisible':['|',('type', '!=','ict_reverse'),('invoice_ids','=',[])]}"
+								class="oe_stat_button" icon="fa-chain">
+								<field name="invoice_ids" invisible="1" />
+							</button>
+
+						</div>
+						<field name="_barcode_scanned" widget="barcode_handler"
+							invisible="1" />
+						<div class="oe_title">
+							<h1>
+								<field name="name" readonly="1" />
+							</h1>
+						</div>
+						<group string="Transaction Info">
+							<group>
+								<field name="source_warehouse_id" required="True"
+									attrs="{'readonly':[('state','!=','draft')]}" />
+								<field name="price_list_id" />
+								<field name="crm_team_id" />
+							</group>
+							<group>
+								<field name="destination_warehouse_id" required="True"
+									attrs="{'readonly':['|',('state','!=','draft'),('source_warehouse_id','=',False)]}" />
+								<field name="currency_id" required="True" readonly="1" />
+								<field name="processed_date" readonly="1" />
+							</group>
+						</group>
+						<notebook>
+							<page name="Products" string="Products">
+								<group>
+									<field name="intercompany_transferline_ids" attrs="{'readonly':[('state','!=','draft')]}"
+										nolabel="1">
+										<tree editable="top">
+											<field name="product_id" required="True" domain="[('type','=','product')]" />
+											<field name="quantity" />
+											<field name="qty_delivered"/>
+											<field name="price" />
+										</tree>
+									</field>
+								</group>
+							</page>
+							<page name="General Info" string="General Info"
+								attrs="{'invisible':[('type','=','ict_reverse')]}">
+								<group>
+									<field name="create_date" readonly="1" />
+									<field name="type" readonly="1" />
+								</group>
+							</page>
+							<page name="Other info" string="Other Info"
+								attrs="{'invisible':[('type','!=','ict_reverse')]}">
+								<group>
+									<group string="ICT Information">
+										<field name="intercompany_transfer_id" readonly="1" />
+										<field name="create_date" readonly="1" />
+										<field name="type" readonly="1" />
+									</group>
+								</group>
+							</page>
+						</notebook>
+						<group string="Message" colspan="4">
+							<field name="message" nolabel="1" readonly="1" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+
+		<record id="inter_company_transfer_ept_action" model="ir.actions.act_window">
+			<field name="name">Inter Company Transfer</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">inter.company.transfer.ept</field>
+			<field name="view_type">form</field>
+			<field name="domain">[('type','=','ict')]</field>
+			<field name="context">{'default_type':'ict','type':'ict'}</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="internal_inter_company_transfer_ept_action" model="ir.actions.act_window">
+			<field name="name">Internal Transfer</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">inter.company.transfer.ept</field>
+			<field name="view_type">form</field>
+			<field name="domain">[('type','=','internal')]</field>
+			<field name="context">{'default_type':'internal', 'type':'internal'}
+			</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<record id="reverse_inter_company_transfer_ept_action" model="ir.actions.act_window">
+			<field name="name">Reverse Transfer</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">inter.company.transfer.ept</field>
+			<field name="view_type">form</field>
+			<field name="domain">[('type','=','ict_reverse')]</field>
+			<field name="context">{'default_type':'ict_reverse','type':'ict_reverse'}</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+
+
+		<menuitem id="inter_company_transfer_ept_main_menu" parent="stock.menu_stock_root"
+			name="Inter Company Transfers" sequence="5" />
+
+		<menuitem id="inter_company_transfer_ept_child_menu" action="inter_company_transfer_ept_action"
+			parent="inter_company_transfer_ept_main_menu" sequence='1' />
+
+		<menuitem id="internal_inter_company_transfer_ept_menu"
+			action="internal_inter_company_transfer_ept_action" parent="inter_company_transfer_ept_main_menu"
+			sequence='2' />
+
+		<menuitem id="reverse_inter_company_transfer_ept_menu"
+			action="reverse_inter_company_transfer_ept_action" parent="inter_company_transfer_ept_main_menu"
+			sequence='3' />
+
+	</data>
+</odoo>
+    

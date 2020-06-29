@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    	<record id="mail_template_reqisition_approve_ept" model="mail.template">
+            <field name="name">Reorder Process Approve</field>
+            <field name="subject">${object.name or 'n/a' } : Request For Approval</field>
+            <field name="partner_to">${object.approval_user_id.partner_id.id}</field>
+            <field name="model_id" ref="advance_purchase_ordering_ept.model_requisition_process_ept"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="advance_purchase_ordering_ept.action_report_requisition_summary_line_ept"/>
+            <field name="report_name">reorder_summary_${(object.name or '').replace('/','_')}</field>
+            <field name="lang">${object.approval_user_id.partner_id.lang}</field>
+            <field name="body_html" type="xml">
+<p>Dear ${object.approval_user_id.partner_id.name},</p>
+<p>You have been requested for approval to <strong>${(object.name or '').replace('/','-')}</strong> </p>
+<p>If you have any questions, please do not hesitate to contact us.</p>
+<p>Best regards,
+% if user and user.signature:
+${user.signature | safe}
+% endif
+</p>
+			</field>
+        </record>
+    
+        <record id="mail_template_warehouse_reqisition_approve_ept" model="mail.template">
+            <field name="name">Warehouse Reorder Process Approve</field>
+            <field name="subject">${object.name or 'n/a' } : Request For Approval</field>
+            <field name="partner_to">${object.user_id.partner_id.id}</field>
+            <field name="model_id" ref="advance_purchase_ordering_ept.model_warehouse_requisition_process_ept"/>
+            <field name="auto_delete" eval="True"/>
+           	<field name="report_template" ref="advance_purchase_ordering_ept.action_report_warehouse_requisition_summary_line_ept"/> 
+            <field name="report_name">Procurement_Process_summary_${(object.name or '').replace('/','_')}</field> 
+            <field name="lang">${object.user_id.partner_id.lang}</field>
+            <field name="body_html" type="xml">
+<p>Dear ${object.user_id.partner_id.name},</p>
+<p>You have been requested for approval to <strong>${(object.name or '').replace('/','-')}</strong> </p>
+<p>If you have any questions, please do not hesitate to contact us.</p>
+<p>Best regards,
+% if user and user.signature:
+${user.signature | safe}
+% endif
+</p>
+</field>
+        </record>
+        
+        <record id="mail_template_reqisition_reject_ept" model="mail.template">
+            <field name="name">Reorder Process Reject</field>
+            <field name="subject"> ${object.name or 'n/a' } : Reorder Process Rejected</field>
+            <field name="partner_to">${object.user_id.partner_id.id}</field>
+            <field name="model_id" ref="advance_purchase_ordering_ept.model_requisition_process_ept"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.user_id.partner_id.lang}</field>
+            <field name="body_html" type="xml">
+<p>Dear ${object.user_id.partner_id.name},</p>
+<p></p>
+<p>You have requested for approval to <strong>${(object.name or '').replace('/','-')}</strong> </p>
+<p>${object.name} Rejected</p>
+<p>If you have any questions, please do not hesitate to contact us.</p>
+<p>Best regards,
+% if user and user.signature:
+${user.signature | safe}
+% endif
+</p>
+			</field>
+        </record>
+        
+        <record id="mail_template_warehouse_reqisition_reject_ept" model="mail.template">
+            <field name="name">Procurement Process Reject</field>
+            <field name="subject"> ${object.name or 'n/a' } :Procurement Process Rejected</field>
+            <field name="partner_to">${object.user_id.partner_id.id}</field>
+            <field name="model_id" ref="advance_purchase_ordering_ept.model_warehouse_requisition_process_ept"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="lang">${object.user_id.partner_id.lang}</field>
+            <field name="body_html" type="xml">
+<p>Dear ${object.user_id.partner_id.name},</p>
+<p></p>
+<p>You have requested for approval to <strong>${(object.name or '').replace('/','-')}</strong> </p>
+<p>${object.name} Rejected</p>
+<p>If you have any questions, please do not hesitate to contact us.</p>
+<p>Best regards,
+% if user and user.signature:
+${user.signature | safe}
+% endif
+</p>
+</field>
+        </record>
+        
+        <!--Default Notification Email template for Requisition-->
+        <template id="mail_template_data_notification_email_requisition" name="Advance Purchase: Reorder Notification">
+		<table border="0" cellpadding="0" cellspacing="0" style="padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;"><tr><td align="center">
+		<table border="0" cellpadding="0" cellspacing="0" width="590" style="padding: 24px; background-color: white; color: #454748; border-collapse:separate;">
+         <tbody>
+             <!-- HEADER -->
+	         <tr>
+		         <td align="center" style="min-width: 590px;">
+		          <t t-set="access_action" t-value="record.with_context(force_website=True).get_access_action()"/>
+            	  <t t-set="is_online" t-value="access_action and access_action['type'] == 'ir.actions.act_url'"/>
+		          <t t-set="access_url" t-value="is_online and record._get_share_url(redirect=True, signup_partner=True) or ''"/>
+		          <t t-set="access_name">
+		                View <t t-esc="record.name"/>
+		          </t>
+		          <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
+		                <tr>
+		                    <td valign="middle">
+		                     <span style="font-size:20px; color:white; font-weight: bold;">
+                           		 Reorder <t t-esc="record.name"/>
+                      		 </span>
+		                    </td>
+		                    <td valign="middle" align="right">
+		                        <img t-att-src="'/logo.png?company=%s' % company.id" style="padding: 0px; margin: 0px; height: 48px;" t-att-alt="'%s' % company.name"/>
+		                    </td>
+		                </tr>
+		          </table>
+    		  </td>
+ 		  </tr>
+ 		  <!-- CONTENT -->
+ 		  <tr>
+		        <td style="padding: 0">
+		            <t t-raw="message.body"/>
+		             <div t-if="is_online and not record._context.get('proforma')" style="margin: 32px 0px 32px 0px; text-align: center;">
+		             <a t-att-href="access_url" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+		             	<t t-esc="access_name"/>
+                	</a>
+            </div>
+		            
+		        </td>
+		  </tr>
+		  <!-- FOOTER -->
+		  <tr>
+	        <td style="padding: 0; font-size:11px;">
+	            <hr width="100%" style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 32px 0px 4px 0px;"/>
+	            <b t-esc="company.name"/><br/>
+	            <div style="color: #999999">
+	                <t t-esc="company.phone"/>
+	                <t t-if="company.email"> |
+	                    <a t-att-href="'mailto:%s' % company.email" style="text-decoration:none; color: #999999;"><t t-esc="company.email"/></a>
+	                </t>
+	                <t t-if="company.website"> |
+	                    <a t-att-href="'%s' % company.website" style="text-decoration:none; color: #999999;">
+	                        <t t-esc="company.website"/>
+	                    </a>
+	                </t>
+	            </div>
+	        </td>
+    	 </tr>  
+        </tbody>
+        </table>
+        </td>
+		</tr>
+        <!-- POWERED BY -->
+		<tr><td align="center" style="min-width: 590px; padding: 8px; font-size:11px;">
+		    Powered by <a target="_blank" href="https://www.odoo.com?utm_source=db&amp;utm_medium=email" style="color: #875A7B;">Odoo</a>
+		</td></tr>
+		</table>
+        </template>          
+    </data>
+</odoo>

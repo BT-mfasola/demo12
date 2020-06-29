@@ -1,0 +1,552 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* dev_export_excel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-31 09:09+0000\n"
+"PO-Revision-Date: 2017-05-31 09:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_name
+msgid "Action Name"
+msgstr "اسم الإجراء"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_active
+msgid "Active"
+msgstr "نشط"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Add Action in Model"
+msgstr "إضافة إجراء في النموذج"
+
+#. module: dev_export_excel
+#: model:res.groups,comment:dev_export_excel.allow_dynamic_export_excel_group
+#: model:res.groups,name:dev_export_excel.allow_dynamic_export_excel_group
+msgid "Allow Dynamic Export Excel"
+msgstr "السماح بتصدير تصدير ديناميكي"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_model_id
+msgid "Applies to"
+msgstr "تنطبق على"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_wizard_form
+msgid "Are you sure want to export in excel ?"
+msgstr "هل تريد بالتأكيد تصدير في التفوق؟"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_lable_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_lable_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_bg_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_bg_color
+msgid "Background Color"
+msgstr "لون الخلفية"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_bold
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_bold
+msgid "Bold"
+msgstr "بالخط العريض"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_border
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_border
+msgid "Border"
+msgstr "الحدود"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_border_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_border_color
+msgid "Border Color"
+msgstr "لون الحدود"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_wizard_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: dev_export_excel
+#: selection:dev.export,company_align:0
+#: selection:dev.export,group_align:0
+#: selection:dev.export,header_align:0
+#: selection:dev.export,label_align:0
+#: selection:dev.export,line_label_align:0
+#: selection:dev.export,line_val_align:0
+#: selection:dev.export,val_align:0
+msgid "Center"
+msgstr "مركز"
+
+#. module: dev_export_excel
+#: selection:dev.export,company_align:0
+#: selection:dev.export,group_align:0
+#: selection:dev.export,header_align:0
+#: selection:dev.export,label_align:0
+#: selection:dev.export,line_label_align:0
+#: selection:dev.export,line_val_align:0
+#: selection:dev.export,val_align:0
+msgid "Center Across"
+msgstr "مركز عبر"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Company Style"
+msgstr "أسلوب الشركة"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_create_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_create_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_create_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_create_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_create_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_create_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_create_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_create_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_display_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_display_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_display_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_display_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: dev_export_excel
+#: model:ir.ui.menu,name:dev_export_excel.menu_dynamic_export_excel
+msgid "Dynamic Export Excel"
+msgstr "تصدير تصدير ديناميكي"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_name
+msgid "Excel Sheet Name"
+msgstr "اسم ورقة إكسيل"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Excel Style"
+msgstr "نمط إكسيل"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Excel Style Title"
+msgstr "عنوان نمط إكسيل"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_file_excel
+msgid "Excel file"
+msgstr "ملف اكسل"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_export_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_export_id
+msgid "Export"
+msgstr "تصدير"
+
+#. module: dev_export_excel
+#: code:addons/dev_export_excel/models/dev_export.py:244
+#, python-format
+msgid "Export %s"
+msgstr "تصدير %s"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_excel_file
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_file_name
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_wizard_form
+msgid "Export Excel"
+msgstr "تصدير إكسيل"
+
+#. module: dev_export_excel
+#: model:ir.actions.act_window,name:dev_export_excel.action_dev_export_file_excel
+msgid "Export Excel "
+msgstr "تصدير إكسيل "
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_wizard_form
+msgid "Export Excel Report"
+msgstr "تصدير تقرير إكسيل"
+
+#. module: dev_export_excel
+#: model:ir.actions.act_window,name:dev_export_excel.action_dev_export
+#: model:ir.ui.menu,name:dev_export_excel.menu_dev_export
+msgid "Export Model"
+msgstr "تصدير نموذج"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_export_fields_ids
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Fields"
+msgstr "الحقول"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_is_group_by
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_filter
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_by_field_id
+msgid "Group By Field"
+msgstr "المجموعة حسب الحقل"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Group Style"
+msgstr "نمط المجموعة"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Header Style"
+msgstr "رأس النمط"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Header Table Value Style"
+msgstr "رأس جدول القيمة نمط"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Header Table label Style"
+msgstr "رأس نمط جدول التسمية"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_text
+msgid "Header Text"
+msgstr "نص الرأس"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_italic
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_italic
+msgid "Italic"
+msgstr "مائل"
+
+#. module: dev_export_excel
+#: selection:dev.export,company_align:0
+#: selection:dev.export,group_align:0
+#: selection:dev.export,header_align:0
+#: selection:dev.export,label_align:0
+#: selection:dev.export,line_label_align:0
+#: selection:dev.export,line_val_align:0
+#: selection:dev.export,val_align:0
+msgid "Justify"
+msgstr "برر"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_label
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_label
+msgid "Label"
+msgstr "تسمية"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export___last_update
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields___last_update
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel___last_update
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard___last_update
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field___last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_write_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_write_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_write_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_write_uid
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_write_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_file_excel_write_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_wizard_write_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_write_date
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: dev_export_excel
+#: selection:dev.export,company_align:0
+#: selection:dev.export,group_align:0
+#: selection:dev.export,header_align:0
+#: selection:dev.export,label_align:0
+#: selection:dev.export,line_label_align:0
+#: selection:dev.export,line_val_align:0
+#: selection:dev.export,val_align:0
+msgid "Left"
+msgstr "اليسار"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Line Table Value  Style"
+msgstr "خط جدول القيمة النمط"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Line Table label Style"
+msgstr "سطر الجدول نمط التسمية"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_filter
+msgid "Model"
+msgstr "النموذج"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: dev_export_excel
+#: code:addons/dev_export_excel/models/dev_export.py:182
+#: code:addons/dev_export_excel/models/dev_export.py:195
+#: code:addons/dev_export_excel/models/dev_export.py:211
+#, python-format
+msgid "Please Add %s field in fields Line !!!"
+msgstr "الرجاء إضافة ٪s حقل في الحقول خط !!!"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_print_company_detail
+msgid "Print Company Detail"
+msgstr "طباعة تفاصيل الشركة"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_is_sum
+msgid "Print Sum"
+msgstr "طباعة سوم"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_split_sheet
+msgid "Record per sheet"
+msgstr "سجل لكل ورقة"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_ref_field
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_ref_field
+msgid "Relation Field"
+msgstr "حقل العلاقة"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Relational Field"
+msgstr "حقل علائقي"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_relational_model_id
+msgid "Relational Field Model"
+msgstr "نموذج الحقل العلائقي"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_relational_fields_ids
+msgid "Relational Fields"
+msgstr "الحقول العلائقية"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Remove Action from Model"
+msgstr "إزالة الإجراء من النموذج"
+
+#. module: dev_export_excel
+#: selection:dev.export,company_align:0
+#: selection:dev.export,group_align:0
+#: selection:dev.export,header_align:0
+#: selection:dev.export,label_align:0
+#: selection:dev.export,line_label_align:0
+#: selection:dev.export,line_val_align:0
+#: selection:dev.export,val_align:0
+msgid "Right"
+msgstr "حق"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_filter
+msgid "Search Export Excel"
+msgstr "البحث تصدير إكسل"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_sequence
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_sequence
+msgid "Sequence"
+msgstr "المسلسل"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_ref_ir_value
+msgid "Sidebar Button"
+msgstr "زر الشريط الجانبي"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_ref_ir_act_window
+msgid "Sidebar action"
+msgstr "تأثير الشريط الجانبي"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,help:dev_export_excel.field_dev_export_ref_ir_act_window
+msgid "Sidebar action to make this template available on records of the related document model"
+msgstr "تأثير الشريط الجانبي الذي يجعل القالب متاحاً في السجلات المتعلقه بنموذج المستند"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,help:dev_export_excel.field_dev_export_ref_ir_value
+msgid "Sidebar button to open the sidebar action"
+msgstr "زر الشريط الجانبي لفتح تأثير الشريط الجانبي"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_relational_field
+msgid "Sub Model"
+msgstr "النموذج الفرعي"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_template
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_form
+msgid "Template"
+msgstr "قالب"
+
+#. module: dev_export_excel
+#: selection:dev.export,template:0
+msgid "Template-1"
+msgstr "قالب-1"
+
+#. module: dev_export_excel
+#: selection:dev.export,template:0
+msgid "Template-2"
+msgstr "قالب-2"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_align
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_align
+msgid "Text Align"
+msgstr "نص محاذاة"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_font_color
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_font_color
+msgid "Text Color"
+msgstr "لون الخط"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_font_size
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_font_size
+msgid "Text Size"
+msgstr "حجم الخط"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_font_name
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_font_name
+msgid "Text Style"
+msgstr "نمط النص"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_company_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_group_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_header_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_label_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_label_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_line_val_set_underline
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_val_set_underline
+msgid "Underline"
+msgstr "أكد"
+
+#. module: dev_export_excel
+#: model:ir.model,name:dev_export_excel.model_dev_export
+msgid "dev.export"
+msgstr "dev.export"
+
+#. module: dev_export_excel
+#: model:ir.model,name:dev_export_excel.model_dev_export_fields
+msgid "dev.export.fields"
+msgstr "dev.export.fields"
+
+#. module: dev_export_excel
+#: model:ir.model,name:dev_export_excel.model_dev_export_file_excel
+msgid "dev.export.file.excel"
+msgstr "dev.export.file.excel"
+
+#. module: dev_export_excel
+#: model:ir.model,name:dev_export_excel.model_dev_export_wizard
+msgid "dev.export.wizard"
+msgstr "dev.export.wizard"
+
+#. module: dev_export_excel
+#: model:ir.model,name:dev_export_excel.model_dev_relational_field
+msgid "dev.relational.field"
+msgstr "dev.relational.field"
+
+#. module: dev_export_excel
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_export_fields_model_id
+#: model:ir.model.fields,field_description:dev_export_excel.field_dev_relational_field_model_id
+msgid "model"
+msgstr "نموذج"
+
+#. module: dev_export_excel
+#: model:ir.ui.view,arch_db:dev_export_excel.view_dev_export_wizard_form
+msgid "or"
+msgstr "أو"
+

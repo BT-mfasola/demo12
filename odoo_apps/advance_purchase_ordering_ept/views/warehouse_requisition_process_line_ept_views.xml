@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record id="warehouse_requisition_process_line_ept_form_view" model="ir.ui.view">
+            <field name="name">warehouse.requisition.process.line.ept.view.form</field>
+            <field name="model">warehouse.requisition.process.line.ept</field>
+          	<field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Warehouse Requisition Process Details">
+                	<sheet>
+                		<group>
+                			<group>
+			                	<field name="warehouse_id" required="True"/>
+			                	<field name="warehouse_requisition_process_id" required="True"/>
+			                	<field name="product_id" required="True"/>
+			                	<field  name="warehouse_configuraiton_line_id" required="True"/>
+			                	<field  name="warehouse_requisition_summary_id"/>
+			                	<field  name="state" required="True"/>
+                			</group>
+                			<group>
+			                	<field name="sharing_percent"/>
+			                	<field  name="qty_available_for_sale"/>
+			                	<field  name="requisition_qty"/>
+			                	<field  name="forecasted_stock"/>
+			                	<field  name="adjusted_requisition_qty"/>
+			                	<field  name="can_be_update"/>
+	             			</group>
+	             		</group>
+                 	</sheet>
+                 </form>
+            </field>
+        </record>
+     
+     <record id="action_warehouse_requisition_process_line" model="ir.actions.act_window">
+     	<field name="name">Warehouse Requisition Process Line</field>
+     	<field name="res_model">warehouse.requisition.process.line.ept</field>
+     	<field name="view_type">form</field>
+     	<field name="view_id" ref="warehouse_requisition_process_line_ept_form_view"/>
+    </record>
+</odoo>

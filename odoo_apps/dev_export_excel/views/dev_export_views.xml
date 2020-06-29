@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!-- Dev Excel Form View-->
+        <record id="view_dev_export_form" model="ir.ui.view">
+	        <field name="name">view.dev.export.form</field>
+	        <field name="model">dev.export</field>
+	        <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="export_excel" string="Add Action in Model" class="btn-primary" type="object" attrs="{'invisible':[('ref_ir_act_window','!=',False)]}"/>
+                        <button name="unlink_excel" string="Remove Action from Model" class="btn-primary" type="object" attrs="{'invisible':[('ref_ir_act_window','=',False)]}"/>
+                    </header>
+                    <sheet>
+                        <label for="name" class="oe_edit_only"/>
+                        <h2><field name="name" nolabel="1"/></h2>
+                        <group>
+                            <group>
+                                <field name="model_id"/>
+                                <field name="print_company_detail"/>
+                                <field name="is_sum"/>
+                                <field name="print_counter_column"/>
+                            </group>
+                            <group>
+                                <field name="ref_ir_act_window" invisible="1"/>
+                                <field name="relational_field" domain="[('model_id','=',model_id),('ttype','=','one2many')]"/>
+                                <field name="relational_model_id" invisible="1"/>
+                                <field name="split_sheet" attrs="{'invisible':[('relational_field','=',False)]}"/>
+                                <field name="is_group_by" attrs="{'invisible':[('relational_field','!=',False)]}"/>
+                                <field name="group_by_field_id" attrs="{'invisible':[('is_group_by','=',False)],'required':[('is_group_by','=',True)]}" domain="[('model_id','=',model_id),('ttype','in',('char','many2one','selection'))]"/>
+                                <field name="sub_group_by_field_id" attrs="{'invisible':[('is_group_by','=',False)]}" domain="[('model_id','=',model_id),('ttype','in',('char','many2one','selection'))]"/>
+                                <field name="third_group_by_field_id" attrs="{'invisible':[('is_group_by','=',False)]}" domain="[('model_id','=',model_id),('ttype','in',('char','many2one','selection'))]"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string='Fields' name="fields">
+                                <field name="export_fields_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="name" domain="[('model_id','=',parent.model_id),('ttype','not in',('many2many','one2many','reference','serialized','binary'))]"/>
+                                        <field name="model_id" invisible="1"/>
+                                        <field name="ref_field" domain="[('model_id','=',model_id),('ttype','not in',('many2many','many2one','one2many','reference','serialized','binary'))]" attrs="{'invisible':[('model_id','=',False)],'required':[('model_id','!=',False)]}" />
+                                        <field name="label"/>
+                                    </tree>
+                                </field>
+                                <separator string="Relational Field" attrs="{'invisible':[('relational_field','=',False)]}" />
+                                <field name="relational_fields_ids" nolabel="1" attrs="{'invisible':[('relational_field','=',False)]}" >
+                                    <tree editable="bottom">
+                                        <field name="sequence" widget="handle"/>
+                                        <field name="name" domain="[('model_id','=',parent.relational_model_id),('ttype','not in',('many2many','one2many','reference','serialized','binary'))]"/>
+                                        <field name="model_id" invisible="1"/>
+                                        <field name="ref_field" domain="[('model_id','=',model_id),('ttype','not in',('many2many','many2one','one2many','reference','serialized','binary'))]" attrs="{'invisible':[('model_id','=',False)],'required':[('model_id','!=',False)]}" />
+                                        <field name="label"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Template" name="template">
+                                <group>
+                                    <group>
+                                        <field name="template" required="1"/>
+                                    </group>
+                                    <group>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Excel Style">
+                                <group string="Excel Style Title" name="excel_Style_title">
+                                    <group>
+                                        <field name="file_name"/>
+                                    </group>
+                                    <group>
+                                        <field name="header_text"/>
+                                    </group>
+                                </group>
+                                
+                                <group string="Total style" name="total_color" attrs="{'invisible':[('is_sum','=',False)]}">
+                                    <group>
+                                        <field name="total_color"/>
+                                    </group>
+                                    <group>
+                                        <field name="total_font_color"/>
+                                    </group>
+                                    
+                                </group>
+                                
+                                <group string="Company Style" name="company_style_formating" attrs="{'invisible':[('print_company_detail','=',False)]}">
+                                    <group> 
+                                        <field name="company_set_font_name"/>
+                                        <field name="company_set_font_size"/>
+                                        <field name="company_set_font_color"/>
+                                        <field name="company_set_bg_color"/>
+                                        <field name="company_set_bold"/>
+                                    </group>
+                                    <group>
+                                        
+                                        <field name="company_set_italic"/>
+                                        <field name="company_set_underline"/>
+                                        <field name="company_align"/>
+                                        <field name="company_set_border"/>
+                                        <field name="company_set_border_color"/>
+                                    </group>
+                                </group>
+                                
+                                
+                                <group string="Header Style" name="header_style_formating">
+                                    <group> 
+                                        <field name="header_set_font_name"/>
+                                        <field name="header_set_font_size"/>
+                                        <field name="header_set_font_color"/>
+                                        <field name="header_set_bg_color"/>
+                                        <field name="header_set_bold"/>
+                                    </group>
+                                    <group>
+                                        
+                                        <field name="header_set_italic"/>
+                                        <field name="header_set_underline"/>
+                                        <field name="header_align"/>
+                                        <field name="header_set_border"/>
+                                        <field name="header_set_border_color"/>
+                                    </group>
+                                </group>
+                                
+                                <group string="Group Style" name="group_style_formating" attrs="{'invisible':[('is_group_by','=',False)]}">
+                                    <group> 
+                                        <field name="group_set_font_name"/>
+                                        <field name="group_set_font_size"/>
+                                        <field name="group_set_font_color"/>
+                                        <field name="group_set_bg_color"/>
+                                        <field name="sub_group_set_bg_color"/>
+                                        <field name="third_group_set_bg_color"/>
+                                        <field name="group_set_bold"/>
+                                    </group>
+                                    <group>
+                                        
+                                        <field name="group_set_italic"/>
+                                        <field name="group_set_underline"/>
+                                        <field name="group_align"/>
+                                        <field name="group_set_border"/>
+                                        <field name="group_set_border_color"/>
+                                    </group>
+                                </group>
+                            
+                                <group string="Header Table label Style" name="header_label_formating">
+                                    <group> 
+                                        <field name="label_set_font_name"/>
+                                        <field name="label_set_font_size"/>
+                                        <field name="label_set_font_color"/>
+                                        <field name="lable_set_bg_color"/>
+                                        <field name="label_set_bold"/>
+                                    </group>
+                                    <group>
+                                        
+                                        <field name="label_set_italic"/>
+                                        <field name="label_set_underline"/>
+                                        <field name="label_align"/>
+                                        <field name="label_set_border"/>
+                                        <field name="label_set_border_color"/>
+                                    </group>
+                                </group>
+                                
+                                <group string="Header Table Value Style" name="header_val_formating">
+                                    <group> 
+                                        <field name="val_set_font_name"/>
+                                        <field name="val_set_font_size"/>
+                                        <field name="val_set_font_color"/>
+                                        <field name="val_set_bg_color"/>
+                                        <field name="val_set_bold"/>
+                                    </group>
+                                    <group>
+                                        
+                                        <field name="val_set_italic"/>
+                                        <field name="val_set_underline"/>
+                                        <field name="val_align"/>
+                                        <field name="val_set_border"/>
+                                        <field name="val_set_border_color"/>
+                                    </group>
+                                </group>
+                                
+                                <group string="Line Table label Style" name="line_label_formating" attrs="{'invisible':[('relational_field','=',False)]}">
+                                    <group> 
+                                        <field name="line_label_set_font_name"/>
+                                        <field name="line_label_set_font_size"/>
+                                        <field name="line_label_set_font_color"/>
+                                        <field name="line_lable_set_bg_color"/>
+                                        <field name="line_label_set_bold"/>
+                                    </group>
+                                    <group>
+                                        
+                                        <field name="line_label_set_italic"/>
+                                        <field name="line_label_set_underline"/>
+                                        <field name="line_label_align"/>
+                                        <field name="line_label_set_border"/>
+                                        <field name="line_label_set_border_color"/>
+                                        <field name="line_label_text_wrap"/>
+                                        <field name="line_label_set_height"/>
+                                        <field name="line_label_valign"/>
+                                    </group>
+                                </group>
+                                
+                                <group string="Line Table Value  Style" name="line_val_formating" attrs="{'invisible':[('relational_field','=',False)]}">
+                                    <group> 
+                                        <field name="line_val_set_font_name"/>
+                                        <field name="line_val_set_font_size"/>
+                                        <field name="line_val_set_font_color"/>
+                                        <field name="line_val_set_bg_color"/>
+                                        <field name="line_val_set_bold"/>
+                                    </group>
+                                    <group>
+                                        
+                                        <field name="line_val_set_italic"/>
+                                        <field name="line_val_set_underline"/>
+                                        <field name="line_val_align"/>
+                                        <field name="line_val_set_border"/>
+                                        <field name="line_val_set_border_color"/>
+                                    </group>
+                                </group>
+                                
+                            </page> 
+                            
+                        </notebook>
+                        
+                    </sheet>
+                </form>
+                   	        
+	        </field>
+        </record>
+        <!-- Dev Excel Tree View-->
+        <record id="view_dev_export_tree" model="ir.ui.view">
+	        <field name="name">view.dev.export.tree</field>
+	        <field name="model">dev.export</field>
+	        <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />    
+                    <field name="file_name"/>
+                    <field name="model_id"/>
+                </tree>
+                   	        
+	        </field>
+        </record>
+        
+        <record id="view_dev_export_filter" model="ir.ui.view">
+            <field name="name">dev.export.list.select</field>
+            <field name="model">dev.export</field>
+            <field name="arch" type="xml">
+                <search string="Search Export Excel">
+                    <field name="name" filter_domain="[('name','ilike',self)]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter name="model_id" string="Model" domain="[]" context="{'group_by':'model_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+        
+        
+        <!-- Dev Export Excel Action-->
+        <record id="action_dev_export" model="ir.actions.act_window">
+		<field name="name">Export Model</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">dev.export</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+        
+    <!-- Dev Export Excel Menu-->
+    <menuitem name="Dynamic Export Excel" id="menu_dynamic_export_excel" parent="base.menu_administration" sequence="8" groups="dev_export_excel.allow_dynamic_export_excel_group"/>
+    <menuitem name="Export Model" 
+            id="menu_dev_export" groups="dev_export_excel.allow_dynamic_export_excel_group"
+            parent="dev_export_excel.menu_dynamic_export_excel" sequence="1" action="action_dev_export"/>
+
+    </data>
+</openerp>

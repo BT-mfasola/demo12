@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<openerp>
+    <data noupdate="1">
+
+        <record forcecreate="True" id="ir_cron_import_orders_scheduler_action" model="ir.cron">
+            <field name="name">Magento Import Orders</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'stock.warehouse'" name="model"/>
+            <field eval="'run_import_orders_scheduler'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+  
+        <record forcecreate="True" id="ir_cron_export_stock_scheduler_action" model="ir.cron">
+            <field name="name">Magento Import Stock Levels</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'magento.instance'" name="model"/>
+            <field eval="'run_export_stock_levels_scheduler'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_import_stock_scheduler_action" model="ir.cron">
+            <field name="name">Magento Export Stock Levels</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'magento.instance'" name="model"/>
+            <field eval="'run_import_stock_levels_scheduler'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_export_shipping_scheduler_action" model="ir.cron">
+            <field name="name">Magento Export Shipping</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'stock.warehouse'" name="model"/>
+            <field eval="'run_export_shipping_scheduler'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_import_image_shipping_scheduler_action" model="ir.cron">
+            <field name="name">Import Customer</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'magento.instance'" name="model"/>
+            <field eval="'run_import_customer_scheduler'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_import_images_shipping_scheduler_action" model="ir.cron">
+            <field name="name">Import Images</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'magento.instance'" name="model"/>
+            <field eval="'run_import_images_scheduler'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+        <record forcecreate="True" id="ir_cron_import_product_shipping_scheduler_action" model="ir.cron">
+            <field name="name">Import Products</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'magento.instance'" name="model"/>
+            <field eval="'run_import_products_scheduler'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+
+        <record forcecreate="True" id="ir_cron_import_images_attribute_scheduler_action" model="ir.cron">
+            <field name="name">Import Attribute Set</field>
+            <field eval="False" name="active"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'magento.instance'" name="model"/>
+            <field eval="'run_import_att_set_scheduler'" name="function"/>
+            <field eval="'()'" name="args"/>
+        </record>
+
+
+
+
+
+        <record id="payment_method" model="payment.method">
+            <field name="name">bankpayment,m2epropayment,paypal,sagepayserver,sagepayserver_moto,paypal_express,purchaseorder</field>
+            <field name="val_order">True</field>
+            <field name="pay_invoice">True</field>
+            <field name="order_policy">prepaid</field>
+	</record>
+
+        <record id="payment_method_prepaid" model="payment.method">
+            <field name="name">cashondelivery</field>
+            <field name="val_order">True</field>
+            <field name="pay_invoice">False</field>
+            <field name="order_policy">manual</field>
+	</record>
+
+        <record id="payment_method_pending" model="payment.method">
+            <field name="name">cashondelivery,directdeposit</field>
+            <field name="val_order">True</field>
+            <field name="pay_invoice">False</field>
+            <field name="order_policy">prepaid</field>
+	</record>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+        <record id="view_sale_order_confirm_inherit_form" model="ir.ui.view">
+            <field name="name">sale.order.confirm.inherit.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+            
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                     <field name="exceeded_amount" readonly='True'  attrs="{'invisible': [('state', '!=','credit_limit')]}"/>
+                </xpath>
+                
+                <xpath expr="//button[@name='action_confirm']" position="replace">
+                     <button name="action_sale_ok" states="sent" string="Confirm Sale" class="btn-primary" type="object" context="{'show_sale': True}"/>
+                </xpath>
+                
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                     <attribute name="name">action_sale_ok</attribute>
+                </xpath>
+                
+                <xpath expr="//button[@name='action_sale_ok']" position="after">
+                     <button name="print_quotation" string="Print" type="object" states="credit_limit"/>
+                     <button name="action_confirm" states="credit_limit" string="Confirm Sale" class="btn-primary" type="object" context="{'show_sale': True}" groups="sales_team.group_sale_manager"/>
+                     <button name="action_cancel" states="credit_limit" type="object" string="Cancel"/>
+                </xpath>
+                
+                
+            </field>
+        </record>
+        
+        <record id="sale.action_quotations" model="ir.actions.act_window">
+            <field name="name">Quotations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sale.view_quotation_tree"/>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+            <field name="context">{'hide_sale': True}</field>
+            <field name="domain">[('state', 'in', ('draft', 'sent', 'cancel'))]</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Create a Quotation, the first step of a new sale.
+              </p><p>
+                Your next actions should flow efficiently: confirm the Quotation
+                to a Sale Order, then create the Invoice and collect the Payment.
+              </p><p>
+                Note that once a Quotation becomes a Sale Order, it will be moved
+                from the Quotations list to the Sales Order list.
+              </p>
+            </field>
+        </record>
+        
+        <record id="sale.action_orders" model="ir.actions.act_window">
+            <field name="name">Sales Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+            <field name="context">{'show_sale': True}</field>
+            <field name="domain">[('state', 'not in', ('draft', 'sent', 'cancel','credit_limit'))]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a Quotation, the first step of a new sale.
+                </p><p>
+                    Your next actions should flow efficiently: confirm the Quotation to a Sale Order, then create the Invoice and collect the Payment.
+                </p><p>
+                    Note that once a Quotation becomes a Sale Order, it will be moved from the Quotations list to the Sales Order list.
+                </p>
+            </field>
+        </record>
+        
+        
+        <record id="action_credit_limit" model="ir.actions.act_window">
+            <field name="name">Credit Limit Sale Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sale.view_quotation_tree"/>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="context">{}</field>
+            <field name="domain">[('state','=','credit_limit')]</field>
+        </record>
+
+        <menuitem id="menu_credit_limit_sale_order"
+                action="action_credit_limit" parent="sale.sale_order_menu"
+                sequence="12"/>
+        
+        
+</odoo>

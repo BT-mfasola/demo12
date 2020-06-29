@@ -1,0 +1,66 @@
+<openerp>
+    <data>
+        <record id="view_import_prestashop_connector_wizard_form_view" model="ir.ui.view">
+            <field name="name">view.import.prestashop.connector.wizard.form.view</field>
+            <field name="model">magento.connector.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import">
+                    <group>
+                        <group>
+                            <field name="shop_ids" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>                	
+                        </group>
+                        <group>
+                            <field name="instance_ids" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                        </group>
+                    </group>
+                    <group name="import" string="Import" invisible="context.get('from_export', False) or context.get('from_update', False)">
+                        <group>
+                            <field name="import_orders" cols="2"/>
+                            <field name="import_order_date" cols="2"/>
+                        </group>
+                        <group>
+                            <field name="import_attribute_sets"/>
+                            <field name="import_product_attributes"/>
+                            <field name="import_categories"/>
+                            <field name="import_products"/>
+                            <field name="import_inventory"/>
+                            <field name="import_product_images"/>
+                        </group>
+                    </group>
+                    <group name="update" string="Update" invisible="context.get('from_import', False) or context.get('from_export', False)">
+                        <group>
+                            <field name="update_order_status" col="2"/>
+                        </group>
+                        <group>
+                            <field name="update_product"/>
+                        </group>
+                    </group>
+                    <group name="export" string="Export" invisible="context.get('from_import', False) or context.get('from_update', False)">
+                        <group/>
+                        <group>
+                            <field name="export_products"/>
+                            <field name="export_images"/>
+                            <field name="export_inventory"/>
+                            <field name="export_link_products"/>
+                        </group>
+                    </group>
+                   <footer>
+                        <button string="Run" name="import_magento" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_magento_dashboard" model="ir.actions.act_window">
+            <field name="name">Magento Operation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">magento.connector.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_import_prestashop_connector_wizard_form_view"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

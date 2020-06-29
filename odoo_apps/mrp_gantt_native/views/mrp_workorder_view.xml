@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mrp_production_workorder_form_view_inherit_gantt" model="ir.ui.view">
+        <field name="name">mrp.production.workcenter.form.view.inherit.gantt</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page[3]/group/group" position="replace">
+                <group>
+                    <label for="date_planned_start" string="Planned Date"/>
+                    <div class="o_row">
+                        from
+                        <field name="date_planned_start"/>
+                        <!--<div attrs="{'invisible': [('date_planned_finished', '=', False)]}">-->
+                        to
+                        <field name="date_planned_finished"/>
+                        <!--</div>-->
+                    </div>
+                    <label for="date_start" string="Effective Date"/>
+                    <div class="o_row">
+                        <field name="date_start" readonly="1"/>
+                        <div attrs="{'invisible': [('date_finished', '=', False)]}">
+                            to
+                            <field name="date_finished" readonly="1"/>
+                        </div>
+                    </div>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+
+
+    <record id="view_mrp_workorder_ganttaps" model="ir.ui.view">
+    <field name="name">mrp.workorder.ganttaps</field>
+    <field name="model">mrp.workorder</field>
+    <field name="type">ganttaps</field>
+    <field eval="2" name="priority"/>
+
+    <field name="arch" type="xml">
+        <ganttaps
+
+                default_group_by = "workcenter_id"
+                main_group_id_name = "workcenter_id"
+
+                name = "name"
+                date_start="date_planned_start"
+                date_stop="date_planned_finished"
+
+
+                date_deadline="date_start"
+                date_done="date_finished"
+
+
+                duration="duration_gantt"
+
+                state="state"
+                state_status="done"
+
+
+                sorting_seq="sorting_seq"
+                sorting_level="sorting_level"
+
+                project_id="workcenter_id"
+
+                is_milestone="is_milestone"
+                on_gantt="on_gantt"
+
+                progress="duration_percent"
+
+                no_group_sort_mode=""
+
+                ghost_id="workorder_id"
+                ghost_model="mrp.workcenter.productivity"
+                ghost_name="display_name"
+                ghost_date_start="date_start"
+                ghost_date_end="date_end"
+                ghost_durations="duration"
+
+                default_order="date_planned_start desc"
+
+
+
+
+
+             >
+
+        </ganttaps>
+
+    </field>
+
+</record>
+
+
+    <record id="mrp.action_mrp_workorder_production" model="ir.actions.act_window">
+        <field name="view_mode">ganttaps,gantt,tree,form,calendar,pivot,graph</field>
+        <field name="view_id" ref="mrp_gantt_native.view_mrp_workorder_ganttaps"/>
+    </record>
+
+    <record id="mrp.action_mrp_workorder_workcenter" model="ir.actions.act_window">
+        <field name="view_mode">ganttaps,gantt,tree,form,calendar,pivot,graph</field>
+        <field name="view_id" ref="mrp_gantt_native.view_mrp_workorder_ganttaps"/>
+    </record>
+
+    <record id="mrp.action_mrp_workorder_production_specific" model="ir.actions.act_window">
+        <field name="view_mode">tree,form,gantt,calendar,pivot,graph,ganttaps</field>
+    </record>
+
+    <record id="mrp.mrp_workorder_todo" model="ir.actions.act_window">
+        <field name="view_mode">kanban,tree,form,calendar,pivot,graph,ganttaps</field>
+    </record>
+
+    <record id="mrp.action_mrp_routing_time" model="ir.actions.act_window">
+        <field name="view_mode">graph,pivot,tree,form,gantt,calendar,ganttaps</field>
+    </record>
+
+
+    <record id="mrp.mrp_workorder_delta_report" model="ir.actions.act_window">
+        <field name="view_mode">graph,pivot,tree,form,gantt,calendar,ganttaps</field>
+    </record>
+
+    <record id="mrp.action_mrp_routing_time" model="ir.actions.act_window">
+        <field name="view_mode">graph,pivot,tree,form,gantt,calendar,ganttaps</field>
+    </record>
+
+
+
+</odoo>

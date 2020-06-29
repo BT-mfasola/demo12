@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <act_window id="act_force_logout_wizard" name="Force Logout" res_model="force.logout.wizard" target="new" view_mode="form"/>
+
+	<record model="ir.ui.view" id="user_login_form_view">
+        <field name="name">user_login</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='login']" position="after">
+                <group>
+                    <field name="is_login" string="Is login" invisible="1"/>
+                </group>
+            </xpath>
+            <xpath expr="//form/header" position="inside">
+                <button groups="restrict_user_from_login.group_force_logout"
+                    icon="fa-align-justify"
+                    name="%(act_force_logout_wizard)d"
+                    string="Logout From All Devices" type="action"
+                    target="new" />
+            </xpath>
+        </field>
+    </record>
+    <record id="force_logout_wizard_view" model="ir.ui.view">
+        <field name="name">Force Logout</field>
+        <field name="model">force.logout.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Force Logout">
+                <p class="oe_grey">
+                    Are you sure u want to Logout all Sessions of this User? 
+                    For, Logout Click on <b>'Force Logout'</b>
+                </p>
+                <footer>
+                    <button string="Force Logout" name="force_logout_button" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

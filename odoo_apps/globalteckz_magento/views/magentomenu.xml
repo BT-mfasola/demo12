@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+            <!--Magento Connector Menu's-->
+            
+            <menuitem id="menu_magento_main" name="Magento" sequence="0"/>
+<!--            groups="stock.group_stock_manager,base.group_sale_manager,group_magento_shop" -->
+
+            <!--Magento Order's Menu-->
+
+            <menuitem id="menu_magerp_mag_orders" name="Magento Orders" parent="menu_magento_main" groups="globalteckz_magento.group_magento_shop"/>
+            <menuitem id="menu_sale_order" name="All orders" parent="menu_magerp_mag_orders" action="action_orders_magento" groups="globalteckz_magento.group_magento_shop"/>
+            <menuitem id="menu_sale_order_pending" name="Pending Orders" parent="menu_magerp_mag_orders" action="action_orders_magento_pending" groups="globalteckz_magento.group_magento_shop"/>
+            <menuitem id="menu_sale_order_completed" name="Done Orders" parent="menu_magerp_mag_orders" action="action_orders_magento_completed" groups="globalteckz_magento.group_magento_shop"/>
+
+            <!--Magento Product Menu-->
+
+            <menuitem id="menu_magerp_mag_products" name="Magento Product" parent="menu_magento_main" groups="globalteckz_magento.group_magento_shop"/>
+            <menuitem id="menu_product_magento" name="All Products"  parent="menu_magerp_mag_products" action="magento_products" groups="globalteckz_magento.group_magento_shop"/>
+            <menuitem id="menu_product_magento_not_exported" name="Products Not Exported" parent="menu_magerp_mag_products" action="magento_products_not_exported" groups="globalteckz_magento.group_magento_shop"/>
+            <menuitem id="menu_products_magento_exported" name="Products Exported" parent="menu_magerp_mag_products" action="magento_products_exported" groups="globalteckz_magento.group_magento_shop"/>
+
+            <!--Magento Attribute Menu's-->
+
+            <menuitem id="menu_magerp_attnsets" name="Attributes and Sets" parent="menu_magento_main" groups="globalteckz_magento.group_magento_shop"/>
+<!--            groups="stock.group_stock_manager,base.group_sale_manager,group_magento_shop"-->
+            <menuitem id="menu_magerp_attnsets_sets" name="Attribute Sets" parent="menu_magerp_attnsets" action="act_magerp_product_attribute_set" groups="globalteckz_magento.group_magento_shop"/>
+            <menuitem id="menu_magerp_attributes" name="Attributes" parent="menu_magerp_attnsets" action="act_magerp_product_attributes" groups="globalteckz_magento.group_magento_shop"/>
+<!--            <menuitem id="menu_magerp_attribute_group" name="Attributes Group" parent="menu_magerp_attnsets" action="act_magerp_product_attribute_groups_form" />-->
+            <menuitem id="menu_magerp_attribute_option" name="Attributes Options" parent="menu_magerp_attnsets" action="act_magerp_product_attribute_options_form" groups="globalteckz_magento.group_magento_shop"/>
+            <menuitem id="magento_product_category_menu" action="product.product_category_action_form" name="Product category" parent="menu_magerp_attnsets" groups="globalteckz_magento.group_magento_shop"/>
+
+            <!--Magento Other's Menu-->
+
+            <menuitem id="menu_configuration" name="Configuration" parent="menu_magento_main" groups="globalteckz_magento.group_magento_shop"/>
+<!--             groups="stock.group_stock_manager,base.group_sale_manager,group_magento_shop"-->
+            <menuitem id="menu_magerp_workflow" name="Workflow Settings" parent="menu_configuration" action="action_import_order_workflow" groups="globalteckz_magento.group_magento_shop"/>
+            <menuitem id="magento_dashboard_menu" action="act_magentoerp_shop_dashboard" name="Dashboard" parent="menu_magento_main" groups="globalteckz_magento.group_magento_shop"/>
+            
+            <!-- Magento Configuration Menu -->
+            <menuitem id="menu_magento_orders_log" name="Magento Log"
+			parent="menu_configuration" action='action_magento_log_view'
+			sequence="2" groups="globalteckz_magento.group_magento_shop"/>
+            <menuitem id="menu_magerp_magento" name="Magento" parent="menu_configuration"/>
+            <menuitem id="menu_magerp_core_instances" name="Magento Instances" parent="menu_magerp_magento" action="action_magento_instance111" groups="globalteckz_magento.group_magento_shop"/>
+<!--            groups="stock.group_stock_manager,base.group_sale_manager,group_magento_shop"-->
+
+             <menuitem id="menu_magerp_core_initial_synch" name="Initial Synchronization" parent="menu_magerp_magento" action="action_initial_sync" groups="globalteckz_magento.group_magento_shop"/>
+<!--             groups="stock.group_stock_manager,base.group_sale_manager,group_magento_shop" -->
+   
+            <menuitem id="menu_magerp_core_shops" name="Magento Shops" parent="menu_magerp_magento" action="act_magentoerp_shop_form"  groups="globalteckz_magento.group_magento_shop"/>
+<!--            groups="globalteckz_magento.group_multi_store_sync" -->
+</odoo>

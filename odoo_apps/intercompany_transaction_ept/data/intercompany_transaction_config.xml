@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="intercompany_transaction_config_record" model="inter.company.transfer.config.ept">
+			<field name='sequence_id' eval="ref('ir_sequence_intercompany_transaction')"></field>
+		</record>
+	</data>
+</odoo>

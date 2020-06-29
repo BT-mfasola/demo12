@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_project_task_response_from_add">
+            <field name="name">project.task.response.from.view</field>
+            <field name="model">project.risk.response</field>
+            <field name="arch" type="xml">
+                <form string="Risk Response">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
+                        </group>
+                    <notebook>
+                        <page name="description_page" string="Internal Notes">
+                            <field name="notes"/>
+                            <div class="oe_clear"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_project_task_response_tree_add">
+            <field name="name">project.task.response.tree.view</field>
+            <field name="model">project.risk.response</field>
+            <field name="arch" type="xml">
+                 <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                 </tree>
+            </field>
+        </record>
+         <record id="action_project_response_from_add" model="ir.actions.act_window">
+            <field name="name">Risk Responses</field>
+            <field name="res_model">project.risk.response</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+         <menuitem id="menu_task_response_submenu_add" name="Risk Response" parent="project_risk_management.menu_risk_configration" action="action_project_response_from_add"/>
+    </data>
+</odoo>

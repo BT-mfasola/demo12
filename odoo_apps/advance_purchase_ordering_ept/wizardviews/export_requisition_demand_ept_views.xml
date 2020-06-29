@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="export_requisition_demand_form_view" model="ir.ui.view">
+	        <field name="name">export.requisition.demand.view.form</field>
+	        <field name="model">export.requistion.demand.ept</field>
+	        <field name="arch" type="xml">
+	        	<form string="Get Demand Details">
+					<group>
+				         <group>
+				         		<field name="product_id" required="True" widget="selection" />
+				       			<field name="requisition_process_id" invisible="1"/>
+				       			<field name="warehouse_requisition_process_id" invisible="1"/>
+				             	<field name="past_sales_start_date"  invisible="1" attrs="{'required':[('is_use_forecast_sale_for_requisition','=',False)],'required':[('is_use_forecast_sale_for_requisition','=',False)],'invisible' : [('is_use_forecast_sale_for_requisition','=',True)],'invisible' : [('is_use_forecast_sale_for_requisition','=',True)]}"/>
+				             	<field name="requisition_date" required="True" invisible="1"/>
+				         </group>  
+				         <group>  
+							<field name="warehouse_id" required="True" widget="selection"/>
+			             	<field name="estimate_delivery_time" required="True" invisible="1"/>
+			             	<field name="backup_days" required="True" invisible="1"/>
+			             	<field name="is_use_forecast_sale_for_requisition" invisible="1"/>
+			             </group>	
+	       			</group>
+	                <footer>
+	                    <button string='Get Demand Details' name="action_calculate_demand" type="object" class="oe_highlight"/>
+	                    <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>
+				</form>	        
+	        </field>
+        </record>
+ </odoo>

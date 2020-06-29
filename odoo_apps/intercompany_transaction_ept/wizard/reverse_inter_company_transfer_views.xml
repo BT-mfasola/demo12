@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="reverse_inter_company_transfer_form_view" model="ir.ui.view">
+			<field name="name">reverse.inter.company.transfer.view.form</field>
+			<field name="model">reverse.inter.company.transfer.ept</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Reverse ICT">
+					<group>
+						<group>
+							<field name='intercompany_transfer_id' readonly="True" />
+						</group>
+					</group>
+					<notebook>
+						<page string="Reverse Transfer Product List">
+							<group>
+								<field name="reverse_intercompanyline_ids" nolabel="1">
+									<tree editable="top" create="0" >
+										<field name='product_id' readonly="True" />
+										<field name='quantity' />
+										<field name="qty_delivered" invisible="True"/> 
+										<field name='price' />
+									</tree>
+								</field>
+							</group>
+						</page>
+					</notebook>
+					<footer>
+						<button string="Create Reverse ICT" name="action_create_reverse_process"
+							type="object" class="btn-primary" />
+						<button string="Cancel" class="btn-default" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+	</data>
+</odoo>

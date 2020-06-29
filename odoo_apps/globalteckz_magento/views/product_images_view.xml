@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="view_product_image_form" model="ir.ui.view">
+			<field name="name">product.images.form</field>
+			<field name="model">product.images</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="product_images_olbs.view_product_image_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="inside" >
+                        <page string="Magento Information">
+							<group col="6" colspan="4">
+		                        <field name="image"/>
+		                        <field name="small_image"/>
+		                        <field name="thumbnail"/>
+		                        <field name="is_exported"/>
+		                        <field name="image_name_mag"/>
+							</group>
+						</page>
+                </xpath>
+			</field>
+		</record>
+	
+		<record id="view_product_image_tree" model="ir.ui.view">
+			<field name="name">product.images.tree</field>
+			<field name="model">product.images</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Product Images">
+					<field name="file_db_store" select="1"/>
+					<field name="name" select="2" />
+					<field name="comments" select="3" />
+				</tree>
+			</field>
+		</record>
+		
+<!--		<record id="view_product_olbs_image_form_inherit" model="ir.ui.view">
+			<field name="name">product.product.images</field>
+			<field name="model">product.product</field>
+			 <field name="type">form</field> 
+			<field name="inherit_id" ref="product_images_olbs.view_product_form_img_inh" />
+			<field name="arch" type="xml">
+				<xpath expr="//form/sheet/notebook/page[7]" position="replace">
+					<page string="product Images">
+						<field name="image_ids" mode="kanban">
+							<kanban>
+								<field name="color"/>
+	                            <field name="name"/>
+	                            <field name="link"/>
+	                            <field name="file_db_store"/>
+	                            <field name="url"/>
+	                            <field name="image"/>
+	                            <field name="small_image"/>
+	                            <field name="is_exported"/>
+	                            <field name="image_name_mag"/>
+	                            <field name="thumbnail"/>
+	                            <templates>
+	                                <t t-name="kanban-box">
+	                                    <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+	                                    <div t-att-class="color + (record.name.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
+	                                    	<div class="oe_kanban_details">
+	                                            <a t-if="!read_only_mode" type="delete" class="fa fa-times pull-right"/>
+                                                <div class="o_kanban_image">
+                                                    <img t-if="record.file_db_store.raw_value" t-att-src="'data:file_db_store/png;base64,'+record.file_db_store.raw_value"/>
+                                                </div>
+	                                             <div t-if="record.file_db_store.raw_value">Fax: <field name="file_db_store"/></div> 
+	                                            <field name="name"/>
+	                                        </div>
+	                                    </div>
+	                                </t>
+	                            </templates>
+	                        </kanban>
+	                    </field>
+                    </page>
+               </xpath>              
+           </field>
+      </record>-->
+	</data>
+</openerp>
+
+
+<!-- context="{'default_parent_id': active_id, 
+									'default_street': street, 
+									'default_street2': street2, 
+									'default_city': city, 
+									'default_state_id': state_id, 
+									'default_zip': zip, 
+									'default_country_id': country_id, 
+									'default_supplier': supplier, 
+									'default_customer': customer, 
+									'default_lang': lang,}"
+						 /> -->

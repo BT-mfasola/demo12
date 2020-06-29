@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_merge_picking" model="ir.ui.view">
+            <field name="name">Merge Picking</field>
+            <field name="model">merge.picking</field>
+            <field name="arch" type="xml">
+                <form string="Merge Picking">
+                    <p class="oe_grey">
+                        Picking will be created with all the selected picking.
+                    </p>
+                    <group>
+                        <field name="pickings_ids" nolabel="1" colspan="4" width="550" height="300" >
+                        <tree>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="origin"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                    </group>
+                    <footer>
+                        <button name="merge_pickings" string="Merge Pickings" type="object"
+                            class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_merge_picking" model="ir.actions.act_window">
+            <field name="name">Merge Picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">merge.picking</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="groups_id" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+			<field name="binding_model_id" ref="stock.model_stock_picking" />
+        </record>
+
+    </data>
+</openerp>

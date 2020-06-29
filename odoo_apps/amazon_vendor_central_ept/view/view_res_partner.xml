@@ -1,0 +1,20 @@
+<odoo>
+	<data>
+		<record id="view_res_partner_amazon_edi_section" model="ir.ui.view">
+			<field name="name">res.partner.form.view.with_amazon_edi_detail
+			</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//field[@name='category_id']" position="after">
+						<label for='edi_gln_no' />
+						<div>
+							<field name="edi_gln_no" class="oe_inline" />
+						</div>
+					</xpath>
+				</data>
+			</field>
+		</record>
+	</data>
+</odoo>

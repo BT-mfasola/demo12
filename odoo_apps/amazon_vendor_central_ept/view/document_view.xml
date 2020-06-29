@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+<data noupdate="1">
+    
+    <record model="document.directory" id="amazon_edi_receiption_orders_folder">
+        <field name="name">amazon_edi_order</field>
+        <field name="parent_id" ref="document.dir_root"/>
+        <field name="storage_id" ref="document_ept.physical_storage"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="ressource_id">0</field> 
+    </record>
+
+    <record model="document.directory" id="amazon_edi_orders_response_folder">
+        <field name="name">amazon_edi_order_response</field>
+        <field name="parent_id" ref="document.dir_root"/>
+        <field name="storage_id" ref="document_ept.physical_storage"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="ressource_id">0</field> 
+    </record>
+
+</data>
+</odoo>

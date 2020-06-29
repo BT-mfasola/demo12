@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="sequence_requisition_process" model="ir.sequence">
+            <field name="name">Reorder Process Sequence</field>
+            <field name="code">requisition.process.ept</field>
+            <field name="prefix">RP</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+		<record id="sequence_warehouse_requisition_process_ept" model="ir.sequence">
+			<field name="name">Procurement Process Sequence</field>
+			<field name="code">warehouse.requisition.process.ept</field>
+			<field name="prefix">PP</field>
+			<field name="padding">4</field>
+			<field name="company_id" eval="False"/>
+		</record>
+
+    </data>
+</odoo>

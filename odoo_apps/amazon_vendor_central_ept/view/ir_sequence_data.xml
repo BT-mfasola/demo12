@@ -1,0 +1,88 @@
+<odoo>
+	<data>
+		<record id="sequence_avc_file_process_job" model="ir.sequence">
+			<field name="name">Sequence AVC File Process Job</field>
+			<field name="code">avc.file.transaction.log</field>
+			<field name="prefix">FPJ</field>
+			<field name="padding">4</field>
+			<field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+		</record>
+		
+		<record id="seq_edi_amazon_ship_message_trailer_no" model="ir.sequence">
+			<field name="name">Amazon EDI Ship message Trailer</field>
+			<field name="code">amazon.edi.ship.message.trailer</field>
+			<field name="prefix">ME</field>
+			<field name="padding">8</field>
+			<field name="company_id" eval="False" />
+		</record>
+		
+		<record id="seq_edi_amazon_bol_number" model='ir.sequence'>
+			<field name="name">BOL number sequence</field>
+			<field name="code">amazon.edi.bol.number</field>
+			<field name="prefix">BOL</field>
+			<field name="padding">8</field>
+			<field name="company_id" eval="False"/>
+		</record>
+		
+		<record id="sequence_amazon_edi_message_info" model="ir.sequence">
+			<field name="name">sequence.amazon.edi.message.info</field>
+			<field name="code">amazon.edi.message.info</field>
+			<field name="prefix">MI</field>
+			<field name="padding">4</field>
+			<field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+		</record>
+		
+		<!-- Purchase order response sequence -->
+		<record id="seq_edi_amazon_purchase_order_response" model="ir.sequence">
+			<field name="name">Amazon EDI Purchase Order Response</field>
+			<field name="code">amazon.edi.purchase.order.response</field>
+			<field name="prefix">POACK</field>
+			<field name="padding">8</field>
+			<field name="company_id" eval="False" />
+		</record>
+		
+		<!-- Order dispach advice sequence -->
+		<record id="seq_edi_amazon_order_dispatch_advice" model="ir.sequence">
+			<field name="name">Amazon EDI Order Dispatch Advice</field>
+			<field name="code">amazon.edi.order.dispatch.advice</field>
+			<field name="prefix">ODA</field>
+			<field name="padding">8</field>
+			<field name="company_id" eval="False" />
+		</record>
+		
+		<!-- Routing sequence -->
+		<record id="seq_edi_amazon_routing_transaction" model="ir.sequence">
+			<field name="name">Amazon EDI Routing Transaction</field>
+			<field name="code">amazon.edi.routing.transaction</field>
+			<field name="prefix">RT</field>
+			<field name="padding">8</field>
+			<field name="company_id" eval="False" />
+		</record>
+		
+		<!-- Inovice sequence -->
+		<record id="seq_edi_amazon_invoice_message_number" model="ir.sequence">
+			<field name="name">Amazon EDI Invoice Message</field>
+			<field name="code">amazon.edi.invoice.message.number</field>
+			<field name="prefix">INV</field>
+			<field name="padding">5</field>
+			<field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+		</record>
+		
+		<!-- Inventory sequence -->
+		<record id="seq_edi_amazon_inventory_number" model="ir.sequence">
+			<field name="name">Amazon EDI Inventory</field>
+			<field name="code">amazon.edi.inventory.number</field>
+			<field name="prefix">STK</field>
+			<field name="padding">5</field>
+			<field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="False" name="company_id"/>
+		</record>
+	</data>
+</odoo>

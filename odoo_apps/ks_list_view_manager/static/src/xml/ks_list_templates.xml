@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="ks_list_view_fields_selection_list">
+        <div class="ks_columns_list">
+            <t t-foreach="widget.ks_field_list" t-as="ks_field">
+                <div class="ks_list_field_header" t-att-data-ks_field_order="ks_field.ks_field_order"
+                     t-att-data-field_name="ks_field.field_name" t-att-data-ks_columns_name="ks_field.ks_columns_name">
+                    <div class="ks_list_field_container w-100">
+                        <span class="ks_list_field_info d-flex">
+                            <div class="ks_switch" t-att-data-field-id="ks_field.field_name">
+                                <t t-if="ks_field.ksShowField">
+                                    <input type="checkbox" class="ks_hide_show_checkbox" checked="1"
+                                           t-att-data-field_name="ks_field.field_name" title="Hide/Show Columns">
+                                    </input>
+                                </t>
+                                <t t-else="">
+                                    <input type="checkbox" class="ks_hide_show_checkbox"
+                                           t-att-data-field_name="ks_field.field_name" title="Hide/Show Columns">
+                                    </input>
+                                </t>
+                                <span class="ks_slider ks_round"/>
+                            </div>
+                            <span class="ks_editable" t-att-data-field-id="ks_field.field_name" type="text">
+                                <t t-esc="ks_field.ks_columns_name"/>
+                            </span>
+                            <input class="ks_editable d-none" t-att-data-field-id="ks_field.field_name" type="text"/>
+
+                            <img class="ks_order" src="/ks_list_view_manager/static/src/img/move-arrows.svg"
+                                 title="Reorder Columns"/>
+                        </span>
+                    </div>
+                </div>
+            </t>
+        </div>
+        <div class="ks-text-center">
+            <button type="button" class="btn btn-primary cancel_button d-none" title="Cancel Changes">
+                Cancel
+            </button>
+        </div>
+    </t>
+</templates>

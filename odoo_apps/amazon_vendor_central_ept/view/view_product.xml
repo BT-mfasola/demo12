@@ -1,0 +1,67 @@
+<odoo>
+    <data>
+        <record id="view_product_template_amazon_edi_section" model="ir.ui.view">
+            <field name="name">product.product.form.view.with_amazon_edi_detail
+            </field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']" position="inside">
+                    <field name="is_amazon_product"/>
+                    <label for="is_amazon_product"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_form_product_product_amazon_edi_section" model="ir.ui.view">
+            <field name="name">product.product.form.view.with_amazon_edi_detail</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="before">
+                    <field name="amazon_sku"/>
+                </xpath>
+                
+            </field>
+        </record>
+        <record id="view_form_product_product_amazon_edi_section_vendor" model="ir.ui.view">
+            <field name="name">product.product.form.view.with_amazon_edi_detail</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lst_price']" position="after">
+                    <field name="vendor_id"/>
+                </xpath>                  
+            </field>
+        </record>
+        
+	<act_window id="action_view_form_product_product_amazon_edi_section_vendor_action"
+		name="Sent Inventory And Cost Report" src_model='product.product'
+		res_model='stock.process.wizard' view_type="form" view_mode="form"
+		key2="client_action_multi" target="new" />
+		
+        
+        <!--  
+        <record id="view_product_template_amazon_edi_sections" model="ir.ui.view">
+            <field name="name">product.template.product.form.view.with_amazon_edi_detail
+            </field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']" position="inside">
+                    <field name="is_amazon_product" invisible='1'/>
+                </xpath>
+            </field>
+        </record>-->
+        <!--  
+        <record id="view_form_product_product_amazon_edi_section" model="ir.ui.view">
+            <field name="name">product.product.form.view.with_amazon_edi_detail</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='barcode']" position="before">
+                    <field name="suggested_price" attrs="{'invisible':[('is_amazon_product','!=',True)]}"/>
+                </xpath>
+            </field>
+        </record>-->
+    </data>
+</odoo>

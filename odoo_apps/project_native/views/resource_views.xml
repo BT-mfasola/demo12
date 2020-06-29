@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+          <record id="resource_resource_form_aps" model="ir.ui.view">
+                    <field name="name">>resource.resource.form.aps</field>
+                    <field name="model">resource.resource</field>
+                    <field name="inherit_id" ref="resource.resource_resource_form"/>
+                    <field name="arch" type="xml">
+
+                        <field name="user_id" position="replace">
+                            <field name="user_id" attrs="{'readonly':[('resource_type','=','material')]}"/>
+                        </field>
+
+                    </field>
+          </record>
+
+    </data>
+</odoo>

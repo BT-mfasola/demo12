@@ -1,0 +1,590 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* purchase_subscription
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-31 14:58+0000\n"
+"PO-Revision-Date: 2017-05-31 14:58+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Account Manager"
+msgstr "Gestionnaire de Compte"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_actual_quantity
+msgid "Actual quantity"
+msgstr "Quantité actuelle"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_analytic_account_id
+msgid "Analytic account"
+msgstr "Compte Analytique"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_buy_quantity
+msgid "Buy quantity"
+msgstr "Quantité à acheter"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_form
+msgid "Cancel Subscription"
+msgstr "Annuler l'Abonnement"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+#: selection:purchase.subscription,state:0
+msgid "Cancelled"
+msgstr "Annulé"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Cancelled contracts"
+msgstr "Contrats annulés"
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,help:purchase_subscription.purchase_subscription_action
+msgid "Click to create a new contract."
+msgstr "Cliquez pour creer un nouveau contrat."
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,help:purchase_subscription.purchase_subscription_action_pending
+msgid "Click to define a new contract."
+msgstr "Cliquez pour definir un contrat."
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,help:purchase_subscription.product_action_subscription_po
+msgid "Click to define a new product."
+msgstr "Cliquez pour définir un nouvel article."
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_close_reason_id
+msgid "Close Reason"
+msgstr "Raison de fermeture"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_form
+msgid "Close Subscription"
+msgstr "Fermer l'abonnement"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+#: selection:purchase.subscription,state:0
+msgid "Closed"
+msgstr "Fermé"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Closed contracts"
+msgstr "Contrats fermés"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_company_id
+msgid "Company"
+msgstr "Société"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_name
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Contract"
+msgstr "Contrat"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Contracts in progress"
+msgstr "Contrats en cours"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Contracts not assigned"
+msgstr "Contrats non assignés"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Contracts that are not assigned to an account manager."
+msgstr "Les contrats ne sont pas assignés à un gestionnaire de compte."
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_create_uid
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_create_uid
+#: model:ir.model.fields,field_description:purchase_subscription.field_sale_subscription_close_reason_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_create_date
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_create_date
+#: model:ir.model.fields,field_description:purchase_subscription.field_sale_subscription_close_reason_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_currency_id
+msgid "Currency"
+msgstr "Devise"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_recurring_next_date
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_form
+msgid "Date of Next Invoice"
+msgstr "Date de la prochaine facture"
+
+#. module: purchase_subscription
+#: selection:purchase.subscription,recurring_rule_type:0
+msgid "Day(s)"
+msgstr "Jour(s)"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_description
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_name
+msgid "Description"
+msgstr "Description"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_discount
+msgid "Discount (%)"
+msgstr "Remise (%)"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_display_name
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_display_name
+#: model:ir.model.fields,field_description:purchase_subscription.field_sale_subscription_close_reason_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_date
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "End Month"
+msgstr "Mois de fin"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "End date is in the next month"
+msgstr "La date de fin est dans le prochain mois"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "End date passed"
+msgstr "Date de fin passée"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Expired"
+msgstr "Expiré"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Expiring soon"
+msgstr "Expire bientôt"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Group By"
+msgstr "Grouper par"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_id
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_id
+#: model:ir.model.fields,field_description:purchase_subscription.field_sale_subscription_close_reason_id
+msgid "ID"
+msgstr "ID"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,help:purchase_subscription.field_purchase_subscription_date
+msgid "If set in advance, the subscription will be set to pending 1 month before the date and will be closed on the date set in this field."
+msgstr "Si défini à l'avance, l'abonnement va être mis en attente 1 mois avant la date et sera fermé à la date définie dans ce champ."
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+#: selection:purchase.subscription,state:0
+msgid "In Progress"
+msgstr "En cours"
+
+#. module: purchase_subscription
+#: model:ir.model,name:purchase_subscription.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_recurring_invoice_line_ids
+msgid "Invoice Lines"
+msgstr "Lignes de factures"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,help:purchase_subscription.field_purchase_subscription_recurring_rule_type
+msgid "Invoice automatically repeat at specified interval"
+msgstr "Les factures se répètent automatiquement à un interval spécifié"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_invoice_count
+msgid "Invoice count"
+msgstr "Nombre de facture"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_invoice_ids
+msgid "Invoice ids"
+msgstr "Ids de Facture"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_form
+msgid "Invoices"
+msgstr "Factures"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription___last_update
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line___last_update
+#: model:ir.model.fields,field_description:purchase_subscription.field_sale_subscription_close_reason___last_update
+msgid "Last Modified on"
+msgstr "Dernière Modification le"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_write_uid
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_write_uid
+#: model:ir.model.fields,field_description:purchase_subscription.field_sale_subscription_close_reason_write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_write_date
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_write_date
+#: model:ir.model.fields,field_description:purchase_subscription.field_sale_subscription_close_reason_write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,help:purchase_subscription.field_purchase_subscription_line_quantity
+msgid "Max between actual and buy quantities; this quantity will be invoiced"
+msgstr "Maximum entre quantité actuelle et quantité d'achat; cette quantité sera facturée"
+
+#. module: purchase_subscription
+#: selection:purchase.subscription,recurring_rule_type:0
+msgid "Month(s)"
+msgstr "Mois"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_sale_subscription_close_reason_name
+msgid "Name"
+msgstr "Nom"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+#: selection:purchase.subscription,state:0
+msgid "New"
+msgstr "Nouveau"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "New Contracts"
+msgstr "Nouveaux Contrats"
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,help:purchase_subscription.purchase_subscription_action_pending
+msgid "Odoo automatically sets contracts to be renewed in a pending\n"
+"            state. After the negociation, the salesman should close or renew\n"
+"            pending contracts."
+msgstr "Odoo défini automatiquement les contrats à renouveler, en attente.\n"
+"            Après la négociation, le vendeur devrait fermer ou renouveler\n"
+"            les contrats en attente."
+
+#. module: purchase_subscription
+#: model:ir.model,name:purchase_subscription.model_res_partner
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_payment_term_id
+msgid "Payment term"
+msgstr "Conditions de paiement"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Pending contracts"
+msgstr "Contrats en attente"
+
+#. module: purchase_subscription
+#: code:addons/purchase_subscription/models/purchase_subscription.py:194
+#, python-format
+msgid "Please define a purchase journal for the company \"%s\"."
+msgstr "Veuillez définir un journal d'achat pour l'entreprise \"%s\"."
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_product_id
+msgid "Product"
+msgstr "Article"
+
+#. module: purchase_subscription
+#: model:ir.model,name:purchase_subscription.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_partner_id
+msgid "Provider"
+msgstr "Fournisseur"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_form
+msgid "Purchase Rep"
+msgstr "Responsable d'achat"
+
+#. module: purchase_subscription
+#: model:ir.model,name:purchase_subscription.model_purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_product_product_recurring_invoice_po
+#: model:ir.model.fields,field_description:purchase_subscription.field_product_template_recurring_invoice_po
+msgid "Purchase Subscription"
+msgstr "Abonnement d'achat"
+
+#. module: purchase_subscription
+#: model:ir.model,name:purchase_subscription.model_purchase_subscription_line
+msgid "Purchase Subscription Line"
+msgstr "Ligne d'abonnement d'achat"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.product_template_search_view_inherit_purchase_subscription
+msgid "Purchase Subscription products"
+msgstr "Articles d'abonnement d'achat"
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,name:purchase_subscription.purchase_subscription_action
+#: model:ir.model.fields,field_description:purchase_subscription.field_res_partner_po_subscription_count
+#: model:ir.model.fields,field_description:purchase_subscription.field_res_users_po_subscription_count
+#: model:ir.ui.menu,name:purchase_subscription.menu_purchase_subscription_action
+#: model:ir.ui.menu,name:purchase_subscription.menu_purchase_subscription_root
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_graph
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_list
+msgid "Purchase Subscriptions"
+msgstr "Abonnements d'achat"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_account_invoice_subscription_id
+msgid "Purchase subscription"
+msgstr "Achat d'abonnement"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_user_id
+msgid "Purchases Rep"
+msgstr "Responsable des achats"
+
+#. module: purchase_subscription
+#: model:ir.ui.menu,name:purchase_subscription.menu_purchase_subscription
+msgid "Purchases Subscriptions"
+msgstr "Abonnements d'achat"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_quantity
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,help:purchase_subscription.field_purchase_subscription_line_actual_quantity
+msgid "Quantity actually used"
+msgstr "Quantité actuellement utilisé"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,help:purchase_subscription.field_purchase_subscription_line_buy_quantity
+msgid "Quantity buy"
+msgstr "Quantité acheté"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_recurring_rule_type
+msgid "Recurrency"
+msgstr "Récurrence"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_recurring_total
+msgid "Recurring Price"
+msgstr "Prix récurrent"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_code
+msgid "Reference"
+msgstr "Référence"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_recurring_interval
+msgid "Repeat Every"
+msgstr "Répété tous les"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,help:purchase_subscription.field_purchase_subscription_recurring_interval
+msgid "Repeat every (Days/Week/Month/Year)"
+msgstr "Répété tous les (Jour/Semaine/Mois/An)"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_sale_subscription_close_reason_sequence
+msgid "Sequence"
+msgstr "Séquence"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_date_start
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Start Month"
+msgstr "Mois de départ"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_form
+msgid "Start Subscription"
+msgstr "Démarrer l'Abonnement"
+
+#. module: purchase_subscription
+#: model:mail.message.subtype,name:purchase_subscription.subtype_state_change_purchase
+msgid "State Change"
+msgstr "Changement d'état"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_state
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+msgid "Status"
+msgstr "Statut"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_price_subtotal
+msgid "Sub Total"
+msgstr "Sous-Total"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_p_subscription_id
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_form
+msgid "Subscription"
+msgstr "Abonnement"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_form
+msgid "Subscription Lines"
+msgstr "Lignes d'Abonnement"
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,name:purchase_subscription.product_action_subscription_po
+#: model:ir.ui.menu,name:purchase_subscription.menu_purchase_subscription_product
+msgid "Subscription Products"
+msgstr "Articles d'Abonnement"
+
+#. module: purchase_subscription
+#: model:mail.message.subtype,description:purchase_subscription.subtype_state_change_purchase
+msgid "Subscription state has changed"
+msgstr "L'état de l'abonnement a changé"
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,name:purchase_subscription.purchase_subscription_action_res_partner
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_pivot
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+#: model:ir.ui.view,arch_db:purchase_subscription.res_partner_view_inherit_purchase_subscription
+msgid "Subscriptions"
+msgstr "Abonnements"
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,name:purchase_subscription.purchase_subscription_action_pending
+#: model:ir.ui.menu,name:purchase_subscription.menu_purchase_subscription_pending
+msgid "Subscriptions to Renew"
+msgstr "Abonnement à renouveler"
+
+#. module: purchase_subscription
+#: model:ir.model,name:purchase_subscription.model_sale_subscription_close_reason
+msgid "Susbcription Close Reason"
+msgstr "Raison de fermeture de l'Abonnement"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,help:purchase_subscription.field_purchase_subscription_recurring_next_date
+msgid "The next invoice will be created on this date then the period will be extended."
+msgstr "La prochaine facture sera créée à cette date, ensuite la période sera étendue."
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,help:purchase_subscription.product_action_subscription_po
+msgid "The product form contains information to simplify the sale\n"
+"            process: price, notes in the quotation, accounting data,\n"
+"            procurement methods, etc."
+msgstr "La fiche de l'article contient des informations pour simplifier la vente\n"
+"            processus: prix, remarques dans le devis, données de comptabilité,\n"
+"            méthodes de procuration, etc."
+
+#. module: purchase_subscription
+#: code:addons/purchase_subscription/models/purchase_subscription.py:216
+#, python-format
+msgid "This invoice covers the following period: %s - %s"
+msgstr "Cette facture couvre la période suivante: %s - %s"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_form
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_search
+#: selection:purchase.subscription,state:0
+msgid "To Renew"
+msgstr "À renouveler"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_price_unit
+msgid "Unit Price"
+msgstr "Prix unitaire"
+
+#. module: purchase_subscription
+#: model:ir.model.fields,field_description:purchase_subscription.field_purchase_subscription_line_uom_id
+msgid "Unit of Measure"
+msgstr "Unité de mesure"
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,help:purchase_subscription.purchase_subscription_action
+msgid "Use contracts to follow tasks, issues, timesheets or invoicing based on\n"
+"                work done, expenses and/or purchase orders. Odoo will automatically manage\n"
+"                the alerts for the renewal of the contracts to the right salesperson."
+msgstr "Utilisez les contrats pour suivre les tâches, les problèmes, les feuilles de temps\n"
+"                ou la facturation en fonction du travail effectué, des dépenses et/ou des \n"
+"                commandes d'achat. \n"
+"		 Odoo gérera automatiquement les alertes pour le renouvellement des contrats \n"
+"		 au bon vendeur."
+
+#. module: purchase_subscription
+#: selection:purchase.subscription,recurring_rule_type:0
+msgid "Week(s)"
+msgstr "Semaine(s)"
+
+#. module: purchase_subscription
+#: selection:purchase.subscription,recurring_rule_type:0
+msgid "Year(s)"
+msgstr "Année(s)"
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,help:purchase_subscription.product_action_subscription_po
+msgid "You must define a product for everything you sell, whether it's\n"
+"            a physical product, a consumable or a service you offer to\n"
+"            customers."
+msgstr "Vous devez définir un article pour tout ce que vous vendez, que se soit\n"
+"            un article physique, un consommable ou un service que vous offrez\n"
+"            au client."
+
+#. module: purchase_subscription
+#: code:addons/purchase_subscription/models/purchase_subscription.py:185
+#, python-format
+msgid "You must first select a Customer for Subscription %s!"
+msgstr "Vous devez d'abord selectionner un Client pour l'Abonnement %s!"
+
+#. module: purchase_subscription
+#: model:ir.actions.act_window,help:purchase_subscription.purchase_subscription_action_pending
+msgid "You will find here the contracts to be renewed because the\n"
+"            end date is passed or the working effort is higher than the\n"
+"            maximum authorized one."
+msgstr "Vous allez trouver ici les contrats à renouveler dont la\n"
+"            date de fin est passée ou l'effort de travail est est supérieur\n"
+"	     au maximum autorisé"
+
+#. module: purchase_subscription
+#: model:ir.ui.view,arch_db:purchase_subscription.purchase_subscription_view_form
+msgid "⇒ Generate Invoice"
+msgstr "⇒ Générer une facture"

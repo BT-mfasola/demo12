@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		
+		
+        <record id="action_amazon_vendor_instance_tree_view" model="ir.actions.act_window">
+            <field name="name">Amazon Vendor</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">amazon.vendor.instance</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+      <!--   <record id="action_amazon_seller_location_code_tree_view" model="ir.actions.act_window">
+            <field name="name">Amazon Seller Location Code</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">amazon.seller.location.code</field>
+            <field name="view_mode">tree,form</field>
+        </record> -->
+        <record id="action_amazon_vendor_instance_kanban" model="ir.actions.act_window">
+            <field name="name">Amazon Vendor Instance</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">amazon.vendor.instance</field>
+            <field name="view_mode">kanban</field>
+            <field name="help" type="html">
+                <div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <p>
+                        <b>There is no any Amazon Vendor Central Instance Created yet</b>
+                    </p>
+                    <p>
+                        You can't create Amazon Vendor Central Instance directly from here. In order to
+                        create Instance for Amazon Vendor Central,
+                        You need to go to menu
+                    </p>
+                    <p>
+                        <b>Amazon Vendor Central >> Configuration >> Setting >> Create more Vendor</b>
+                    </p>
+                </div>
+            </field>
+        </record>
+
+   
+        <record id="action_avc_file_process_job" model="ir.actions.act_window">
+            <field name="name">AVC File Process Job</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">avc.file.transaction.log</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+  
+        <!-- Pending PO action for amazon vendor center, show only amazon Sale Order which in 'sale' and 'done' state-->
+        <record id="action_amazon_edi_sale_quotations" model="ir.actions.act_window">
+            <field name="name">Quotations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sale.view_quotation_tree"/>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+            <field name="context">{'hide_sale': True}</field>
+            <field name="domain">[('state', 'in', ['draft', 'sent','cancel']),('is_amazon_edi_order','=',True)]
+            </field>
+        </record>
+        <!-- Confirm PO action for amazon vendor center, show only amazon Sale Order which in 'sale' and 'done' state-->
+        <record id="action_amazon_edi_sale_orders" model="ir.actions.act_window">
+            <field name="name">Sales Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="context">{}</field>
+            <field name="domain">[('state', 'not in', ['draft', 'sent','cancel']),('is_amazon_edi_order','=',True)]
+            </field>
+        </record>
+        
+        
+        <record id="action_package_label_template" model="ir.actions.act_window">
+            <field name="name">Package Label</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.picking.batch</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="stock_picking_batch.stock_picking_batch_filter"/>
+            <field name="domain">[('vendor_id','!=',False)]
+            </field>
+        </record>
+        
+        <record id="action_package_label_templates" model="ir.actions.act_window">
+            <field name="name">Package Labelss</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="domain">[('vendor_id','!=',False)]
+            </field>
+        </record>
+        
+	    <record id="action_picking_to_batch" model="ir.actions.act_window">
+			<field name="name">Package Label Printing</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">picking.to.batch.wizard</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+       
+        <!-- Invoice action for amazon vendor center, show only amazon invoices-->
+        <record id="action_amazon_edi_customer_invoices" model="ir.actions.act_window">
+            <field name="name">Customer Invoices</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','in',('out_invoice',
+                'out_refund')),('is_amazon_edi_invoice','=',True)]
+            </field>
+            <field name="context">{'type':'out_invoice', 'journal_type': 'sale'}
+            </field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+        </record>
+        <record id="action_amazon_edi_invoice_tree1_view1" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="account.invoice_tree"/>
+            <field name="act_window_id" ref="action_amazon_edi_customer_invoices"/>
+        </record>
+
+        <record id="action_amazon_edi_invoice_tree1_view2" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.invoice_form"/>
+            <field name="act_window_id" ref="action_amazon_edi_customer_invoices"/>
+        </record>
+
+        <record id="action_amazon_edi_product_template" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_type">form</field>
+            <field name="context">{'default_is_amazon_product':True}</field>
+            <field name="domain">[('is_amazon_product','=',True)]
+            </field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to define a new product.
+                </p>
+            </field>
+        </record>
+        <!--  
+        <record id="action_amazon_edi_product_product" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('is_amazon_product','=',True)]
+            </field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to define a new product.
+                </p>
+            </field>
+        </record>
+        -->
+
+        <!--Report action for QWeb of sale order barcode label-->
+        <record id="action_generate_barcode_label" model="ir.actions.report">
+            <field name="name">Generate Barcode Label</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">amazon_vendor_central_ept.report_edi_barcode</field>
+<!--             <field name="paperformat_name">amazon_vendor_central_ept.paperformate_edi_sale_order</field>
+            <field name="file_name">amazon_vendor_central_ept.report_edi_barcode</field>
+ -->        </record>
+
+        <!-- Stock Picking method, show only amazon edi picking -->
+        <record id="action_amazon_edi_picking_tree_all" model="ir.actions.act_window">
+            <field name="name">Stock Operations</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar</field>
+            <field name="domain">[('sale_id.is_amazon_edi_order','=',True)]</field>
+            <field name="context">{
+                'contact_display': 'partner_address',
+                }
+            </field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click here to create a new transfer.
+                </p>
+                <p>
+                    You can either do it immediately or mark it as Todo for future processing. Use your scanner to
+                    validate the transferred quantity quicker.
+                </p>
+            </field>
+        </record>
+
+        <!-- Actions for Kanban view's picking action -->
+
+        <record id="avc_action_picking_view_confirm" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">
+                [('sale_id.is_amazon_edi_order','=',True),('sale_id.vendor_id','=',active_id),('state','=','confirmed')]
+            </field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        </record>
+        <record id="avc_action_picking_view_partially_available" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">
+                [('sale_id.is_amazon_edi_order','=',True),('sale_id.vendor_id','=',active_id),('state','=','partially_available')]
+            </field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        </record>
+        <record id="avc_action_picking_view_assigned" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">
+                [('sale_id.is_amazon_edi_order','=',True),('sale_id.vendor_id','=',active_id),('state','=','assigned')]
+            </field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        </record>
+        <record id="avc_action_picking_view_done" model="ir.actions.act_window">
+            <field name="name">Delivery Orders</field>
+            <field name="res_model">stock.picking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">
+                [('sale_id.is_amazon_edi_order','=',True),('sale_id.vendor_id','=',active_id),('state','=','done')]
+            </field>
+            <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+        </record>
+    </data>
+</odoo>
+	

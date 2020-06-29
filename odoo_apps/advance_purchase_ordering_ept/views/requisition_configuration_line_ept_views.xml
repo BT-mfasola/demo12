@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="requisition_configuration_line_ept_tree_view" model="ir.ui.view">
+		<field name="name">requisition.configuration.line.ept.view.tree</field>
+		<field name="model">requisition.configuration.line.ept</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Reorder Process Planning">
+				<field name="warehouse_id" required="True" />
+				<field name="requisition_process_id" required="True" />
+				<field name="requisition_backup_stock_days" />
+				<field name="requisition_estimated_delivery_time" />
+				<field name="destination_warehouse_id" required="True" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="requisition_configuration_line_ept_form_view" model="ir.ui.view">
+		<field name="name">requisition.configuration.line.ept.view.form</field>
+		<field name="model">requisition.configuration.line.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Reorder Process Planning">
+				<sheet>
+					<group>
+						<group>
+							<field name="warehouse_id" required="True" />
+							<field name="requisition_process_id" required="True" copy='False' />
+							<field name="requisition_backup_stock_days" />
+						</group>
+						<group>
+							<field name="requisition_estimated_delivery_time" />
+							<field name="destination_warehouse_id" required="True" />
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="requisition_configuration_line_ept_search_view" model="ir.ui.view">
+		<field name="name">Requisition Configuration</field>
+		<field name="model">requisition.configuration.line.ept</field>
+		<field name="type">search</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="warehouse_id" filter_domain="[('warehouse_id','ilike', self)]"
+					string="Warehouse" />
+				<field name="requisition_process_id" filter_domain="[('requisition_process_id','ilike', self)]"
+					string="Reorder Process"></field>
+				<field name="destination_warehouse_id" filter_domain="[('destination_warehouse_id','ilike', self)]"
+					string="Destination Warehouse" />
+			</search>
+		</field>
+	</record>
+
+	<record id="action_requisition_configuration_line" model="ir.actions.act_window">
+		<field name="name">Requisition Configuration</field>
+		<field name="res_model">requisition.configuration.line.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_id" ref="requisition_configuration_line_ept_tree_view" />
+	</record>
+</odoo>

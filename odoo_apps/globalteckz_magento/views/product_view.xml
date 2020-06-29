@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="product_product_form_view_magento1">
+             <field name="name">product.normal.form.for.magento1</field>
+             <field name="model">product.product</field>
+             <field name="inherit_id" ref="product.product_normal_form_view" />
+             <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']" position="attributes">
+                    <attribute name="string">Sku</attribute>
+                </xpath>
+                <xpath expr="//field[@name='default_code']" position="after">
+                    <field name="magento_id"/>
+                </xpath>      
+                <xpath expr="/form/sheet/notebook" position="inside">
+                    <page string="product Images">
+                        <field name="image_ids" mode="kanban">
+                            <kanban>
+                                <field name="color"/>
+                                <field name="name"/>
+                                <field name="link"/>
+                                <field name="file_db_store"/>
+                                <field name="url"/>
+                                <field name="image"/>
+                                <field name="small_image"/>
+                                <field name="is_exported"/>
+                                <field name="image_name_mag"/>
+                                <field name="thumbnail"/>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+                                        <div t-att-class="color + (record.name.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
+                                            <div class="oe_kanban_details">
+                                                <a t-if="!read_only_mode" type="delete" class="fa fa-times pull-right"/>
+                                            <div class="o_kanban_image">
+                                                <img t-if="record.file_db_store.raw_value" t-att-src="'data:file_db_store/png;base64,'+record.file_db_store.raw_value"/>
+                                            </div>
+                                                <!-- <div t-if="record.file_db_store.raw_value">Fax: <field name="file_db_store"/></div> -->
+                                                <field name="name"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </page>
+                    <page string="Magento">
+                        <notebook>
+                            <page string="Categories">
+                                <field name="prods_cat_id" nolabel="1" >
+                                    <tree editable="bottom" string="Categories">
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Attributes">
+                                <group>
+                                    <field name="attribute_id"/>
+                                </group>
+                                <field name="magento_attribute" >
+                                    <tree editable="bottom" string="Attribute">
+                                        <field name="market_pl" />
+                                       	<field name="market_ch" domain="[('attribute_id','=',market_pl)]"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Magento Description">
+                            <label for="mag_description"/>
+                                 <field name="mag_description" widget="html"/>
+                                 <label for="mag_short_description"/>
+                                 <field name="mag_short_description" widget="html"/>
+                                 
+                                
+                            </page>
+                            <page string="Related Products">
+                                 <field name="related_prod_ids"/>
+                            </page>
+                            <page string="Up-sells Products">
+                                  <field name="upsell_prod_ids"/>
+                            </page>
+                            <page string="Cross-sells Products">
+                                  <field name="cross_sells_prod_ids"/>
+                            </page>
+                            <page string="Associated Products" attrs="{'invisible':[('product_type','!=','configurable')]}">
+                                <field name="associated_prod_ids" nolabel="1" >
+                                    <tree editable="bottom" string="Associated Products">
+                                        <field name="name" domain="[('type','!=','service')]"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="MY Grouped Products" attrs="{'invisible':[('product_type','!=','mygrouped')]}">
+                                <field name="mygrouped_prod_ids" nolabel="1" >
+                                    <tree editable="bottom" string=" MY Grouped Products">
+                                        <field name="name" domain="[('product_type','=','bundle')]"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Bundle Products" attrs="{'invisible':[('product_type','!=','bundle')]}">
+                                <group colspan="4" col="6">
+                                <field name="input_type"/>
+                                <field name="is_required"/>
+                                <field name="top_position"/>
+                                </group>
+                                <field name="bundle_prod_ids" nolabel="1" >
+                                    <tree editable="bottom" string="Bundle Products">
+                                        <field name="name" domain="[('type','!=','service')]"/>
+                                        <field name="default_qty"/>
+                                        <field name="user_defined_qty"/>
+                                        <field name="position"/>
+                                        <field name="default"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Meta Information">
+                                <group>
+                                    <field name="meta_title"/>
+                                    <field name="meta_keyword"/>
+                                    <field name="meta_description"/>
+                                </group>
+                            </page>
+                            <page string="Magento Tier Price">
+                                <field name="tier_price_ids" nolabel="1" >
+                                    <tree editable="bottom" string="Tier Price">
+                                        <field name="shop_id" domain="[('magento_shop','=','True'),('store_id','=','0')]"/>
+                                        <field name="group_id"/>
+                                        <field name="quantity"/>
+                                        <field name="tier_price"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Special Price">
+                                <group>
+                                    <field name="special_price"/>
+                                    <field name="special_price_from_date"/>
+                                    <field name="special_price_to_date"/>
+                                </group>
+                            </page>
+                            <page string="Export To Magento">
+                                <group>
+                                    <field name="product_type"/>
+                                    <field name="select_instance"/>
+                                </group>
+                                <button name="export_single_product" string="Update Product , Stock, images" type="object" attrs="{'invisible':[('magento_exported','=', False)]}"/>
+                                <button name="export_single_product" string="Export Product , Stock, images" type="object" attrs="{'invisible':[('magento_exported','=', True)]}"/>
+                                <!-- <button name="export_single_stock" string="Export Stock To Magento" type="object"/> -->
+                            </page>
+                        </notebook>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='sale_ok']" position="after">
+                    <div class="oe_left" name="options">
+                        <div>
+                            <field name="magento_exported"/>
+                            <label for="magento_exported"/>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_product_category_form_view_magento">
+            <field name="name">product.product.category.form.view.magento</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="magento_id"/>
+                    <field name="shop_id"/>
+                    <!-- <field name="instance_id"/> -->
+                 </xpath>
+            </field>
+        </record>
+                    
+        <record id="magento_products" model="ir.actions.act_window">
+            <field name="name">Magento Products</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="view_id" eval="False"/> <!-- Force empty -->
+        </record>
+
+        <record id="magento_products_not_exported" model="ir.actions.act_window">
+            <field name="name">Products Not Exported</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('magento_exported','=',False)]</field>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="view_id" eval="False"/> <!-- Force empty -->
+        </record>
+
+        <record id="magento_products_exported" model="ir.actions.act_window">
+            <field name="name">Products Exported</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('magento_exported','=',True)]</field>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="view_id" eval="False"/> <!-- Force empty -->
+        </record>
+
+<!--        <record model="ir.ui.view" id="magerp_product_attribute_detail_form">-->
+<!--            <field name="name">magerp.product_attribute_detail.form</field>-->
+<!--            <field name="model">product.attribute.detail</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Magento Product Attribute Detail">-->
+<!--                    <group col="4" colspan="4">-->
+<!--                        <field name="magento_product" invisible="True"/>-->
+<!--                        <field name="market_pl"/>-->
+<!--                        <field name="market_ch"/>-->
+<!--                    </group>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+     <record model="ir.ui.view" id="magerp_product_attribute_detail_tree">
+           <field name="name">magerp.product_attribute_detail.tree</field>
+           <field name="model">product.attribute.detail</field>
+           <field name="arch" type="xml">
+               <tree string="Magento Product Attribute Detail">
+                     <field name="magento_product" invisible="True"/>
+                     <field name="market_pl"/>
+                     <field name="market_ch"/>
+               </tree>
+           </field>
+       </record>
+ 
+       <record id="act_magerp_product_attribute_detail" model="ir.actions.act_window">
+            <field name="name">Magento Product Attribute Details</field>
+            <field name="res_model">product.attribute.detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="magerp_product_attribute_detail_tree"/>
+        </record>
+
+
+    </data>
+</openerp>

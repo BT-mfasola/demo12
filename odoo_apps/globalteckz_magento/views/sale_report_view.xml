@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+        <record id="view_inherit_sale_report_view" model="ir.ui.view">
+            <field name="name">view.inherit.sale.report.view</field>
+            <field name="model">sale.report</field>
+            <field name="inherit_id" ref="sale.view_order_product_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='status']" position="after">
+                     <filter string="Customer Company" groups="base.group_multi_company" context="{'group_by':'is_company'}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>

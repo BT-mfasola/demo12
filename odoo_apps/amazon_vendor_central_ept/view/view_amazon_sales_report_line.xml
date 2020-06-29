@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_tree_amazon_Sales_report_line" model="ir.ui.view">
+            <field name="name">Amazon Sales Report Line Tree view</field>
+            <field name="model">amazon.sales.report.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="cost_of_goods_sold"/>
+                    <field name="seller_location_id"/>
+                    <field name="report_start_date"/>
+                    <field name="report_end_date"/>
+                    <field name="sold_qty"/>
+                    <field name="qty_on_hand"/>
+                    <field name="ordered_qty"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_form_amazon_Sales_report_line" model="ir.ui.view">
+            <field name="name">Amazon Sales Report Line Form view</field>
+            <field name="model">amazon.sales.report.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="product_id"/>
+                                <field name="report_start_date"/>
+                                <field name="cost_of_goods_sold"/>
+                            </group>
+                            <group>
+                                <field name="seller_location_id"/>
+                                <field name="report_end_date"/>
+                            </group>
+                        </group>
+                        <group string="Quantity">
+                            <group>
+                                <field name="sold_qty"/>
+                                <field name="qty_on_hand"/>
+                            </group>
+                            <group>
+                                <field name="ordered_qty"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

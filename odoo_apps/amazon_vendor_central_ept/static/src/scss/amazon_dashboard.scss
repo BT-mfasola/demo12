@@ -1,0 +1,10 @@
+.o_kanban_view.o_kanban_dashboard.o_avc_kanban {
+	$sale-table-spacing: 10px;
+	.o_kanban_record {
+	    min-height:140px;
+           @media (min-width: 768px) {
+            min-width: 420px;
+        }
+  
+	}
+}

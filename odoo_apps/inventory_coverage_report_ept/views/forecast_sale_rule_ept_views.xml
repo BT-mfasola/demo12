@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Forecast Sale Rule -->
+
+	<record id="forecast_sale_rule_ept_tree" model="ir.ui.view">
+		<field name="name">forecast.sale.rule.ept.view.tree</field>
+		<field name="model">forecast.sale.rule.ept</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="warehouse_id" />
+				<field name="period_id" />
+				<field name="global_sale_ratio" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="forecast_sale_rule_ept_form_view" model="ir.ui.view">
+		<field name="name">forecast.sale.rules.ept.view.form</field>
+		<field name="model">forecast.sale.rule.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Forcasted Rules">
+				<header>
+					<button name="open_add_multi_product" type="object"
+						string="Add Multiple Products" class="oe_highlight" context="" />
+				</header>
+				<sheet>
+					<div>
+						<h1>
+							<field name="name" />
+						</h1>
+					</div>
+					<group colspan="2" col="4">
+						<field name="warehouse_id" required="True" />
+						<field name="period_id" required="True" />
+						<field name="global_sale_ratio" required="True" />
+					</group>
+					<field name="name" invisible="1" />
+					<group>
+						<field name="forecast_sale_rule_line_ids" nolabel="1"
+							widget="one2many_list">
+							<tree>
+								<field name="product_id" domain="[('type', '=', 'product'), ('can_be_used_for_coverage_report_ept', '=', True)]"/>
+								<field name="sale_ratio" />
+							</tree>
+						</field>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="forecast_sale_rule_ept_search_view" model="ir.ui.view">
+		<field name="name">forecast.sale.rule.ept.view.search</field>
+		<field name="model">forecast.sale.rule.ept</field>
+		<field name="arch" type="xml">
+			<search string="Forecast Sale Rules Search">
+				<field name="name" filter_domain="['|', ('name','ilike',self)]"
+					string="Forecast Sale Rule" />
+				<field name="warehouse_id" />
+				<field name="period_id" />
+				<filter string="This Year" name="this_year"
+					domain="[('period_id.date_start','&lt;',time.strftime('%Y-12-31')),('period_id.date_start','&gt;=',time.strftime('%Y-01-01'))]"
+					help="Forecast Sales Rule of Current year" />
+				<separator />
+				<filter string="This Month" name="this_month"
+					domain="[('period_id.date_start','=', context_today().strftime('%%Y-%%m-01'))]"
+					help="Forecast Sales Rule of Current Month" />
+				<filter string="Previous Month" name="previous_month"
+					domain="['&amp;', ('period_id.date_start', '&gt;=', (context_today() - relativedelta(months=1)).strftime('%%Y-%%m-01')), ('period_id.date_start', '&lt;', context_today().strftime('%%Y-%%m-01'))]"
+					help="Forecast Sales Rule of Previous Month" />
+				<filter string="Next Month" name="next_month"
+					domain="['&amp;', ('period_id.date_start', '&lt;=', (context_today() + relativedelta(months=1)).strftime('%%Y-%%m-01')), ('period_id.date_start', '&gt;', context_today().strftime('%%Y-%%m-01'))]"
+					help="Forecast Sales Rule of Next Month" />
+
+				<group expand="0" string="Group By...">
+					<filter string="Warehouse" name="warehouse_id"
+						context="{'group_by':'warehouse_id'}" />
+					<filter name="period_id" string="Period" context="{'group_by':'period_id'}" />
+				</group>
+			</search>
+		</field>
+	</record>
+
+	<record id="forecast_sale_rule_ept_action" model="ir.actions.act_window">
+		<field name="name">Forecast Sale Rules</field>
+		<field name="res_model">forecast.sale.rule.ept</field>
+		<field name="view_type">form</field>
+		<field name="context">{'search_default_this_year':1}</field>
+		<field name="view_mode">tree,form,kanban</field>
+	</record>
+
+
+	<menuitem id="forecast_sale_rule_main_menu" name="Forecast Sales Rule"
+		parent="inventory_coverage_report_ept.forecast_sale_main_menu" sequence="60" />
+
+	<menuitem id="forecast_sale_rule_ept_child_menu" name="Forecast Sales Rule"
+		parent="inventory_coverage_report_ept.forecast_sale_rule_main_menu"
+		action="forecast_sale_rule_ept_action" sequence="50" />
+
+
+	<!-- Forecast Sale Rule Line -->
+
+	<record id="forecast_sale_rule_line_ept_tree_view" model="ir.ui.view">
+		<field name="name">forecast.sale.rule.line.ept.view.tree</field>
+		<field name="model">forecast.sale.rule.line.ept</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="product_id" widget="selection" domain="[('type', '=', 'product'), ('can_be_used_for_coverage_report_ept', '=', True)]"/>
+				<field name="sale_ratio" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="forecast_sale_rule_line_ept_form_view" model="ir.ui.view">
+		<field name="name">forecast.sale.rule.line.ept.view.form</field>
+		<field name="model">forecast.sale.rule.line.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form name="forecast sale rule line">
+				<group colspan="2" col="4">
+					<field name="product_id" domain="[('type', '=', 'product'), ('can_be_used_for_coverage_report_ept', '=', True)]"/>
+					<field name="sale_ratio" />
+				</group>
+			</form>
+		</field>
+	</record>
+
+
+
+
+</odoo>

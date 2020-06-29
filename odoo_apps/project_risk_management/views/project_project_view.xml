@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_project_view_inherit" model="ir.ui.view">
+        <field name="name">project.project.inherited.view</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='settings']" position="after">
+                    <page string="Risk Register">
+                        <field name="risk_line_ids">
+                            <tree editable='bottom'>
+                                <field name="risk_id"/>
+                                <field name="description"/>
+                                <field name="category_id"/>
+                                <field name="response_id"/>
+                                <field name="type_id"/>
+                                <field name="probality"/>
+                            </tree>
+                    </field>
+                    </page>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="%(action_project_project_task_incident)d" string="Create Incident" type="action" class="oe_highlight"/>
+            </xpath>
+             <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                 <button class="oe_stat_button" type="object"
+                                name="action_view_task" icon="fa-tasks">
+                    <field name="task_count_risk" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_project_task_incident" model="ir.actions.act_window">
+            <field name="name">Risk Incidents</field>
+            <field name="res_model">project.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph,kanban</field>
+            <field name="context">{'default_is_task_incident': True}</field>
+            <field name="domain">[('is_task_incident','=',True)]</field>
+    </record>
+     <record id="action_project_all_task_add" model="ir.actions.act_window">
+            <field name="name">Tasks</field>
+            <field name="res_model">project.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph,kanban</field>
+            <field name="domain">[('is_task_incident','=',False)]</field>
+    </record>
+    <record id="project_task_view_inherit" model="ir.ui.view">
+        <field name="name">project.task.inherited.view</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='extra_info']" position="after">
+                    <page string="Risk Register" attrs="{'invisible': [('is_task_incident', '=', True)]}">
+                        <field name="risk_task_line_ids">
+                            <tree editable='bottom'>
+                                <field name="task_id" invisible="1"/>
+                                <field name="risk_id"/>
+                                <field name="description"/>
+                                <field name="category_id"/>
+                                <field name="response_id"/>
+                                <field name="type_id"/>
+                                <field name="probality"/>
+                            </tree>
+                    </field>
+                    </page>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="%(action_task_incident)d" string="Create Incident" type="action" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                 <button class="oe_stat_button" type="object"
+                                name="action_view_task" icon="fa-tasks">
+                    <field name="task_count_risk" widget="statinfo" string="Risk Incidents"/>
+                </button>
+            </xpath>
+            <xpath expr="//page[3]" position="after">
+                    <page string="Risk Managment" attrs="{'invisible': [('is_task_incident', '=', False)]}">
+                        <group>
+                            <group>
+                                <field name="is_task_incident"/>
+                                <field name="risk_task_line_id"/>
+                                <field name="risk_parent_task_id"/>
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </group>
+                        </group>
+                    </page>
+            </xpath>
+        </field>
+    </record>
+     
+      <menuitem id="menu_risk_managment_submenu_add" name="Risk Incidents" action="project_risk_management.action_project_task_incident"  parent="project_risk_management.menu_risk_type" sequence="2"/>
+      <menuitem id="menu_risk_projects_tasks" name="Projects" parent="project_risk_management.menu_risk_type" groups="project_risk_management.group_risk_user,project_risk_management.group_risk_manager" sequence="1"/>
+      <menuitem id="menu_project_submenu_task_add" name="Tasks" action="project_risk_management.action_project_all_task_add"  parent="project_risk_management.menu_risk_projects_tasks"/>
+      <menuitem id="menu_project_submenu_add" name="Projects" action="project.open_view_project_all"  parent="project_risk_management.menu_risk_projects_tasks"/>
+</odoo>

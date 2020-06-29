@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+	<record id="inter_company_transfer_ept_pickings_form_view" model="ir.ui.view">
+            <field name="name">inter.company.transfer.ept.pickings.view.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <field name="location_id" position="after">
+                    	<field name="intercompany_transfer_id" attrs="{'invisible':[('intercompany_transfer_id','=',False)]}" readonly="1"/>
+                    </field>
+                </data>
+            </field>
+        </record>
+	</data>
+</odoo>
+       

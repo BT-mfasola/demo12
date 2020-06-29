@@ -1,0 +1,175 @@
+<odoo>
+   <data>
+    
+    	<record forcecreate="True" id="import_magento_attributeSet_scheduler" model="ir.cron">
+			<field name="name">Import Magento AttributeSet</field>
+			<field name="model_id" ref="model_magento_instance"/>
+			<field name="state">code</field>
+            <field name="code">model.import_AttributeSet_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+    
+    	<record forcecreate="True" id="import_magento_attributelist_scheduler" model="ir.cron">
+			<field name="name">Import Magento AttributeList</field>
+			<field name="model_id" ref="model_magento_instance"/>
+			<field name="state">code</field>
+            <field name="code">model.import_AttributeList_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+    
+    	<record forcecreate="True" id="import_magento_category_scheduler" model="ir.cron">
+			<field name="name">Import Magento Categories</field>
+			<field name="model_id" ref="model_magento_instance"/>
+			<field name="state">code</field>
+            <field name="code">model.import_Category_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+    
+    	<record forcecreate="True" id="import_magento_customer_scheduler" model="ir.cron">
+            <field name="name">Import Magento Customer</field>
+			<field name="model_id" ref="model_magento_instance"/>
+			<field name="state">code</field>
+            <field name="code">model.import_Customer_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+        
+        <record forcecreate="True" id="import_magento_product_scheduler" model="ir.cron">
+			<field name="name">Import Magento Products</field>
+			<field name="model_id" ref="model_magento_instance"/>
+			<field name="state">code</field>
+            <field name="code">model.import_product_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+		
+		<record forcecreate="True" id="import_magento_ProductImage_scheduler" model="ir.cron">
+			<field name="name">Import Magento ProductImage</field>
+			<field name="model_id" ref="model_magento_instance"/>
+			<field name="state">code</field>
+            <field name="code">model.import_ProductImage_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>  
+
+		<record forcecreate="True" id="import_magento_stock_scheduler" model="ir.cron">
+			<field name="name">Import Magento Stock</field>
+			<field name="model_id" ref="model_magento_instance"/>
+			<field name="state">code</field>
+            <field name="code">model.import_Stock_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>  
+
+		<record forcecreate="True" id="import_magento_orders_scheduler" model="ir.cron">
+			<field name="name">Import Magento Orders</field>
+			<field name="model_id" ref="model_magento_shop"/>
+			<field name="state">code</field>
+            <field name="code">model.import_Order_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+
+        <record forcecreate="True" id="import_magento_shipment_orders_scheduler" model="ir.cron">
+			<field name="name">Import Magento Orders Shippment</field>
+			<field name="model_id" ref="model_magento_shop"/>
+			<field name="state">code</field>
+            <field name="code">model.import_shipment_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+
+        <record forcecreate="True" id="import_magento_invoice_orders_scheduler" model="ir.cron">
+			<field name="name">Import Magento Orders Invoices</field>
+			<field name="model_id" ref="model_magento_shop"/>
+			<field name="state">code</field>
+            <field name="code">model.import_invoice_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+        
+        <record forcecreate="True" id="export_magento_product_scheduler" model="ir.cron">
+			<field name="name">Export Magento Product</field>
+			<field name="model_id" ref="model_magento_shop"/>
+			<field name="state">code</field>
+            <field name="code">model.export_Product_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+        
+        <record forcecreate="True" id="export_magento_image_scheduler" model="ir.cron">
+			<field name="name">Export Magento Image</field>
+			<field name="model_id" ref="model_magento_shop"/>
+			<field name="state">code</field>
+            <field name="code">model.export_Image_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+        
+        <record forcecreate="True" id="export_magento_stock_scheduler" model="ir.cron">
+			<field name="name">Export Magento Stock</field>
+			<field name="model_id" ref="model_magento_instance"/>
+			<field name="state">code</field>
+            <field name="code">model.export_Stock_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+        
+        <record forcecreate="True" id="export_magento_orders_status_scheduler" model="ir.cron">
+			<field name="name">Update Magento Orders Status</field>
+			<field name="model_id" ref="model_magento_shop"/>
+			<field name="state">code</field>
+            <field name="code">model.update_OrderStatus_scheduler()</field>
+            <field eval="False" name="active"/>
+			<field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+           <field eval="False" name="doall"/>
+        </record>
+   </data>
+</odoo>
+		
+        
+        

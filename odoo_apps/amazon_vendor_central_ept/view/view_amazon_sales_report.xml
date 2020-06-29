@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_tree_amazon_Sales_report" model="ir.ui.view">
+            <field name="name">Amazon Sales Report Tree view</field>
+            <field name="model">amazon.sales.report</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="name"/>
+                    <field name="message_ref_number"/>
+                    <field name="sender_gln_id"/>
+                    <field name="vendor_id"/>
+                    <field name="issued_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_form_amazon_Sales_report" model="ir.ui.view">
+            <field name="name">Amazon Sales Report Form view</field>
+            <field name="model">amazon.sales.report</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false">
+                    <sheet>
+                        <div class="oe_title" style="width: 390px;">
+                            <label class="oe_edit_only" for="name" string="Reference ID"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="sender_gln_id"/>
+                                <field name="vendor_code"/>
+                                <field name="issued_date"/>
+                                <field name="currency_id"/>
+                            </group>
+                            <group>
+                                <field name="vendor_id"/>
+                                <field name="supplier_gln_id"/>
+                                <field name="message_ref_number"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Sales Report Proudcts">
+                                <field name="amazon_sales_report_line_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

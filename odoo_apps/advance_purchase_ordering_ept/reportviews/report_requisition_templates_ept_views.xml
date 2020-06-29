@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!--	Template for purchase requisition summary line  --> 		
+ 		<template id="report_requisition_summary_line_document">
+ 		    <t t-call="web.external_layout">
+		     	<t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+			        <div class="page">
+			            <div class="oe_structure"/>
+			            <div class="row ">
+			               <div class="col-xs-4 pull-right">
+			                    <div t-field="doc.partner_id"
+			                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True,"phone_icons": True}' />
+			                    <p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'TIN'"/>: <span t-field="doc.partner_id.vat"/></p>
+			                </div>
+						</div>
+			             <h2>
+			                <t t-if="env.context.get('name', False)">
+			                   
+			                </t>
+			                Reorder Process # <span t-field="doc.name"/>
+			            </h2>
+			            <div class="row mt32 mb32" id="informations">
+			                <div t-if="doc.requisition_date" class="col-xs-3">
+			                    <strong>Reorder Date:</strong>
+			                    <p t-field="doc.requisition_date"/>
+			                </div>
+			                <div t-if="doc.is_use_forecast_sale_for_requisition==false" class="col-xs-3">
+			                    <strong>Past Sale Start From:</strong>
+			                    <p t-field="doc.requisition_past_sale_start_from"/>
+			                </div>
+			                <div t-if="doc.user_id.name" class="col-xs-3">
+			                    <strong>Responsible User:</strong>
+			                    <p t-field="doc.user_id"/>
+			                </div>
+					  	</div>
+					</div>
+					<table class="table table-condensed">
+                   		<thead>
+	                        <tr>
+	                            <th>Product Name</th>
+	                            <th class="text-right">Minimum Order Quantity</th>
+	                            <th class="text-right">Demanded Quantity</th>
+	                            <th class="text-right">Purchcase Order Quantity</th>
+	                        </tr>
+	                   	</thead>
+                  			<tbody class="requisition_tbody">
+                        		<tr t-foreach="doc.requisition_summary_ids" t-as="l">
+                               	<td><span t-field="l.product_id"/></td>
+                                	<td class="text-right">
+                                       <span t-field="l.minimum_requisition_qty"/>
+                                   </td>
+                               	<td class="text-right">
+                                       <span t-field="l.requisition_qty"/>
+                               	</td>
+                                	<td class="text-right">
+                                       <span t-field="l.po_qty"/>
+                                	</td>
+                        		</tr>
+                        		<tr>	
+                        			<td><b>Total</b></td>
+                        			<td></td>
+                        			<td class="text-right"><span t-esc="sum(l.requisition_qty for l in doc.requisition_summary_ids) " /></td>
+                        			<td class="text-right"><span t-esc="sum(l.po_qty for l in doc.requisition_summary_ids) " /></td>
+                        		</tr>
+       					</tbody>
+					</table>
+	 				<p style="page-break-before:always;"> </p>                   
+				</t>
+		</template> 
+		
+		<!-- 		Template for purchase requisition process line  -->
+		<template id="report_requisition_process_line_document">
+			    <t t-call="web.external_layout">
+			       <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+				        <div class="page">
+				            <div class="oe_structure"/>
+				            <div class="row ">
+				               <div class="col-xs-4 pull-right">
+				                    <div t-field="doc.partner_id"
+				                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True,"phone_icons": True}' />
+				                    <p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'TIN'"/>: <span t-field="doc.partner_id.vat"/></p>
+				                </div>					            
+				           	</div>
+				            <h2>
+				                Reorder Process # <span t-field="doc.name"/>
+				            </h2>
+				            <div class="row mt32 mb32" id="informations">
+				                <div t-if="doc.requisition_date" class="col-xs-3">
+				                    <strong>Reorder Date:</strong>
+				                    <p t-field="doc.requisition_date"/>
+				                </div>
+				                <div t-if="doc.is_use_forecast_sale_for_requisition==false" class="col-xs-3">
+				                    <strong>Past Sale Start From:</strong>
+				                    <p t-field="doc.requisition_past_sale_start_from"/>
+				                </div>
+				                <div t-if="doc.user_id.name" class="col-xs-3">
+				                    <strong>Responsible User:</strong>
+				                    <p t-field="doc.user_id"/>
+				                </div>
+			                 
+							</div>
+						</div>
+						<table class="table table-condensed">
+		                    <thead>
+		                        <tr>
+		                            <th>Product Name</th>
+		                            <th class="text-right">Warehouse</th>
+		                            <th class="text-right">Qty Available to Sale</th>
+		                        	<th class="text-right">Expected Sale</th>
+		                            <th class="text-right">Forcasted Stock</th>
+		                            <th class="text-right">Demanded Quantity</th>
+		                            <th class="text-right">Adjusted Demand</th>
+		                           
+		                        </tr>
+		                   </thead>
+			                   <tbody class="requisition_tbody">
+			                    
+			                         <tr t-foreach="doc.requisition_process_line_ids" t-as="l">
+			                                <td><span t-field="l.product_id"/></td>
+			                                 <td class="text-right">
+			                                        <span t-field="l.warehouse_id"/>
+			                                    </td>
+			                                    
+			                                     <td class="text-right">
+			                                        <span t-field="l.qty_available_for_sale"/>
+			                                    </td>
+			                                    
+			                                     <td class="text-right">
+			                                        <span t-field="l.expected_sale"/>
+			                                    </td>
+			                                    <td class="text-right">
+			                                        <span t-field="l.forecasted_stock"/>
+			                                    </td>
+			                                    <td class="text-right">
+			                                        <span t-field="l.requisition_qty"/>
+			                                    </td>
+			                                    <td class="text-right">
+			                                        <span t-field="l.adjusted_requisition_qty"/>
+			                                    </td>
+			                                </tr>
+			                                <tr>
+			                                	<td><b>Total</b></td>
+			                                	<td></td>
+			                                	<td></td>
+			                                	<td></td>
+			                                	<td></td>
+			                                	<td class="text-right"><span t-esc="sum(l.requisition_qty for l in doc.requisition_process_line_ids)"/></td>
+			                                	<td class="text-right"><span t-esc="sum(l.adjusted_requisition_qty for l in doc.requisition_process_line_ids)"/></td>
+			                                </tr>
+			 				</tbody>
+						</table>
+			 			<p style="page-break-before:always;"> </p>                   
+				</t>
+		</template>
+		 
+		<!-- 	Template for warehouse requisition summary line -->
+		<template id="report_warehouse_requisition_summary_line_document">
+		    <t t-call="web.external_layout">
+		     	<t t-set="doc" t-value="doc.with_context({'lang':doc.source_warehouse_id.partner_id.lang})"/>
+			         <div class="page">
+			            <div class="oe_structure"/>
+			            <div class="row ">
+			               <div class="col-xs-4 pull-right">
+			                    <div t-field="doc.source_warehouse_id.partner_id"
+			                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True,"phone_icons": True}' />
+			                    <p t-if="doc.source_warehouse_id.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'TIN'"/>: <span t-field="doc.source_warehouse_id.partner_id.vat"/></p>
+			                </div>
+			            
+			           </div>
+						 <h2>
+						    <t t-if="env.context.get('name', False)">
+						       
+						    </t>
+						   Procurement Process # <span t-field="doc.name"/>
+						</h2>
+			            <div class="row mt32 mb32" id="informations">
+			                <div t-if="doc.requisition_date" class="col-xs-3">
+			                    <strong>Procurement Date:</strong>
+			                    <p t-field="doc.requisition_date"/>
+			                </div>
+			                
+			                <div t-if="doc.is_use_forecast_sale_for_requisition==false" class="col-xs-3">
+			                    <strong>Past Sale Start From:</strong>
+			                    <p t-field="doc.requisition_past_sale_start_from"/>
+			                </div>
+			                <div t-if="doc.user_id.name" class="col-xs-3">
+			                    <strong>Responsible User:</strong>
+			                    <p t-field="doc.user_id"/>
+			                </div>
+					  	</div>
+					</div>
+					<table class="table table-condensed">
+	                    <thead>
+	                        <tr>
+	                            <th>Product Name</th>
+	                            <th class="text-right">Deliver Quantity</th>
+	                            <th class="text-right">Demanded Quantity</th>
+	                            <th class="text-right">Delivery Order Quantity</th>
+	                        </tr>
+	                   </thead>
+	                  	<tbody class="requisition_tbody">
+	                    
+	                         <tr t-foreach="doc.warehouse_requisition_summary_ids" t-as="l">
+	                                <td><span t-field="l.product_id"/></td>
+	                                 <td class="text-right">
+	                                        <span t-field="l.available_qty"/>
+	                                    </td>
+	                                <td class="text-right">
+	                                        <span t-field="l.requisition_qty"/>
+	                                </td>
+	                                 <td class="text-right">
+	                                        <span t-field="l.deliver_qty"/>
+	                                 </td>
+	                         </tr>
+	                         <tr>
+	                         	<td><b>Total</b></td>
+	                         	<td></td>
+	                         	<td class="text-right"><span t-esc="sum(l.requisition_qty for l in doc.warehouse_requisition_summary_ids) " /></td>
+	                         	<td class="text-right"><span t-esc="sum(l.deliver_qty for l in doc.warehouse_requisition_summary_ids) " /></td>
+	                         </tr>
+	                   </tbody>
+					</table>
+		 		<p style="page-break-before:always;"> </p>                   
+			 </t>
+	</template> 
+	
+	<!-- 		Template for warehouse requisition process line  -->
+	<template id="report_warehouse_requisition_process_line_document">
+		<t t-call="web.external_layout">
+  				<t t-set="doc" t-value="doc.with_context({'lang':doc.source_warehouse_id.partner_id.lang})"/>
+   				<div class="page">
+       				<div class="oe_structure"/>
+       				<div class="row ">
+      					<div class="col-xs-4 pull-right">
+							<div t-field="doc.source_warehouse_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True,"phone_icons": True}' />
+              				<p t-if="doc.user_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'TIN'"/>: <span t-field="doc.source_warehouse_id.partner_id.vat"/></p>
+          				</div>        
+        			</div>
+        			<h2>
+           				Procurement Process # <span t-field="doc.name"/>
+       				</h2>
+					<div class="row mt32 mb32" id="informations">
+						<div t-if="doc.requisition_date" class="col-xs-3">
+							<strong>Procurement Date:</strong>
+     						<p t-field="doc.requisition_date"/>
+ 						</div>
+ 						<div t-if="doc.is_use_forecast_sale_for_requisition==false" class="col-xs-3">
+     						<strong>Past Sale Start From:</strong>
+     						<p t-field="doc.requisition_past_sale_start_from"/>
+ 						</div>
+ 						<div t-if="doc.user_id.name" class="col-xs-3">
+		                    <strong>Responsible User:</strong>
+		                    <p t-field="doc.user_id"/>
+		                </div>
+					</div>
+				</div>
+				<table class="table table-condensed">
+                	<thead>
+                    	<tr>
+                        	<th>Product Name</th>
+                         	<th class="text-right">Source Warehouse</th>
+                         	<th class="text-right">Qty Available to Sale</th>
+                     		<th class="text-right">Expected Sale</th>
+                         	<th class="text-right">Forcasted Stock</th>
+                         	<th class="text-right">Demanded Quantity</th>
+                         	<th class="text-right">Adjusted Demand</th>
+                     	</tr>
+                	</thead>
+                	<tbody class="requisition_tbody">
+                     	<tr t-foreach="doc.warehouse_requisition_process_line_ids" t-as="l">
+							<td><span t-field="l.product_id"/></td>
+							<td class="text-right">
+								<span t-field="l.warehouse_id"/>
+                            </td>
+                            <td class="text-right">
+								<span t-field="l.qty_available_for_sale"/>
+							</td>
+							<td class="text-right">
+								<span t-field="l.expected_sale"/>
+							</td>
+                            <td class="text-right">
+                            	<span t-field="l.forecasted_stock"/>
+                           	</td>
+                           	<td class="text-right">
+                            	<span t-field="l.requisition_qty"/>
+                            </td>
+                            <td class="text-right">
+                            	<span t-field="l.adjusted_requisition_qty"/>
+                            </td>
+						</tr>
+						<tr>
+							<td><b>Total</b></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td class="text-right"><span t-esc="sum(l.requisition_qty for l in doc.warehouse_requisition_process_line_ids)"/></td>
+							<td class="text-right"><span t-esc="sum(l.adjusted_requisition_qty for l in doc.warehouse_requisition_process_line_ids)"/></td>
+						</tr>
+					</tbody>
+				</table>
+				<p style="page-break-before:always;"> </p>                   
+			</t> 
+		</template> 
+		
+		<template id="report_requisitionprocessline">
+		    <t t-call="web.html_container">
+		        <t t-foreach="docs" t-as="doc">
+		            <t t-call="advance_purchase_ordering_ept.report_requisition_process_line_document" t-lang="doc.partner_id.lang"/>
+		        </t>
+		    </t>
+		</template>
+		
+		<template id="report_requisitionsummary">
+		    <t t-call="web.html_container">
+		        <t t-foreach="docs" t-as="doc">
+		            <t t-call="advance_purchase_ordering_ept.report_requisition_summary_line_document" t-lang="doc.partner_id.lang"/>
+		        </t>
+		    </t>
+		</template>
+		
+		<template id="report_warehouserequisitionsummary">
+		    <t t-call="web.html_container">
+		        <t t-foreach="docs" t-as="doc">
+		            <t t-call="advance_purchase_ordering_ept.report_warehouse_requisition_summary_line_document" t-lang="doc.source_warehouse_id.partner_id.lang"/>
+		        </t>
+		    </t>
+	</template>
+	<template id="report_warehouserequisitionsummary">
+		    <t t-call="web.html_container">
+		        <t t-foreach="docs" t-as="doc">
+		            <t t-call="advance_purchase_ordering_ept.report_warehouse_requisition_summary_line_document" t-lang="doc.source_warehouse_id.partner_id.lang"/>
+		        </t>
+		    </t>
+	</template>
+	<template id="report_warehouserequisitionprocessline">
+		    <t t-call="web.html_container">
+		        <t t-foreach="docs" t-as="doc">
+		            <t t-call="advance_purchase_ordering_ept.report_warehouse_requisition_process_line_document" t-lang="doc.source_warehouse_id.partner_id.lang"/>
+		        </t>
+		    </t>
+	</template>
+</odoo>

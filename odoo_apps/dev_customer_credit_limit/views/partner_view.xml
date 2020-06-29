@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+        <!-- make readonly for everyone -->
+        <record id="view_credit_readonly_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.partner_credit_limit.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='purchase']" position="after">
+                    <group string="Credit" name="credit">
+                            <field name="check_credit" readonly="1"/>
+                            <field name="credit_limit" readonly="1" attrs="{'invisible':[('check_credit','!=',True)]}"/>
+                            <field name="credit_limit_on_hold" attrs="{'invisible':[('check_credit','!=',True)]}"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <!-- Make not readonly for user_edit_credit_limit  -->
+        <record id="view_credit_editable_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.partner_credit_limit.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="view_credit_readonly_partner_form"/>
+            <field name="groups_id" eval="[(6, 0, [ref('credit_limit_config')])]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='credit_limit']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='check_credit']" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </xpath>
+            </field>
+        </record>
+</odoo>

@@ -1,0 +1,64 @@
+<odoo>
+	<data>
+		<!--Send To Ship Wizard View -->
+		<record id="wizardview_wizard_send_to_ship_ept" model="ir.ui.view">
+			<field name="name">DHL Shipping Instance</field>
+			<field name="model">wizard.send.to.ship.ept</field>
+			<field name="arch" type="xml">
+				<form string="Recipient">
+					<group>
+						<group>
+							<field name="picking_id" invisible="1"/>
+							<field name="country_id" placeholder="Country" class="o_address_country"
+								options="{&quot;no_open&quot;: True}" required="1" />
+							<field name="name1" required="1" />
+							<field name="name2"
+								attrs="{'invisible': [('dhl_recipient_add_method', 'not in','dhl_street')]}" />
+							<field name="name3"
+								attrs="{'invisible': [('dhl_recipient_add_method', 'not in','dhl_street')]}" />
+							<field name="post_no" placeholder="Post number" class="o_address_street"
+								attrs="{'invisible': [('dhl_recipient_add_method', 'not in',['dhl_packstation','dhl_filiale'])],'required': [('dhl_recipient_add_method', 'in',['dhl_packstation','dhl_filiale'])]}" />
+							<field name="street" placeholder="Street..." class="o_address_street"
+								required="1" />
+							
+							<field name="street_no" placeholder="Street number..."
+								class="o_address_street" required="1" />
+							<field name="zip" placeholder="ZIP" class="o_address_zip"
+								required="1" />
+							<field name="city" placeholder="City" class="o_address_city"
+								required="1" />
+							<field name="prefix" placeholder="prefix..." class="o_address_street"
+								attrs="{'invisible': [('dhl_recipient_add_method', '=', 'dhl_street')],'required': [('dhl_recipient_add_method', '!=', 'dhl_street')]}" />
+						</group>
+						<group>
+								<field name="dhl_recipient_add_method" options="{'horizontal': false}"
+									widget="radio" />
+								<field name="res_phone" />
+								<field name="res_email" />
+								<!--<field name="use_more_package_flag" invisible="1"/>-->
+								<!--<field name="use_more_pakages" attrs="{'invisible':[('use_more_package_flag','!=',True)]}"/>-->
+						</group>
+					</group>
+					<group>
+						<field name="note" placeholder="Add an description that will be printed on the export label for international request." class="oe_inline"/>
+					</group>
+					<footer>
+						<button string="Send To Ship" type="object" name="send_to_ship"
+							class="oe_highlight" />
+						<button string="_Cancel" class="btn-default" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<!--Send To Ship Wizard Action -->
+		<record id="wizardaction_wizard_send_to_ship_ept" model="ir.actions.act_window">
+			<field name="name">Recipient Detail</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">wizard.send.to.ship.ept</field>
+			<field name="view_mode">tree,form,kanban</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="wizardview_wizard_send_to_ship_ept" />
+			<field name="target">new</field>
+		</record>
+	</data>
+</odoo>

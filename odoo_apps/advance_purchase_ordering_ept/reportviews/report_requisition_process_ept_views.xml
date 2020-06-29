@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<report id="action_report_requisition_summary_line_ept" string="Reorder Process Summary"
+		model="requisition.process.ept" report_type="qweb-pdf"
+		file="advance_purchase_ordering_ept.report_requisitionsummary" name="advance_purchase_ordering_ept.report_requisitionsummary"
+		print_report_name="'Reorder Summary - %s' % (object.name)" />
+
+	<report id="action_report_requisition_process_line_ept" string="Reorder Process Calculation"
+		model="requisition.process.ept" report_type="qweb-pdf"
+		file="advance_purchase_ordering_ept.report_requisitionprocessline"
+		name="advance_purchase_ordering_ept.report_requisitionprocessline"
+		print_report_name="'Reorder Process Lines  - %s' % (object.name)" />
+
+	<report id="action_report_warehouse_requisition_process_line_ept"
+		string="Procurement Process calculation" model="warehouse.requisition.process.ept"
+		report_type="qweb-pdf"
+		file="advance_purchase_ordering_ept.report_warehouserequisitionprocessline"
+		name="advance_purchase_ordering_ept.report_warehouserequisitionprocessline"
+		print_report_name="'Warehouse Demand Process Lines  - %s' % (object.name)" />
+
+	<report id="action_report_warehouse_requisition_summary_line_ept"
+		string="Procurement Process Summary" model="warehouse.requisition.process.ept"
+		report_type="qweb-pdf"
+		file="advance_purchase_ordering_ept.report_warehouserequisitionsummary"
+		name="advance_purchase_ordering_ept.report_warehouserequisitionsummary"
+		print_report_name="'Warehouse Demand Summary  - %s' % (object.name)" />
+
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record id="requisition_summary_line_ept_tree_view" model="ir.ui.view">
+            <field name="name">requisition.summary.line.ept.view.tree</field>
+            <field name="model">requisition.summary.line.ept</field>
+          	<field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Requisition Summary Line">
+                	<field name="product_id" required='True'/>
+                	<field name="requisition_process_id" required='True'/>
+                	<field name="requisition_process_line_ids"/>
+                	<field  name="requisition_qty"/>
+                	<field  name="po_qty"/>
+                	<field  name="minimum_requisition_qty"/>
+                	<field  name="supplier_rule_satisfied"/>
+                 </tree>
+            </field>
+        </record>
+    
+		<record id="requisition_summary_line_ept_form_view" model="ir.ui.view">
+            <field name="name">requisition.summary.line.ept.view.form</field>
+            <field name="model">requisition.summary.line.ept</field>
+          	<field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="customer">
+                	<sheet>
+                		<group>
+                			<group>
+			                	<field name="product_id" required='True'/>
+			               		<field  name="supplier_rule_satisfied"/>
+                			</group>
+	                		<group>
+		                		<field  name="minimum_requisition_qty"/>
+		                		<field  name="requisition_qty"/>
+		                		<field  name="po_qty"/>
+	                		</group>
+                		</group>
+                		<group string='Process Lines'>	
+                			<field name="requisition_process_line_ids" nolabel='1'>
+               					<tree create="false" editable="top">
+			              			<field name="product_id" readonly="1"/>
+			              			<field name="warehouse_id"  readonly="1"/>
+			              			<field name="qty_available_for_sale" readonly="1"/>
+			              			<field name="expected_sale" readonly="1"/>
+			              			<field name="forecasted_stock" readonly="1"/>
+			              			<field name="requisition_qty" readonly="1"/>
+			              		</tree>
+              				</field>	
+	            		</group>
+                 	</sheet>
+                 </form>
+            </field>
+        </record>
+        
+       <record id="requisition_summary_line_ept_search_view" model="ir.ui.view">
+	       <field name="name">Requisition Summary</field>
+	       <field name="model">requisition.summary.line.ept</field>
+	       <field name="type">search</field>
+	       <field name="arch" type="xml">
+	       <search>
+		       <field name=	"product_id" filter_domain="[('product_id','ilike', self)]" string="Product"/>
+		       <field name="requisition_process_id"  filter_domain="[('requisition_process_id','ilike', self)]" string="Reorder Process"></field>
+	       </search>
+	       </field>
+       </record>
+    
+     <record id="requisition_summary_line_ept_action" model="ir.actions.act_window">
+     	<field name="name">Requisition Summary</field>
+     	<field name="res_model">requisition.summary.line.ept</field>
+     	<field name="view_type">form</field>
+     	<field name="view_id" ref="requisition_summary_line_ept_tree_view"/>
+    </record>
+</odoo>

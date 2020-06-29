@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- Import Forecasted Sales Wizard -->
+		<record id="import_export_forecasted_sale_ept_wizard_form_view" model="ir.ui.view">
+			<field name="name">import.export.forecast.sale.form</field>
+			<field name="model">import.export.forecast.sale.ept</field>
+			<field name="arch" type="xml">
+				<form string="Import Forecasted Sales">
+					<group colspan="4" attrs="{'invisible':['|',('auto_forecast','=',True),('type','=','export')]}">
+						<html>
+							<p class="oe_account_font_help" style="color: red;border-top: 2px solid;border-bottom: 2px solid;" align="center">Please provide only '.xls' formatted file, If any issue
+								regards import then check log at "Inventory &gt; Advance
+								Purchase &gt; Logs"
+							</p>
+						</html>
+					</group>
+					<group col="4">
+						<field name="type" widget="radio"/>
+						<field name="auto_forecast" attrs="{'invisible':[('type','=','export')]}"/>
+					</group>
+					 <group>
+						<group attrs="{'invisible':[('type','=','export')]}" col="4">
+							<field name="choose_file" filename="file_name" attrs="{'invisible':['|',('auto_forecast','=',True),('type','=','export')]}"/>
+							<button name="download_forcasted_sales_template" style="margin-right:40%" string="Download Template" type="object" class="oe_link" attrs="{'invisible':['|',('auto_forecast','=',True),('type','=','export')]}"/>
+						</group>
+					</group>
+					<group col="4" attrs="{'invisible':[('type','=','import')],'required':[('type','=','export')]}">
+						<field name="start_period_id" attrs="{'required':[('type','=','export')]}"/>
+						<field name="end_period_id" attrs="{'required':[('type','=','export')]}"/>
+					</group>
+					<group col="4">
+						<field name="auto_forecast_as_per" attrs="{'invisible' : [('auto_forecast', '=', False), ('type','=','export')]}"/>
+						<field name="apply_forecast_rule" attrs="{'invisible' : [('auto_forecast_as_per', '=', 'forecasted_sales'), ('type','=','export')]}"/>
+					</group>
+					<group col="4" attrs="{'invisible':['|',('auto_forecast','=',False),('type','=','export')]}">
+						<field name="from_period_id" attrs="{'invisible':['|',('auto_forecast','=',False),('type','=','export')]}"/>
+						<field name="for_period_ids" widget="many2many_tags" attrs="{'invisible':['|',('auto_forecast','=',False),('type','=','export')],'required':[('from_period_id','!=',False)]}"/>				  		
+					</group>
+					<group>
+						<field name="warehouse_ids" widget="many2many_tags" attrs="{'invisible':[('auto_forecast','=',False),('type','=','import')],'required':[('auto_forecast','=',True),('type','=','import')]}"/>
+					</group>
+				
+					<footer>
+						<button name="export_forecast_sales" string="Export Forecasted Sales"
+							type="object" class="oe_highlight" attrs="{'invisible':[('type','=','import')]}"/>
+						<button name="export_normal_sales" string="Export Normal Sales"
+							type="object" class="oe_highlight" attrs="{'invisible':[('type','=','import')]}"/>
+						<button name="do_auto_forecast" type="object" class="oe_highlight"
+							attrs="{'invisible':['|',('auto_forecast','=',False),('type','=','export')]}" 
+							string="Forecast" />
+						<button name="do_import" string="Import" type="object"
+							class="oe_highlight" attrs="{'invisible':['|',('auto_forecast','=',True),('type','=','export')]}" />
+						or
+						<button string="_Close" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<record id="import_forecast_sales_ept_window_action" model="ir.actions.act_window">
+			<field name="name">Import / Export Forecast Sales</field>
+			<field name="res_model">import.export.forecast.sale.ept</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+	
+	<menuitem id="import_forecast_sales_menu_items" name="Import / Export"
+		action="import_forecast_sales_ept_window_action" parent="inventory_coverage_report_ept.forecast_sale_main_menu"
+		sequence="20" />
+	
+	</data>
+	<data noupdate="1">
+	    <record id="ir_attachment_import_forcasted_sales_template_ept" model="ir.attachment">
+	        <field name="name">import_forcasted_sales_template.xls</field>
+	        <field name="datas_fname">import_forcasted_sales_template.xls</field>
+	        <field name="datas" type="base64" file="inventory_coverage_report_ept/static/demo_data/import_forcasted_sales_template.xls"></field>
+	        <field name="res_model">import.export.forecast.sale.ept</field>
+	        <field name="public">True</field>
+	    </record>
+    </data>
+</odoo>

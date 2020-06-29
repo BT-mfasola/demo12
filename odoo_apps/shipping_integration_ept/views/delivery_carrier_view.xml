@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_carrier_form_view_ept"
+            model="ir.ui.view">
+        <field name="name">delivery.carrier.form.view.ept</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <field name="delivery_type" position="attributes">
+                <attribute name="invisible">context.get('hide_field',False)</attribute>
+            </field>
+            <field name="integration_level" position="after">
+                <field name="shipping_instance_id" attrs="{'invisible':[('delivery_type', 'in', ('fixed','base_on_rule'))]}"/>
+            </field>
+            <field name="shipping_instance_id" position="attributes">
+                <attribute name="invisible">context.get('hide_field',False)</attribute>
+            </field>
+            <field name="shipping_instance_id" position="after">
+                <field name="weight_uom_id" attrs="{'invisible':[('shipping_instance_id','=',False)],'required': [('shipping_instance_id', '!=',False)]}"
+                       domain="[('category_id','=',2)]" edit="0" create="0"/>
+                <p attrs="{'invisible':[('shipping_instance_id','=',False)]}">
+                    Weight UoM will be used while converting the weight in different units of measurement.
+                </p>
+            </field>
+            <xpath expr="//page[last()]" position='after'>
+                    <page string="Batch Configuration" name="batch_configuration"
+                          attrs="{'invisible':[('delivery_type', 'in', ('fixed','base_on_rule'))]}">
+                        <group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="auto_create_batch"
+                                       attrs="{'invisible':[('delivery_type', 'in', ('fixed','base_on_rule'))]}"/>
+                                <field name="auto_done_pickings" attrs="{'invisible':[('auto_create_batch', '=',False)]}"/>
+                                <field name="auto_get_shipping_label"
+                                       attrs="{'invisible':[('auto_done_pickings', '=',False)]}"/>
+                                <field name="use_existing_batch_cronjob" />
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+        </field>
+    </record>
+
+    <record id="view_delivery_carrier_search_ext_ept" model="ir.ui.view">
+        <field name="name">delivery.carrier.search.ext.ept</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_search"/>
+        <field name="arch" type="xml">
+            <field name="delivery_type" position="after">
+                <filter string="Test Environment" name="in_test" domain="[('prod_environment','=',False)]"/>
+                <filter string="Production Environment" name="in_production" domain="[('prod_environment','=',True)]"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

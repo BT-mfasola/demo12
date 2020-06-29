@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_amazon_vendor_central_root" name="Vendor Central"
+                  groups="amazon_vendor_central_ept.group_amazon_vendor_central_user"
+                  sequence="3"
+                  web_icon="amazon_vendor_central_ept,static/description/icon.png"/>
+
+      <!--   <menuitem id="amazon_vendor_central_dashboard" name="Dashboard" parent="menu_amazon_vendor_central_root"
+                  action="action_amazon_vendor_instance_kanban" sequence="1"/> -->
+        <menuitem id="menu_amazon_vendor" name="Amazon Vendor"
+                  parent="menu_amazon_vendor_central_root" sequence="2"/>
+        <menuitem id="menu_avc_sale_order" name="Sales"
+                  parent="menu_amazon_vendor_central_root" sequence="3"/>           
+        <menuitem id="menu_avc_package_label" name="Transfer Details"
+                  parent="menu_amazon_vendor_central_root" sequence="4"/>
+        <menuitem id="menu_avc_picking_to_batch" name="Picking &amp; Batch Labels"
+                  parent="menu_amazon_vendor_central_root" sequence="5"/>
+       	<menuitem id="menu_avc_products" name="Products"
+                  parent="menu_amazon_vendor_central_root" sequence="6"/> 
+        <menuitem id="menu_amazon_vendor_central_log" name="Log"
+                  parent="menu_amazon_vendor_central_root" sequence="7"/>
+                         
+        <menuitem id="menu_amazon_vendor_central_configuration" name="Configuration"
+                  parent="menu_amazon_vendor_central_root" sequence="11"/>
+
+        <menuitem id="menu_avc_file_process_job" name="File Process Job"
+                  sequence="1" parent="menu_amazon_vendor_central_log" action="action_avc_file_process_job"/>
+      <!--   <menuitem id="menu_avc_amazon_sales_report" name="Amazon Sales Report"
+                  sequence="2" parent="menu_amazon_vendor_central_log" action="action_avc_amazon_sales_report"/> -->
+
+        <menuitem id="menu_avc_sale_order_quotations" name="Quotation"
+                  sequence="1" parent="menu_avc_sale_order" action="action_amazon_edi_sale_quotations"/>
+        <menuitem id="menu_avc_sales_orders" name="Sales Order"
+                  sequence="2" parent="menu_avc_sale_order" action="action_amazon_edi_sale_orders"/>
+        <!--            
+        <menuitem id="menu_avc_stock_picking" name="Delivery Order"
+                  sequence="3" parent="menu_avc_sale_order" action="action_amazon_edi_picking_tree_all"/>-->
+
+       <!--  <menuitem id="menu_avc_customer_invoices" name="Customer Invoices"
+                  sequence="5" parent="menu_avc_sale_order" action="action_amazon_edi_customer_invoices"/> -->
+      <!--              
+        <menuitem id="menu_avc_product_template" name="Products"
+                  sequence="6" parent="menu_avc_sale_order" action="action_amazon_edi_product_template"/>-->
+
+       
+        <menuitem id="menu_avc_delivery_order_template" name="Delivery Order"
+                  sequence="54" parent="menu_avc_package_label" action="action_amazon_edi_picking_tree_all"/>
+        
+        <menuitem id="menu_avc_package_label_template" name="Batch Pickings"
+                  sequence="55" parent="menu_avc_package_label" action="action_package_label_template"/>
+          
+         <menuitem id="menu_avc_product_template" name="Products"
+                  sequence="56" parent="menu_avc_products" action="action_amazon_edi_product_template"/>
+                  
+         <menuitem id="menu_avc_picking_to_selected_batch_template" name="Print Label"
+                  sequence="57" parent="menu_avc_picking_to_batch" action="action_picking_to_batch"/>
+         
+         
+     
+		
+        <menuitem id="menu_ftp_server_detail" name="Vendor"
+                  parent="menu_amazon_vendor_central_configuration" sequence="3"
+                  action="action_amazon_vendor_instance_tree_view"/>
+       <!--  <menuitem id="menu_amazon_seller_location_code" name="Amazon Seller Code"
+                  parent="menu_amazon_vendor_central_configuration" sequence="4"
+                  action="action_amazon_seller_location_code_tree_view"/> -->
+        
+        <!--paperformat for sale order barcode label.-->
+        <record id="paperformate_edi_sale_order" model="report.paperformat">
+            <field name="name">Sale Order Barcode Label</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">156</field>
+            <field name="page_width">102</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">3</field>
+            <field name="margin_bottom">3</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">3</field>
+            <field name="dpi">80</field>
+        </record>
+        <!--Report action for QWeb of sale order barcode label-->
+        <report id="menu_report_edi_sale_order_label"
+                string="EDI Sale Order Labels"
+                model="sale.order"
+                report_type="qweb-pdf"
+                name="amazon_vendor_central_ept.report_edi_saleorder_barcode_label"
+                file="amazon_vendor_central_ept.report_edi_saleorder_barcode_label"
+                paperformat="amazon_vendor_central_ept.paperformate_edi_sale_order"
+                menu="False"
+        />
+    </data>
+</odoo>
+		

@@ -1,0 +1,72 @@
+<odoo>
+    <data>
+        <record id="view_dhl_configuration" model="ir.ui.view">
+            <field name="name">DHL Configuration View</field>
+            <field name="model">shipping.instance.ept</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="shipping_integration_ept.view_shipping_integration"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='credential']/group" position="inside">
+                    <group string="DHL Authentication" attrs="{'invisible': [('provider', '!=', 'dhl_de_ept')]}">
+                        <field name="userid" attrs="{'required':[('provider','=','dhl_de_ept')]}"/>
+                        <field name="password" password="True"
+                               attrs="{'required':[('provider','=','dhl_de_ept')]}"/>
+                        <field name="dhl_ekp_no" attrs="{'required':[('provider','=','dhl_de_ept')]}"/>
+                    </group>
+                    <group string="HTTP Basic Authentication" attrs="{'invisible': [('provider', '!=', 'dhl_de_ept')]}">
+                        <field name="http_userid" attrs="{'required':[('provider','=','dhl_de_ept')]}"/>
+                        <field name="http_password" password="True"
+                               attrs="{'required':[('provider','=','dhl_de_ept')]}"/>
+                    </group>
+                </xpath>
+
+
+                <xpath expr="//notebook/page[last()]" position="after">
+                    <page name="address_configuration" string="Address Configuration" attrs="{'invisible': [('provider', '!=', 'dhl_de_ept')]}">
+                        <group>
+                            <group string="Street">
+                                <field name="dhl_street_no" width="50"
+                                       attrs="{'required':[('provider','=','dhl_de_ept')]}" widget="selection"
+                                       placeholder="Select street number value"/>
+                            </group>
+                            <group string="Packstation">
+                                <field name="dhl_packstation_postnumber" width="50"
+                                       attrs="{'required':[('provider','=','dhl_de_ept')]}" widget="selection"
+                                       placeholder="Select Postnumber value"/>
+                                <field name="dhl_packstation_prefix" width="50"
+                                       attrs="{'required':[('provider','=','dhl_de_ept')]}"
+                                       placeholder="Packstation Prefix"/>
+                                <field name="dhl_packstation_no" width="50"
+                                       attrs="{'required':[('provider','=','dhl_de_ept')]}" widget="selection"
+                                       placeholder="Select value of packstation number"/>
+                            </group>
+                            <group string="Filiale">
+                                <field name="dhl_filiale_postnumber" width="50"
+                                       attrs="{'required':[('provider','=','dhl_de_ept')]}" widget="selection"
+                                       placeholder="Select Postnumber value"/>
+                                <field name="dhl_filiale_prefix" width="50"
+                                       attrs="{'required':[('provider','=','dhl_de_ept')]}"
+                                       placeholder="Postfiliale Prefix"/>
+                                <field name="dhl_filiale_no" width="50"
+                                       attrs="{'required':[('provider','=','dhl_de_ept')]}" widget="selection"
+                                       placeholder="Select value of filiale number"/>
+                            </group>
+                            <group string="Parcelshop">
+                                <field name="dhl_parcelshop_prefix" width="50"
+                                       attrs="{'required':[('provider','=','dhl_de_ept')]}"
+                                       placeholder="Parcelshop Prefix"/>
+                                <field name="dhl_parcelshop_no" width="50"
+                                       attrs="{'required':[('provider','=','dhl_de_ept')]}" widget="selection"
+                                       placeholder="Select value of parcelshop number"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//sheet/div[@name='button_box']" position="inside">
+                    <button name="%(wizardaction_wizard_delivery_method_report_ept)d"
+                            string="Delivery Report" type="action" class="oe_stat_button" icon="fa-list" attrs="{'invisible': [('provider', '!=', 'dhl_de_ept')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

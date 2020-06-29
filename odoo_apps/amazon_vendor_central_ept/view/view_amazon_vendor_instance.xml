@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_tree_amazon_vendor_instance" model="ir.ui.view">
+            <field name="name">Amazon Vendor</field>
+            <field name="model">amazon.vendor.instance</field>
+            <field name="arch" type="xml">
+                <tree string="Amazon Vendor" class="oe_form_configuration"
+                      create="false">
+                    <field name="name"/>
+                    <field name="supplier_id"/>
+                    <field name="country_id"/>
+                    <field name="company_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_form_amazon_vendor_instance" model="ir.ui.view">
+            <field name="name">Amazon Vendor</field>
+            <field name="model">amazon.vendor.instance</field>
+            <field name="arch" type="xml">
+                <form string="Amazon Vendor" class="oe_form_configuration"
+                      create="false">
+                    <header>
+                        <button name="check_test_ftp_server_connection" class="oe_highlight"
+                                string="Check Test FTP Connection" type="object"/>
+                        <button name="check_production_ftp_server_connection" class="oe_highlight"
+                                string="Check Production FTP Connection" type="object"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="buttons">
+                            <button type="object" name="import_sales_report" invisible="1" string="Import Sales Report" class="oe_stat_button" icon="fa-bar-chart-o" />
+                            <button type="object" name="prepare_and_send_edi_inventory_message"
+                                    string="Export Inventory" invisible="1"
+                                    class="oe_stat_button" icon="fa-refresh"/>
+                            <button class="oe_stat_button" name="import_amazon_edi_order"
+                                    icon="fa-truck" string="Import PO" type="object"
+                                    groups="amazon_vendor_central_ept.group_amazon_vendor_central_user"/>
+                         	<field name="is_production_environment" invisible="1"/>
+                            <button attrs="{'invisible': [('is_production_environment', '=', False)]}"
+										class="oe_stat_button" name="toggle_prod_enviroment_value"
+										type="object" icon="fa-play">
+										<div class="o_stat_info o_form_field">
+											<span class="text-success">Production</span>
+											<span class="o_stat_text">Environment</span>
+										</div>
+							</button>
+							<button attrs="{'invisible': [('is_production_environment', '=', True)]}"
+										class="oe_stat_button" name="toggle_prod_enviroment_value"
+										type="object" icon="fa-stop">
+										<div class="o_stat_info o_form_field">
+											<span class="o_warning_text">Test</span>
+											<span class="o_stat_text">Environment</span>
+										</div>
+							</button>
+                        </div>
+                        <div class="oe_title" style="width: 390px;">
+                            <label class="oe_edit_only" for="name" string="Vendor Name"/>
+                            <h1>
+                                <field name="name" class="oe_inline" required="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="supplier_id" required="1"/>
+                                <field name="delivery_type" required="1"/>
+                                <field name="company_id" required="1"/>
+                            </group>
+                            <group>
+                                <field name="country_id" required="1"/>
+                                <field name="vendor_code" required="1"/>
+                                 <field name="vendor_qualifier" required="1"/>
+                                  <field name="amazon_qualifier" required="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="pricelist_id" required="1"/>
+                            </group>
+                            <group>
+                            	<field name="test_ftp_connection" attrs="{'invisible': [('is_production_environment', '=', True)]}"/>
+                            	<field name="production_ftp_connection" attrs="{'invisible': [('is_production_environment', '=', False)]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Purchase Order">
+                                <group cols="4" colspan="4">
+                                    <field name="test_po_directory_id" attrs="{'invisible': [('is_production_environment', '=', True)]}"/>
+                                    <field name="production_po_directory_id" attrs="{'invisible': [('is_production_environment', '=', False)]}"/>
+                                    <field name="po_file_import_prefix"></field>
+                                </group>
+                                <group string="General">
+                                    <group>
+                                        <field name="warehouse_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="amazon_edi_carrier_method"/>
+                                        <field name="fiscal_position_id" invisible="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Purchase Order Acknowledgement">
+                                <group cols="4" colspan="4">
+                                   	<field name="test_po_ack_directory_id" attrs="{'invisible': [('is_production_environment', '=', True)]}"></field>
+                                   	<field name="production_po_ack_directory_id" attrs="{'invisible': [('is_production_environment', '=', False)]}"></field>
+                                   	<field name="po_ack_file_export_prefix"/>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="auto_confirm_sale_order"/>
+                                        <field name="auto_generate_po_ack"
+                                               attrs="{'invisible':[('auto_confirm_sale_order','=',False)]}"/>
+                                        <field name="mismatch_product" widget="selection"/>
+                                        <field name="picking_policy"/>
+                                    </group>
+                                    <group attrs="{'invisible':[('auto_generate_po_ack','=',False)]}" invisible="1">
+                                        <field name="picking_policy_based_on" widget="radio"
+                                               attrs="{'invisible':[('picking_policy','!=','direct')]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                              
+                            <page string="Routing Request" attrs="{'invisible':[('delivery_type','!=','wepay')]}">
+                                <group cols="4" colspan="4">
+                                     <field name="test_route_req_directory_id" attrs="{'invisible': [('is_production_environment', '=', True)]}"/>
+                                     <field name="production_route_req_directory_id" attrs="{'invisible': [('is_production_environment', '=', False)]}"/>
+                                     <field name="route_request_file_export_prefix"/>
+                                </group>
+                                <group string="General">
+                                    <field name="order_dispatch_lead_time"/>
+                                </group>
+                            </page>
+                            <page string="Routing Information" attrs="{'invisible':[('delivery_type','!=','wepay')]}">
+                                <group cols="4" colspan="4">
+                                    <field name="test_route_info_drectory_id" attrs="{'invisible': [('is_production_environment', '=', True)]}"/>
+                                    <field name="production_route_info_drectory_id" attrs="{'invisible': [('is_production_environment', '=', False)]}"/>
+                                   	<field name="route_info_file_import_prefix"></field>
+                                </group>
+                            </page>
+                      <page string="Invoice">
+                                <group>
+	                                <field name="test_invoice_directory_id" attrs="{'invisible': [('is_production_environment', '=', True)]}"/>
+	                                <field name="production_invoice_directory_id" attrs="{'invisible': [('is_production_environment', '=', False)]}"/>
+	                                <field name="invoice_file_export_prefix"/>
+                                </group>
+                                <!-- <group string="General">
+                                    <group>
+                                        <field name="invoice_policy"/>
+                                    </group>
+                                    <group>
+                                        <field name="journal_id" domain="[('company_id','=',company_id)]"/>
+                                    </group>
+                                </group> -->
+                            </page> 
+                            <page string="Shipment Notice">
+                                <group>
+                                    <field name="test_asn_directory_id" attrs="{'invisible': [('is_production_environment', '=', True)]}"/>
+                                    <field name="production_asn_directory_id" attrs="{'invisible': [('is_production_environment', '=', False)]}"/>
+                                   	<field name="asn_file_export_prefix"></field>
+                                </group>
+                            </page>
+                            
+                            <page string="Inventory and Cost">
+                             
+                                <group cols="4" colspan="4">
+                                
+                                   	<field name="test_inv_cost_directory_id" attrs="{'invisible': [('is_production_environment', '=', True)]}"/>
+                                   	<field name="production_inv_cost_directory_id" attrs="{'invisible': [('is_production_environment', '=', False)]}"/>
+                                   	<field name="inventory_file_export_prefix"/>
+                                </group>
+                                <group cols="4" colspan="4">
+                                    <field name="file_format_for_export" required="1"/>
+                                	<field name="amazon_gln_number"/>
+                                	<!-- <field name="is_allow_stock_export_from_multi_warehouse"/> -->
+                                	<field name="warehouse_ids" widget="many2many_tags"/>
+                                	<field name="product_stock_field_id"/>
+                                	<field name="production_feed_key"/>
+                                	<field name="amazon_unb_id"></field>
+                                	<!--<field name="include_forecast_incoming"/>-->
+                                </group>
+                            </page>
+                <!--             <page string="Sales Report">
+                                <group>
+	                                <field name="test_sale_report_directory_id" attrs="{'invisible': [('is_production_environment', '=', True)]}"/>
+	                                <field name="production_sale_report_directory_id" attrs="{'invisible': [('is_production_environment', '=', False)]}"/>
+	                            	<field name="sales_report_file_export_prefix"></field>
+                                </group>
+                            </page> -->
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- action for vendor instance kanban view -->
+     <record id="action_amazon_edi_confirm_po_kanban" model="ir.actions.act_window">
+            <field name="name">Confirm Purchase Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_sale"/>
+            <field name="context">{}</field>
+            <field name="domain">[('state', 'not in', ('draft', 'sent',
+                'cancel')),('is_amazon_edi_order','=',True),('vendor_id','=',active_id)]
+            </field>
+        </record> 
+        <record id="action_amazon_edi_pending_po_kanban" model="ir.actions.act_window">
+            <field name="name">Pending Purchase Order</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sale.view_quotation_tree"/>
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="search_view_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+            <field name="context">{'hide_sale': True}</field>
+            <field name="domain">[('state', 'in', ('draft', 'sent',
+                'cancel')),('is_amazon_edi_order','=',True),('vendor_id','=',active_id)]
+            </field>
+        </record>
+        <!-- <record id="view_kanban_amazon_vendor_central" model="ir.ui.view">
+            <field name="name">amazon.vendor.instance.kanban</field>
+            <field name="model">amazon.vendor.instance</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_avc_kanban" create="false">
+                    <field name="country_id"/>
+                    <field name="name"/>
+                    <field name="production_ftp_id" />
+                    <field name="supplier_id" />
+                    <field name="color"/>
+                    <field name="product_count"/>
+                    <field name="pending_po_count"/>
+                    <field name="confirmed_po_count"/>
+                    <field name="confirmed_picking_count"/>
+                    <field name="assigned_picking_count"/>
+                    <field name="partially_available_picking_count"/>
+                    <field name="done_picking_count"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{kanban_color(record.color.raw_value)}">
+                                <div class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                        <div class="o_primary">
+                                            <img t-att-src="kanban_image('res.country', 'image', record.country_id.raw_value)"
+                                                 t-att-title="record.country_id.value" width="35" height="24"
+                                                 class="oe_kanban_avatar"/>
+                                            <t t-esc="record.name.value"/>
+                                        </div>
+                                        <div class="o_secondary" style="margin-left:40px;">
+                                            <field class="o_secondary" name="country_id"/>
+                                            <t t-if="record.supplier_id.raw_value">(<field class="o_secondary" name="supplier_id"/>)</t>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_manage_button_section">
+                                        <a class="o_kanban_manage_toggle_button" href="#">More
+                                            <i class="fa fa-caret-down"/>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="container o_kanban_card_content o_visible">
+                                    <div class="row">
+                                        <div id="amazon_left" class="col-xs-4 o_kanban_primary_left">
+                                            <div class="row">
+                                                <div id="perform_operation">
+                                                    <button class="btn btn-primary"
+                                                            name="import_amazon_edi_order"
+                                                            type="object">
+                                                        <span>Import POs</span>
+                                                    </button>
+                                                </div>
+                                                <br></br>
+                                                <div id="settlement_report">
+                                                    <button class="btn btn-primary"
+                                                            name="prepare_and_send_edi_inventory_message"
+                                                            type="object">
+                                                        <span>Export Inventory</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="amazon_middle" class="col-xs-4 o_kanban_primary_right">
+                                            <div class="row">
+                                                <div>
+                                                    <a id="setting"
+                                                       name="%(amazon_vendor_central_ept.action_avc_config_settings)d"
+                                                       type="action">Settings
+                                                    </a>
+                                                    <a id="process_job_log"
+                                                       name="%(amazon_vendor_central_ept.action_avc_file_process_job)d"
+                                                       type="action">Process Job Log
+                                                    </a>
+                                                    <a id="vendor_ftp_log"
+                                                       name="%(amazon_vendor_central_ept.action_vendor_server)d"
+                                                       type="action">Vendor FTP Server
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="amazon_right" class="col-xs-4 o_kanban_primary_right">
+                                            <div class="row">
+                                                <div id="sales">
+                                                    <div id="sales_fbm" style="margin-bottom:6px;">
+                                                        <b>
+                                                            <span>AVC</span>
+                                                        </b>
+                                                    </div>
+                                                    <div id="quotation">
+                                                        <a name="%(amazon_vendor_central_ept.action_amazon_edi_pending_po_kanban)d"
+                                                           type="action" title="Pending POs">
+                                                            <t t-esc="record.pending_po_count.raw_value"/>
+                                                            Pending POs
+                                                        </a>
+                                                    </div>
+                                                    <div id="sale_order">
+                                                        <a name="%(amazon_vendor_central_ept.action_amazon_edi_confirm_po_kanban)d"
+                                                           type="action" title="Confirmed POs">
+                                                            <t t-esc="record.confirmed_po_count.raw_value"/>
+                                                            Confirmed POs
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_card_manage_settings row">
+                                        <div class="col-xs-8">
+                                            <t t-if="record.production_ftp_id.raw_value"><span><b>Production Connection</b> : <t t-esc="record.production_ftp_id.value"/></span></t>
+                                        </div>
+                                    </div>
+                                </div><div class="container o_kanban_card_manage_pane o_invisible">
+                                    <div class="row">
+                                        <div id="filter_product"
+                                             class="col-xs-4 o_kanban_card_manage_section o_kanban_manage_new">
+                                            <div class="o_kanban_card_manage_title">
+                                                <span>Products</span>
+                                            </div>
+                                            <div>
+                                                <a name="%(amazon_vendor_central_ept.action_amazon_edi_product_template)d"
+                                                   type="action">
+                                                    <t t-esc="record.product_count.value"/>
+                                                    AVC Product
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div id="filter_delivery"
+                                             class="col-xs-4 o_kanban_card_manage_section o_kanban_manage_new">
+                                            <div class="o_kanban_card_manage_title">
+                                                <span>Delivery</span>
+                                            </div>
+                                            <div>
+                                                <a name="%(avc_action_picking_view_confirm)d" type="action"
+                                                   title="Waiting Availability">
+                                                    <t t-esc="record.confirmed_picking_count.value"/>
+                                                    Waiting Availability
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a name="%(avc_action_picking_view_partially_available)d"
+                                                   type="action" title="Partially Available">
+                                                    <t t-esc="record.partially_available_picking_count.value"/>
+                                                    Partially Available
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a name="%(avc_action_picking_view_assigned)d" type="action"
+                                                   title="Ready to Transfer">
+                                                    <t t-esc="record.assigned_picking_count.value"/>
+                                                    Ready to Transfer
+                                                </a>
+                                            </div>
+                                            <div id="picking_done">
+                                                <a name="%(avc_action_picking_view_done)d" type="action">
+                                                    <t t-esc="record.done_picking_count.value"/>
+                                                    Transfered
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                                        <div class="col-xs-8">
+                                            <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record> -->
+    </data>
+</odoo>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_form_requisition_product_suggestion_ept" model="ir.ui.view" >
+			<field name="name">view.form.requisition.product.suggestion.ept
+			</field>
+			<field name="model">requisition.product.suggestion.ept</field>
+			<field name="arch" type="xml">
+				<form string="Inventory Coverage Report">
+					<div class="alert alert-info" role="alert" style="margin-bottom:0px;"
+						attrs="{'invisible': [('has_pending_moves','=',False)]}">
+						You have
+						<bold>
+							<a class="alert-link" href="#has_pending_moves" role="button">Pending
+								Moves
+							</a>
+						</bold>
+						to be rescheduled. You can reschedule them to get accurate result.
+					</div>
+					<field name="has_pending_moves" invisible="1" />
+					<field name="is_use_forecast_sale_for_requisition" invisible="1" />
+					<group col="4">
+						<field name="inventory_analysis_of_x_days" required="1" />
+						<field name="supplier_suggestion_type" />
+						<field name="requisition_past_sale_start_from"
+							attrs="{'invisible':[('is_use_forecast_sale_for_requisition','=',True)],'required':[('is_use_forecast_sale_for_requisition','=',False)]}" />
+						<newline />
+						<field name="select_products" />
+						<field name="select_warehouses" groups="stock.group_stock_multi_warehouses"/>
+					</group>
+					<group>
+						<field name="warehouse_ids" required="1" widget="many2many_tags"
+							attrs="{'invisible':[('select_warehouses','=',False)]}" />
+					</group>
+
+					<separator string="Products"
+						attrs="{'invisible':[('select_products','=',False)]}" />
+					<field name="product_ids" nolabel="1" domain="[('type','=','product'), ('can_be_used_for_coverage_report_ept', '=', True)]"
+						colspan="4" attrs="{'invisible':[('select_products','=',False)]}"
+						context="{'tree_view_ref': 'inventory_coverage_report_ept.view_tree_product_product_advance_purchase_add_item_ept'}">
+						<tree>
+							<field name="default_code" />
+							<field name="name" />
+							<field name="attribute_value_ids" widget="many2many_tags"
+								groups="product.group_product_variant" />
+						</tree>
+					</field>
+
+					<footer>
+						<button name="get_products_for_requisition" string="Get Recommended Products"
+							class="oe_highlight" type="object" />
+						<button name="download_report_as_xlsx" string="Download Report"
+							class="oe_highlight" type="object" />
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_tree_product_suggestion_line_ept" model="ir.ui.view">
+			<field name="name">view.tree.product.suggestion.line.ept</field>
+			<field name="model">requisition.product.suggestion.line.ept</field>
+			<field name="arch" type="xml">
+				<tree create="false" delete="false" edit="false">
+					<field name="product_id" />
+					<field name="warehouse_id" />
+					<field name="supplier_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_tree_product_suggestion_line_detail_ept" model="ir.ui.view">
+			<field name="name">view.tree.product.suggestion.line.detail.ept
+			</field>
+			<field name="model">product.suggestion.line.detail.ept</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="product_id" />
+					<field name="warehouse_id" />
+					<field name="start_date" />
+					<field name="end_date" />
+					<field name="opening_stock" />
+					<field name="incoming" />
+					<field name="days" />
+					<field name="forecast_sales" />
+					<field name="stock_status" />
+					<field name="closing_stock" />
+				</tree>
+			</field>
+		</record>
+
+
+
+
+		<record id="action_server_export_recommanded_lines_ept" model="ir.actions.server">
+			<field name="name">Download Report</field>
+			<field name="type">ir.actions.server</field>
+			<field name="model_id" ref='inventory_coverage_report_ept.model_requisition_product_suggestion_line_ept' />
+			<field name="binding_model_id" ref="inventory_coverage_report_ept.model_requisition_product_suggestion_line_ept" />
+			<field name="state">code</field>
+			<field name="code">
+				if records :
+				action=records.mapped('product_suggestion_id').download_xlsx_report_with_text(suggestion_lines=records)
+			</field>
+		</record>
+
+
+		<record model="ir.ui.view" id="view_form_inventory_coverage_report_ept">
+			<field name="name">view.form.requisition.product_suggestion.ept</field>
+			<field name="model">requisition.product.suggestion.ept</field>
+			<field name="arch" type="xml">
+				<form string="Inventory Coverage Report">
+					<div class="alert alert-info" role="alert" style="margin-bottom:0px;"
+						attrs="{'invisible': [('has_pending_moves','=',False)]}">
+						You have
+						<bold>
+							<a class="alert-link" href="#has_pending_moves" role="button">Pending
+								Moves
+							</a>
+						</bold>
+						to be rescheduled. You can reschedule them to get accurate result.
+					</div>
+					<field name="has_pending_moves" invisible="1" />
+					<field name="is_use_forecast_sale_for_requisition" invisible="1" />
+					<group col="4">
+
+						<field name="inventory_analysis_of_x_days" required="1" />
+						<field name="requisition_past_sale_start_from"
+							attrs="{'invisible':[('is_use_forecast_sale_for_requisition','=',True)],'required':[('is_use_forecast_sale_for_requisition','=',False)]}" />
+						<field name="show_detailed_report" />
+						<field name="check_stock_in_other_warehouses" groups="stock.group_stock_multi_warehouses" 
+							attrs="{'invisible':['|',('show_detailed_report','=',False),('show_products','=','in_stock_product')]}" />
+						<field name="show_products" widget="radio" />
+					</group>
+					<group col="4">
+						<field name="report_type_as" widget="radio" />
+						<field name="report_data_as" widget="radio"
+							attrs="{'invisible':['|',('show_detailed_report','=',False),('report_type_as','=','pdf')]}" />
+						<field name="select_products" />
+						<field name="select_warehouses"  groups="stock.group_stock_multi_warehouses"/>
+					</group>
+					<group>
+						<field name="warehouse_ids" required="1" widget="many2many_tags"
+							attrs="{'invisible':[('select_warehouses','=',False)]}" />
+					</group>
+
+					<separator string="Products"
+						attrs="{'invisible':[('select_products','=',False)]}" />
+					<field name="product_ids" domain="[('type','=','product'), ('can_be_used_for_coverage_report_ept', '=', True)]"
+						nolabel="1" colspan="4"
+						attrs="{'invisible':[('select_products','=',False)]}"
+						context="{'tree_view_ref': 'inventory_coverage_report_ept.view_tree_product_product_advance_purchase_add_item_ept'}">
+						<tree>
+							<field name="default_code" />
+							<field name="name" />
+						</tree>
+					</field>
+					<footer>
+						<button name="download_report" string="Download  Report"
+							class="oe_highlight" type="object" />
+						or
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_search_product_suggestion_detail_line" model="ir.ui.view">
+			<field name="name">suggestion line view search</field>
+			<field name="model">product.suggestion.line.detail.ept</field>
+			<field name="arch" type="xml">
+				<search string="Search Leave">
+					<filter domain="[('stock_state','in',('in_stock'))]" string="In Stock"
+						name="in_stock" />
+					<filter string="Out of Stock" domain="[('state', '=', 'out_stock')]"
+						name="out_stock" />
+					<separator />
+					<field name="product_id" />
+					<field name="warehouse_id" />
+					<group expand="0" string="Group By">
+						<filter name="group_product" string="Product"
+							context="{'group_by':'product_id'}" />
+						<filter name="group_warehouse" string="warehouse"
+							context="{'group_by':'warehouse_id'}" />
+						<filter name="group_stock_status" string="Status"
+							context="{'group_by':'stock_status'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record id="action_inventory_coverage_report_ept" model="ir.actions.act_window">
+			<field name="name">Inventory Coverage Report</field>
+			<field name="res_model">requisition.product.suggestion.ept</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="view_form_inventory_coverage_report_ept"></field>
+			<field name="context">{'default_inventory_coverage':1}</field>
+			<field name="target">new</field>
+		</record>
+
+
+		<record id="action_requisition_product_suggestion_ept" model="ir.actions.act_window">
+			<field name="name">Get Recommanded Products</field>
+			<field name="res_model">requisition.product.suggestion.ept</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="view_id" ref="view_form_requisition_product_suggestion_ept"></field>
+		</record>
+
+
+		<menuitem id="menu_inventory_coverage_report_ept" name="Inventory Coverage"
+			sequence="10" action="action_inventory_coverage_report_ept"
+			parent="inventory_coverage_report_ept.menu_inventory_coverage_report_root" />
+
+		<menuitem id="menu_requisition_product_suggestion_ept" name=" Product Recommendation"
+			action="action_requisition_product_suggestion_ept"
+			parent="inventory_coverage_report_ept.menu_inventory_coverage_report_root"
+			sequence="30" />
+
+
+	</data>
+</odoo>

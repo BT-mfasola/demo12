@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="forecasted_and_actual_sales_pivot_report_view_ept"
+			model="ir.ui.view">
+			<field name="name">forecasted.and.actual.sales.pivot.report.view.ept
+			</field>
+			<field name="model">forecasted.and.actual.sales.report.ept</field>
+			<field name="arch" type="xml">
+				<pivot string="Forecast Sales v/s Actual Sales Analysis"
+					disable_linking="True">
+					<field name="period_id" type="col" />
+					<field name="product_id" type="row" />
+					<field name="forecast_sales" type="measure" />
+					<field name="actual_sales" type="measure" />
+					<field name="diffrence" type="measure" />
+					<field name="sale_date" invisible="1" />
+					<field name="year_id" invisible="1" />
+				</pivot>
+			</field>
+		</record>
+
+		<record id="forecasted_and_actual_sales_report_graph_id" model="ir.ui.view">
+			<field name="name">forecasted.and.actual.sales.report.graph</field>
+			<field name="model">forecasted.and.actual.sales.report.ept</field>
+			<field name="arch" type="xml">
+				<graph string="Forecast Sales v/s Actual Sales Analysis">
+					<field name="period_id" type="col" />
+					<field name="product_id" type="row" />
+					<field name="forecast_sales" type="measure" />
+					<field name="actual_sales" type="measure" />
+					<field name="diffrence" type="measure" />
+					<field name="sale_date" invisible="1" />
+					<field name="year_id" invisible="1" />
+				</graph>
+			</field>
+		</record>
+
+		<!-- Custom reports (aka filters) -->
+		<record id="filter_forecast_sales_funnel" model="ir.filters">
+			<field name="name">Forecasted Sales by Measure</field>
+			<field name="model_id">forecasted.and.actual.sales.report.ept</field>
+			<field name="context">{'group_by': ['period_id'], 'measures':
+				['forecast_sales','actual_sales','diffrence']}
+			</field>
+		</record>
+		<record id="filter_forecast_salespersons" model="ir.filters">
+			<field name="name">By warehouse</field>
+			<field name="model_id">forecasted.and.actual.sales.report.ept</field>
+			<field name="context">{'group_by': ['warehouse_id']}</field>
+		</record>
+		<record id="filter_forecasted_product" model="ir.filters">
+			<field name="name">By Product</field>
+			<field name="model_id">forecasted.and.actual.sales.report.ept</field>
+			<field name="context">{'group_by': ['product_id']}</field>
+		</record>
+		<record id="filter_forecasted_Year_view" model="ir.filters">
+			<field name="name">Year view</field>
+			<field name="domain">['&amp;', ('sale_date','&lt;=',
+				context_today().strftime('%m/%d/%Y')),('sale_date','&gt;=',(context_today()
+				- relativedelta(years=1)).strftime('%m/%d/%Y'))]</field>
+			<field name="model_id">forecasted.and.actual.sales.report.ept</field>
+			<field name="context">{'group_by': ['warehouse_id']}</field>
+		</record>
+
+		<record id="filter_forecasted_half_year_view" model="ir.filters">
+			<field name="name">Half Year view</field>
+			<field name="domain">['&amp;', ('sale_date','&lt;=',
+				context_today().strftime('%m/%d/%Y')),('sale_date','&gt;=',(context_today()
+				- relativedelta(months=6)).strftime('%m/%d/%Y'))]</field>
+			<field name="model_id">forecasted.and.actual.sales.report.ept</field>
+			<field name="context">{'group_by': ['warehouse_id']}</field>
+		</record>
+
+		<record id="filter_forecasted_quarter_year_view" model="ir.filters">
+			<field name="name">Quarter Year view</field>
+			<field name="domain">['&amp;', ('sale_date','&lt;=',
+				context_today().strftime('%m/%d/%Y')),('sale_date','&gt;=',(context_today()
+				- relativedelta(months=3)).strftime('%m/%d/%Y'))]</field>
+			<field name="model_id">forecasted.and.actual.sales.report.ept</field>
+			<field name="context">{'group_by': ['warehouse_id']}</field>
+		</record>
+
+		<record id="forecasted_and_actual_sales_search_view_ept" model="ir.ui.view">
+			<field name="name">forecasted.and.actual.sales.report.search.view.ept
+			</field>
+			<field name="model">forecasted.and.actual.sales.report.ept</field>
+			<field name="arch" type="xml">
+				<search string="Forecast Sales v/s Actual Sales Analysis">
+					<field name="period_id" string="Period" />
+					<field name="warehouse_id" string="Warehouse" />
+					<separator />
+					<field name="product_id" string="product" />
+					<field name="sku" string="sku" />
+					<field name="forecast_sales" />
+					<filter string="This Year" name="thisyear"
+						domain="['|', ('sale_date', '=', False), '&amp;',('sale_date','&lt;=', time.strftime('%%Y-12-31')),('sale_date','&gt;=',time.strftime('%%Y-01-01'))]" />
+					<separator />
+					<filter string="This Month" name="this_month"
+						domain="[('sale_date', '=', context_today().strftime('%%Y-%%m-01'))]" />
+					<filter string="Can be use for Coverage Report Products Only" name="can_be_use_for_coverage_report_products_only"
+						domain="[('can_be_used_for_coverage_report_ept', '=', True)]" />
+					<filter string="Previous Month" name="previous_month"
+						domain="['&amp;', ('sale_date', '&gt;=', (context_today() - relativedelta(months=1)).strftime('%%Y-%%m-01')), ('sale_date', '&lt;', context_today().strftime('%%Y-%%m-01'))]" />
+					<filter string="Next Month" name="next_month"
+						domain="['&amp;', ('sale_date', '&lt;=', (context_today() + relativedelta(months=1)).strftime('%%Y-%%m-01')), ('sale_date', '&gt;', context_today().strftime('%%Y-%%m-01'))]" />
+					<separator />
+					<group expand="0" string="Extended Filters">
+						<field name="product_id" filter_domain="[('product_id', 'ilike', self)]" />
+					</group>
+					<group expand="1" string="Group By">
+						<filter string="Warehouses" name="warehouse_search"
+							context="{'group_by':'warehouse_id'}" />
+						<filter string="Product" name="product_search" context="{'group_by':'product_id'}" />
+						<filter string="SKU" name="sku" context="{'group_by':'sku'}" />
+						<filter string="Period" name="period_search" context="{'group_by':'period_id'}" />
+						<filter string="Year" name="fiscal_year" context="{'group_by':'year_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+		<record id="forecasted_and_actual_sales_tree_view_ept" model="ir.ui.view">
+			<field name="name">forecasted.and.actual.sales.tree.view.ept</field>
+			<field name="model">forecasted.and.actual.sales.report.ept</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Forecast Sales v/s Actual Sales Analysis" create="false">
+					<field name="product_id" />
+					<field name="sku" />
+					<field name="period_id" />
+					<field name="warehouse_id" />
+					<field name="forecast_sales" />
+					<field name="actual_sales" />
+					<field name="sale_date" invisible="1" />
+					<field name="year_id" invisible="1" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="action_forecasted_and_actual_sales_report_all"
+			model="ir.actions.act_window">
+			<field name="name">Forecast Sales v/s Actual Sales Analysis</field>
+			<field name="res_model">forecasted.and.actual.sales.report.ept</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">pivot,graph,tree</field>
+			<field name="search_view_id" ref="forecasted_and_actual_sales_search_view_ept" />
+			<field name="context">{"search_default_warehouse_search":1,"search_default_can_be_use_for_coverage_report_products_only" :1, "search_default_thisyear":1,'measures':['actual_sales','diffrence','forecast_sales']}
+			</field>
+		</record>
+
+		<menuitem id="menu_forecast_and_actual_sales_report" name="Forecast v/s Actual Sales"
+			sequence="70"
+			parent="inventory_coverage_report_ept.menu_inventory_coverage_report_root"
+			action="action_forecasted_and_actual_sales_report_all" groups="inventory_coverage_report_ept.group_forecast_sale_ept" />
+
+	</data>
+</odoo>

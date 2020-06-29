@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<record id="requisition_fiscal_years_ept_tree_view" model="ir.ui.view">
+		<field name="name">requisition.fiscal.years.ept.view.tree</field>
+		<field name="model">requisition.fiscal.year.ept</field>
+		<field name="type">tree</field>
+		<field name="priority" eval="2" />
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />
+				<field name="code" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="requisition_fiscal_years_ept_form_view" model="ir.ui.view">
+		<field name="name">requisition.fiscal.years.ept.view.form</field>
+		<field name="model">requisition.fiscal.year.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Reorder Log">
+				<header>
+					<button name="create_periods" type="object" class="oe_highlight"
+						attrs="{'invisible': [('state', 'in', 'done')]}" string="Create Monthly Periods"></button>						<!-- groups="reorder_process.group_reorder_process_manager" /> -->
+					<field name="state" widget="statusbar" />
+				</header>
+				<sheet>
+					<div class="oe_title">
+						<h1>
+							<field name="name" />
+						</h1>
+					</div>
+					<group colspan="2" col="4">
+						<field name="code" />
+						<field name="date_start" />
+						<field name="date_stop" />
+					</group>
+					<notebook>
+						<page string="Periods">
+							<field name="requisition_period_ids" nolabel="1"
+								widget="one2many_list">
+								<tree>
+									<field name="name" />
+									<field name="code" />
+									<field name="date_start" />
+									<field name="date_stop" />
+									<field name="fiscalyear_id" />
+									<field name="special" invisible="1" />
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+
+	<record id="requisition_fiscal_year_ept_search_view" model="ir.ui.view">
+		<field name="name">requisition.fiscal.year.ept.view.search</field>
+		<field name="model">requisition.fiscal.year.ept</field>
+		<field name="arch" type="xml">
+			<search string="Requisition Fiscal Year">
+				<field name="name" string="Name" filter_domain="[('name','ilike',self)]" />
+				<field name="code" string="Code" filter_domain="[('code','ilike',self)]" />
+
+				<filter string="This Year" name="name"
+					domain="[('date_stop','&lt;=', time.strftime('%%Y-12-31')),('date_start','&gt;=',time.strftime('%%Y-01-01'))]" />
+				<separator />
+			</search>
+		</field>
+	</record>
+
+
+	<record id="requisition_fiscal_year_ept_action" model="ir.actions.act_window">
+		<field name="name">Fiscal Year</field>
+		<field name="res_model">requisition.fiscal.year.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+
+	<menuitem id="requisition_fiscal_year_ept_menu" action="requisition_fiscal_year_ept_action"
+		name="Years" parent="inventory_coverage_report_ept.forecast_sale_main_menu"
+		sequence="80" />
+
+
+</odoo>

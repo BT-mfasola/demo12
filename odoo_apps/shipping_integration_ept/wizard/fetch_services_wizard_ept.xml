@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- Wizard View -->
+		<record id="wizardview_fetch_services_wizard_ept" model="ir.ui.view">
+			<field name="name">Shipping Parameter</field>
+			<field name="model">fetch.services.wizard.ept</field>
+			<field name="arch" type="xml">
+				<form string="Shipping Parameter">
+					<label for="" string="From Address : Default Company Address." />
+					<group>
+						<field name="use_toaddress_different" />
+					</group>
+					<group attrs="{'invisible': [('use_toaddress_different', '!=', True)]}">
+						<label for="street" string="To Address" />
+						<div class="o_address_format">
+							<field name="to_street" placeholder="Street..." class="o_address_street" />
+							<field name="to_street2" placeholder="Street 2..." class="o_address_street" />
+							<field name="to_city" placeholder="City" class="o_address_city" />
+							<field name="to_state_id" class="o_address_state"
+								placeholder="State" options="{&quot;no_open&quot;: True}" />
+
+							<field name="to_zip" placeholder="ZIP" class="o_address_zip"
+								attrs="{'required':[('use_toaddress_different', '=', True)]}" />
+							<field name="to_country_id" placeholder="Country" class="o_address_country"
+								options="{&quot;no_open&quot;: True}" attrs="{'required':[('use_toaddress_different', '=', True)]}" />
+						</div>
+					</group>
+					<footer>
+						<button string="Retrieve Services" type="object"
+							name="fetch_shipping_services" class="oe_highlight o_wow" />
+						<button string="_Cancel" class="btn-default" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<!--Wiazard Action -->
+		<record id="wizardaction_fetch_services_wizard_ept" model="ir.actions.act_window">
+			<field name="name">Shipping Parameter</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">fetch.services.wizard.ept</field>
+			<field name="view_mode">tree,form,kanban</field>
+			<field name="view_type">form</field>
+			<field name="view_id" ref="wizardview_fetch_services_wizard_ept" />
+			<field name="target">new</field>
+		</record>
+
+
+	</data>
+</odoo>

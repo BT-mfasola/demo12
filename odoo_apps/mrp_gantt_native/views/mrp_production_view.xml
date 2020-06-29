@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="mrp_production_view_form_inherit_gantt" model="ir.ui.view">
+            <field name="name">mrp.production.form.view.inherit.gantt</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <field name="date_planned_finished" position="after">
+                        <field name="date_planned_deadline"/>
+                </field>
+                <xpath expr="//field[@name='date_planned_finished']" position="attributes">
+                      <attribute name="invisible">False</attribute>
+                </xpath>
+
+
+            </field>
+        </record>
+
+
+    <record id="view_mrp_production_ganttaps" model="ir.ui.view">
+    <field name="name">mrp.production.ganttaps</field>
+    <field name="model">mrp.production</field>
+    <field name="type">ganttaps</field>
+    <field eval="2" name="priority"/>
+
+    <field name="arch" type="xml">
+        <ganttaps
+
+                default_group_by = "bom_id"
+                main_group_id_name = "bom_id"
+
+                name = "name"
+                date_start="date_planned_start"
+                date_stop="date_planned_finished"
+                date_deadline="date_planned_deadline"
+                date_done="date_finished"
+
+                state="state"
+                state_status="done"
+
+                user_id = "user_id"
+
+                sorting_seq="sorting_seq"
+                sorting_level="sorting_level"
+
+                project_id="bom_id"
+
+                is_milestone="is_milestone"
+                on_gantt="on_gantt"
+
+                no_group_sort_mode="true"
+                default_order="date_planned_start desc"
+
+             >
+
+        </ganttaps>
+
+        </field>
+
+    </record>
+
+
+    <record id="mrp.mrp_production_action" model="ir.actions.act_window">
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,ganttaps</field>
+    </record>
+
+    <record id="mrp.mrp_production_report" model="ir.actions.act_window">
+        <field name="view_mode">pivot,graph,list,form,ganttaps</field>
+    </record>
+
+</data>
+</odoo>

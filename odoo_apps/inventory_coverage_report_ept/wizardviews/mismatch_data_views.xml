@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<record id="mismatch_data_ept_form_view" model="ir.ui.view">
+            <field name="name">mismatch.data.ept.form.view</field>
+            <field name="model">mismatch.data.ept</field>
+            <field name="arch" type="xml">
+                <form string="Mismatch Data">
+					<group>
+						<group>
+							<field name="warehouse_ids" widget="many2many_tags" invisible="1" 
+								options="{'no_quick_create': True, 'no_create_edit': True, 'no_create': True}" />
+						</group>
+					</group>
+					
+					<group string="Missing Forecasted Data">
+						<field name="mismatch_lines" nolabel="1" colspan="3">
+							<tree create="false" write="false">
+								<field name="product_id" />
+								<field name="warehouse_id" />
+								<field name="period_id" />
+							</tree>
+						</field>
+					</group>
+					
+					<footer>
+                        <button string="_Close" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+	</data>
+</odoo>

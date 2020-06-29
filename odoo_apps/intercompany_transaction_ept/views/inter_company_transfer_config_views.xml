@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="inter_company_transfer_config_ept_tree_view" model="ir.ui.view">
+			<field name="name">inter.company.transfer.config.ept.view.tree</field>
+			<field name="model">inter.company.transfer.config.ept</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Inter Company Transfer Configuration" create="false">
+					<field name="sequence_id" />
+					<field name="auto_confirm_orders" />
+					<field name="auto_create_invoices" />
+					<field name="auto_validate_invoices"
+						attrs="{'invisible':[('auto_create_invoices','=',False)]}" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="inter_company_transfer_config_ept_form_view" model="ir.ui.view">
+			<field name="name">inter.company.transfer.config.ept.view.form</field>
+			<field name="model">inter.company.transfer.config.ept</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Intercompany Configuration" create="false">
+					<sheet>
+						<group string="ICT Configuration">
+							<field name="sequence_id" invisible="1" />
+							<field name="auto_confirm_orders" />
+							<field name="auto_create_invoices" />
+							<field name="auto_validate_invoices"
+								attrs="{'invisible':[('auto_create_invoices','=',False)]}" />
+						</group>
+						<group string="Reverse ICT Configuration">
+							<field name="filter_refund" required="True" widget='radio' />
+							<field name="description" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="inter_company_transfer_config_ept_action" model="ir.actions.act_window">
+			<field name="name">Configuration</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">inter.company.transfer.config.ept</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem id="internal_inter_company_transfer_config_ept_menu"
+			action="inter_company_transfer_config_ept_action"
+			parent="intercompany_transaction_ept.inter_company_transfer_ept_main_menu"
+			sequence='4' />
+
+	</data>
+</odoo>

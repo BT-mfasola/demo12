@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_risk_managment_form">
+            <field name="name">risk.managment.from.view</field>
+            <field name="model">project.risk</field>
+            <field name="arch" type="xml">
+                <form string="Risk Managment">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="risk_quantification"/>
+                            </group>
+                            <group>
+                                <field name="category_id"/>
+                                <field name="type_id"/>
+                                <field name="response_id"/>
+                            </group>
+                        </group>
+                    <notebook>
+                        <page name="description_page" string="Internal Notes">
+                            <field name="notes"/>
+                            <div class="oe_clear"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_risk_managment_tree">
+            <field name="name">risk.managment.tree.view</field>
+            <field name="model">project.risk</field>
+            <field name="arch" type="xml">
+                 <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="risk_quantification"/>
+                    <field name="category_id"/>
+                    <field name="type_id"/>
+                    <field name="response_id"/>
+                 </tree>
+            </field>
+        </record>
+        <record id="risk_managment_search_view" model="ir.ui.view">
+            <field name="name">risk.managment.search.view</field>
+            <field name="model">project.risk</field>
+            <field name="arch" type="xml">
+                <search string="Risks" >
+                    <field name="category_id"/>
+                    <field name="type_id"/>
+                    <field name="response_id"/>
+                    <group expand="0" string="Group By">
+                        <filter name="Risk Category" domain="[]" context="{'group_by':'category_id'}"/>
+                        <filter name="Risk Type" domain="[]" context="{'group_by':'type_id'}"/>
+                        <filter name="Risk Response" domain="[]" context="{'group_by':'response_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+         <record id="action_risk_managment_form" model="ir.actions.act_window">
+            <field name="name">Risks</field>
+            <field name="res_model">project.risk</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="menu_risk_project_risk" name="Risks" parent="project_risk_management.menu_risk_type" groups="project_risk_management.group_risk_user,project_risk_management.group_risk_manager" sequence="0"/>
+        <menuitem id="menu_risk_managment_submenu" name="Risks" parent="project_risk_management.menu_risk_project_risk" action="action_risk_managment_form"/>
+    </data>
+</odoo>

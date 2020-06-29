@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_record_wizard" model="ir.ui.view">
+        <field name="name">stock_report</field>
+        <field name="model">stock.process.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+            	<group>
+            		<field name="vendor_id"></field>
+	           	</group>
+	           	<footer>
+	           	<button string="Inventory Report" class="oe_highlight"  type="object" 
+                            name="prepare_and_send_edi_inventory_message">
+                 </button>
+                  
+                 <button string="Cancel" class="oe_highlight"  type="object" 
+                            name="action_cancel">
+                  </button>
+                        
+	           	</footer>
+            </form>
+        </field>
+    </record>
+</odoo>

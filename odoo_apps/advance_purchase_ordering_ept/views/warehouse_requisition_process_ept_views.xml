@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="warehouse_requisition_process_ept_tree_view" model="ir.ui.view">
+		<field name="name">warehouse.requisition.process.ept.view.tree</field>
+		<field name="model">warehouse.requisition.process.ept</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Warehouse Requisition Process" decoration-bf="state in ['generated','waiting']"
+				decoration-info="state in ['draft']" decoration-success="state == 'approved'"
+				decoration-danger="state == 'rejected'" decoration-muted="state in ['cancel']">
+				<field name="name" required="True" />
+				<field name="requisition_date" required="True" />
+				<field name="user_id" required='True' />
+				<field name="state" required="True" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="warehouse_requisition_process_ept_form_view" model="ir.ui.view">
+		<field name="name">warehouse.requisition.process.ept.view.form</field>
+		<field name="model">warehouse.requisition.process.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Warehouse Requisition Process">
+				<header>
+					<field name="state" widget="statusbar" statusbar_visible="draft,generated" />
+					<button name="action_update_requisition" states="rejected"
+						class="oe_highlight" string="Update Demand" type="object" />
+					<button name="action_draft" states="rejected,cancel" string="Set To Draft"
+						type="object"
+						groups="advance_purchase_ordering_ept.adv_purchase_manager_ept,advance_purchase_ordering_ept.adv_purchase_user_ept" />
+					<button name="action_calculate" class="oe_highlight" states="draft"
+						string="Generate Demand" type="object"
+						groups="advance_purchase_ordering_ept.adv_purchase_manager_ept,advance_purchase_ordering_ept.adv_purchase_user_ept" />
+					<field name="is_approval_by_authorised" invisible="1" />
+					<button name="action_request_for_approval" class="oe_highlight"
+						string="Request For Approval" type="object"
+						groups="advance_purchase_ordering_ept.adv_purchase_manager_ept,advance_purchase_ordering_ept.adv_purchase_user_ept"
+						attrs="{'invisible':['|',('is_approval_by_authorised','=',False),('state','!=','generated')]}" />
+					<button name="action_verify" class="oe_highlight" string="Verify"
+						type="object"
+						attrs="{'invisible':['|',('is_approval_by_authorised','!=',False),('state','!=','generated')]}" />
+					<field name="show_approval_buttons" invisible="1" />
+					<button name="action_approve" class="oe_highlight" string="Approve"
+						type="object" attrs="{'invisible':[('show_approval_buttons','=',False)]}" />
+					<button name="action_transfer" states="verified,approved"
+						class="oe_highlight" string="Create Transfer" type="object"
+						groups="advance_purchase_ordering_ept.adv_purchase_manager_ept,advance_purchase_ordering_ept.adv_purchase_user_ept" />
+					<button name="action_reject" class="oe_highlight" string="Reject"
+						type="object" attrs="{'invisible':[('show_approval_buttons','=',False)]}" />
+					<button name="action_re_calculate" class="oe_highlight"
+						states="generated" string="Re-Generate Demand" type="object"
+						groups="advance_purchase_ordering_ept.adv_purchase_manager_ept,advance_purchase_ordering_ept.adv_purchase_user_ept" />
+					<button name="action_cancel"
+						attrs="{'invisible':[('state','in',['done','cancel'])]}" string="Cancel"
+						type="object"
+						groups="advance_purchase_ordering_ept.adv_purchase_manager_ept,advance_purchase_ordering_ept.adv_purchase_user_ept" />
+					<button name="view_requisition_demand_in_detail"
+						states="generated,waiting,approved,rejected,verified,done" string="View Demand Calculation"
+						type="object" groups="base.group_no_one" />
+				</header>
+				<sheet>
+					<div class="oe_button_box" name="button_box">
+						<button type="object" name="action_view_ICT_order" class="oe_stat_button"
+							icon="fa-shopping-cart" attrs="{'invisible': [('ict_count', '=', 0)]}">
+							<field name="ict_count" widget="statinfo" string="Inter Company Transfer" />
+						</button>
+						<button type="object" name="action_view_purchase_order"
+							class="oe_stat_button" icon="fa-shopping-cart"
+							attrs="{'invisible': [('purchase_order_count', '=', 0)]}">
+							<field name="purchase_order_count" widget="statinfo"
+								string="Purchase Order" />
+						</button>
+						<button type="object" name="action_view_sale_order" class="oe_stat_button"
+							icon="fa-usd" attrs="{'invisible': [('sale_order_count', '=', 0)]}">
+							<field name="sale_order_count" widget="statinfo" string="Sale Order" />
+						</button>
+						<button type="object" name="action_view_picking" class="oe_stat_button"
+							icon="fa-truck" attrs="{'invisible': [('picking_count', '=', 0)]}">
+							<field name="picking_count" widget="statinfo" string="Picking" />
+						</button>
+						<button type="object" name="action_view_invoices" class="oe_stat_button"
+							icon="fa-pencil-square-o" attrs="{'invisible': [('account_invoice_count', '=', 0)]}">
+							<field name="account_invoice_count" widget="statinfo"
+								string="Customer Invoices" />
+						</button>
+						<button type="object" name="action_view_supplier_invoices"
+							class="oe_stat_button" icon="fa-pencil-square-o"
+							attrs="{'invisible': [('supplier_invoice_count', '=', 0)]}">
+							<field name="supplier_invoice_count" widget="statinfo"
+								string="Vendor Bill" />
+						</button>
+					</div>
+					<div class="oe_title">
+						<h1>
+							<field name="name" readonly="1" />
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="source_warehouse_id" required="True"  attrs="{'readonly' : [('state','not in',['draft'])]}" />
+							<field name="requisition_date" required="True" attrs="{'readonly' : [('state','not in',['draft'])]}" />
+							<field name="is_use_forecast_sale_for_requisition"
+								invisible="1"
+								attrs="{'readonly': [('state','not in',['draft','generated'])]}"
+								groups="inventory_coverage_report_ept.group_forecast_sale_ept" />
+							<field name="requisition_past_sale_start_from"
+								attrs="{'required':[('is_use_forecast_sale_for_requisition','=',False)],'invisible' : [('is_use_forecast_sale_for_requisition','=',True)]}" />
+						</group>
+						<group>
+							<field name="user_id" />
+							<field name="is_approval_by_authorised" invisible="1" />
+							<field name="approval_user_id"
+								attrs="{'invisible':[('is_approval_by_authorised','=',False)],'required':[('is_approval_by_authorised','=',True)]}" />
+							<field name="deliver_to" invisible="1" />
+							<field name="reject_reason" attrs="{'invisible':[('state','!=','rejected')]}"
+								readonly="1" />
+						</group>
+					</group>
+					<notebook>
+						<page string='Products' name="products">
+							<field name="product_ids" required="1"
+								 attrs="{'readonly' : [('state','not in',['draft'])]}"
+								domain="[('type','=','product'), ('can_be_used_for_coverage_report_ept', '=', True)]"
+								context="{'tree_view_ref': 'inventory_coverage_report_ept.view_tree_product_product_advance_purchase_add_item_ept'}">
+								<tree>
+									<field name="default_code" />
+									<field name="name" />
+									<field name="lst_price"/>
+									<!-- <field name="attribute_value_ids" groups="product.group_product_variant"/> -->
+								</tree>
+							</field>
+						</page>
+						<page string='Procurement Planning' name="procurement_details">
+							<field name="warehouse_configuration_line_ids" nolabel='1'
+								attrs="{'readonly':[('state','not in',['draft'])]}" >
+								<tree editable="top">
+									<field name="warehouse_id" required="1" />
+									<field name="destination_warehouse_id" required="1" />
+									<field name="requisition_estimated_delivery_time"
+										required="1" />
+									<field name="requisition_backup_stock_days" required="1" />
+								</tree>
+							</field>
+						</page>
+						<page string='Process Calculation' name="process_lines"
+							attrs="{'invisible':[('state','in',['draft'])]}">
+							<field name="warehouse_requisition_process_line_ids" mode="tree,form"
+								nolabel='1' attrs="{'readonly':[('state','not in',['draft','generated'])]}">
+								<form string="Process Lines">
+									<sheet>
+										<group>
+											<group>
+												<field name="product_id" />
+												<field name="warehouse_id" />
+											</group>
+											<group>
+												<field name="warehouse_configuraiton_line_id" />
+												<field name="state" />
+											</group>
+											<group>
+												<field name="opening_stock" />
+												<field name="qty_available_for_sale" />
+												<field name="forecasted_stock" />
+												<field name="expected_sale" />
+											</group>
+											<group>
+												<field name="sharing_percent" />
+												<field name="requisition_qty" />
+												<field name="adjusted_requisition_qty" />
+												<field name="can_be_update" />
+											</group>
+										</group>
+									</sheet>
+								</form>
+								<tree create="false" editable="top">
+									<field name="product_id" readonly="1" />
+									<field name="warehouse_id" readonly="1" />
+									<field name="qty_available_for_sale" readonly="1" />
+									<field name="expected_sale" readonly="1" />
+									<field name="forecasted_stock" readonly="1" />
+									<field name="requisition_qty" readonly="1" />
+									<field name="adjusted_requisition_qty" />
+									<field name="can_be_update" />
+								</tree>
+							</field>
+						</page>
+						<page string='Summary' attrs="{'invisible':[('state','in',['draft'])]}"
+							name="summary">
+							<field name="warehouse_requisition_summary_ids" nolabel='1' attrs="{'readonly':[('state','not in',['draft','generated'])]}">
+								<tree editable="top" create="false">
+									<field name="product_id" readonly="1" />
+									<field name="available_qty" readonly="1" />
+									<field name="requisition_qty" readonly="1"
+										sum="Total Demanded Qty" modifiers="{'readonly':true}" />
+									<field name="deliver_qty" readonly="1" sum="Total Deliver Qty"
+										modifiers="{'readonly':true}" />
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	 <record id="warehouse_requisition_process_ept_search_view" model="ir.ui.view">
+		<field name="name">Warehouse Requisition Process</field>
+		<field name="model">warehouse.requisition.process.ept</field>
+		<field name="type">search</field>
+		<field name="arch" type="xml">
+		 <search>
+				<field name="name" filter_domain="[('name','ilike', self)]" string="Name" />
+				<field name="requisition_date" filter_domain="[('requisition_date','ilike', self)]" string="Date" />
+				<field name="user_id" filter_domain="[('user_id','ilike', self)]" string="Responsible" />
+				<field name="state" filter_domain="[('state','ilike', self)]" string="State" />
+				<field name="source_warehouse_id" filter_domain="[('source_warehouse_id','ilike', self)]" string="Source Warehouse" />
+				<field name="warehouse_id" />
+				<field name="product_id" />
+				<filter string="My Reorders" domain="[('user_id','=',uid)]" name="my_requisition_processes_filter" />
+				<filter string="My Approval" domain="[('approval_user_id','=',uid)]" name="filter_my_requisition_approval" />
+				<filter string="My Waiting Approval" domain="[('approval_user_id','=',uid),('state','=','waiting')]" name='filter_my_waiting_approval' />
+				<separator />
+				<filter string="Waiting For Approval" domain="[('state','=','waiting')]" name="filter_requisition_waiting" />
+				<filter string="Approved" domain="[('state','=','approved')]" name="filter_requisition_approved" />
+				<filter string="Rejected" domain="[('state','=','rejected')]" 	name="filter_requisition_rejected" />
+				<separator />   
+				<group expand="0" string="Group By">
+					<filter name="state" string="State" domain="[]" context="{'group_by':'state'}" />
+					<filter name="requisition_date" string="Date" domain="[]" context="{'group_by':'requisition_date'}" />
+					<filter name="user_id" string="Responsible" domain="[]" context="{'group_by':'user_id'}" />
+					<filter name="approval_user_id" string="Approval Responsible" domain="[]" context="{'group_by':'approval_user_id'}" />
+				</group> 
+			</search>
+		</field>
+	</record>
+
+	<record id="warehouse_requisition_process_ept_action" model="ir.actions.act_window">
+		<field name="name">Procurement Process</field>
+		<field name="res_model">warehouse.requisition.process.ept</field>
+		<field name="view_type">form</field>
+		<field name="context">{'default_deliver_to':'general'}</field>
+		<field name="domain">[('deliver_to', '=', 'general')]</field>
+	</record>
+
+</odoo>

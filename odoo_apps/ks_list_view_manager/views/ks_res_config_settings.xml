@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    <record id="ks_serial_number" model="ir.config_parameter">-->
+<!--        <field name="key">ks_serial_number</field>-->
+<!--        <field name="value">True</field>-->
+<!--    </record>-->
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.ks_list_view_manager</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="100"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="General Settings" string="List View Manager Settings" data-key="ks_list_view_manager">
+                    <!--                Options for Color Settings-->
+                    <div class="app_settings_custom">
+                        <h2>Color Settings</h2>
+                    </div>
+
+                     <!--                Options for Toggle Color-->
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                           <div class="o_setting_right_pane">
+                               <label for = "ks_toggle_color_field_change" String = "Toggle Color" />
+                               <field name="ks_toggle_color_field_change"   widget="ks_color_picker" class="oe_inline"/>
+                           </div>
+                        </div>
+
+
+                    <!--                Options for Header Color-->
+                        <div class="col-12 col-lg-6 o_setting_box">
+                             <div class="o_setting_right_pane">
+                                 <label for="ks_header_color_field_change" String ="Header Color" />
+                                 <field name="ks_header_color_field_change" widget="ks_color_picker"  class="oe_inline"/>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!--                Options for Serial Number Settings-->
+                    <div class="app_settings_custom">
+                        <h2>Serial Number Settings</h2>
+                    </div>
+
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="ks_serial_number"  class="oe_inline"/>
+                            </div>
+
+                            <div class="o_setting_right_pane">
+                                <label for = "ks_serial_number" String = "Serial Number" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_general_configuration" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'ks_list_view_manager'}</field>
+        </record>
+
+        <menuitem
+            id="menu_config"
+            name="List View Settings"
+            parent="base.menu_administration"
+            sequence="2"
+            action="action_general_configuration"
+            groups="base.group_system"/>
+
+</odoo>

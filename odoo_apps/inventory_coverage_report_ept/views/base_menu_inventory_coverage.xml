@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<!-- Main Menu -->
+
+	<menuitem id="advance_reordering_main_menu" name="Advance Reordering"
+		parent='stock.menu_stock_root' sequence="3" />
+
+	<menuitem id="forecast_sale_main_menu" name="Forecast Sale"
+		parent='advance_reordering_main_menu' sequence="50"
+		groups="inventory_coverage_report_ept.group_forecast_sale_ept" />
+
+	<menuitem id="menu_inventory_coverage_report_root" name="Reporting"
+		parent="advance_reordering_main_menu" sequence="90" groups="stock.group_stock_manager" />
+
+</odoo>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="requisition_log_ept_tree_view" model="ir.ui.view">
+		<field name="name">requisition.log.ept.view.tree</field>
+		<field name="model">requisition.log.ept</field>
+		<field name="type">tree</field>
+		<field name="arch" type="xml">
+			<tree string="Logs" create="false" edit="false"
+				decoration-danger="state not in ('success')" decoration-muted="state in ('success')">
+				<field name="name" required="True" />
+				<field name="log_date" />
+				<field name="user_id" />
+				<field name="log_type" />
+				<field name="state" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="requisition_log_ept_form_view" model="ir.ui.view">
+		<field name="name">requisition.log.ept.view.form</field>
+		<field name="model">requisition.log.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Logs">
+				<header>
+					<field name="state" widget="statusbar"></field>
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="name" required="True" copy='False' readonly="True" />
+							<field name="log_date" readonly="True" />
+							<field name="user_id" readonly="True" />
+						</group>
+						<group>
+							<field name="log_type" readonly="True" />
+							<field name="message" readonly="True" />
+						</group>
+					</group>
+					<group string='Logs' attrs="{'invisible':[('state','=','success')]}">
+						<field name="line_ids" nolabel='1' readonly="True">
+							<tree>
+								<field name="log_type" readonly="True" />
+								<field name="message" readonly="True" />
+							</tree>
+						</field>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="requisition_log_ept_search_view" model="ir.ui.view">
+		<field name="name">requisition.log.ept.view.search</field>
+		<field name="model">requisition.log.ept</field>
+		<field name="type">search</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" filter_domain="[('name','ilike', self)]"
+					string="Name" />
+				<field name="log_type" filter_domain="[('name','ilike', self)]"
+					string="Log Type" />
+				<field name="log_date" filter_domain="[('log_date','ilike', self)]"
+					string="Log Date" />
+				<field name="user_id" filter_domain="[('user_id','ilike', self)]"
+					string="Responsible"></field>
+				<field name="message" filter_domain="[('message','ilike', self)]"
+					string="Message" />
+				<filter string="Succeed" domain="[('state','=','success')]"
+					name="filter_log_success" />
+				<filter string="Failure" domain="[('state','=','fail')]"
+					name="filter_log_fail" />
+				<separator />
+				<filter string="Import forecasted sales" domain="[('log_type','=','Import_forcasted_sales')]"
+					name="log_type" />
+				<filter string="Import forecasted rule"
+					domain="[('log_type','=','Import_forcasted_sales_rule')]" name="log_type" />
+				<filter string="Export forecasted sales" domain="[('log_type','=','Export_forcasted_sales')]"
+					name="log_type" />
+				<separator />
+
+				<group expand="0" string="Group By">
+					<filter name="state" string="State" domain="[]"
+						context="{'group_by':'state'}" />
+					<filter name="user_id" string="Responsible" domain="[]"
+						context="{'group_by':'user_id'}" />
+					<filter name="log_type" string="Log Type" domain="[]"
+						context="{'group_by':'log_type'}" />
+				</group>
+			</search>
+		</field>
+	</record>
+
+	<record id="requisition_log_ept_action" model="ir.actions.act_window">
+		<field name="name">Logs</field>
+		<field name="res_model">requisition.log.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_id" ref="requisition_log_ept_tree_view" />
+		<field name="context">{'search_default_filter_log_fail':1}</field>
+	</record>
+
+
+	<menuitem id="requisition_log_menu" name="Logs"
+		parent="inventory_coverage_report_ept.advance_reordering_main_menu"
+		action='requisition_log_ept_action' sequence="100"
+		groups="inventory_coverage_report_ept.group_forecast_sale_ept" />
+
+
+</odoo>

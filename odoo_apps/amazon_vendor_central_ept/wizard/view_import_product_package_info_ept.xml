@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_import_product_package_info_ept" model="ir.ui.view">
+			<field name="name">Import Package Info</field>
+			<field name="model">import.product.package.info.ept</field>
+			<field name="arch" type="xml">
+				<form>
+					<group>
+						<field name="choose_file" filename="file_name" required="1"></field>
+						<field name="delimiter"/>
+					</group>
+					 <footer>
+                        <button string='Import Package Info' name="import_package_info" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                     <div>
+                	  <p class="oe_grey">
+                        <strong>Note</strong>: Import Package Info with Following header.
+                        default_code,quantity,Package_ref,height,width,length,weight,package_type
+                        
+                    </p>
+                    </div>
+				</form>
+			</field>
+		</record>
+		
+		<record id="action_import_product_package_info_ept" model="ir.actions.act_window">
+            <field name="name">Import Package Info</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">import.product.package.info.ept</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="amazon_vendor_central_ept.view_import_product_package_info_ept"/>
+        </record>
+	</data>
+</odoo>

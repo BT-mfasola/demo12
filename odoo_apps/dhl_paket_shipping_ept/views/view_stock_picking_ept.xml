@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="view_stock_picking_send_to_shipping_ept" model="ir.ui.view">
+            <field name="name">stock.picking.send.shipping.button.view.ept</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='send_to_shipper']" position="replace">
+                    <field name="delivery_carrier_type_ept" invisible="1"/>
+                    <button name="send_to_shipper" string="Send to Shipper" type="object" attrs="{'invisible':['|','|','|','|',('delivery_carrier_type_ept','!=',False),('carrier_tracking_ref','!=',False),('delivery_type','in', ['fixed', 'base_on_rule']),('delivery_type','=',False),('state','not in',('done'))]}"/>
+
+                    <button name="%(wizardaction_wizard_send_to_ship_ept)d" string="Send to Shipper" type="action" attrs="{'invisible':['|','|',('delivery_carrier_type_ept','=',False),('carrier_tracking_ref','!=',False),('state','not in',('done'))]}" class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

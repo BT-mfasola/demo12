@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="eb_gantt_native assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+
+                <link rel="stylesheet" href="/web_gantt_native/static/src/css/gantt_native.css"/>
+                <link rel="stylesheet" href="/web_gantt_native/static/src/css/gantt_native_ztree.css"/>
+
+
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/lib/twix.js"></script>
+
+
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/lib/jquery.ztree.core.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/lib/jquery.ztree.exedit.js"></script>
+
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/native_gantt_view.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/native_gantt_controller.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/native_gantt_model.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/native_gantt_renderer.js"></script>
+
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_tool_field.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_pager.js"></script>
+
+
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_head.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_data.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_tool_tip.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_tool_hint.js"></script>
+
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_arrow_draw.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_arrow.js"></script>
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_ghost.js"></script>
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_bar_summary.js"></script>
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_bar_first.js"></script>
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_header.js"></script>
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_scroll.js"></script>
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_info.js"></script>
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_res_level.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_res_bar.js"></script>
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_timeline_bar_docs.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_item_options.js"></script>
+
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_item_ztree.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_item_action.js"></script>
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/gantt_item_info.js"></script>
+
+                <script type="text/javascript" src="/web_gantt_native/static/src/js/native_gantt_data.js"></script>
+
+
+
+
+            </xpath>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="import_multi_products_sale_rule_form_view" model="ir.ui.view">
+		<field name="name">import.multi.products.sale.rule.view.form</field>
+		<field name="model">import.multi.products.sale.rule.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form>
+				<group>
+					<group>
+						<field name="sale_ratio" />
+					</group>
+				</group>
+				<field name="product_ids" widget="Many2one" domain="[('id','not in',context.get('products_list')), ('can_be_used_for_coverage_report_ept', '=', True)]" />
+				<footer>
+					<button name="import_multi_products" string="Add" type="object"
+						class="oe_highlight" />
+					or
+					<button string="_Close" class="oe_link" special="cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+</odoo>

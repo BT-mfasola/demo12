@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="report_shipping_instance_ept">
+            <t t-call="web.html_container">
+                <t t-call="shipping_integration_ept.report_shipping_instance_tamplate_ept"/>
+            </t>
+        </template>
+
+        <template id="report_shipping_instance_tamplate_ept">
+            <t t-call="web.html_container">
+                <t t-call="web.internal_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <h1>Shipping Report</h1>
+                    <table class="table table.candesed">
+                        <t t-foreach="docs" t-as="doc">
+                            <tr>
+                                <tr>
+                                    <td colspan="9">
+                                        <h3>
+                                            Shipping Instance :-
+                                            <t t-esc="doc.name"/>
+                                        </h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Sale Order</th>
+                                    <th>Customer Name</th>
+                                    <th>Delivery Order</th>
+                                    <th>Tracking No</th>
+                                    <th>Package No</th>
+                                    <th>Shipping Weight</th>
+                                    <th>Delivery Price</th>
+                                    <th>Carrier Price</th>
+                                    <th>Rate Differance</th>
+                                </tr>
+                                <t t-foreach="display_delivery_method(doc.id)" t-as="doc_ept">
+                                    <tr>
+                                        <tr>
+                                            <td colspan="9">
+                                                <h4>
+                                                    Delivery Method :-
+                                                    <t t-esc="doc_ept['name']"/>
+                                                </h4>
+                                            </td>
+                                        </tr>
+                                        <t t-set="total_weight" t-value="0.0"/>
+                                        <t t-set="total_delivery_price" t-value="0.0"/>
+                                        <t t-set="total_carrier_price" t-value="0.0"/>
+                                        <t t-foreach="display_stock_picking_attribute(doc_ept.id)"
+                                           t-as="data">
+                                            <tr>
+                                                <td>
+                                                    <t t-esc="data['origin']"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="data.partner_id.name"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="data['name']"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="data['carrier_tracking_ref']"/>
+                                                </td>
+
+                                                <td>
+                                                    <t t-foreach="data.move_lines" t-as="pack">
+                                                        <t t-foreach="pack.move_line_ids" t-as="pack_info">
+                                                            <t t-esc="pack_info.result_package_id.name"/>
+                                                        </t>
+                                                    </t>
+                                                </td>
+
+                                                <td class="text-right">
+                                                    <t t-esc="'%.2f'%(data['weight'])"/>
+                                                    <t t-set="total_weight"
+                                                       t-value="total_weight + data['weight']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <t t-esc="'%.2f'%(data.sale_id.delivery_price)"/>
+                                                    <t t-set="total_delivery_price"
+                                                       t-value="total_delivery_price + data.sale_id.delivery_price"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <t t-esc="'%.2f'%(data['carrier_price'])"/>
+                                                    <t t-set="total_carrier_price"
+                                                       t-value="total_carrier_price + data['carrier_price']"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <t t-esc="'%.2f'%(data.sale_id.delivery_price - data['carrier_price'])"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="text-right">
+                                                <strong>
+                                                    <t t-esc="'%.2f'%(total_weight)"/>
+                                                </strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <strong>
+                                                    <t t-esc="'%.2f'%(total_delivery_price)"/>
+                                                </strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <strong>
+                                                    <t t-esc="'%.2f'%(total_carrier_price)"/>
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                    </tr>
+                                </t>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
